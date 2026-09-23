@@ -9,10 +9,16 @@ All credit for the original code, textures, models and sounds goes to HbMinecraf
 Requires a JDK 17+ to run Gradle; Java 21 for Minecraft is provisioned automatically.
 
 ```
-./gradlew runData     # regenerate models, blockstates, loot tables, tags, atlas sources
-./gradlew runClient   # start the game with the mod
-./gradlew build       # jar in build/libs
+./gradlew runData            # regenerate models, blockstates, loot tables, tags, atlas sources
+./gradlew runClient          # start the game with the mod
+./gradlew build              # jar in build/libs
+./gradlew test               # unit tests (energy/fluid network logic), run inside a loaded game environment
+./gradlew runGameTestServer  # in-world tests (com.hbm.test), exits with an error if any fail
+./gradlew runDevScene        # builds a test scene, saves screenshots to run/screenshots and quits
 ```
+
+`runDevScene` needs a world called `devworld` in `run/saves` (copy the superflat `run/world` that
+`runGameTestServer` creates).
 
 ## Porting conventions
 
@@ -26,13 +32,17 @@ Requires a JDK 17+ to run Gradle; Java 21 for Minecraft is provisioned automatic
 - Sound events are lowercased (`block.crateBreak` -> `hbm:block.cratebreak`).
 - 1.7.10 explosion resistance values are kept as written in the original and converted by
   `ModBlocks.legacyResistance`.
+- `tools/translate.py` does the mechanical part of porting a 1.7.10 file (class/import renames); the compile
+  errors afterwards are the actual to-do list.
+- Ore dictionary entries become item tags, the hazard system matches on tags.
+- Things that depend on systems not ported yet are marked with `TODO` comments in the code.
 
 ## Status
 
 | Phase | Scope | State |
 |---|---|---|
 | 0 | Project skeleton, assets, lang, datagen, creative tabs | done |
-| 1 | Core: registries, HE energy network, fluids, hazards/radiation, packets, config | |
+| 1 | Core: registries, HE energy network, fluids, hazards/radiation, pollution, effects, packets, config | done |
 | 2 | Materials: ores, ingots, powders, tags, ore generation | |
 | 3 | Simple machines + GUIs, cables and pipes | |
 | 4 | Rendering: OBJ loader for block entity renderers, animation system | |

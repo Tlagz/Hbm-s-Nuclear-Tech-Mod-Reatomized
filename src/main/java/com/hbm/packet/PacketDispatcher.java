@@ -1,6 +1,7 @@
 package com.hbm.packet;
 
 import com.hbm.lib.RefStrings;
+import com.hbm.packet.toclient.BufPacket;
 import com.hbm.packet.toclient.ExtPropPacket;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,5 +20,6 @@ public class PacketDispatcher {
 		PayloadRegistrar registrar = event.registrar(PROTOCOL);
 
 		registrar.playToClient(ExtPropPacket.TYPE, ExtPropPacket.STREAM_CODEC, ExtPropPacket::handle);
+		registrar.playToClient(BufPacket.TYPE, BufPacket.STREAM_CODEC, BufPacket::handle);
 	}
 }
