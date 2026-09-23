@@ -14,6 +14,7 @@ import com.hbm.hazard.HazardData;
 import com.hbm.hazard.HazardEntry;
 import com.hbm.hazard.HazardRegistry;
 import com.hbm.hazard.HazardSystem;
+import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ModItems;
 
 import net.minecraft.core.registries.Registries;
@@ -409,19 +410,24 @@ public class OreDictManager {
 		KNO.dust(ModItems.niter).block(ModBlocks.block_niter).ore(ModBlocks.ore_niter);
 		F.dust(ModItems.fluorite).block(ModBlocks.block_fluorite).ore(ModBlocks.ore_fluorite);
 		LIGNITE.gem(ModItems.lignite).dust(ModItems.powder_lignite).ore(ModBlocks.ore_lignite);
+		COALCOKE.gem(ModItems.coke.get(EnumCokeType.COAL));
+		PETCOKE.gem(ModItems.coke.get(EnumCokeType.PETROLEUM));
+		LIGCOKE.gem(ModItems.coke.get(EnumCokeType.LIGNITE));
 		CINNABAR.crystal(ModItems.cinnebar).gem(ModItems.cinnebar).ore(ModBlocks.ore_cinnebar);
 		BORAX.dust(ModItems.powder_borax);
 		CHLOROCALCITE.dust(ModItems.powder_chlorocalcite);
 		MOLYSITE.dust(ModItems.powder_molysite);
 		SODALITE.gem(ModItems.gem_sodalite);
 		VOLCANIC.gem(ModItems.gem_volcanic);
+		MALACHITE.ingot(ModItems.chunk_ore.get(EnumChunkType.MALACHITE));
 		LIMESTONE.dust(ModItems.powder_limestone);
+		CRYOLITE.crystal(ModItems.chunk_ore.get(EnumChunkType.CRYOLITE));
 		LI.hydro(1F).ingot(ModItems.lithium).dustSmall(ModItems.powder_lithium_tiny).dust(ModItems.powder_lithium).ore(ModBlocks.ore_gneiss_lithium);
 		NA.hydro(1F).hazIngot().dust(ModItems.powder_sodium);
 		P_WHITE.hot(5).ingot(ModItems.ingot_phosphorus).block(ModBlocks.block_white_phosphorus);
 		P_RED.dust(ModItems.powder_fire);
 		AUSTRALIUM.nugget(ModItems.nugget_australium).billet(ModItems.billet_australium).ingot(ModItems.ingot_australium).dust(ModItems.powder_australium).block(ModBlocks.block_australium).ore(ModBlocks.ore_australium);
-		RAREEARTH.ore(ModBlocks.ore_rare, ModBlocks.ore_gneiss_rare);
+		RAREEARTH.ingot(ModItems.chunk_ore.get(EnumChunkType.RARE)).ore(ModBlocks.ore_rare, ModBlocks.ore_gneiss_rare);
 		LA.nugget(ModItems.fragment_lanthanium).ingot(ModItems.ingot_lanthanium).dustSmall(ModItems.powder_lanthanium_tiny).dust(ModItems.powder_lanthanium).block(ModBlocks.block_lanthanium);
 		ZR.nugget(ModItems.nugget_zirconium).ingot(ModItems.ingot_zirconium).billet(ModItems.billet_zirconium).dust(ModItems.powder_zirconium).block(ModBlocks.block_zirconium);
 		ND.nugget(ModItems.fragment_neodymium).dustSmall(ModItems.powder_neodymium_tiny).dust(ModItems.powder_neodymium);
@@ -441,6 +447,14 @@ public class OreDictManager {
 		ANY_GUNPOWDER.dust(Items.GUNPOWDER, ModItems.ballistite, ModItems.cordite);
 		ANY_SMOKELESS.dust(ModItems.ballistite, ModItems.cordite);
 		ANY_HIGHEXPLOSIVE.ingot(ModItems.ball_tnt).ingot(ModItems.ball_tatb);
+		ANY_ASH.any(ModItems.powder_ash.get(EnumAshType.WOOD), ModItems.powder_ash.get(EnumAshType.COAL), ModItems.powder_ash.get(EnumAshType.MISC), ModItems.powder_ash.get(EnumAshType.FLY), ModItems.powder_ash.get(EnumAshType.SOOT));
+		registerExtra(KEY_OIL_TAR, ModItems.oil_tar.get(EnumTarType.CRUDE));
+		registerExtra(KEY_CRACK_TAR, ModItems.oil_tar.get(EnumTarType.CRACK));
+		registerExtra(KEY_COAL_TAR, ModItems.oil_tar.get(EnumTarType.COAL));
+		registerExtra(KEY_WOOD_TAR, ModItems.oil_tar.get(EnumTarType.WOOD));
+		registerExtra("coalCoke", ModItems.coke.get(EnumCokeType.COAL));
+		registerExtra("briquetteLignite", ModItems.briquette.get(EnumBriquetteType.LIGNITE));
+		registerExtra("briquetteWood", ModItems.briquette.get(EnumBriquetteType.WOOD));
 		registerExtra("plankWood", ModBlocks.pink_planks);
 		registerExtra("plankWoodPink", ModBlocks.pink_planks);
 		registerExtra("dyeRed", ModItems.cinnebar);
@@ -457,8 +471,20 @@ public class OreDictManager {
 		registerExtra("dye", ModItems.fluorite);
 		registerExtra("dyeBlue", ModItems.powder_lapis);
 		registerExtra("dye", ModItems.powder_lapis);
+		registerExtra("dyeBlack", ModItems.oil_tar.get(EnumTarType.CRUDE));
+		registerExtra("dyeBlack", ModItems.oil_tar.get(EnumTarType.CRACK));
+		registerExtra("dyeGray", ModItems.oil_tar.get(EnumTarType.COAL));
+		registerExtra("dyeBrown", ModItems.oil_tar.get(EnumTarType.WOOD));
+		registerExtra("dyeCyan", ModItems.oil_tar.get(EnumTarType.WAX));
+		registerExtra("dyeWhite", ModItems.oil_tar.get(EnumTarType.PARAFFIN));
 		registerExtra("dyeOrange", ModItems.powder_cadmium);
 		registerExtra("dye", ModItems.powder_cadmium);
+		registerExtra("dyeLightGray", ModItems.powder_ash.get(EnumAshType.WOOD));
+		registerExtra("dyeBlack", ModItems.powder_ash.get(EnumAshType.COAL));
+		registerExtra("dyeGray", ModItems.powder_ash.get(EnumAshType.MISC));
+		registerExtra("dyeBrown", ModItems.powder_ash.get(EnumAshType.FLY));
+		registerExtra("dyeBlack", ModItems.powder_ash.get(EnumAshType.SOOT));
+		registerExtra("dyeMagenta", ModItems.powder_ash.get(EnumAshType.FULLERENE));
 		registerExtra("itemSilicon", ModItems.billet_silicon);
 
 		registerGroups();
@@ -476,6 +502,10 @@ public class OreDictManager {
 	}
 
 	private static void registerExtra(String key, Object thing) {
+		if(thing instanceof Object[] array) {
+			for(Object o : array) registerExtra(key, o);
+			return;
+		}
 		ENTRIES.computeIfAbsent(key, k -> new ArrayList<>()).add(thing);
 	}
 
@@ -714,7 +744,10 @@ public class OreDictManager {
 		}
 
 		public DictFrame makeObject(String shape, Object... objects) {
-			for(Object o : objects) registerStack(shape, o);
+			for(Object o : objects) {
+				if(o instanceof Object[] array) makeObject(shape, array); // all variants of a multi item
+				else registerStack(shape, o);
+			}
 			return this;
 		}
 

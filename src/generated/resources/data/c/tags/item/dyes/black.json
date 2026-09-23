@@ -1,5 +1,9 @@
 {
   "values": [
-    "hbm:powder_coal"
+    "hbm:powder_coal",
+    "hbm:oil_tar_crude",
+    "hbm:oil_tar_crack",
+    "hbm:powder_ash_coal",
+    "hbm:powder_ash_soot"
   ]
 }

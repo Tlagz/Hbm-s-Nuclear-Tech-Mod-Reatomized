@@ -15,6 +15,9 @@
     "#c:dyes/light_gray",
     "#c:dyes/white",
     "#c:dyes/blue",
-    "#c:dyes/orange"
+    "#c:dyes/gray",
+    "#c:dyes/cyan",
+    "#c:dyes/orange",
+    "#c:dyes/magenta"
   ]
 }

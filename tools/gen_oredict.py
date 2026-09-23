@@ -22,8 +22,9 @@ def read(path):
 
 
 src = read(os.path.join(ORIG, "src/main/java/com/hbm/inventory/OreDictManager.java"))
-items = set(re.findall(r"public static final \w+<[^>]+> (\w+) =", read(os.path.join(JAVA, "items/ModItems.java"))))
-blocks = set(re.findall(r"public static final \w+<[^>]+> (\w+) =", read(os.path.join(JAVA, "blocks/ModBlocks.java"))))
+multis = set(re.findall(r"public static final ItemEnumMulti\.Variants<\w+> (\w+) =", read(os.path.join(JAVA, "items/ModItems.java"))))
+items = set(re.findall(r"public static final [\w.]+<[^>]+> (\w+) =", read(os.path.join(JAVA, "items/ModItems.java"))))
+blocks = set(re.findall(r"public static final [\w.]+<[^>]+> (\w+) =", read(os.path.join(JAVA, "blocks/ModBlocks.java"))))
 
 consts = src[src.index("\tpublic static final String KEY_STICK"):src.index("\tpublic static void registerOres()")]
 consts = consts.replace('Compat.isModLoaded(Compat.MOD_GT6) ? "Uraninite" : "Uranium"', '"Uranium"')
@@ -34,7 +35,15 @@ VANILLA_RENAMES = {"quartz_ore": "NETHER_QUARTZ_ORE", "quartz": "QUARTZ"}
 
 def convert_arg(arg):
     arg = arg.strip()
+    m = re.fullmatch(r"(?:DictFrame\.)?fromOne\((?:ModItems\.)?(\w+), (?:ItemEnums\.)?(\w+\.\w+)\)", arg)
+    if m:
+        return f"ModItems.{m.group(1)}.get({m.group(2)})" if m.group(1) in multis else None
+    m = re.fullmatch(r"(?:DictFrame\.)?fromAll\((?:ModItems\.)?(\w+), (?:ItemEnums\.)?\w+\.class\)", arg)
+    if m:
+        return f"ModItems.{m.group(1)}.all()" if m.group(1) in multis else None
     m = re.fullmatch(r"(?:ModItems\.)?(\w+)", arg)
+    if m and m.group(1) in multis:
+        return f"ModItems.{m.group(1)}.all()"
     if m and m.group(1) in items:
         return "ModItems." + m.group(1)
     m = re.fullmatch(r"(?:ModBlocks\.)?(\w+)", arg)
@@ -92,7 +101,7 @@ for st in body.split(";"):
         if any(not p.startswith((".rad", ".hot", ".blinding", ".asbestos", ".hydro")) for p in parts):
             lines.append(f"\t\t{m.group(1)}{''.join(parts)};")
         continue
-    m = re.fullmatch(r'OreDictionary\.registerOre\((\w+|"\w+"), (\w+)\)', st)
+    m = re.fullmatch(r'OreDictionary\.registerOre\((KEY_\w+|"\w+"), (.+)\)', st)
     if m:
         conv = convert_arg(m.group(2))
         if conv:

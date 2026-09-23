@@ -21,8 +21,8 @@ def read(path):
 
 
 src = read(os.path.join(ORIG, "src/main/java/com/hbm/hazard/HazardRegistry.java"))
-items = set(re.findall(r"public static final \w+<[^>]+> (\w+) =", read(os.path.join(JAVA, "items/ModItems.java"))))
-blocks = set(re.findall(r"public static final \w+<[^>]+> (\w+) =", read(os.path.join(JAVA, "blocks/ModBlocks.java"))))
+items = set(re.findall(r"public static final [\w.]+<[^>]+> (\w+) =", read(os.path.join(JAVA, "items/ModItems.java"))))
+blocks = set(re.findall(r"public static final [\w.]+<[^>]+> (\w+) =", read(os.path.join(JAVA, "blocks/ModBlocks.java"))))
 
 body = src[src.index("public static void registerItems()"):src.index("public static void registerTrafos()")]
 body = body[body.index("{") + 1:]

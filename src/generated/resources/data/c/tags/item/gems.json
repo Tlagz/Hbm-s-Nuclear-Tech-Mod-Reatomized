@@ -4,6 +4,9 @@
     "#c:gems/tantalum",
     "#c:gems/latex",
     "#c:gems/lignite",
+    "#c:gems/coal_coke",
+    "#c:gems/pet_coke",
+    "#c:gems/lignite_coke",
     "#c:gems/cinnabar",
     "#c:gems/sodalite",
     "#c:gems/volcanic"

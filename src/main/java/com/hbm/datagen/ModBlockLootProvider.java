@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.hbm.blocks.ModBlocks;
+import com.hbm.items.ItemEnums.EnumChunkType;
+import com.hbm.items.ItemEnums.EnumTarType;
 import com.hbm.items.ModItems;
 
 import net.minecraft.core.HolderLookup;
@@ -31,8 +33,6 @@ import net.minecraft.core.Holder;
 /**
  * Block drops. Everything drops itself, except the special drops from the original's BlockOre.getItemDropped /
  * quantityDropped. The original's fortune formula (quantityDroppedWithBonus) is the same as vanilla's ore drops.
- *
- * TODO rare earth ore -> chunk_ore (rare), oil ore -> oil_tar once those items are ported
  */
 public class ModBlockLootProvider extends BlockLootSubProvider {
 
@@ -61,6 +61,12 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		oreDrop(ModBlocks.frozen_planks.get(), Items.SNOWBALL, 1, 1, true);
 		oreDrop(ModBlocks.block_meteor_cobble.get(), ModItems.fragment_meteorite.get(), 1, 1, false);
 		oreDrop(ModBlocks.block_meteor_broken.get(), ModItems.fragment_meteorite.get(), 1, 3, false);
+		oreDrop(ModBlocks.ore_rare.get(), ModItems.chunk_ore.get(EnumChunkType.RARE).get(), 1, 1, true);
+		oreDrop(ModBlocks.ore_gneiss_rare.get(), ModItems.chunk_ore.get(EnumChunkType.RARE).get(), 1, 1, true);
+
+		// oil ore can't be silk touched and drops crude tar
+		add(ModBlocks.ore_oil.get(), createSingleItemTable(ModItems.oil_tar.get(EnumTarType.CRUDE).get()));
+		handled.add(ModBlocks.ore_oil.get());
 
 		// 1 in 10 white phosphorus, otherwise hellfire powder
 		Block netherFire = ModBlocks.ore_nether_fire.get();

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import com.hbm.creativetabs.NtmTab;
+import com.hbm.items.ItemEnums.*;
 import com.hbm.items.tool.ItemDosimeter;
 import com.hbm.items.tool.ItemGeigerCounter;
 import com.hbm.lib.RefStrings;
@@ -115,6 +116,7 @@ public class ModItems {
 	public static final DeferredItem<Item> ingot_phosphorus = simple("ingot_phosphorus", NtmTab.PARTS, "items/ingot_phosphorus", new Item.Properties());
 	public static final DeferredItem<Item> lithium = simple("lithium", NtmTab.PARTS, "items/lithium", new Item.Properties());
 	public static final DeferredItem<Item> ingot_zirconium = simple("ingot_zirconium", NtmTab.PARTS, "items/ingot_zirconium", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumTarType> oil_tar = multi("oil_tar", "oil_tar", EnumTarType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> solid_fuel = simple("solid_fuel", NtmTab.PARTS, "items/solid_fuel", new Item.Properties());
 	public static final DeferredItem<Item> solid_fuel_presto = simple("solid_fuel_presto", NtmTab.PARTS, "items/solid_fuel_presto", new Item.Properties());
 	public static final DeferredItem<Item> solid_fuel_presto_triplet = simple("solid_fuel_presto_triplet", NtmTab.PARTS, "items/solid_fuel_presto_triplet", new Item.Properties());
@@ -182,9 +184,11 @@ public class ModItems {
 	public static final DeferredItem<Item> nugget_mercury = simple("nugget_mercury_tiny", NtmTab.PARTS, "items/nugget_mercury_tiny", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> ingot_mercury = lore("nugget_mercury", "nugget_mercury", NtmTab.PARTS, "items/nugget_mercury", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> bottle_mercury = lore("bottle_mercury", "bottle_mercury", NtmTab.PARTS, "items/bottle_mercury", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumCokeType> coke = multi("coke", "coke", EnumCokeType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> lignite = simple("lignite", NtmTab.PARTS, "items/lignite", new Item.Properties());
 	public static final DeferredItem<Item> coal_infernal = simple("coal_infernal", NtmTab.PARTS, "items/coal_infernal", new Item.Properties());
 	public static final DeferredItem<Item> coal_eternal = simple("coal_eternal", null, "items/coal_eternal", new Item.Properties().stacksTo(1));
+	public static final ItemEnumMulti.Variants<EnumBriquetteType> briquette = multi("briquette", "briquette", EnumBriquetteType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> sulfur = simple("sulfur", NtmTab.PARTS, "items/sulfur", new Item.Properties());
 	public static final DeferredItem<Item> niter = simple("niter", NtmTab.PARTS, "items/salpeter", new Item.Properties());
 	public static final DeferredItem<Item> nitra = simple("nitra", NtmTab.PARTS, "items/nitra", new Item.Properties());
@@ -291,6 +295,7 @@ public class ModItems {
 	public static final DeferredItem<ItemCustomLore> dust = lore("dust", "dust", NtmTab.PARTS, "items/dust", new Item.Properties());
 	public static final DeferredItem<Item> dust_tiny = simple("dust_tiny", NtmTab.PARTS, "items/dust_tiny", new Item.Properties());
 	public static final DeferredItem<Item> fallout = simple("fallout", NtmTab.PARTS, "items/fallout", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumAshType> powder_ash = multi("powder_ash", "powder_ash", EnumAshType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> powder_limestone = simple("powder_limestone", NtmTab.PARTS, "items/powder_limestone", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> powder_fire = lore("powder_fire", "powder_fire", NtmTab.PARTS, "items/powder_red_phosphorus", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> powder_ice = lore("powder_ice", "powder_ice", NtmTab.PARTS, "items/powder_ice", new Item.Properties());
@@ -345,6 +350,7 @@ public class ModItems {
 	public static final DeferredItem<Item> fragment_boron = simple("fragment_boron", NtmTab.PARTS, "items/fragment_boron", new Item.Properties());
 	public static final DeferredItem<Item> fragment_meteorite = simple("fragment_meteorite", NtmTab.PARTS, "items/fragment_meteorite", new Item.Properties());
 	public static final DeferredItem<Item> fragment_coltan = simple("fragment_coltan", NtmTab.PARTS, "items/fragment_coltan", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumChunkType> chunk_ore = multi("chunk_ore", "chunk_ore", EnumChunkType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> biomass = simple("biomass", NtmTab.PARTS, "items/biomass", new Item.Properties());
 	public static final DeferredItem<Item> biomass_compressed = simple("biomass_compressed", NtmTab.PARTS, "items/biomass_compressed", new Item.Properties());
 	public static final DeferredItem<Item> nugget_uranium = simple("nugget_uranium", NtmTab.PARTS, "items/nugget_uranium", new Item.Properties());
@@ -454,7 +460,11 @@ public class ModItems {
 	public static final DeferredItem<Item> photo_panel = simple("photo_panel", NtmTab.PARTS, "items/photo_panel", new Item.Properties());
 	public static final DeferredItem<Item> ring_starmetal = simple("ring_starmetal", NtmTab.PARTS, "items/ring_starmetal", new Item.Properties());
 	public static final DeferredItem<Item> deuterium_filter = simple("deuterium_filter", NtmTab.PARTS, "items/deuterium_filter", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumSecretType> item_secret = multi("item_secret", "item_secret", EnumSecretType.class, true, true, null, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumIngotMetal> ingot_metal = multi("ingot_metal", "ingot_metal", EnumIngotMetal.class, true, true, null, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumLegendaryType> parts_legendary = multi("parts_legendary", "parts_legendary", EnumLegendaryType.class, false, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> sawblade = simple("sawblade", NtmTab.PARTS, "items/sawblade", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumPlantType> plant_item = multi("plant_item", "plant_item", EnumPlantType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> entanglement_kit = lore("entanglement_kit", "entanglement_kit", NtmTab.PARTS, "items/entanglement_kit", new Item.Properties());
 	public static final DeferredItem<Item> fins_flat = simple("fins_flat", NtmTab.PARTS, "items/fins_flat", new Item.Properties());
 	public static final DeferredItem<Item> fins_small_steel = simple("fins_small_steel", NtmTab.PARTS, "items/fins_small_steel", new Item.Properties());
@@ -503,6 +513,7 @@ public class ModItems {
 	public static final DeferredItem<Item> shimmer_handle = simple("shimmer_handle", NtmTab.PARTS, "items/shimmer_handle", new Item.Properties());
 	public static final DeferredItem<Item> crt_display = simple("crt_display", NtmTab.PARTS, "items/crt_display", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> circuit_star = lore("circuit_star", "circuit_star", null, "items/circuit_star", new Item.Properties().rarity(Rarity.UNCOMMON));
+	public static final ItemEnumMulti.Variants<EnumCasingType> casing = multi("casing", "casing", EnumCasingType.class, true, true, NtmTab.PARTS, new Item.Properties());
 	public static final DeferredItem<Item> assembly_nuke = simple("assembly_nuke", NtmTab.PARTS, "items/assembly_nuke", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> flame_pony = lore("flame_pony", "flame_pony", NtmTab.PARTS, "items/flame_pony", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> flame_conspiracy = lore("flame_conspiracy", "flame_conspiracy", NtmTab.PARTS, "items/flame_conspiracy", new Item.Properties());
@@ -535,6 +546,7 @@ public class ModItems {
 	public static final DeferredItem<Item> particle_dark = simple("particle_dark", NtmTab.CONTROL, "items/particle_dark", new Item.Properties());
 	public static final DeferredItem<Item> particle_sparkticle = simple("particle_sparkticle", NtmTab.CONTROL, "items/particle_sparkticle", new Item.Properties());
 	public static final DeferredItem<Item> particle_lutece = simple("particle_lutece", NtmTab.CONTROL, "items/particle_lutece", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumFuelAdditive> fuel_additive = multi("fuel_additive", "fuel_additive", EnumFuelAdditive.class, true, true, NtmTab.CONTROL, new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> canister_empty = lore("canister_empty", "canister_empty", NtmTab.CONTROL, "items/canister_empty", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> canister_napalm = lore("canister_napalm", "canister_napalm", NtmTab.CONTROL, "items/canister_napalm", new Item.Properties());
 	public static final DeferredItem<Item> gas_empty = simple("gas_empty", NtmTab.CONTROL, "items/gas_empty", new Item.Properties());
@@ -650,6 +662,7 @@ public class ModItems {
 	public static final DeferredItem<ItemCustomLore> crystal_horn = lore("crystal_horn", "crystal_horn", NtmTab.PARTS, "items/crystal_horn", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> crystal_charred = lore("crystal_charred", "crystal_charred", NtmTab.PARTS, "items/crystal_charred", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> book_secret = lore("book_secret", "book_secret", null, "items/book_secret", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumPages> page_of_ = multi("page_of_", "page_of_", EnumPages.class, true, false, null, new Item.Properties().stacksTo(1));
 	public static final DeferredItem<ItemCustomLore> burnt_bark = lore("burnt_bark", "burnt_bark", null, "items/burnt_bark", new Item.Properties());
 	public static final DeferredItem<Item> holotape_damaged = simple("holotape_damaged", null, "items/holotape_damaged", new Item.Properties());
 	public static final DeferredItem<Item> chlorine1 = simple("chlorine1", null, "items/chlorine1", new Item.Properties());
@@ -684,6 +697,7 @@ public class ModItems {
 	public static final DeferredItem<Item> orange6 = simple("orange6", null, "items/orange6", new Item.Properties());
 	public static final DeferredItem<Item> orange7 = simple("orange7", null, "items/orange7", new Item.Properties());
 	public static final DeferredItem<Item> orange8 = simple("orange8", null, "items/orange8", new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumAchievementType> achievement_icon = multi("achievement_icon", "achievement_icon", EnumAchievementType.class, true, true, null, new Item.Properties());
 	public static final DeferredItem<Item> template_folder = simple("template_folder", null, "items/template_folder", new Item.Properties());
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
@@ -708,6 +722,27 @@ public class ModItems {
 		DeferredItem<Item> item = register(name, Item::new, props, tab);
 		FLAT_MODELS.put(item, texture);
 		return item;
+	}
+
+	/**
+	 * ItemEnumMulti: one item per enum value, named [name]_[value]. Textures are items/[name].[value] if
+	 * the original had one texture per value (multiTexture), items/[name] otherwise.
+	 */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, boolean multiTexture, NtmTab tab, Item.Properties props) {
+		ItemEnumMulti.Variants<E> variants = new ItemEnumMulti.Variants<>(name, theEnum);
+		E[] order = theEnum.getEnumConstants();
+		if(order[0] instanceof com.hbm.interfaces.IOrderedEnum ordered) {
+			@SuppressWarnings("unchecked") E[] custom = (E[]) ordered.getOrder();
+			order = custom;
+		}
+		for(E value : order) {
+			String lower = value.name().toLowerCase(java.util.Locale.US);
+			String descriptionId = "item.hbm." + originalName.toLowerCase() + (multiName ? "." + lower : "");
+			DeferredItem<ItemEnumMulti> item = register(ItemEnumMulti.Variants.variantName(name, value), p -> new ItemEnumMulti(p, descriptionId), props, tab);
+			variants.put(value, item);
+			FLAT_MODELS.put(item, "items/" + name + (multiTexture ? "." + lower : ""));
+		}
+		return variants;
 	}
 
 	/** ItemCustomLore, tooltip from the "item.[original name].desc" translation */

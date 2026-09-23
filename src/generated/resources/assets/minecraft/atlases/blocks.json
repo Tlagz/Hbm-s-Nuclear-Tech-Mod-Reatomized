@@ -1014,6 +1014,30 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.crude"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.crack"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.wood"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.wax"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/oil_tar.paraffin"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/solid_fuel"
     },
     {
@@ -1282,6 +1306,18 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/coke.coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coke.lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coke.petroleum"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/lignite"
     },
     {
@@ -1291,6 +1327,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/coal_eternal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/briquette.coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/briquette.lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/briquette.wood"
     },
     {
       "type": "minecraft:single",
@@ -1718,6 +1766,30 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.wood"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.misc"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.fly"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.soot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ash.fullerene"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/powder_limestone"
     },
     {
@@ -1931,6 +2003,22 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/fragment_coltan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chunk_ore.rare"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chunk_ore.malachite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chunk_ore.cryolite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chunk_ore.moonstone"
     },
     {
       "type": "minecraft:single",
@@ -2370,7 +2458,87 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/item_secret.canister"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_secret.controller"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_secret.selenium_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_secret.aberrator"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_secret.folly"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.ingot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.counter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.key"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.beacon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.casing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.clockwork"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.bar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_metal.detector"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/parts_legendary.tier1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/parts_legendary.tier2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/parts_legendary.tier3"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/sawblade"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plant_item.tobacco"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plant_item.rope"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plant_item.mustardwillow"
     },
     {
       "type": "minecraft:single",
@@ -2566,6 +2734,34 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/casing.small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.small_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.large_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.shotshell"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.buckshot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/casing.buckshot_advanced"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/assembly_nuke"
     },
     {
@@ -2691,6 +2887,14 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/particle_lutece"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuel_additive.antiknock"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuel_additive.deicer"
     },
     {
       "type": "minecraft:single",
@@ -3150,6 +3354,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/page_of_"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/burnt_bark"
     },
     {
@@ -3283,6 +3491,46 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/orange8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.gofish"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.acid"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.balls"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammasee"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammafeel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammaknow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammakauaimoho"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammaupontop"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.digammaforourright"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/achievement_icon.questionmark"
     },
     {
       "type": "minecraft:single",

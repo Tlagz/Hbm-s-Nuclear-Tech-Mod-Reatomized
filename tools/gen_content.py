@@ -87,10 +87,23 @@ def java_str(s):
 def existing_names(path, start_marker):
     src = read(path)
     head = src[:src.index(start_marker)] + src[src.index("// END GENERATED"):]
-    return set(re.findall(r"public static final \w+<[^>]+> (\w+) =", head))
+    return set(re.findall(r"public static final [\w.]+<[^>]+> (\w+) =", head))
 
 
 # ---------------------------------------------------------------------------------------------- items
+
+def ported_enums():
+    """Enums in the port's ItemEnums: name -> constant names"""
+    src = read(os.path.join(JAVA, "items", "ItemEnums.java"))
+    enums = {}
+    for m in re.finditer(r"enum (\w+) \{([^}]*)\}", src):
+        body = re.sub(r"//[^\n]*", "", m.group(2)).split(";")[0]
+        enums[m.group(1)] = [c.strip().split("(")[0] for c in body.split(",") if c.strip()]
+    return enums
+
+
+PORTED_ENUMS = ported_enums()
+
 
 def gen_items():
     src = read(os.path.join(ORIG, "src/main/java/com/hbm/items/ModItems.java"))
@@ -113,7 +126,14 @@ def gen_items():
             skipped.append((var, "unparsable"))
             continue
         cls, args, calls = chain
-        if cls not in ("Item", "ItemCustomLore") or args:
+        multi = None
+        if cls == "ItemEnumMulti":
+            m = re.fullmatch(r"(?:ItemEnums\.)?(\w+)\.class, (true|false), (true|false)", args)
+            if not m or m.group(1) not in PORTED_ENUMS:
+                skipped.append((var, "ItemEnumMulti " + args))
+                continue
+            multi = (m.group(1), m.group(2), m.group(3))
+        elif cls not in ("Item", "ItemCustomLore") or args:
             skipped.append((var, cls))
             continue
 
@@ -140,12 +160,19 @@ def gen_items():
                 break
         if not ok:
             continue
-        if cls == "ItemCustomLore" and tex is None:
+        if cls in ("ItemCustomLore", "ItemEnumMulti") and tex is None:
             tex = "items/" + name.lower()
         if name is None or tex is None:
             skipped.append((var, "no name/texture"))
             continue
-        if not texture_exists(tex):
+        if multi:
+            values = PORTED_ENUMS[multi[0]]
+            textures = [tex + "." + v.lower() for v in values] if multi[2] == "true" else [tex]
+            missing = [t for t in textures if not texture_exists(t)]
+            if missing:
+                missing_tex.append((var, missing[0]))
+                continue
+        elif not texture_exists(tex):
             missing_tex.append((var, tex))
             continue
 
@@ -155,7 +182,9 @@ def gen_items():
         if glint: props += ".component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)"
         tab = tab or "null"
 
-        if cls == "Item":
+        if multi:
+            out.append(f'	public static final ItemEnumMulti.Variants<{multi[0]}> {var} = multi({java_str(name.lower())}, {java_str(name)}, {multi[0]}.class, {multi[1]}, {multi[2]}, {tab}, {props});')
+        elif cls == "Item":
             out.append(f'\tpublic static final DeferredItem<Item> {var} = simple({java_str(name.lower())}, {tab}, {java_str(tex)}, {props});')
         else:
             out.append(f'\tpublic static final DeferredItem<ItemCustomLore> {var} = lore({java_str(name.lower())}, {java_str(name)}, {tab}, {java_str(tex)}, {props});')
