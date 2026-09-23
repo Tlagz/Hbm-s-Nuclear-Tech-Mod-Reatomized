@@ -23,7 +23,8 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 @PrefixGameTestTemplate(false)
 public class RadiationGameTests {
 
-	@GameTest(template = "empty_8x4x8")
+	/** Own batch: chunk radiation spreads to neighboring chunks, which would leak into tests running next to it */
+	@GameTest(template = "empty_8x4x8", batch = "chunk_radiation")
 	public static void chunkRadiationContaminatesMobs(GameTestHelper helper) {
 		Pig pig = helper.spawnWithNoFreeWill(EntityType.PIG, new BlockPos(2, 1, 2));
 		Zombie zombie = helper.spawnWithNoFreeWill(EntityType.ZOMBIE, new BlockPos(4, 1, 4));
@@ -32,7 +33,7 @@ public class RadiationGameTests {
 		helper.runAfterDelay(20, () -> {
 			helper.assertTrue(HbmLivingProps.getRadiation(pig) > 50F, "pig should have picked up radiation, has " + HbmLivingProps.getRadiation(pig));
 			helper.assertTrue(HbmLivingProps.getRadiation(zombie) == 0F, "zombies are immune");
-			ChunkRadiationManager.proxy.setRadiation(helper.getLevel(), pig.blockPosition(), 0F);
+			ChunkRadiationManager.proxy.clearSystem(helper.getLevel());
 			helper.succeed();
 		});
 	}

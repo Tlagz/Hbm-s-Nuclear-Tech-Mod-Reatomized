@@ -6,6 +6,8 @@ import java.util.Random;
 import com.hbm.config.RadiationConfig;
 import com.hbm.extprop.HbmLivingProps;
 import com.hbm.extprop.HbmLivingProps.ContaminationEffect;
+import com.hbm.handler.pollution.PollutionHandler;
+import com.hbm.handler.pollution.PollutionHandler.PollutionType;
 import com.hbm.handler.radiation.ChunkRadiationManager;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.main.ModSounds;
@@ -16,6 +18,7 @@ import com.hbm.util.ContaminationUtil;
 import com.hbm.util.ContaminationUtil.ContaminationType;
 import com.hbm.util.ContaminationUtil.HazardType;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -35,7 +38,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
  * Per-tick effects on living entities: radiation sickness, contamination, digamma, lung diseases.
  *
  * TODO ported so far: radiation, contamination, digamma, lung diseases.
- *  Missing: crater biomes, time bomb (needs explosions), contagion (MKU), oil, pollution, temperature (fire types),
+ *  Missing: crater biomes, time bomb (needs explosions), contagion (MKU), oil, pollution effects, temperature (fire types),
  *  dashing/plinking, faux ladders, HbmPlayerProps shield, particle effects (vomit, sweat, radiation fog),
  *  nuclear creeper / quackos transformations, advancements.
  */
@@ -196,7 +199,10 @@ public class EntityEffectHandler {
 
 		double blacklung = Math.min(HbmLivingProps.getBlackLung(entity), HbmLivingProps.maxBlacklung);
 		double asbestos = Math.min(HbmLivingProps.getAsbestos(entity), HbmLivingProps.maxAsbestos);
-		double soot = 0; // TODO pollution
+		double soot = PollutionHandler.getPollution(entity.level(), BlockPos.containing(entity.getX(), entity.getEyeY(), entity.getZ()), PollutionType.SOOT);
+
+		if(!(entity instanceof Player)) soot = 0;
+
 		if(ArmorUtil.hasAllProtection(entity, HazardClass.PARTICLE_COARSE)) soot = 0;
 
 		boolean coughs = blacklung / HbmLivingProps.maxBlacklung > 0.25D || asbestos / HbmLivingProps.maxAsbestos > 0.25D || soot > 30;

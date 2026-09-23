@@ -49,6 +49,10 @@ def convert_lang(src, dst):
                 prefix = "block" if m.group(1) == "tile" else "item"
                 key = f"{prefix}.hbm.{m.group(2).lower()}"
             out[key] = value
+            # status effects: potion.hbm_x -> effect.hbm.x (original key kept too)
+            m = re.fullmatch(r"potion\.hbm_(.+)", key)
+            if m:
+                out[f"effect.hbm.{m.group(1).lower()}"] = value
     with open(dst, "w", encoding="utf-8", newline="\n") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     return len(out)

@@ -9,6 +9,7 @@
   "achievement.impossible": "Littéralement impossible",
   "achievement.impossible.desc": "Vous ne pouvez pas obtenir cette réussite.",
   "potion.hbm_taint": "Contaminé",
+  "effect.hbm.taint": "Contaminé",
   "hbmfluid.none": "Aucun",
   "hbmfluid.water": "Eau",
   "hbmfluid.steam": "vapeur",

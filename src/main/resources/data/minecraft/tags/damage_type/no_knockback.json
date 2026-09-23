@@ -1,4 +1,37 @@
 {
   "replace": false,
-  "values": ["hbm:radiation", "hbm:digamma", "hbm:asbestos", "hbm:blacklung"]
+  "values": [
+    "hbm:mud_poisoning",
+    "hbm:acid",
+    "hbm:euthanized_self",
+    "hbm:euthanized_self2",
+    "hbm:radiation",
+    "hbm:digamma",
+    "hbm:blackhole",
+    "hbm:turbofan",
+    "hbm:meteorite",
+    "hbm:boxcar",
+    "hbm:boat",
+    "hbm:building",
+    "hbm:taint",
+    "hbm:ams",
+    "hbm:ams_core",
+    "hbm:broadcast",
+    "hbm:bang",
+    "hbm:pc",
+    "hbm:cloud",
+    "hbm:lead",
+    "hbm:enervation",
+    "hbm:electricity",
+    "hbm:exhaust",
+    "hbm:spikes",
+    "hbm:lunar",
+    "hbm:monoxide",
+    "hbm:asbestos",
+    "hbm:blacklung",
+    "hbm:mku",
+    "hbm:vacuum",
+    "hbm:overdose",
+    "hbm:microwave"
+  ]
 }

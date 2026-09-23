@@ -6,8 +6,6 @@ import net.neoforged.neoforge.common.ModConfigSpec;
  * Same options as the original (hbm.cfg "radiation"/"hazard" categories), backed by NeoForge's config.
  * The static fields keep the original access pattern (RadiationConfig.enableContamination etc.)
  * and are refreshed whenever the config (re)loads.
- *
- * TODO pollution options once the pollution system is ported
  */
 public class RadiationConfig {
 
@@ -30,9 +28,21 @@ public class RadiationConfig {
 	public static boolean disableBlinding = false;
 	public static boolean disableFibrosis = false;
 
+	public static boolean enablePollution = true;
+	public static boolean enableLeadFromBlocks = true;
+	public static boolean enableLeadPoisoning = true;
+	public static boolean enableSootFog = true;
+	public static boolean enablePoison = true;
+	public static double buffMobThreshold = 15D;
+	public static double sootFogThreshold = 35D;
+	public static double sootFogDivisor = 120D;
+	public static double smokeStackSootMult = 0.8;
+
 	private static ModConfigSpec.IntValue FOG_RAD, FOG_CH, WORLD_RAD, WORLD_RAD_THRESHOLD;
 	private static ModConfigSpec.DoubleValue HELL_RAD;
 	private static ModConfigSpec.BooleanValue WORLD_RAD_EFFECTS, CLEANUP_DEAD_DIRT, ENABLE_CONTAMINATION, ENABLE_CHUNK_RADS;
+	private static ModConfigSpec.BooleanValue ENABLE_POLLUTION, ENABLE_LEAD_FROM_BLOCKS, ENABLE_LEAD_POISONING, ENABLE_SOOT_FOG, ENABLE_POISON;
+	private static ModConfigSpec.DoubleValue BUFF_MOB_THRESHOLD, SOOT_FOG_THRESHOLD, SOOT_FOG_DIVISOR, SMOKE_STACK_SOOT_MULT;
 	private static ModConfigSpec.BooleanValue DISABLE_ASBESTOS, DISABLE_COAL, DISABLE_HOT, DISABLE_EXPLOSIVE, DISABLE_HYDRO, DISABLE_BLINDING, DISABLE_FIBROSIS;
 
 	static void define(ModConfigSpec.Builder builder) {
@@ -57,6 +67,18 @@ public class RadiationConfig {
 		DISABLE_BLINDING = builder.comment("When turned off, all blinding hazards are disabled").define("HAZ_05_disableBlinding", false);
 		DISABLE_FIBROSIS = builder.comment("When turned off, all fibrosis hazards are disabled").define("HAZ_06_disableFibrosis", false);
 		builder.pop();
+
+		builder.push("pollution");
+		ENABLE_POLLUTION = builder.comment("If disabled, none of the polltuion related things will work").define("POL_00_enablePollution", true);
+		ENABLE_LEAD_FROM_BLOCKS = builder.comment("Whether breaking blocks in heavy metal polluted areas will poison the player").define("POL_01_enableLeadFromBlocks", true);
+		ENABLE_LEAD_POISONING = builder.comment("Whether being in a heavy metal polluted area will poison the player").define("POL_02_enableLeadPoisoning", true);
+		ENABLE_SOOT_FOG = builder.comment("Whether smog should be visible").define("POL_03_enableSootFog", true);
+		ENABLE_POISON = builder.comment("Whether being in a poisoned area will affect the player").define("POL_04_enablePoison", true);
+		BUFF_MOB_THRESHOLD = builder.comment("The amount of soot required to buff naturally spawning mobs").defineInRange("POL_05_buffMobThreshold", 15D, 0D, Double.MAX_VALUE);
+		SOOT_FOG_THRESHOLD = builder.comment("How much soot is required for smog to become visible").defineInRange("POL_06_sootFogThreshold", 35D, 0D, Double.MAX_VALUE);
+		SOOT_FOG_DIVISOR = builder.comment("The divisor for smog, higher numbers will require more soot for the same smog density").defineInRange("POL_07_sootFogDivisor", 120D, 0.001D, Double.MAX_VALUE);
+		SMOKE_STACK_SOOT_MULT = builder.comment("How much does smokestack multiply soot by, with decimal values reducing the soot").defineInRange("POL_08_smokeStackSootMult", 0.8D, 0D, Double.MAX_VALUE);
+		builder.pop();
 	}
 
 	static void load() {
@@ -77,5 +99,15 @@ public class RadiationConfig {
 		disableHydro = DISABLE_HYDRO.get();
 		disableBlinding = DISABLE_BLINDING.get();
 		disableFibrosis = DISABLE_FIBROSIS.get();
+
+		enablePollution = ENABLE_POLLUTION.get();
+		enableLeadFromBlocks = ENABLE_LEAD_FROM_BLOCKS.get();
+		enableLeadPoisoning = ENABLE_LEAD_POISONING.get();
+		enableSootFog = ENABLE_SOOT_FOG.get();
+		enablePoison = ENABLE_POISON.get();
+		buffMobThreshold = BUFF_MOB_THRESHOLD.get();
+		sootFogThreshold = SOOT_FOG_THRESHOLD.get();
+		sootFogDivisor = SOOT_FOG_DIVISOR.get();
+		smokeStackSootMult = SMOKE_STACK_SOOT_MULT.get();
 	}
 }

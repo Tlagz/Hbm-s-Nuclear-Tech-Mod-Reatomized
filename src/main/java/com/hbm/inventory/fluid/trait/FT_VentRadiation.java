@@ -1,0 +1,49 @@
+package com.hbm.inventory.fluid.trait;
+
+import net.minecraft.core.BlockPos;
+import java.io.IOException;
+import java.util.List;
+
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
+import com.hbm.handler.radiation.ChunkRadiationManager;
+import com.hbm.inventory.fluid.tank.FluidTank;
+import com.hbm.util.i18n.I18nUtil;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+
+public class FT_VentRadiation extends FluidTrait {
+	
+	float radPerMB = 0;
+	
+	public FT_VentRadiation() { }
+	
+	public FT_VentRadiation(float rad) {
+		this.radPerMB = rad;
+	}
+	
+	public float getRadPerMB() {
+		return this.radPerMB;
+	}
+	
+	@Override
+	public void onFluidRelease(Level world, BlockPos pos, FluidTank tank, int overflowAmount, FluidReleaseType type) {
+		ChunkRadiationManager.proxy.incrementRad(world, pos, overflowAmount * radPerMB);
+	}
+	
+	@Override
+	public void addInfo(List<String> info) {
+		info.add(ChatFormatting.YELLOW + "[" + I18nUtil.resolveKey("hbmfluid.trait.radioactive") + "]");
+	}
+
+	@Override
+	public void serializeJSON(JsonWriter writer) throws IOException {
+		writer.name("radiation").value(radPerMB);
+	}
+	
+	@Override
+	public void deserializeJSON(JsonObject obj) {
+		this.radPerMB = obj.get("radiation").getAsFloat();
+	}
+}

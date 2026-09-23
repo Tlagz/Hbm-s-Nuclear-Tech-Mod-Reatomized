@@ -15,6 +15,7 @@ public class CommonConfig {
 		ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 		RadiationConfig.define(builder);
 		ServerConfig.define(builder);
+		MobConfig.define(builder);
 		SPEC = builder.build();
 	}
 
@@ -28,5 +29,6 @@ public class CommonConfig {
 		if(config.getSpec() != SPEC) return;
 		RadiationConfig.load();
 		ServerConfig.load();
+		MobConfig.load();
 	}
 }
