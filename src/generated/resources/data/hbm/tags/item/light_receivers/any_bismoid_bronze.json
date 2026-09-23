@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:light_receivers/bismuth_bronze",
+      "required": false
+    },
+    {
+      "id": "#hbm:light_receivers/arsenic_bronze",
+      "required": false
+    }
+  ]
+}

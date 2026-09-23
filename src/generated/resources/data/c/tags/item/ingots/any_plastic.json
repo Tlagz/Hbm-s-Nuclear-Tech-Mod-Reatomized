@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ingots/polymer",
+      "required": false
+    },
+    {
+      "id": "#c:ingots/bakelite",
+      "required": false
+    }
+  ]
+}

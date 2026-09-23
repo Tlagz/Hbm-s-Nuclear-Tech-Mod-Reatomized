@@ -1,0 +1,304 @@
+"""
+Generates registrations for the "simple" items and blocks of the original mod straight from its
+ModItems.java / ModBlocks.java declarations, in the original registration order (= creative tab order).
+
+Simple means: the declaration only uses one of the known classes below and only setters this script
+understands. Everything else is reported as skipped and gets ported by hand.
+
+The output replaces the region between the "BEGIN GENERATED" / "END GENERATED" markers in the port's
+ModItems.java and ModBlocks.java. Hand-written registrations live outside the markers; names that already
+exist there are skipped by the generator.
+
+Usage: python tools/gen_content.py <path to original repo root> [--report]
+"""
+import os
+import re
+import sys
+
+ORIG = sys.argv[1]
+REPORT = "--report" in sys.argv
+PORT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+JAVA = os.path.join(PORT, "src", "main", "java", "com", "hbm")
+TEXTURES = os.path.join(PORT, "src", "main", "resources", "assets", "hbm", "textures")
+
+TABS = {
+    "MainRegistry.partsTab": "NtmTab.PARTS",
+    "MainRegistry.controlTab": "NtmTab.CONTROL",
+    "MainRegistry.templateTab": "NtmTab.TEMPLATE",
+    "MainRegistry.blockTab": "NtmTab.BLOCKS",
+    "MainRegistry.machineTab": "NtmTab.MACHINE",
+    "MainRegistry.nukeTab": "NtmTab.NUKE",
+    "MainRegistry.missileTab": "NtmTab.MISSILE",
+    "MainRegistry.weaponTab": "NtmTab.WEAPON",
+    "MainRegistry.consumableTab": "NtmTab.CONSUMABLE",
+    "null": "null",
+}
+
+RARITY = {"common": "COMMON", "uncommon": "UNCOMMON", "rare": "RARE", "epic": "EPIC"}
+
+
+def read(path):
+    with open(path, encoding="utf-8", errors="replace") as f:
+        return f.read()
+
+
+def statements(src, method):
+    """All ';'-terminated statements inside the body of the given static method"""
+    i = src.index(f"static void {method}()")
+    j = src.index("{", i)
+    depth, k = 0, j
+    while True:
+        if src[k] == "{": depth += 1
+        elif src[k] == "}":
+            depth -= 1
+            if depth == 0: break
+        k += 1
+    body = src[j + 1:k]
+    body = re.sub(r"//[^\n]*", "", body)
+    body = re.sub(r"/\*.*?\*/", "", body, flags=re.S)
+    return [" ".join(s.split()) for s in body.split(";") if s.strip()]
+
+
+def split_chain(expr):
+    """'new X(a).b(c).d()' -> ('X', 'a', [('b','c'), ('d','')])"""
+    m = re.match(r"new (\w+)\((.*?)\)((?:\.\w+\(.*?\))*)$", expr)
+    if not m:
+        return None
+    cls, args, rest = m.group(1), m.group(2), m.group(3)
+    calls = re.findall(r"\.(\w+)\(((?:[^()]|\([^()]*\))*)\)", rest)
+    return cls, args, calls
+
+
+def texture_path(folder, tex_expr):
+    m = re.match(r'RefStrings\.MODID \+ ":(.+)"$', tex_expr.strip())
+    if not m:
+        return None
+    return f"{folder}/{m.group(1).lower()}"
+
+
+def texture_exists(tex):
+    return os.path.exists(os.path.join(TEXTURES, tex + ".png"))
+
+
+def java_str(s):
+    return '"' + s + '"'
+
+
+def existing_names(path, start_marker):
+    src = read(path)
+    head = src[:src.index(start_marker)] + src[src.index("// END GENERATED"):]
+    return set(re.findall(r"public static final \w+<[^>]+> (\w+) =", head))
+
+
+# ---------------------------------------------------------------------------------------------- items
+
+def gen_items():
+    src = read(os.path.join(ORIG, "src/main/java/com/hbm/items/ModItems.java"))
+    decls = {}
+    for st in statements(src, "initializeItem") + statements(src, "initializeItem2"):
+        m = re.match(r"(\w+) = (new .*)$", st)
+        if m:
+            decls[m.group(1)] = m.group(2)
+    order = re.findall(r"GameRegistry\.registerItem\((\w+), \1\.getUnlocalizedName\(\)\)", src)
+
+    port_file = os.path.join(JAVA, "items", "ModItems.java")
+    manual = existing_names(port_file, "// BEGIN GENERATED")
+    out, skipped, missing_tex = [], [], []
+
+    for var in order:
+        if var in manual or var not in decls:
+            continue
+        chain = split_chain(decls[var])
+        if not chain:
+            skipped.append((var, "unparsable"))
+            continue
+        cls, args, calls = chain
+        if cls not in ("Item", "ItemCustomLore") or args:
+            skipped.append((var, cls))
+            continue
+
+        name = tab = tex = None
+        stack = None
+        rarity = None
+        glint = False
+        ok = True
+        for method, arg in calls:
+            if method == "setUnlocalizedName": name = arg.strip('"')
+            elif method == "setCreativeTab":
+                if arg not in TABS:
+                    tab = "null"  # vanilla tabs
+                else:
+                    tab = TABS[arg]
+            elif method == "setTextureName": tex = texture_path("items", arg)
+            elif method == "setMaxStackSize": stack = arg
+            elif method == "setRarity": rarity = RARITY.get(arg.split(".")[-1])
+            elif method == "setEffect": glint = True
+            elif method in ("setFull3D", "setContainerItem"): pass  # TODO crafting remainders come with recipes
+            else:
+                ok = False
+                skipped.append((var, "setter " + method))
+                break
+        if not ok:
+            continue
+        if cls == "ItemCustomLore" and tex is None:
+            tex = "items/" + name.lower()
+        if name is None or tex is None:
+            skipped.append((var, "no name/texture"))
+            continue
+        if not texture_exists(tex):
+            missing_tex.append((var, tex))
+            continue
+
+        props = "new Item.Properties()"
+        if stack: props += f".stacksTo({stack})"
+        if rarity and rarity != "COMMON": props += f".rarity(Rarity.{rarity})"
+        if glint: props += ".component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)"
+        tab = tab or "null"
+
+        if cls == "Item":
+            out.append(f'\tpublic static final DeferredItem<Item> {var} = simple({java_str(name.lower())}, {tab}, {java_str(tex)}, {props});')
+        else:
+            out.append(f'\tpublic static final DeferredItem<ItemCustomLore> {var} = lore({java_str(name.lower())}, {java_str(name)}, {tab}, {java_str(tex)}, {props});')
+
+    write_region(port_file, out)
+    return len(out), skipped, missing_tex
+
+
+# --------------------------------------------------------------------------------------------- blocks
+
+BLOCK_CLASSES = {
+    "BlockGeneric": "Block::new",
+    "BlockBeaconable": "Block::new",
+    "BlockHazard": "BlockHazard::new",
+    "BlockOre": "BlockOre::new",
+    "BlockOutgas": "BlockOutgas::new",
+    "BlockFalling": "BlockFallingNT::new",
+}
+
+MATERIALS = {
+    "Material.rock": "Mat.ROCK", "Material.iron": "Mat.IRON", "Material.ground": "Mat.GROUND",
+    "Material.sand": "Mat.SAND", "Material.wood": "Mat.WOOD", "Material.cloth": "Mat.CLOTH",
+    "Material.craftedSnow": "Mat.SNOW",
+}
+
+SOUNDS = {
+    "soundTypeMetal": "SoundType.METAL", "soundTypeStone": "SoundType.STONE", "soundTypeGlass": "SoundType.GLASS",
+    "soundTypeGravel": "SoundType.GRAVEL", "soundTypeSand": "SoundType.SAND", "soundTypeWood": "SoundType.WOOD",
+    "soundTypeCloth": "SoundType.WOOL", "soundTypeSnow": "SoundType.SNOW", "soundTypePiston": "SoundType.STONE",
+    "soundTypeGrass": "SoundType.GRASS",
+}
+
+
+def gen_blocks():
+    src = read(os.path.join(ORIG, "src/main/java/com/hbm/blocks/ModBlocks.java"))
+    decls = {}
+    for st in statements(src, "initializeBlock"):
+        m = re.match(r"(\w+) = (new .*)$", st)
+        if m:
+            decls[m.group(1)] = m.group(2)
+    order = []
+    for m in re.finditer(r"GameRegistry\.registerBlock\((\w+),|^\s+register\((\w+)[,)]", src, re.M):
+        order.append(m.group(1) or m.group(2))
+
+    port_file = os.path.join(JAVA, "blocks", "ModBlocks.java")
+    manual = existing_names(port_file, "// BEGIN GENERATED")
+    out, skipped, missing_tex = [], [], []
+    seen = set()
+
+    for var in order:
+        if var in seen or var in manual or var not in decls:
+            continue
+        seen.add(var)
+        chain = split_chain(decls[var])
+        if not chain:
+            skipped.append((var, "unparsable"))
+            continue
+        cls, args, calls = chain
+        if cls not in BLOCK_CLASSES:
+            skipped.append((var, cls))
+            continue
+
+        args_list = [a.strip() for a in args.split(",")] if args else []
+        mat = "Mat.IRON" if cls == "BlockHazard" and not args_list else None
+        if args_list:
+            mat = MATERIALS.get(args_list[0])
+            if mat is None:
+                skipped.append((var, "material " + args_list[0]))
+                continue
+        if cls == "BlockFalling":
+            mat = mat or "Mat.SAND"
+        extra = ""
+        if cls == "BlockOre" and len(args_list) == 3:
+            extra = f".setRad({args_list[1]})"  # deprecated constructor with block radiation
+        if cls == "BlockOutgas" and len(args_list) > 1:
+            extra = f".setOutgas({', '.join(args_list[1:])})"
+
+        name = tab = tex = sound = None
+        hardness = resistance = light = None
+        beacon = cls == "BlockBeaconable"
+        unbreakable = no_fortune = False
+        ok = True
+        for method, arg in calls:
+            if method == "setBlockName": name = arg.strip('"')
+            elif method == "setCreativeTab": tab = TABS.get(arg, "null")
+            elif method == "setBlockTextureName": tex = texture_path("blocks", arg)
+            elif method == "setHardness": hardness = arg
+            elif method == "setResistance": resistance = arg
+            elif method == "setStepSound": sound = SOUNDS.get(arg.split(".")[-1])
+            elif method == "setLightLevel": light = arg
+            elif method == "makeBeaconable": beacon = True
+            elif method == "noFortune": no_fortune = True
+            elif method == "setBlockUnbreakable": unbreakable = True
+            elif method in ("setDisplayEffect", "setLightOpacity", "noMobSpawn"): pass  # TODO particles
+            else:
+                ok = False
+                skipped.append((var, "setter " + method))
+                break
+        if not ok:
+            continue
+        if name is None or tex is None:
+            skipped.append((var, "no name/texture"))
+            continue
+        if not texture_exists(tex):
+            missing_tex.append((var, tex))
+            continue
+
+        hardness = hardness or "0.0F"
+        props = f"props({mat}, {hardness}, {resistance or 'LEGACY_NONE'})"
+        if sound: props += f".sound({sound})"
+        if light: props += f".lightLevel(s -> (int) ({light} * 15))"
+        if unbreakable: props += ".strength(-1.0F, 3600000.0F)"
+        factory = BLOCK_CLASSES[cls]
+        if extra or no_fortune:
+            factory = f"p -> new {factory.split('::')[0]}(p){extra}{'.noFortune()' if no_fortune else ''}"
+        block_type = {"Block::new": "Block"}.get(BLOCK_CLASSES[cls], BLOCK_CLASSES[cls].split("::")[0])
+        flags = []
+        if beacon: flags.append("BEACON")
+        flags_arg = ", " + ", ".join("Gen." + f for f in flags) if flags else ""
+        out.append(f'\tpublic static final DeferredBlock<{block_type}> {var} = generated({java_str(name.lower())}, {factory}, {props}, {tab or "null"}, {java_str(tex)}{flags_arg});')
+
+    write_region(port_file, out)
+    return len(out), skipped, missing_tex
+
+
+def write_region(path, lines):
+    src = read(path)
+    start = src.index("// BEGIN GENERATED")
+    start = src.index("\n", start) + 1
+    end = src.index("// END GENERATED")
+    end = src.rindex("\n", 0, end) + 1
+    src = src[:start] + "\n".join(lines) + ("\n" if lines else "") + src[end:]
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(src)
+
+
+n_items, skipped_items, missing_items = gen_items()
+n_blocks, skipped_blocks, missing_blocks = gen_blocks()
+print(f"items: {n_items} generated, {len(skipped_items)} skipped, {len(missing_items)} missing textures")
+print(f"blocks: {n_blocks} generated, {len(skipped_blocks)} skipped, {len(missing_blocks)} missing textures")
+if REPORT:
+    from collections import Counter
+    print("skipped item reasons:", Counter(r for _, r in skipped_items).most_common(20))
+    print("skipped block reasons:", Counter(r for _, r in skipped_blocks).most_common(30))
+    print("missing item textures:", missing_items[:30])
+    print("missing block textures:", missing_blocks[:30])

@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ingots/polycarbonate",
+      "required": false
+    },
+    {
+      "id": "#c:ingots/pvc",
+      "required": false
+    }
+  ]
+}

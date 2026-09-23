@@ -28,19 +28,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		cube(ModBlocks.ore_uranium);
-		cube(ModBlocks.ore_titanium);
-		cube(ModBlocks.block_uranium);
-		cube(ModBlocks.block_titanium);
-		cube(ModBlocks.block_steel);
+		ModBlocks.CUBE_MODELS.forEach(this::cube);
 
 		cable(ModBlocks.red_cable, "blocks/cable_neo", "blocks/cable_neo");
 	}
 
 	/** Simple full cube using the original's texture location, textures/blocks/[name].png */
-	private void cube(DeferredBlock<? extends Block> block) {
+	private void cube(DeferredBlock<?> block, String texture) {
 		String name = block.getId().getPath();
-		simpleBlockWithItem(block.get(), models().cubeAll(name, texture("blocks/" + name)));
+		simpleBlockWithItem(block.get(), models().cubeAll(name, texture(texture)));
 	}
 
 	/**

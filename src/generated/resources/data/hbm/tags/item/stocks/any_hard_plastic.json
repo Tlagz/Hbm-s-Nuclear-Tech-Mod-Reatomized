@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:stocks/polycarbonate",
+      "required": false
+    },
+    {
+      "id": "#hbm:stocks/pvc",
+      "required": false
+    }
+  ]
+}

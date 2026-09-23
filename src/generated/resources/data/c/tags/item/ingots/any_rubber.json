@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ingots/latex",
+      "required": false
+    },
+    {
+      "id": "#c:ingots/rubber",
+      "required": false
+    }
+  ]
+}

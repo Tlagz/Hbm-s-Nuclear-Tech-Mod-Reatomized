@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:grips/polycarbonate",
+      "required": false
+    },
+    {
+      "id": "#hbm:grips/pvc",
+      "required": false
+    }
+  ]
+}

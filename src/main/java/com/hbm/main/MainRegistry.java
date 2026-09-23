@@ -8,6 +8,7 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.config.CommonConfig;
 import com.hbm.creativetabs.ModCreativeTabs;
 import com.hbm.hazard.HazardRegistry;
+import com.hbm.inventory.OreDictManager;
 import com.hbm.inventory.fluid.Fluids;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
@@ -49,6 +50,7 @@ public class MainRegistry {
 		event.enqueueWork(() -> {
 			// needs registered status effects (toxin traits), so not in the constructor like the original's preInit
 			Fluids.init();
+			OreDictManager.registerOres();
 			HazardRegistry.registerItems();
 			Fluids.reloadFluids();
 		});

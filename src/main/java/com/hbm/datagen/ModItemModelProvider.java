@@ -18,18 +18,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		flat(ModItems.ingot_uranium);
-		flat(ModItems.ingot_titanium);
-		flat(ModItems.ingot_steel);
-		flat(ModItems.nugget_uranium);
-		flat(ModItems.dosimeter);
-		flat(ModItems.geiger_counter);
+		ModItems.FLAT_MODELS.forEach(this::flat);
 	}
 
 	/** Flat item model using the original's texture location, textures/items/[name].png */
-	private void flat(DeferredItem<? extends Item> item) {
+	private void flat(DeferredItem<?> item, String texture) {
 		String name = item.getId().getPath();
-		withExistingParent(name, mcLoc("item/generated")).texture("layer0", texture("items/" + name));
+		withExistingParent(name, mcLoc("item/generated")).texture("layer0", texture(texture));
 	}
 
 	private ResourceLocation texture(String path) {

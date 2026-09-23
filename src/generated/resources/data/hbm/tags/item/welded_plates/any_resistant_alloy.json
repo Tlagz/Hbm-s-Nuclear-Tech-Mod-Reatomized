@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:welded_plates/tc_alloy",
+      "required": false
+    },
+    {
+      "id": "#hbm:welded_plates/cd_alloy",
+      "required": false
+    }
+  ]
+}

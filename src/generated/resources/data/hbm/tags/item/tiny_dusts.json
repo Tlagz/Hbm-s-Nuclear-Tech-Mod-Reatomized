@@ -1,0 +1,23 @@
+{
+  "values": [
+    "#hbm:tiny_dusts/coal",
+    "#hbm:tiny_dusts/actinium227",
+    "#hbm:tiny_dusts/ac227",
+    "#hbm:tiny_dusts/steel",
+    "#hbm:tiny_dusts/niobium",
+    "#hbm:tiny_dusts/cobalt",
+    "#hbm:tiny_dusts/boron",
+    "#hbm:tiny_dusts/lithium",
+    "#hbm:tiny_dusts/lanthanum",
+    "#hbm:tiny_dusts/neodymium",
+    "#hbm:tiny_dusts/cerium",
+    "#hbm:tiny_dusts/strontium90",
+    "#hbm:tiny_dusts/sr90",
+    "#hbm:tiny_dusts/iodine131",
+    "#hbm:tiny_dusts/i131",
+    "#hbm:tiny_dusts/xenon135",
+    "#hbm:tiny_dusts/xe135",
+    "#hbm:tiny_dusts/caesium137",
+    "#hbm:tiny_dusts/cs137"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "#hbm:oiltar",
+      "required": false
+    },
+    {
+      "id": "#hbm:coaltar",
+      "required": false
+    },
+    {
+      "id": "#hbm:cracktar",
+      "required": false
+    },
+    {
+      "id": "#hbm:woodtar",
+      "required": false
+    }
+  ]
+}

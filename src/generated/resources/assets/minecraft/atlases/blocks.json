@@ -2,7 +2,19 @@
   "sources": [
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/structure_anchor"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/ore_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_uranium_scorched"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_thorium"
     },
     {
       "type": "minecraft:single",
@@ -10,7 +22,239 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_niter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_fluorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_oil"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_oil_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_oil_sand_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_rare"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_cinnebar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_coltan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_bedrock_oil"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_uranium_scorched"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_fire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_nether_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_uranium_scorched"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_rare"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_gneiss_gas"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_gneiss_var"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/gneiss_brick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/gneiss_tile"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt_smooth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt_brick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt_polished"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt_tiles"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_u233"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_uranium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_mox_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_pu240"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_pu_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_plutonium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_thorium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_thorium_fuel"
     },
     {
       "type": "minecraft:single",
@@ -18,7 +262,407 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/block_sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_niter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_fluorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_cobalt"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_cdalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_cadmium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_coltan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_white_phosphorus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/electrical_scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foam"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_trinitite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ancient_scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_corium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_corium_cobble"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schraranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_solinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schrabidium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_combine_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_starmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_bakelite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_rubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/rbmk/rbmk_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/rbmk/rbmk_blank_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/gravel_obsidian"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/gravel_diamond"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_brick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_light"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_sand"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_stone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_super_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_concrete_mossy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_concrete_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_concrete_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_obsidian"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_compound"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_light"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_fire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cmb_brick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cmb_brick_reinforced"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/tile_lab"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/tile_lab_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/tile_lab_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_cobble"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_crushed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_cobble_molten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_polished"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_brick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_brick_mossy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_brick_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_brick_chiseled"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_jungle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_jungle_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_jungle_lava"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_jungle_ooze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_jungle_mystic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/moon_turf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/waste_planks"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/frozen_dirt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/frozen_planks"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/dirt_dead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/dirt_oily"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_dirty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_dirty_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/tektite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_tektite_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/seal_frame"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/struct_launcher"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/struct_scaffold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crystal_hardened"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pink_planks"
     },
     {
       "type": "minecraft:single",
@@ -30,7 +674,111 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/ingot_u233"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pu240"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pu241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pu_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_am241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_am242"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_am_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_technetium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_sr90"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_au198"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pb209"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_ra226"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/ingot_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_tungsten_carbide"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_aluminium"
     },
     {
       "type": "minecraft:single",
@@ -38,7 +786,2511 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/ingot_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_cdalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_bscco"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_arsenic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_calcium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_cadmium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_silicon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_graphite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_firebrick"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_bakelite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_biorubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_rubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pc"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_pvc"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_mud"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_cft"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_combine_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_solinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_gh336"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_uranium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_thorium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_plutonium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_neptunium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_mox_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_americium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_schrabidium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_hes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_les"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_ferrouranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_gunmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_gunsteel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_electronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_phosphorus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel_presto"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel_presto_triplet"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel_bf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel_presto_bf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/solid_fuel_presto_triplet_bf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rocket_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_fiberglass"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_u233"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_uzh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu240"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_am241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_am242"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_am_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_technetium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_sr90"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_au198"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pb209"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_solinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_gh336"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_australium_lesser"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_australium_greater"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_uranium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_thorium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_plutonium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_neptunium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_mox_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_americium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_les"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_schrabidium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_hes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_po210be"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_ra226be"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_pu238be"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_silicon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_zfb_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_zfb_pu241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_zfb_am_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_yharonite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_balefire_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_flashlead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/billet_nuclear_waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cinnebar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_mercury_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_mercury"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/bottle_mercury"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coal_infernal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coal_eternal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/salpeter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nitra"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nitra_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_coal_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lapis"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_quartz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_diamond"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_emerald"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_sr90"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_sr90_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_i131"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_i131_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_xe135"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_xe135_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cs137"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cs137_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_au198"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_at209"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_steel_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_calcium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cadmium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_coltan_ore"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_coltan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_tektite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_paleogenite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_paleogenite_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_impure_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_borax"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_chlorocalcite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_molysite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_yellowcake"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_bakelite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_chlorophyte"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_combine_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lithium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_sodium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_iodine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_thorium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_neodymium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_neodymium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_astatine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_caesium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_strontium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cobalt_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_bromine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_niobium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_tennessine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cerium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_cerium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_lanthanium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_actinium_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_boron_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_magic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_sawdust"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_flux"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_balefire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_semtex_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_desh_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_desh_ready"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_nitan_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_spark_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_meteorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_meteorite_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/dust"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/dust_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fallout"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_limestone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_red_phosphorus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_ice"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_poison"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_thermite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/powder_energy_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cordite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ballistite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ball_dynamite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ball_tnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ball_tatb"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ball_resin"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ball_fireclay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_redstone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_lapis"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_diamond"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_thorium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_niter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_fluorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_schraranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_rare"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_phosphorus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_starmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_cinnebar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_trixite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gem_sodalite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gem_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gem_volcanic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gem_rad"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_neodymium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_cerium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_meteorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fragment_coltan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/biomass"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/biomass_compressed"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/nugget_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_u233"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pu240"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pu241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pu_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_am241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_am242"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_am_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_sr90"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_technetium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_au198"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_pb209"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_arsenic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_silicon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_solinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_gh336"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_uranium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_thorium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_plutonium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_neptunium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_mox_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_americium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_schrabidium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_hes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_les"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_australium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_australium_lesser"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_australium_greater"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/neutron_reflector"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_combine_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_mixed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_gunmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_gunsteel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_paa"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_kevlar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_dalekanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_ajr"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_hev"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_lunar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_fau"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/plate_armor_dnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/bolt_spike"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/hazmat_cloth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/hazmat_cloth_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/hazmat_cloth_grey"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/asbestos_cloth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rag_damp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rag_piss"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/filter_coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_copper_torus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_gold_torus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coil_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/safety_fuse"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/tank_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/motor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/motor_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/motor_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/centrifuge_element"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/reactor_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rtg_unit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pipes_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drill_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/photo_panel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ring_starmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/deuterium_filter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/sawblade"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/entanglement_kit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fins_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fins_small_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fins_big_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fins_tri_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fins_quad_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/sphere_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pedestal_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/dysfunctional_reactor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blade_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blade_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/turbine_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/turbine_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/flywheel_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ducttape"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/catalyst_clay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/missile_assembly"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_generic_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_generic_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_generic_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_incendiary_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_incendiary_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_incendiary_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_cluster_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_cluster_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_cluster_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_buster_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_buster_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_buster_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_nuclear"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_mirv"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/warhead_volcano"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuel_tank_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuel_tank_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuel_tank_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/thruster_small"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/thruster_medium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/thruster_large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/thruster_nuclear"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/seg_10"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/seg_15"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/seg_20"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/combine_scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/shimmer_head_original"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/shimmer_axe_head"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/shimmer_handle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crt_display"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit_star"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/assembly_nuke"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/flame_pony"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/flame_conspiracy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/flame_politics"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/flame_opinion"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_cluster"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellets_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellets_charged"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_gas"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/magnetron_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_selenium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_uf6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_puf6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_deuterium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_tritium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_sas3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cell_balefire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/demon_core_closed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_hydrogen"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_amat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_aschrab"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_higgs"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_muon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_tachyon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_strange"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_dark"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_sparkticle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/particle_lutece"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/canister_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/canister_napalm"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gas_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_tank"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_tank_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_barrel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_pack"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_spark"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_trixite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_base"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_template"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fuse"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/part_lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/part_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/part_carbon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/part_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/part_plutonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_blank"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_isa"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_dagaz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_hagalaz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_jera"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rune_thurisaz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ams_catalyst_blank"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/thermo_element"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/catalytic_converter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_tritium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_uranium_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_thorium_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_mox_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_plutonium_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_u233_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_u235_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_les_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_zirnox_zfb_mox_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rbmk_fuel_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/icf_pellet_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/icf_pellet_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/debris_graphite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/debris_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/debris_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/debris_concrete"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/debris_exchanger"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/undefined"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scrap"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scrap_oil"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scrap_nuclear"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/key_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/key_red_cracked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mech_key"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pin"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/launch_code_piece"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/launch_code"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/launch_key"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/soyuz_lander"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ammo_dgk"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stick_tnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stick_semtex"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stick_c4"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/disperser_canister"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/glyphid_gland"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/syringe_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/syringe_metal_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/egg_glyphid"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/can_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/bottle_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/bottle2_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_nuka"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_quantum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_sparkle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_rad"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_korl"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cap_fritz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ring_pull"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/can_key"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coin_creeper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coin_maskman"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coin_worm"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coin_ufo"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/coin_token"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gadget_explosive8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/man_explosive8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gadget_wireing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gadget_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/boy_shielding"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/boy_target"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/boy_bullet"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/boy_propellant"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/boy_igniter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/man_igniter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/man_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mike_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mike_deut"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mike_cooling_unit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/tsar_core"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/egg_balefire_shard"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/egg_balefire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_tnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_nuke"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_hydro"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_amat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_dirty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_schrab"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/custom_fall"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/trigger"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/reacher"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/watch"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_horn"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crystal_charred"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/book_secret"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/burnt_bark"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/holotape_damaged"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine4"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine5"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine7"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chlorine8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc4"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc5"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc7"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pc8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud4"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud5"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud7"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cloud8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange4"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange5"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange6"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange7"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/orange8"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/template_folder"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nothing"
     },
     {
       "type": "minecraft:single",

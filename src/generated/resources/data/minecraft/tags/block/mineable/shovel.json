@@ -1,0 +1,16 @@
+{
+  "values": [
+    "hbm:ore_oil_sand",
+    "hbm:block_scrap",
+    "hbm:block_foam",
+    "hbm:gravel_diamond",
+    "hbm:moon_turf",
+    "hbm:frozen_dirt",
+    "hbm:dirt_dead",
+    "hbm:dirt_oily",
+    "hbm:sand_dirty",
+    "hbm:sand_dirty_red",
+    "hbm:tektite",
+    "hbm:ore_tektite_osmiridium"
+  ]
+}

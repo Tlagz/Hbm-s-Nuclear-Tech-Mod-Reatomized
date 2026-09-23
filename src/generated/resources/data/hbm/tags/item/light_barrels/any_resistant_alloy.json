@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:light_barrels/tc_alloy",
+      "required": false
+    },
+    {
+      "id": "#hbm:light_barrels/cd_alloy",
+      "required": false
+    }
+  ]
+}

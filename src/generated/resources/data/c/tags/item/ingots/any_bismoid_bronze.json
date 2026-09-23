@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ingots/bismuth_bronze",
+      "required": false
+    },
+    {
+      "id": "#c:ingots/arsenic_bronze",
+      "required": false
+    }
+  ]
+}

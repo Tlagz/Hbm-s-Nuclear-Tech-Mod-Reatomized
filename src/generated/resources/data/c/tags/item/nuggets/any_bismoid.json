@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:nuggets/bismuth",
+      "required": false
+    },
+    {
+      "id": "#c:nuggets/arsenic",
+      "required": false
+    }
+  ]
+}

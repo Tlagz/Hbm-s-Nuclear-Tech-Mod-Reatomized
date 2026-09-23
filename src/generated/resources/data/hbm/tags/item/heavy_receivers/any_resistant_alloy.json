@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:heavy_receivers/tc_alloy",
+      "required": false
+    },
+    {
+      "id": "#hbm:heavy_receivers/cd_alloy",
+      "required": false
+    }
+  ]
+}

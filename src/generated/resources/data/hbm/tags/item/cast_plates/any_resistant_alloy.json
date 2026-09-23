@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:cast_plates/tc_alloy",
+      "required": false
+    },
+    {
+      "id": "#hbm:cast_plates/cd_alloy",
+      "required": false
+    }
+  ]
+}

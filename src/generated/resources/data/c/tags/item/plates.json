@@ -1,0 +1,17 @@
+{
+  "values": [
+    "#c:plates/iron",
+    "#c:plates/gold",
+    "#c:plates/schrabidium",
+    "#c:plates/titanium",
+    "#c:plates/copper",
+    "#c:plates/aluminum",
+    "#c:plates/steel",
+    "#c:plates/lead",
+    "#c:plates/dura_steel",
+    "#c:plates/cmb_steel",
+    "#c:plates/gun_metal",
+    "#c:plates/weapon_steel",
+    "#c:plates/saturnite"
+  ]
+}

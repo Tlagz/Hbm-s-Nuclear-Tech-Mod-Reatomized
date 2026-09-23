@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:light_barrels/bismuth_bronze",
+      "required": false
+    },
+    {
+      "id": "#hbm:light_barrels/arsenic_bronze",
+      "required": false
+    }
+  ]
+}

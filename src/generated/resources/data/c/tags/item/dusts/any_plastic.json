@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:dusts/polymer",
+      "required": false
+    },
+    {
+      "id": "#c:dusts/bakelite",
+      "required": false
+    }
+  ]
+}

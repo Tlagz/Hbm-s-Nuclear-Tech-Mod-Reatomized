@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:stocks/polymer",
+      "required": false
+    },
+    {
+      "id": "#hbm:stocks/bakelite",
+      "required": false
+    }
+  ]
+}

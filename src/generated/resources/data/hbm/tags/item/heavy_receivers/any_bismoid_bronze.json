@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:heavy_receivers/bismuth_bronze",
+      "required": false
+    },
+    {
+      "id": "#hbm:heavy_receivers/arsenic_bronze",
+      "required": false
+    }
+  ]
+}

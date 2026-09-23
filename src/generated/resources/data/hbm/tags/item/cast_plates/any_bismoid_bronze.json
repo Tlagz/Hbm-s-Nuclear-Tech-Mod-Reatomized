@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:cast_plates/bismuth_bronze",
+      "required": false
+    },
+    {
+      "id": "#hbm:cast_plates/arsenic_bronze",
+      "required": false
+    }
+  ]
+}

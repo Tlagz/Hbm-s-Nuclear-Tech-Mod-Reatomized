@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:storage_blocks/bismuth",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/arsenic",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "values": [
+    "#c:dyes/red",
+    "hbm:cinnebar",
+    "hbm:sulfur",
+    "hbm:powder_coal",
+    "hbm:powder_lignite",
+    "hbm:powder_titanium",
+    "hbm:fluorite",
+    "hbm:powder_lapis",
+    "hbm:powder_cadmium",
+    "#c:dyes/yellow",
+    "#c:dyes/black",
+    "#c:dyes/brown",
+    "#c:dyes/light_gray",
+    "#c:dyes/white",
+    "#c:dyes/blue",
+    "#c:dyes/orange"
+  ]
+}

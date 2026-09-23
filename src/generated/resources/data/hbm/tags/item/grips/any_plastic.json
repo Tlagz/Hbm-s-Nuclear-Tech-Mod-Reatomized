@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#hbm:grips/polymer",
+      "required": false
+    },
+    {
+      "id": "#hbm:grips/bakelite",
+      "required": false
+    }
+  ]
+}
