@@ -1,0 +1,40 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/ingot_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nugget_uranium"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# HBM's Nuclear Tech - NeoForge 1.21.1 Port
+
+Unofficial port of [HBM's Nuclear Tech Mod](https://github.com/HbmMods/Hbm-s-Nuclear-Tech-GIT) (1.7.10, build X5808)
+to NeoForge 1.21.1. Licensed under the GNU LGPL v3 like the original (`LICENSE`, `LICENSE.LESSER`).
+All credit for the original code, textures, models and sounds goes to HbMinecraft and the NTM contributors.
+
+## Building
+
+Requires a JDK 17+ to run Gradle; Java 21 for Minecraft is provisioned automatically.
+
+```
+./gradlew runData     # regenerate models, blockstates, loot tables, tags, atlas sources
+./gradlew runClient   # start the game with the mod
+./gradlew build       # jar in build/libs
+```
+
+## Porting conventions
+
+- Registry names are the original unlocalized names, lowercased (`tile.ore_uranium` -> `hbm:ore_uranium`).
+  Java field names in `ModBlocks`/`ModItems` stay the same as the original to make cross-referencing easy.
+- Assets were copied by `tools/port_assets.py` with every path lowercased. `tools/asset_rename_map.txt`
+  lists old -> new paths, useful when porting code that references e.g. `hbm:models/LilBoy1.obj`.
+- Textures stay in the original `textures/blocks` and `textures/items` folders. Models must be created
+  through the datagen helpers so that `ModSpriteSourceProvider` adds the texture to the block atlas.
+- Lang files: `tile.X.name` -> `block.hbm.x`, `item.X.name` -> `item.hbm.x`, every other key unchanged.
+- Sound events are lowercased (`block.crateBreak` -> `hbm:block.cratebreak`).
+- 1.7.10 explosion resistance values are kept as written in the original and converted by
+  `ModBlocks.legacyResistance`.
+
+## Status
+
+| Phase | Scope | State |
+|---|---|---|
+| 0 | Project skeleton, assets, lang, datagen, creative tabs | done |
+| 1 | Core: registries, HE energy network, fluids, hazards/radiation, packets, config | |
+| 2 | Materials: ores, ingots, powders, tags, ore generation | |
+| 3 | Simple machines + GUIs, cables and pipes | |
+| 4 | Rendering: OBJ loader for block entity renderers, animation system | |
+| 5 | Large machines, multiblocks, reactors | |
+| 6 | Entities, missiles, bombs, explosions, fallout | |
+| 7 | Weapons | |
+| 8 | Structures, JEI, balancing | |

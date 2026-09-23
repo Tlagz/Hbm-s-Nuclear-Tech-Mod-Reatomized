@@ -1,0 +1,9 @@
+{
+  "values": [
+    "hbm:ore_uranium",
+    "hbm:ore_titanium",
+    "hbm:block_uranium",
+    "hbm:block_titanium",
+    "hbm:block_steel"
+  ]
+}
