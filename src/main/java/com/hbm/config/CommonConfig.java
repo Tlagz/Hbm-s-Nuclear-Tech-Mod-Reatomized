@@ -16,6 +16,7 @@ public class CommonConfig {
 		RadiationConfig.define(builder);
 		ServerConfig.define(builder);
 		MobConfig.define(builder);
+		WorldConfig.define(builder);
 		SPEC = builder.build();
 	}
 
@@ -30,5 +31,6 @@ public class CommonConfig {
 		RadiationConfig.load();
 		ServerConfig.load();
 		MobConfig.load();
+		WorldConfig.load();
 	}
 }

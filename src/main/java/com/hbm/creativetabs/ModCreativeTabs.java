@@ -4,10 +4,9 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import com.hbm.blocks.ModBlocks;
-import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,16 +22,21 @@ public class ModCreativeTabs {
 	public static final Map<NtmTab, DeferredHolder<CreativeModeTab, CreativeModeTab>> BY_TAB = new EnumMap<>(NtmTab.class);
 
 	static {
-		// placeholder icons (iron pickaxe, same fallback as the original) get replaced as content is ported
-		tab(NtmTab.PARTS, () -> ModItems.ingot_uranium.get());
-		tab(NtmTab.CONTROL, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.TEMPLATE, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.BLOCKS, () -> ModBlocks.ore_uranium.get());
-		tab(NtmTab.MACHINE, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.NUKE, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.MISSILE, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.WEAPON, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.CONSUMABLE, () -> ModItems.geiger_counter.get());
+		// the original's tab icons, looked up by name so they show up as soon as the item is ported
+		tab(NtmTab.PARTS, "ingot_uranium");
+		tab(NtmTab.CONTROL, "pellet_rtg");
+		tab(NtmTab.TEMPLATE, "blueprints");
+		tab(NtmTab.BLOCKS, "ore_uranium");
+		tab(NtmTab.MACHINE, "pwr_controller");
+		tab(NtmTab.NUKE, "nuke_man");
+		tab(NtmTab.MISSILE, "missile_nuclear");
+		tab(NtmTab.WEAPON, "gun_greasegun");
+		tab(NtmTab.CONSUMABLE, "bottle_nuka");
+	}
+
+	/** Original fallback for icons that don't exist (yet) */
+	private static void tab(NtmTab tab, String icon) {
+		tab(tab, () -> BuiltInRegistries.ITEM.getOptional(RefStrings.loc(icon)).orElse(Items.IRON_PICKAXE));
 	}
 
 	private static void tab(NtmTab tab, Supplier<ItemLike> icon) {

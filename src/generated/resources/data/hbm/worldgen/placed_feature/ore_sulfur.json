@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_sulfur",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "sulfurSpawn",
+      "dimension": "overworld"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 34
+        },
+        "min_inclusive": {
+          "absolute": 5
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

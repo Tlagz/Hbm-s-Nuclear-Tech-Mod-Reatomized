@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_cobalt",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "cobaltSpawn",
+      "dimension": "overworld"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 11
+        },
+        "min_inclusive": {
+          "absolute": 4
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

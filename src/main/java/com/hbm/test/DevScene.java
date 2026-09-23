@@ -3,6 +3,7 @@ package com.hbm.test;
 import java.io.File;
 
 import com.hbm.blocks.ModBlocks;
+import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
@@ -39,7 +40,7 @@ public class DevScene {
 		BlockPos origin = new BlockPos(0, -60, 0);
 
 		// clear and floor
-		for(int x = -8; x <= 8; x++) for(int z = -2; z <= 12; z++) for(int y = 0; y <= 8; y++) {
+		for(int x = -14; x <= 14; x++) for(int z = -2; z <= 12; z++) for(int y = 0; y <= 10; y++) {
 			level.setBlockAndUpdate(origin.offset(x, y, z), y == 0 ? Blocks.SMOOTH_STONE.defaultBlockState() : Blocks.AIR.defaultBlockState());
 		}
 
@@ -50,15 +51,17 @@ public class DevScene {
 		for(int y = 1; y <= 4; y++) level.setBlockAndUpdate(origin.offset(1, y, 6), ModBlocks.red_cable.get().defaultBlockState());
 		level.setBlockAndUpdate(origin.offset(3, 1, 6), ModBlocks.red_cable.get().defaultBlockState());
 
-		// full blocks
-		level.setBlockAndUpdate(origin.offset(5, 1, 6), ModBlocks.ore_uranium.get().defaultBlockState());
-		level.setBlockAndUpdate(origin.offset(6, 1, 6), ModBlocks.block_uranium.get().defaultBlockState());
-		level.setBlockAndUpdate(origin.offset(5, 2, 6), ModBlocks.block_steel.get().defaultBlockState());
-		level.setBlockAndUpdate(origin.offset(6, 2, 6), ModBlocks.ore_titanium.get().defaultBlockState());
+		// wall of all generated full blocks behind the cables, 24 wide
+		int i = 0;
+		for(var block : ModBlocks.CUBE_MODELS.keySet()) {
+			if(block.get() instanceof net.minecraft.world.level.block.FallingBlock) continue;
+			level.setBlockAndUpdate(origin.offset(12 - i % 24, 1 + i / 24, 11), block.get().defaultBlockState());
+			i++;
+		}
 
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
-		player.teleportTo(level, 0.5, origin.getY() + 3, 0.5, 0F, 20F);
+		player.teleportTo(level, 0.5, origin.getY() + 3, -3.5, 0F, 5F);
 		player.getInventory().clearContent();
 		player.getInventory().add(new ItemStack(ModItems.geiger_counter.get()));
 		player.getInventory().add(new ItemStack(ModBlocks.red_cable.get()));
@@ -68,6 +71,18 @@ public class DevScene {
 
 	@EventBusSubscriber(modid = RefStrings.MODID, value = Dist.CLIENT)
 	public static class Client {
+
+		private static void openTab(Minecraft mc, NtmTab tab) {
+			var screen = new net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen(mc.player, mc.player.connection.enabledFeatures(), false);
+			mc.setScreen(screen);
+			try {
+				var select = screen.getClass().getDeclaredMethod("selectTab", net.minecraft.world.item.CreativeModeTab.class);
+				select.setAccessible(true);
+				select.invoke(screen, com.hbm.creativetabs.ModCreativeTabs.BY_TAB.get(tab).get());
+			} catch(Exception ex) {
+				MainRegistry.logger.warn("DevScene: could not select creative tab", ex);
+			}
+		}
 
 		private static int ticks = 0;
 
@@ -83,16 +98,14 @@ public class DevScene {
 				Screenshot.grab(mc.gameDirectory, "devscene_world.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 210) {
-				mc.player.getInventory().selected = 2;
-				mc.setScreen(new net.minecraft.client.gui.screens.inventory.InventoryScreen(mc.player));
+			// creative tabs, one screenshot each
+			NtmTab[] tabs = { NtmTab.PARTS, NtmTab.BLOCKS, NtmTab.CONTROL, NtmTab.CONSUMABLE };
+			for(int t = 0; t < tabs.length; t++) {
+				if(ticks == 210 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 225 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 240) {
-				Screenshot.grab(mc.gameDirectory, "devscene_inventory.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
-			}
-
-			if(ticks == 250) {
+			if(ticks == 210 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

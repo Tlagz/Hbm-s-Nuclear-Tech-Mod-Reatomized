@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_asbestos",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "asbestosSpawn",
+      "dimension": "overworld"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 31
+        },
+        "min_inclusive": {
+          "absolute": 16
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

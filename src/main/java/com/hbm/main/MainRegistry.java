@@ -14,6 +14,7 @@ import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 import com.hbm.potion.HbmPotion;
 import com.hbm.tileentity.ModTileEntities;
+import com.hbm.world.gen.ModWorldGen;
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
@@ -40,6 +41,7 @@ public class MainRegistry {
 		ModSounds.SOUNDS.register(modEventBus);
 		ModAttachments.ATTACHMENTS.register(modEventBus);
 		HbmPotion.EFFECTS.register(modEventBus);
+		ModWorldGen.PLACEMENT_MODIFIERS.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 

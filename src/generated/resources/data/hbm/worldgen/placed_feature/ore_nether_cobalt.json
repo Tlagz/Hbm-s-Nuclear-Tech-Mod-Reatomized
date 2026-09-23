@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_nether_cobalt",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "netherCobaltSpawn",
+      "dimension": "nether"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 125
+        },
+        "min_inclusive": {
+          "absolute": 100
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_cinnebar",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "cinnebarSpawn",
+      "dimension": "overworld"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 23
+        },
+        "min_inclusive": {
+          "absolute": 8
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "feature": "hbm:ore_nether_fire",
+  "placement": [
+    {
+      "type": "hbm:config_count",
+      "config": "netherPhosphorusSpawn",
+      "dimension": "nether"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 126
+        },
+        "min_inclusive": {
+          "absolute": 0
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

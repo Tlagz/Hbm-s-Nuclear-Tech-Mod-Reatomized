@@ -1,0 +1,23 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "hbm:ore_uranium",
+    "hbm:ore_thorium",
+    "hbm:ore_titanium",
+    "hbm:ore_sulfur",
+    "hbm:ore_aluminium",
+    "hbm:ore_copper",
+    "hbm:ore_fluorite",
+    "hbm:ore_niter",
+    "hbm:ore_tungsten",
+    "hbm:ore_lead",
+    "hbm:ore_beryllium",
+    "hbm:ore_rare",
+    "hbm:ore_lignite",
+    "hbm:ore_asbestos",
+    "hbm:ore_cinnebar",
+    "hbm:ore_cobalt"
+  ],
+  "step": "underground_ores"
+}
