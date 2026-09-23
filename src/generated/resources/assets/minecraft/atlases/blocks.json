@@ -39,6 +39,14 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/nugget_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/dosimeter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/geiger_counter"
     }
   ]
 }

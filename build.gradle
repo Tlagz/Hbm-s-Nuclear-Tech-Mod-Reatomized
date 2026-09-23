@@ -58,6 +58,14 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
+        // builds a test scene, takes screenshots into run/screenshots and quits, see com.hbm.test.DevScene
+        // needs a world named "devworld" in run/saves (a copy of the superflat gametest world works)
+        devScene {
+            client()
+            programArguments.addAll '--quickPlaySingleplayer', 'devworld'
+            systemProperty 'hbm.devScene', 'true'
+        }
+
         server {
             server()
             programArgument '--nogui'

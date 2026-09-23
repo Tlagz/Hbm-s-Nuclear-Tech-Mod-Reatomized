@@ -32,7 +32,7 @@ public class ModCreativeTabs {
 		tab(NtmTab.NUKE, () -> Items.IRON_PICKAXE);
 		tab(NtmTab.MISSILE, () -> Items.IRON_PICKAXE);
 		tab(NtmTab.WEAPON, () -> Items.IRON_PICKAXE);
-		tab(NtmTab.CONSUMABLE, () -> Items.IRON_PICKAXE);
+		tab(NtmTab.CONSUMABLE, () -> ModItems.geiger_counter.get());
 	}
 
 	private static void tab(NtmTab tab, Supplier<ItemLike> icon) {

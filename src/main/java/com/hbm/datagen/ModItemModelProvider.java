@@ -22,6 +22,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 		flat(ModItems.ingot_titanium);
 		flat(ModItems.ingot_steel);
 		flat(ModItems.nugget_uranium);
+		flat(ModItems.dosimeter);
+		flat(ModItems.geiger_counter);
 	}
 
 	/** Flat item model using the original's texture location, textures/items/[name].png */
