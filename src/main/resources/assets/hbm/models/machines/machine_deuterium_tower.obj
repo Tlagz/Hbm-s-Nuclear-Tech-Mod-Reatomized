@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 7) OBJ File: 'deut_tower.blend'
 # www.blender.org
-mtllib deuterium_tower.mtl
 o Cube.007_Cube.009
 v -0.812500 3.125000 0.687500
 v -0.812500 2.875000 0.687500
@@ -1656,7 +1657,6 @@ vn 0.0393 0.0948 -0.9947
 vn 0.2962 0.7150 -0.6333
 vn 0.0393 0.0948 0.9947
 vn -0.3574 -0.8629 -0.3574
-usemtl Material
 s off
 f 10/1/1 5/2/1 6/3/1
 f 4/4/2 9/5/2 3/6/2

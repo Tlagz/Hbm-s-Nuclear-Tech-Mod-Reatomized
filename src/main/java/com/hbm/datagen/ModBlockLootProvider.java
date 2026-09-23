@@ -22,6 +22,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		dropSelf(ModBlocks.block_uranium.get());
 		dropSelf(ModBlocks.block_titanium.get());
 		dropSelf(ModBlocks.block_steel.get());
+		dropSelf(ModBlocks.red_cable.get());
 	}
 
 	@Override

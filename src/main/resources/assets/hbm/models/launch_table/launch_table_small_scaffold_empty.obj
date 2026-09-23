@@ -1,3 +1,5 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.76 (sub 0) OBJ File: 'launch_table_small_scaffold_empty.blend'
 # www.blender.org
 o Cube.008_Cube.009

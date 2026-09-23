@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender 4.0.2
 # www.blender.org
-mtllib Fleija.mtl
 o Cylinder.001
 v 0.000000 0.812500 -0.750000
 v 0.000000 0.812500 0.750000
@@ -1007,7 +1008,6 @@ vt 0.672131 0.475410
 vt 0.688525 0.339414
 vt 0.688525 0.273840
 s 1
-usemtl Texture
 f 6/1/1 73/2/1 4/3/1
 f 57/4/2 90/5/2 59/6/2
 f 67/7/2 93/8/2 94/9/2

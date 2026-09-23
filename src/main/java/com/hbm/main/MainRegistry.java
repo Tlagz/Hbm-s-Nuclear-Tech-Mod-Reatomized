@@ -6,6 +6,7 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.creativetabs.ModCreativeTabs;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
+import com.hbm.tileentity.ModTileEntities;
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
@@ -21,6 +22,7 @@ public class MainRegistry {
 		ModBlocks.BLOCKS.register(modEventBus);
 		ModItems.ITEMS.register(modEventBus);
 		ModCreativeTabs.TABS.register(modEventBus);
+		ModTileEntities.TILES.register(modEventBus);
 
 		logger.info("Loading " + RefStrings.NAME);
 	}

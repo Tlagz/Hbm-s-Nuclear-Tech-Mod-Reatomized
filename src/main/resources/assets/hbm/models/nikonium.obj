@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.82 (sub 7) OBJ File: ''
 # www.blender.org
-mtllib nikonium.mtl
 o Cube
 v 0.000000 1.605417 0.000000
 v 1.000000 0.086045 -1.000000
@@ -21,7 +22,6 @@ vn -0.8353 0.5498 0.0000
 vn 0.0000 -1.0000 0.0000
 vn 0.8353 0.5498 0.0000
 vn 0.0000 0.5498 -0.8353
-usemtl Material.001
 s off
 f 3/1/1 1/2/1 5/3/1
 f 5/3/2 1/2/2 4/4/2

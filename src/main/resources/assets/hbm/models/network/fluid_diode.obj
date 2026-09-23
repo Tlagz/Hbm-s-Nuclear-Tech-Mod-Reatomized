@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender 4.0.2
 # www.blender.org
-mtllib Pump.mtl
 o Cylinder
 v -0.500000 0.500000 -0.250000
 v -0.500000 0.500000 -0.437500
@@ -1506,7 +1507,6 @@ vt 0.890909 0.963636
 vt 0.963637 0.945436
 vt 0.963636 1.000000
 s 1
-usemtl Texture
 f 24/1/1 1/2/2 23/3/1
 f 6/4/3 7/5/4 5/6/3
 f 8/7/4 9/8/5 7/9/4

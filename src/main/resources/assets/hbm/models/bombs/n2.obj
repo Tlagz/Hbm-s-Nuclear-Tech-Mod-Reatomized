@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender 4.4.3
 # www.blender.org
-mtllib n2.mtl
 o Cylinder
 v 0.000000 0.125000 -1.000000
 v 1.000000 0.125000 -0.000000

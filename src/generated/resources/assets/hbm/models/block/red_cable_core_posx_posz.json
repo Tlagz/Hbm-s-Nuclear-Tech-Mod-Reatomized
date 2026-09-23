@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:block/block",
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/blocks/cable_neo.obj",
+  "textures": {
+    "particle": "hbm:blocks/cable_neo",
+    "texture0": "hbm:blocks/cable_neo"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "visibility": {
+    "CX": false,
+    "CY": false,
+    "CZ": false,
+    "Core": true,
+    "negX": false,
+    "negY": false,
+    "negZ": false,
+    "posX": true,
+    "posY": false,
+    "posZ": true
+  }
+}

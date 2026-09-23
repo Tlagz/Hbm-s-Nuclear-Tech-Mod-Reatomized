@@ -1,3 +1,5 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 0) OBJ File: 'tsar.blend'
 # www.blender.org
 o Cylinder.004_Cylinder.007

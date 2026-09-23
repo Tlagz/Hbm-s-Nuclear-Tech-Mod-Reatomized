@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 0) OBJ File: 'ivy.blend'
 # www.blender.org
-mtllib michl.mtl
 o Cylinder
 v 0.000000 0.312500 -0.961093
 v 0.000000 5.312500 -0.961093
@@ -1626,7 +1627,6 @@ vn 0.3707 0.2482 -0.8949
 vn -0.8949 0.2482 -0.3707
 vn 0.6850 0.2482 0.6850
 vn -0.8949 0.2482 0.3707
-usemtl None
 s off
 f 40/1/1 44/2/1 48/3/1
 f 68/4/2 71/5/2 67/6/2

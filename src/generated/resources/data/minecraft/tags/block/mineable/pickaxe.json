@@ -4,6 +4,7 @@
     "hbm:ore_titanium",
     "hbm:block_uranium",
     "hbm:block_titanium",
-    "hbm:block_steel"
+    "hbm:block_steel",
+    "hbm:red_cable"
   ]
 }

@@ -7,6 +7,8 @@ Copies assets from the original 1.7.10 NTM source tree into the NeoForge port.
     item.<name>.name -> item.hbm.<name>
   and keeping every other key unchanged
 - Lowercases sound event names and sound file references in sounds.json
+- Points every .obj at a shared default material (models/hbm_default.mtl, texture "#texture0"), NeoForge's
+  OBJ loader needs one and the originals have none (their renderer binds textures manually)
 - Writes tools/asset_rename_map.txt (old path -> new path) for reference while porting code
 
 Usage: python tools/port_assets.py <path to original repo root>
@@ -21,6 +23,16 @@ SKIP_DIRS = {"disks"}           # OpenComputers floppy contents, not needed yet
 SKIP_FILES = {"test.lang", "STYLEGUIDE.md"}
 # typos in original file names that break references
 FIXUPS = {"sounds/weapon/grenadebounnce2.ogg": "sounds/weapon/grenadebounce2.ogg"}
+OBJ_HEADER = "mtllib hbm:models/hbm_default.mtl\nusemtl hbm_default\n"
+DEFAULT_MTL = "newmtl hbm_default\nmap_Kd #texture0\n"
+
+
+def convert_obj(src, dst):
+    with open(src, encoding="utf-8", errors="replace") as f:
+        lines = [l for l in f if not l.startswith(("mtllib", "usemtl"))]
+    with open(dst, "w", encoding="utf-8", newline="\n") as f:
+        f.write(OBJ_HEADER)
+        f.writelines(lines)
 
 
 def convert_lang(src, dst):
@@ -89,8 +101,14 @@ def main():
                 renames.append((rel, new_rel))
             dst = os.path.join(dst_assets, new_rel)
             os.makedirs(os.path.dirname(dst), exist_ok=True)
-            shutil.copy2(os.path.join(dirpath, name), dst)
+            if new_rel.endswith(".obj"):
+                convert_obj(os.path.join(dirpath, name), dst)
+            else:
+                shutil.copy2(os.path.join(dirpath, name), dst)
             copied += 1
+
+    with open(os.path.join(dst_assets, "models", "hbm_default.mtl"), "w", newline="\n") as f:
+        f.write(DEFAULT_MTL)
 
     n = convert_sounds(os.path.join(src_assets, "sounds.json"), os.path.join(dst_assets, "sounds.json"))
     print(f"sounds.json: {n} sound events")

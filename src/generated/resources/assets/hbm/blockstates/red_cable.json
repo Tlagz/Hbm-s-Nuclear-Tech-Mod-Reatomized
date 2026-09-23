@@ -1,0 +1,196 @@
+{
+  "variants": {
+    "down=false,east=false,north=false,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core"
+    },
+    "down=false,east=false,north=false,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy"
+    },
+    "down=false,east=false,north=false,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_negz"
+    },
+    "down=false,east=false,north=false,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_negz"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_negz"
+    },
+    "down=false,east=false,north=false,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_negz"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posz"
+    },
+    "down=false,east=false,north=true,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posz"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_posz"
+    },
+    "down=false,east=false,north=true,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_posz"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_cz"
+    },
+    "down=false,east=false,north=true,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posz_negz"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_posz_negz"
+    },
+    "down=false,east=false,north=true,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_posz_negz"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx"
+    },
+    "down=false,east=true,north=false,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_cx"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy"
+    },
+    "down=false,east=true,north=false,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_negz"
+    },
+    "down=false,east=true,north=false,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_negz"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_negz"
+    },
+    "down=false,east=true,north=false,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_negz"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posz"
+    },
+    "down=false,east=true,north=true,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posz"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_posz"
+    },
+    "down=false,east=true,north=true,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_posz"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posz_negz"
+    },
+    "down=false,east=true,north=true,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posz_negz"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_posz_negz"
+    },
+    "down=false,east=true,north=true,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_posz_negz"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_negy"
+    },
+    "down=true,east=false,north=false,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_negy"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_cy"
+    },
+    "down=true,east=false,north=false,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_negy"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_negy_negz"
+    },
+    "down=true,east=false,north=false,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_negy_negz"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_negy_negz"
+    },
+    "down=true,east=false,north=false,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_negy_negz"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_negy_posz"
+    },
+    "down=true,east=false,north=true,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_negy_posz"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_negy_posz"
+    },
+    "down=true,east=false,north=true,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_negy_posz"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_negy_posz_negz"
+    },
+    "down=true,east=false,north=true,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_negx_negy_posz_negz"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posy_negy_posz_negz"
+    },
+    "down=true,east=false,north=true,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_negx_posy_negy_posz_negz"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_negy"
+    },
+    "down=true,east=true,north=false,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_negy"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_negy"
+    },
+    "down=true,east=true,north=false,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_negy"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_negy_negz"
+    },
+    "down=true,east=true,north=false,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_negy_negz"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_negy_negz"
+    },
+    "down=true,east=true,north=false,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_negy_negz"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_negy_posz"
+    },
+    "down=true,east=true,north=true,south=false,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_negy_posz"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_negy_posz"
+    },
+    "down=true,east=true,north=true,south=false,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_negy_posz"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=false": {
+      "model": "hbm:block/red_cable_core_posx_negy_posz_negz"
+    },
+    "down=true,east=true,north=true,south=true,up=false,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_negy_posz_negz"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=false": {
+      "model": "hbm:block/red_cable_core_posx_posy_negy_posz_negz"
+    },
+    "down=true,east=true,north=true,south=true,up=true,west=true": {
+      "model": "hbm:block/red_cable_core_posx_negx_posy_negy_posz_negz"
+    }
+  }
+}

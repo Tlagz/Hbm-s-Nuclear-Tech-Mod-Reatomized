@@ -22,6 +22,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/cable_neo"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/ingot_uranium"
     },
     {

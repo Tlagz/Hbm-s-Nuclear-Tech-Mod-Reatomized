@@ -188,7 +188,7 @@ sounds/weapon/glReload.ogg -> sounds/weapon/glreload.ogg
 sounds/weapon/glShoot.ogg -> sounds/weapon/glshoot.ogg
 sounds/weapon/grenadeBounce1.ogg -> sounds/weapon/grenadebounce1.ogg
 sounds/weapon/grenadeBounce3.ogg -> sounds/weapon/grenadebounce3.ogg
-sounds/weapon/grenadeBounnce2.ogg -> sounds/weapon/grenadebounnce2.ogg
+sounds/weapon/grenadeBounnce2.ogg -> sounds/weapon/grenadebounce2.ogg
 sounds/weapon/hicalShot.ogg -> sounds/weapon/hicalshot.ogg
 sounds/weapon/hkShoot.ogg -> sounds/weapon/hkshoot.ogg
 sounds/weapon/hksShoot1.ogg -> sounds/weapon/hksshoot1.ogg

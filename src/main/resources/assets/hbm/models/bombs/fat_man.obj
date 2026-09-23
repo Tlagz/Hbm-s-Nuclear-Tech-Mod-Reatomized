@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 0) OBJ File: 'fatman.blend'
 # www.blender.org
-mtllib fatman.mtl
 o fatman_Cylinder
 v -0.154001 0.747592 -0.782877
 v 0.228740 0.747591 -0.782877
@@ -2445,7 +2446,6 @@ vn -0.6302 -0.7764 0.0000
 vn -0.6302 -0.5490 0.5490
 vn -0.6302 0.0000 0.7764
 vn -0.6302 0.5490 0.5490
-usemtl None
 s off
 f 175/1/1 167/2/1 163/3/1
 f 190/4/2 182/5/2 188/6/2

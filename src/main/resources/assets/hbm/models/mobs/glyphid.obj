@@ -1,3 +1,5 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 0) OBJ File: 'glyphid.blend'
 # www.blender.org
 o JawLeft

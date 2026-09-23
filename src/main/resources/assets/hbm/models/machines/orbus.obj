@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender 4.0.2
 # www.blender.org
-mtllib orbus.mtl
 o Sphere.002
 v 0.000000 3.169696 -1.616789
 v 0.000000 1.830304 -1.616789
@@ -2237,7 +2238,6 @@ vt 0.431778 0.610000
 vt 0.561796 0.646667
 vt 0.376403 0.646667
 s 1
-usemtl Texture
 f 104/1/1 57/2/2 3/3/3
 f 162/4/4 161/5/5 9/6/6
 f 171/7/7 5/8/8 6/9/9

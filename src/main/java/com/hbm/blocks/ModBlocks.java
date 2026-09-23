@@ -2,6 +2,7 @@ package com.hbm.blocks;
 
 import java.util.function.Function;
 
+import com.hbm.blocks.network.BlockCable;
 import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
@@ -23,6 +24,8 @@ public class ModBlocks {
 	public static final DeferredBlock<Block> block_uranium = register("block_uranium", Block::new, metal(5.0F, 50.0F), NtmTab.BLOCKS);
 	public static final DeferredBlock<Block> block_titanium = register("block_titanium", Block::new, metal(5.0F, 50.0F), NtmTab.BLOCKS);
 	public static final DeferredBlock<Block> block_steel = register("block_steel", Block::new, metal(5.0F, 50.0F), NtmTab.BLOCKS);
+
+	public static final DeferredBlock<BlockCable> red_cable = register("red_cable", BlockCable::new, metal(5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
 
 	/** Registers a block together with its BlockItem and adds it to the given creative tab (null for none). */
 	public static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties props, NtmTab tab) {

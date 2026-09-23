@@ -1,3 +1,5 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v3.2.0 OBJ File: 'g3.blend'
 # www.blender.org
 o Rifle

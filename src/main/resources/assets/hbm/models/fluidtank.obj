@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v2.79 (sub 0) OBJ File: 'tankproofofconcept.blend1'
 # www.blender.org
-mtllib tank.mtl
 o Frame
 v -1.531250 0.187305 1.268500
 v -1.531250 0.231500 1.312694
@@ -1784,7 +1785,6 @@ vn -0.6302 0.5490 0.5490
 vn -0.6302 0.7764 0.0000
 vn -0.6302 0.0000 -0.7764
 vn -0.6302 0.5490 -0.5490
-usemtl None
 s off
 f 1/1/1 3/2/1 4/3/1
 f 8/4/2 7/5/2 5/6/2
@@ -3727,7 +3727,6 @@ vn -0.9917 -0.1219 0.0396
 vn -0.9917 0.1037 0.0754
 vn -0.9917 0.0754 -0.1037
 vn 0.6735 -0.7391 0.0000
-usemtl None_tank_new_eth.png
 s off
 f 741/1021/43 737/1022/43 733/1023/43
 f 763/1024/43 761/1025/43 757/1026/43

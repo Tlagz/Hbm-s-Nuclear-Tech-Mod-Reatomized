@@ -1,6 +1,7 @@
+mtllib hbm:models/hbm_default.mtl
+usemtl hbm_default
 # Blender v3.2.0 OBJ File: 'piston_inserter.blend'
 # www.blender.org
-mtllib piston_inserter.mtl
 o Frame
 v -0.125000 0.000000 0.125000
 v -0.125000 1.000000 0.125000
@@ -293,7 +294,6 @@ vn 1.0000 0.0000 0.0000
 vn 0.0000 0.0000 1.0000
 vn 0.0000 -1.0000 0.0000
 vn 0.0000 1.0000 0.0000
-usemtl None
 s off
 f 9/1/1 13/2/1 14/3/1
 f 10/4/2 15/5/2 13/6/2
@@ -475,7 +475,6 @@ vn 1.0000 0.0000 0.0000
 vn 0.0000 0.0000 1.0000
 vn 0.0000 1.0000 0.0000
 vn 0.0000 -1.0000 0.0000
-usemtl None
 s off
 f 123/165/7 130/166/7 131/167/7
 f 125/168/8 132/169/8 130/170/8

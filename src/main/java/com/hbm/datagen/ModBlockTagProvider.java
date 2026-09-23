@@ -25,6 +25,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 				ModBlocks.ore_titanium.get(),
 				ModBlocks.block_uranium.get(),
 				ModBlocks.block_titanium.get(),
-				ModBlocks.block_steel.get());
+				ModBlocks.block_steel.get(),
+				ModBlocks.red_cable.get());
 	}
 }
