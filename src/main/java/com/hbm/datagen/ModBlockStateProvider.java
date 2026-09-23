@@ -12,6 +12,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -28,15 +30,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		ModBlocks.CUBE_MODELS.forEach(this::cube);
+		ModBlocks.MODELS.forEach(this::generated);
 
 		cable(ModBlocks.red_cable, "blocks/cable_neo", "blocks/cable_neo");
 	}
 
-	/** Simple full cube using the original's texture location, textures/blocks/[name].png */
-	private void cube(DeferredBlock<?> block, String texture) {
-		String name = block.getId().getPath();
-		simpleBlockWithItem(block.get(), models().cubeAll(name, texture(texture)));
+	/** Models of generated blocks, see ModBlocks.BlockModel */
+	private void generated(DeferredBlock<?> holder, ModBlocks.BlockModel model) {
+		String name = holder.getId().getPath();
+		Block block = holder.get();
+
+		switch(model.type()) {
+		case "cube" -> simpleBlockWithItem(block, models().cubeAll(name, texture(model.texture())));
+		case "column" -> simpleBlockWithItem(block, models().cubeColumn(name, texture(model.texture()), texture(model.end())));
+		case "axis" -> {
+			axisBlock((RotatedPillarBlock) block, texture(model.texture()), texture(model.end()));
+			simpleBlockItem(block, models().getExistingFile(modLoc("block/" + name)));
+		}
+		case "stairs" -> {
+			stairsBlock((StairBlock) block, texture(model.texture()));
+			simpleBlockItem(block, models().getExistingFile(modLoc("block/" + name)));
+		}
+		case "glass", "glass_translucent" -> simpleBlockWithItem(block, models().cubeAll(name, texture(model.texture()))
+				.renderType(model.type().equals("glass") ? "cutout" : "translucent"));
+		default -> throw new IllegalArgumentException("Unknown model type " + model.type());
+		}
 	}
 
 	/**

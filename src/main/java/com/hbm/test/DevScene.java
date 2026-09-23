@@ -53,7 +53,7 @@ public class DevScene {
 
 		// wall of all generated full blocks behind the cables, 24 wide
 		int i = 0;
-		for(var block : ModBlocks.CUBE_MODELS.keySet()) {
+		for(var block : ModBlocks.MODELS.keySet()) {
 			if(block.get() instanceof net.minecraft.world.level.block.FallingBlock) continue;
 			level.setBlockAndUpdate(origin.offset(12 - i % 24, 1 + i / 24, 11), block.get().defaultBlockState());
 			i++;

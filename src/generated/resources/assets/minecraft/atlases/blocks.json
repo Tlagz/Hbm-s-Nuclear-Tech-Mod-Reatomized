@@ -98,6 +98,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/cluster_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cluster_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cluster_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cluster_copper"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/ore_bedrock_oil"
     },
     {
@@ -183,6 +199,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/gneiss_tile"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/gneiss_chiseled"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/basalt_top"
     },
     {
       "type": "minecraft:single",
@@ -354,6 +382,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/block_insulator_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_insulator_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_fiberglass_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_fiberglass_top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_asbestos"
     },
     {
@@ -395,6 +439,22 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/block_euphemium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schrabidium_cluster_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_schrabidium_cluster_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_euphemium_cluster_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_euphemium_cluster_top"
     },
     {
       "type": "minecraft:single",
@@ -450,7 +510,51 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/block_tritium_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_tritium_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_smore_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_smore_top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/deco_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_rusty_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deco_beryllium"
     },
     {
       "type": "minecraft:single",
@@ -478,6 +582,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_glass"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/reinforced_light"
     },
     {
@@ -486,11 +594,55 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_laminate"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/reinforced_stone"
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/reinforced_ducrete"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_tile"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_rebar"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/concrete_super_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ducrete"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ducrete_tile"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_pillar_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_pillar_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_concrete"
     },
     {
       "type": "minecraft:single",
@@ -503,6 +655,10 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/brick_concrete_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_ducrete"
     },
     {
       "type": "minecraft:single",
@@ -582,6 +738,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_pillar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_pillar_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_spawner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/meteor_power"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/brick_jungle"
     },
     {
@@ -646,6 +818,38 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_trinitite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_ash"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_quartz"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/glass_polarized"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/seal_frame"
     },
     {
@@ -655,6 +859,30 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/struct_scaffold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/fusion_heater_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/fusion_heater_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/watz_element_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/watz_element_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/watz_cooler_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/watz_cooler_top"
     },
     {
       "type": "minecraft:single",

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/watz_element_top",
+    "side": "hbm:blocks/watz_element_side"
+  }
+}

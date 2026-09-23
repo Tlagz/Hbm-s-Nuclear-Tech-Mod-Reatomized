@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "hbm:blocks/meteor_pillar_top",
+    "side": "hbm:blocks/meteor_pillar"
+  }
+}

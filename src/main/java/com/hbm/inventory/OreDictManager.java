@@ -403,7 +403,7 @@ public class OreDictManager {
 		FERRO.ingot(ModItems.ingot_ferrouranium);
 		EUPH.nugget(ModItems.nugget_euphemium).ingot(ModItems.ingot_euphemium).dust(ModItems.powder_euphemium).block(ModBlocks.block_euphemium);
 		DNT.nugget(ModItems.nugget_dineutronium).ingot(ModItems.ingot_dineutronium).dust(ModItems.powder_dineutronium).block(ModBlocks.block_dineutronium);
-		FIBER.ingot(ModItems.ingot_fiberglass);
+		FIBER.ingot(ModItems.ingot_fiberglass).block(ModBlocks.block_fiberglass);
 		ASBESTOS.asbestos(1F).ingot(ModItems.ingot_asbestos).dust(ModItems.powder_asbestos).block(ModBlocks.block_asbestos).ore(ModBlocks.ore_asbestos, ModBlocks.ore_gneiss_asbestos);
 		OSMIRIDIUM.nugget(ModItems.nugget_osmiridium).ingot(ModItems.ingot_osmiridium);
 		S.dust(ModItems.sulfur).block(ModBlocks.block_sulfur).ore(ModBlocks.ore_sulfur, ModBlocks.ore_nether_sulfur).oreNether(ModBlocks.ore_nether_sulfur);
@@ -447,6 +447,7 @@ public class OreDictManager {
 		ANY_GUNPOWDER.dust(Items.GUNPOWDER, ModItems.ballistite, ModItems.cordite);
 		ANY_SMOKELESS.dust(ModItems.ballistite, ModItems.cordite);
 		ANY_HIGHEXPLOSIVE.ingot(ModItems.ball_tnt).ingot(ModItems.ball_tatb);
+		ANY_CONCRETE.any(ModBlocks.concrete, ModBlocks.concrete_smooth, ModBlocks.concrete_asbestos, ModBlocks.ducrete, ModBlocks.ducrete_smooth);
 		ANY_ASH.any(ModItems.powder_ash.get(EnumAshType.WOOD), ModItems.powder_ash.get(EnumAshType.COAL), ModItems.powder_ash.get(EnumAshType.MISC), ModItems.powder_ash.get(EnumAshType.FLY), ModItems.powder_ash.get(EnumAshType.SOOT));
 		registerExtra(KEY_OIL_TAR, ModItems.oil_tar.get(EnumTarType.CRUDE));
 		registerExtra(KEY_CRACK_TAR, ModItems.oil_tar.get(EnumTarType.CRACK));
@@ -457,6 +458,8 @@ public class OreDictManager {
 		registerExtra("briquetteWood", ModItems.briquette.get(EnumBriquetteType.WOOD));
 		registerExtra("plankWood", ModBlocks.pink_planks);
 		registerExtra("plankWoodPink", ModBlocks.pink_planks);
+		registerExtra("stairWood", ModBlocks.pink_stairs);
+		registerExtra("stairWoodPink", ModBlocks.pink_stairs);
 		registerExtra("dyeRed", ModItems.cinnebar);
 		registerExtra("dye", ModItems.cinnebar);
 		registerExtra("dyeYellow", ModItems.sulfur);
@@ -485,6 +488,16 @@ public class OreDictManager {
 		registerExtra("dyeBrown", ModItems.powder_ash.get(EnumAshType.FLY));
 		registerExtra("dyeBlack", ModItems.powder_ash.get(EnumAshType.SOOT));
 		registerExtra("dyeMagenta", ModItems.powder_ash.get(EnumAshType.FULLERENE));
+		registerExtra("blockGlass", ModBlocks.glass_boron);
+		registerExtra("blockGlass", ModBlocks.glass_lead);
+		registerExtra("blockGlass", ModBlocks.glass_uranium);
+		registerExtra("blockGlass", ModBlocks.glass_trinitite);
+		registerExtra("blockGlass", ModBlocks.glass_polonium);
+		registerExtra("blockGlass", ModBlocks.glass_ash);
+		registerExtra("blockGlassYellow", ModBlocks.glass_uranium);
+		registerExtra("blockGlassLime", ModBlocks.glass_trinitite);
+		registerExtra("blockGlassRed", ModBlocks.glass_polonium);
+		registerExtra("blockGlassBlack", ModBlocks.glass_ash);
 		registerExtra("itemSilicon", ModItems.billet_silicon);
 
 		registerGroups();

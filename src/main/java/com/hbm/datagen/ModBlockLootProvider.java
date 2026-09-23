@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.hbm.blocks.ModBlocks;
+import com.hbm.blocks.generic.BlockNTMGlass;
 import com.hbm.items.ItemEnums.EnumChunkType;
 import com.hbm.items.ItemEnums.EnumTarType;
 import com.hbm.items.ModItems;
@@ -74,6 +75,20 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 				LootItem.lootTableItem(ModItems.ingot_phosphorus.get()).when(LootItemRandomChanceCondition.randomChance(0.1F)).apply(ApplyExplosionDecay.explosionDecay()),
 				LootItem.lootTableItem(ModItems.powder_fire.get()).apply(ApplyBonusCount.addOreBonusCount(fortune())).apply(ApplyExplosionDecay.explosionDecay()))));
 		handled.add(netherFire);
+
+		// clusters drop crystals (BlockCluster in the original)
+		oreDrop(ModBlocks.cluster_iron.get(), ModItems.crystal_iron.get(), 1, 1, false);
+		oreDrop(ModBlocks.cluster_titanium.get(), ModItems.crystal_titanium.get(), 1, 1, false);
+		oreDrop(ModBlocks.cluster_aluminium.get(), ModItems.crystal_aluminium.get(), 1, 1, false);
+		oreDrop(ModBlocks.cluster_copper.get(), ModItems.crystal_copper.get(), 1, 1, false);
+
+		// glass only drops with silk touch, unless the original said otherwise
+		for(var holder : ModBlocks.BLOCKS.getEntries()) {
+			if(holder.get() instanceof BlockNTMGlass glass && !glass.doesDrop) {
+				add(glass, createSilkTouchOnlyTable(glass));
+				handled.add(glass);
+			}
+		}
 
 		// molten meteor blocks turn into lava when broken and don't drop anything
 		add(ModBlocks.block_meteor_molten.get(), LootTable.lootTable());

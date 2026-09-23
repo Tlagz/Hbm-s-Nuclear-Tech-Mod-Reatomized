@@ -1,5 +1,6 @@
 {
   "values": [
+    "#hbm:any/concrete",
     "#hbm:any/ash",
     "#hbm:any/tar"
   ]

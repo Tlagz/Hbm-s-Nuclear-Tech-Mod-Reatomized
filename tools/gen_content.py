@@ -202,12 +202,19 @@ BLOCK_CLASSES = {
     "BlockOre": "BlockOre::new",
     "BlockOutgas": "BlockOutgas::new",
     "BlockFalling": "BlockFallingNT::new",
+    "BlockNoSpawn": "BlockNoSpawn::new",
+    "BlockDecoCT": "BlockOre::new",        # TODO connected textures
+    "BlockCluster": "Block::new",          # drops come from the loot table
+    "BlockPillar": "Block::new",
+    "BlockRotatablePillar": "RotatedPillarBlock::new",
+    "BlockNTMGlassCT": None,               # special, see below
+    "BlockGenericStairs": None,            # special, see below
 }
 
 MATERIALS = {
     "Material.rock": "Mat.ROCK", "Material.iron": "Mat.IRON", "Material.ground": "Mat.GROUND",
     "Material.sand": "Mat.SAND", "Material.wood": "Mat.WOOD", "Material.cloth": "Mat.CLOTH",
-    "Material.craftedSnow": "Mat.SNOW",
+    "Material.craftedSnow": "Mat.SNOW", "Material.glass": "Mat.GLASS", "Material.packedIce": "Mat.GLASS",
 }
 
 SOUNDS = {
@@ -233,6 +240,7 @@ def gen_blocks():
     manual = existing_names(port_file, "// BEGIN GENERATED")
     out, skipped, missing_tex = [], [], []
     seen = set()
+    generated = {}  # var -> texture, for stairs
 
     for var in order:
         if var in seen or var in manual or var not in decls:
@@ -248,20 +256,6 @@ def gen_blocks():
             continue
 
         args_list = [a.strip() for a in args.split(",")] if args else []
-        mat = "Mat.IRON" if cls == "BlockHazard" and not args_list else None
-        if args_list:
-            mat = MATERIALS.get(args_list[0])
-            if mat is None:
-                skipped.append((var, "material " + args_list[0]))
-                continue
-        if cls == "BlockFalling":
-            mat = mat or "Mat.SAND"
-        extra = ""
-        if cls == "BlockOre" and len(args_list) == 3:
-            extra = f".setRad({args_list[1]})"  # deprecated constructor with block radiation
-        if cls == "BlockOutgas" and len(args_list) > 1:
-            extra = f".setOutgas({', '.join(args_list[1:])})"
-
         name = tab = tex = sound = None
         hardness = resistance = light = None
         beacon = cls == "BlockBeaconable"
@@ -283,28 +277,91 @@ def gen_blocks():
                 ok = False
                 skipped.append((var, "setter " + method))
                 break
-        if not ok:
-            continue
-        if name is None or tex is None:
-            skipped.append((var, "no name/texture"))
-            continue
-        if not texture_exists(tex):
-            missing_tex.append((var, tex))
+        if not ok or name is None:
+            if ok: skipped.append((var, "no name"))
             continue
 
+        # stairs: made of another generated block
+        if cls == "BlockGenericStairs":
+            base = args_list[0] if args_list else None
+            if base not in generated or len(args_list) != 2 or args_list[1] != "0":
+                skipped.append((var, "stairs of " + str(base)))
+                continue
+            out.append(f'\tpublic static final DeferredBlock<StairBlock> {var} = stairs({java_str(name.lower())}, {base}, {tab or "null"}, {java_str(generated[base])});')
+            continue
+
+        # material
+        if cls == "BlockNTMGlassCT":
+            mat = MATERIALS.get(args_list[2]) if len(args_list) > 2 else None
+        elif cls == "BlockHazard" and not args_list:
+            mat = "Mat.IRON"
+        elif cls == "BlockFalling" and not args_list:
+            mat = "Mat.SAND"
+        elif args_list:
+            mat = MATERIALS.get(args_list[0])
+        else:
+            mat = None
+        if mat is None:
+            skipped.append((var, "material " + args))
+            continue
+
+        # model
+        if cls == "BlockNTMGlassCT":
+            tex = texture_path("blocks", args_list[1])
+            model_tex = [tex]
+            translucent = "true" if args_list[0] == "1" else "false"
+            model = f'BlockModel.glass({java_str(tex)}, {translucent})'
+        elif cls in ("BlockPillar", "BlockRotatablePillar"):
+            top = texture_path("blocks", args_list[1])
+            if tex is None or top is None:
+                skipped.append((var, "pillar textures"))
+                continue
+            model_tex = [tex, top]
+            kind = "column" if cls == "BlockPillar" else "axis"
+            model = f'BlockModel.{kind}({java_str(tex)}, {java_str(top)})'
+        else:
+            model_tex = [tex] if tex else []
+            model = f'BlockModel.cube({java_str(tex)})' if tex else None
+        if not model_tex or any(t is None for t in model_tex):
+            skipped.append((var, "no texture"))
+            continue
+        missing = [t for t in model_tex if not texture_exists(t)]
+        if missing:
+            missing_tex.append((var, missing[0]))
+            continue
+
+        # factory
+        extra = ""
+        if cls == "BlockOre" and len(args_list) == 3:
+            extra = f".setRad({args_list[1]})"  # deprecated constructor with block radiation
+        if cls == "BlockOutgas" and len(args_list) > 1:
+            extra = f".setOutgas({', '.join(args_list[1:])})"
+        if cls == "BlockDecoCT":
+            no_fortune = True
+        if cls == "BlockNTMGlassCT":
+            drops = "true" if len(args_list) > 3 and args_list[3] == "true" else "false"
+            factory = f"p -> new BlockNTMGlass(p.noOcclusion().isViewBlocking(BlockNTMGlass::never).isSuffocating(BlockNTMGlass::never).isValidSpawn(BlockNTMGlass::never), {drops})"
+            block_type = "BlockNTMGlass"
+        else:
+            factory = BLOCK_CLASSES[cls]
+            block_type = {"Block::new": "Block"}.get(factory, factory.split("::")[0])
+            if extra or no_fortune:
+                nf = ".noFortune()" if no_fortune else ""
+                factory = f"p -> new {factory.split('::')[0]}(p){extra}{nf}"
+
         hardness = hardness or "0.0F"
-        props = f"props({mat}, {hardness}, {resistance or 'LEGACY_NONE'})"
+        res = resistance or "LEGACY_NONE"
+        props = f"props({mat}, {hardness}, {res})"
         if sound: props += f".sound({sound})"
         if light: props += f".lightLevel(s -> (int) ({light} * 15))"
         if unbreakable: props += ".strength(-1.0F, 3600000.0F)"
-        factory = BLOCK_CLASSES[cls]
-        if extra or no_fortune:
-            factory = f"p -> new {factory.split('::')[0]}(p){extra}{'.noFortune()' if no_fortune else ''}"
-        block_type = {"Block::new": "Block"}.get(BLOCK_CLASSES[cls], BLOCK_CLASSES[cls].split("::")[0])
         flags = []
         if beacon: flags.append("BEACON")
         flags_arg = ", " + ", ".join("Gen." + f for f in flags) if flags else ""
-        out.append(f'\tpublic static final DeferredBlock<{block_type}> {var} = generated({java_str(name.lower())}, {factory}, {props}, {tab or "null"}, {java_str(tex)}{flags_arg});')
+        tab_arg = tab or "null"
+        out.append(f'\tpublic static final DeferredBlock<{block_type}> {var} = generated({java_str(name.lower())}, {factory}, {props}, {tab_arg}, {model}{flags_arg});')
+        if model.startswith("BlockModel.cube"):
+            generated[var] = tex
 
     write_region(port_file, out)
     return len(out), skipped, missing_tex

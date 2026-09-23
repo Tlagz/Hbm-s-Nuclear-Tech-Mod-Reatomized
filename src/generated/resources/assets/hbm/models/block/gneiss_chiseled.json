@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/gneiss_tile",
+    "side": "hbm:blocks/gneiss_chiseled"
+  }
+}
