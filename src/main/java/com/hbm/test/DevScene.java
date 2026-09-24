@@ -44,7 +44,7 @@ public class DevScene {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), burnerPos.getX() + 3.5, burnerPos.getY(), burnerPos.getZ() - 6.5, -25F, 5F);
+				player.teleportTo(player.serverLevel(), burnerPos.getX() + 13.5, burnerPos.getY() + 1, burnerPos.getZ() - 13.5, 0F, 10F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
@@ -68,7 +68,7 @@ public class DevScene {
 		BlockPos origin = new BlockPos(0, -60, 0);
 
 		// clear and floor
-		for(int x = -14; x <= 14; x++) for(int z = -7; z <= 12; z++) for(int y = 0; y <= 10; y++) {
+		for(int x = -14; x <= 16; x++) for(int z = -12; z <= 12; z++) for(int y = 0; y <= 10; y++) {
 			level.setBlockAndUpdate(origin.offset(x, y, z), y == 0 ? Blocks.SMOOTH_STONE.defaultBlockState() : Blocks.AIR.defaultBlockState());
 		}
 
@@ -147,6 +147,16 @@ public class DevScene {
 			if(level.getBlockEntity(barrelPos) instanceof com.hbm.tileentity.machine.storage.TileEntityBarrel barrel) barrel.mode = 2;
 			level.setBlockAndUpdate(barrelPos.north(), ModBlocks.machine_diesel.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineDiesel.FACING, net.minecraft.core.Direction.WEST));
 			if(level.getBlockEntity(barrelPos.north()) instanceof com.hbm.tileentity.machine.TileEntityMachineDiesel diesel) diesel.isOn = true;
+		}
+
+		// firebox with a boiler on top, heating oil; the refinery next to it
+		{
+			var N = net.minecraft.core.Direction.NORTH;
+			BlockPos fb = ModBlocks.heater_firebox.get().placeMultiblock(level, origin.offset(8, 1, -5), N);
+			BlockPos bo = ModBlocks.machine_boiler.get().placeMultiblock(level, origin.offset(8, 2, -5), N);
+			if(fb != null && level.getBlockEntity(fb) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox heater) heater.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			if(bo != null && level.getBlockEntity(bo) instanceof com.hbm.tileentity.machine.TileEntityHeatBoiler boiler) { boiler.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.OIL); boiler.tanks[0].setFill(8000); }
+			ModBlocks.machine_refinery.get().placeMultiblock(level, origin.offset(12, 1, -5), N);
 		}
 
 		// oil derrick

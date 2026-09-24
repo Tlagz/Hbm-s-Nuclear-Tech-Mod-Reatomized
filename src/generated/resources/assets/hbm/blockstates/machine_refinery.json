@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_refinery"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_refinery"
+    }
+  }
+}

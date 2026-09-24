@@ -293,15 +293,19 @@ public abstract class BlockDummyable extends Block implements EntityBlock {
 	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
 
 		if(!world.isClientSide && !player.isCreative()) {
-			ItemStack drop = new ItemStack(this);
-			BlockPos core = findCore(world, pos);
-			if(core != null && world.getBlockEntity(core) != null) {
-				drop.applyComponents(world.getBlockEntity(core).collectComponents());
-			}
-			Block.popResource(world, pos, drop);
+			for(ItemStack drop : getHarvestDrops(world, findCore(world, pos))) Block.popResource(world, pos, drop);
 		}
 
 		return super.playerWillDestroy(world, pos, state, player);
+	}
+
+	/** What breaking the machine drops, by default the machine with the core's persistent data */
+	protected java.util.List<ItemStack> getHarvestDrops(Level world, BlockPos core) {
+		ItemStack drop = new ItemStack(this);
+		if(core != null && world.getBlockEntity(core) != null) {
+			drop.applyComponents(world.getBlockEntity(core).collectComponents());
+		}
+		return java.util.List.of(drop);
 	}
 
 	@Override

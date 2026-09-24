@@ -37,6 +37,44 @@ public class OilGameTests {
 		});
 	}
 
+	@GameTest(template = "empty_8x12x8", timeoutTicks = 200)
+	public static void fireboxHeatsBoilerOilIntoHotOil(GameTestHelper helper) {
+		BlockPos base = helper.absolutePos(new BlockPos(3, 1, 3));
+		// both have an offset of 1: the core ends up one block behind (south of) the placed block
+		BlockPos firebox = ModBlocks.heater_firebox.get().placeMultiblock(helper.getLevel(), base.north(), Direction.NORTH);
+		BlockPos boiler = ModBlocks.machine_boiler.get().placeMultiblock(helper.getLevel(), base.north().above(), Direction.NORTH);
+		helper.assertTrue(base.equals(firebox) && base.above().equals(boiler), "firebox at " + firebox + " and boiler at " + boiler + " should be stacked at " + base);
+
+		com.hbm.tileentity.machine.TileEntityHeaterFirebox heater = (com.hbm.tileentity.machine.TileEntityHeaterFirebox) helper.getLevel().getBlockEntity(firebox);
+		heater.setItem(0, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.COAL, 8));
+		com.hbm.tileentity.machine.TileEntityHeatBoiler heat = (com.hbm.tileentity.machine.TileEntityHeatBoiler) helper.getLevel().getBlockEntity(boiler);
+		heat.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.OIL);
+		heat.tanks[0].setFill(1000);
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(heater.heatEnergy > 0 || heater.burnTime > 0, "the firebox should burn coal");
+			helper.assertTrue(heat.tanks[1].getTankType() == com.hbm.inventory.fluid.Fluids.HOTOIL && heat.tanks[1].getFill() > 0,
+					"the boiler should make hot oil, has " + heat.tanks[1].getFill() + " " + heat.tanks[1].getTankType().getName() + ", heat " + heat.heat);
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 100)
+	public static void refinerySplitsHotOil(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 3));
+		helper.getLevel().setBlockAndUpdate(core, ModBlocks.machine_refinery.get().defaultBlockState()
+				.setValue(BlockDummyable.META, Direction.NORTH.get3DDataValue() + BlockDummyable.offset));
+		com.hbm.tileentity.machine.oil.TileEntityMachineRefinery refinery = (com.hbm.tileentity.machine.oil.TileEntityMachineRefinery) helper.getLevel().getBlockEntity(core);
+		refinery.tanks[0].setFill(2000);
+		refinery.power = com.hbm.tileentity.machine.oil.TileEntityMachineRefinery.maxPower;
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(refinery.tanks[0].getFill() == 1000, "10 operations should have used 1000mB hot oil, left " + refinery.tanks[0].getFill());
+			helper.assertTrue(refinery.tanks[1].getTankType() == com.hbm.inventory.fluid.Fluids.HEAVYOIL && refinery.tanks[1].getFill() == 500, "heavy oil 10x50, has " + refinery.tanks[1].getFill());
+			helper.assertTrue(refinery.tanks[2].getFill() == 250 && refinery.tanks[3].getFill() == 150 && refinery.tanks[4].getFill() == 100, "naphtha/light oil/petroleum should be 250/150/100");
+			helper.assertTrue(refinery.getItem(11).is(com.hbm.items.ModItems.sulfur.get()), "one sulfur every 10 operations, slot: " + refinery.getItem(11));
+		});
+	}
+
 	@GameTest(template = "empty_8x4x8", timeoutTicks = 100)
 	public static void derrickNeedsPower(GameTestHelper helper) {
 		BlockPos core = helper.absolutePos(new BlockPos(3, 3, 3));

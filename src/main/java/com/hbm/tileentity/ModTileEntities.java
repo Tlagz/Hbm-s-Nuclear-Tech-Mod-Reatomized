@@ -8,7 +8,10 @@ import com.hbm.tileentity.network.TileEntityPipeBaseNT;
 import com.hbm.tileentity.machine.storage.TileEntityBarrel;
 import com.hbm.tileentity.machine.TileEntityMachineWoodBurner;
 import com.hbm.tileentity.machine.TileEntityMachineDiesel;
+import com.hbm.tileentity.machine.TileEntityHeaterFirebox;
+import com.hbm.tileentity.machine.TileEntityHeatBoiler;
 import com.hbm.tileentity.machine.oil.TileEntityMachineOilWell;
+import com.hbm.tileentity.machine.oil.TileEntityMachineRefinery;
 import com.hbm.tileentity.network.TileEntityCableBaseNT;
 
 import net.minecraft.core.registries.Registries;
@@ -26,6 +29,15 @@ public class ModTileEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityCapacitor>> CAPACITOR = TILES.register("capacitor",
 			() -> BlockEntityType.Builder.of(TileEntityCapacitor::new, ModBlocks.capacitor_copper.get(), ModBlocks.capacitor_gold.get(),
 					ModBlocks.capacitor_niobium.get(), ModBlocks.capacitor_tantalium.get(), ModBlocks.capacitor_schrabidate.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityHeaterFirebox>> FIREBOX = TILES.register("heater_firebox",
+			() -> BlockEntityType.Builder.of(TileEntityHeaterFirebox::new, ModBlocks.heater_firebox.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityHeatBoiler>> BOILER = TILES.register("machine_boiler",
+			() -> BlockEntityType.Builder.of(TileEntityHeatBoiler::new, ModBlocks.machine_boiler.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachineRefinery>> REFINERY = TILES.register("machine_refinery",
+			() -> BlockEntityType.Builder.of(TileEntityMachineRefinery::new, ModBlocks.machine_refinery.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachineOilWell>> OIL_WELL = TILES.register("machine_well",
 			() -> BlockEntityType.Builder.of(TileEntityMachineOilWell::new, ModBlocks.machine_well.get()).build(null));

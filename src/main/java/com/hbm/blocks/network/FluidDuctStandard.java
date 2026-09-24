@@ -44,9 +44,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * Connections are block state properties like the cables, they depend on the pipe's fluid type so they are
  * recomputed whenever the type changes.
  *
- * TODO look overlay with the fluid name, alt-click copying the type into the identifier (keybinds), analyzer info
+ * TODO alt-click copying the type into the identifier (keybinds), analyzer info
  */
-public class FluidDuctStandard extends Block implements EntityBlock, IBlockFluidDuct {
+public class FluidDuctStandard extends Block implements EntityBlock, IBlockFluidDuct, com.hbm.blocks.ILookOverlay {
 
 	public static final IntegerProperty STYLE = IntegerProperty.create("style", 0, 2);
 	public static final Map<Direction, BooleanProperty> CONNECTIONS = PipeBlock.PROPERTY_BY_DIRECTION;
@@ -222,5 +222,13 @@ public class FluidDuctStandard extends Block implements EntityBlock, IBlockFluid
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
 		return world.isClientSide || type != ModTileEntities.PIPE.get() ? null : TileEntityLoadedBase.ticker();
+	}
+
+	@Override
+	public void printHook(net.minecraft.client.gui.GuiGraphics graphics, Level world, BlockPos pos) {
+		if(!(world.getBlockEntity(pos) instanceof TileEntityPipeBaseNT duct)) return;
+		FluidType type = duct.getFluidType();
+		com.hbm.blocks.ILookOverlay.printGeneric(graphics, com.hbm.util.i18n.I18nUtil.resolveKey(getDescriptionId()), 0xffff00, 0x404000,
+				java.util.List.of("&[" + type.getColor() + "&]" + type.getLocalizedName()));
 	}
 }

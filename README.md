@@ -53,7 +53,7 @@ clusters, depth deposits, bedrock ores, gas bubbles, stairs/slabs/pillars and ot
 | 0 | Project skeleton, assets, lang, datagen, creative tabs | done |
 | 1 | Core: registries, HE energy network, fluids, hazards/radiation, pollution, effects, packets, config | done |
 | 2 | Materials: ores, ingots, powders, tags, ore generation | mostly done (see below) |
-| 3 | Simple machines + GUIs, cables and pipes | in progress: machine/GUI base, cables, capacitors, batteries, electric furnace, fluid containers + identifier, pipes, barrels |
+| 3 | Simple machines + GUIs, cables and pipes | in progress: machine/GUI base, cables, capacitors, batteries, electric furnace, fluid containers + identifier, pipes, barrels, diesel, upgrades, oil chain (derrick, firebox, boiler, refinery), look overlay |
 | 4 | Rendering: OBJ loader for block entity renderers, animation system | in progress: OBJ tile/item renderers, multiblocks (BlockDummyable), wood burner; animations open |
 | 5 | Large machines, multiblocks, reactors | |
 | 6 | Entities, missiles, bombs, explosions, fallout | |

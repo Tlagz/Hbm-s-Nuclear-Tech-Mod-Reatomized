@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=1": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=10": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=11": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=12": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=13": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=14": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=15": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=2": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=3": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=4": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=5": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=6": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=7": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=8": {
+      "model": "hbm:block/heater_firebox"
+    },
+    "meta=9": {
+      "model": "hbm:block/heater_firebox"
+    }
+  }
+}

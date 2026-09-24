@@ -32,6 +32,8 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.BARREL.get(), com.hbm.inventory.gui.GUIBarrel::new);
 		event.register(ModMenus.DIESEL.get(), com.hbm.inventory.gui.GUIMachineDiesel::new);
 		event.register(ModMenus.OIL_WELL.get(), com.hbm.inventory.gui.GUIMachineOilWell::new);
+		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
+		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
 	}
 
 	@SubscribeEvent
@@ -39,6 +41,9 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.WOOD_BURNER.get(), RenderWoodBurner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.DIESEL.get(), com.hbm.render.tileentity.RenderDieselGen::new);
 		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
+		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
+		event.registerBlockEntityRenderer(ModTileEntities.REFINERY.get(), com.hbm.render.tileentity.RenderRefinery::new);
 	}
 
 	@SubscribeEvent
@@ -46,6 +51,9 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_wood_burner.get().asItem(), RenderWoodBurner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_diesel.get().asItem(), com.hbm.render.tileentity.RenderDieselGen.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_refinery.get().asItem(), com.hbm.render.tileentity.RenderRefinery.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override
@@ -83,6 +91,23 @@ public class ModEventHandlerClientMod {
 			// item model overrides pick the pipe texture by the placed style
 			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.blocks.ModBlocks.fluid_duct_neo.get().asItem(), com.hbm.lib.RefStrings.loc("style"),
 					(stack, level, entity, seed) -> com.hbm.items.block.ItemBlockStyled.getValue(stack, com.hbm.blocks.network.FluidDuctStandard.STYLE));
+		});
+	}
+
+	/** The original's RenderGameOverlayEvent hook for ILookOverlay blocks and items, drawn above the crosshair */
+	@SubscribeEvent
+	public static void registerGuiLayers(net.neoforged.neoforge.client.event.RegisterGuiLayersEvent event) {
+		event.registerAbove(net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR, com.hbm.lib.RefStrings.loc("look_overlay"), (graphics, delta) -> {
+			net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+			if(mc.level == null || mc.player == null || mc.options.hideGui || mc.screen != null) return;
+			if(!(mc.hitResult instanceof net.minecraft.world.phys.BlockHitResult hit) || hit.getType() != net.minecraft.world.phys.HitResult.Type.BLOCK) return;
+
+			net.minecraft.core.BlockPos pos = hit.getBlockPos();
+			if(mc.player.getMainHandItem().getItem() instanceof com.hbm.blocks.ILookOverlay overlay) {
+				overlay.printHook(graphics, mc.level, pos);
+			} else if(mc.level.getBlockState(pos).getBlock() instanceof com.hbm.blocks.ILookOverlay overlay) {
+				overlay.printHook(graphics, mc.level, pos);
+			}
 		});
 	}
 
