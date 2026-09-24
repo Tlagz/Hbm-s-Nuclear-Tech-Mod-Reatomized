@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "hbm:blocks/capacitor_bus_side",
+    "east": "hbm:blocks/capacitor_bus_side",
+    "north": "hbm:blocks/capacitor_bus_out",
+    "particle": "hbm:blocks/capacitor_bus_side",
+    "south": "hbm:blocks/capacitor_bus_side",
+    "up": "hbm:blocks/capacitor_bus_side",
+    "west": "hbm:blocks/capacitor_bus_side"
+  }
+}

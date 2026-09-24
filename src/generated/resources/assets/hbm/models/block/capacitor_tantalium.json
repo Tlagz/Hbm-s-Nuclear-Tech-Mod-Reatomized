@@ -1,0 +1,131 @@
+{
+  "parent": "minecraft:block/block",
+  "children": {
+    "bottom": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/capacitor.obj",
+      "textures": {
+        "texture0": "hbm:blocks/capacitor_tantalium_bottom"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Bottom": true,
+        "InnerSide": false,
+        "InnerTop": false,
+        "Side": false,
+        "Top": false
+      }
+    },
+    "inner_side": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/capacitor.obj",
+      "textures": {
+        "texture0": "hbm:blocks/capacitor_tantalium_inner_side"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Bottom": false,
+        "InnerSide": true,
+        "InnerTop": false,
+        "Side": false,
+        "Top": false
+      }
+    },
+    "inner_top": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/capacitor.obj",
+      "textures": {
+        "texture0": "hbm:blocks/capacitor_tantalium_inner_top"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Bottom": false,
+        "InnerSide": false,
+        "InnerTop": true,
+        "Side": false,
+        "Top": false
+      }
+    },
+    "side": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/capacitor.obj",
+      "textures": {
+        "texture0": "hbm:blocks/capacitor_tantalium_side"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Bottom": false,
+        "InnerSide": false,
+        "InnerTop": false,
+        "Side": true,
+        "Top": false
+      }
+    },
+    "top": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/capacitor.obj",
+      "textures": {
+        "texture0": "hbm:blocks/capacitor_tantalium_top"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Bottom": false,
+        "InnerSide": false,
+        "InnerTop": false,
+        "Side": false,
+        "Top": true
+      }
+    }
+  },
+  "item_render_order": [
+    "top",
+    "side",
+    "bottom",
+    "inner_top",
+    "inner_side"
+  ],
+  "loader": "neoforge:composite",
+  "textures": {
+    "particle": "hbm:blocks/capacitor_tantalium_side"
+  }
+}

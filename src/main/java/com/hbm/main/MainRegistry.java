@@ -10,6 +10,8 @@ import com.hbm.creativetabs.ModCreativeTabs;
 import com.hbm.hazard.HazardRegistry;
 import com.hbm.inventory.OreDictManager;
 import com.hbm.inventory.fluid.Fluids;
+import com.hbm.inventory.ModMenus;
+import com.hbm.items.ModDataComponents;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 import com.hbm.potion.HbmPotion;
@@ -42,6 +44,8 @@ public class MainRegistry {
 		ModAttachments.ATTACHMENTS.register(modEventBus);
 		HbmPotion.EFFECTS.register(modEventBus);
 		ModWorldGen.PLACEMENT_MODIFIERS.register(modEventBus);
+		ModMenus.MENUS.register(modEventBus);
+		ModDataComponents.COMPONENTS.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 

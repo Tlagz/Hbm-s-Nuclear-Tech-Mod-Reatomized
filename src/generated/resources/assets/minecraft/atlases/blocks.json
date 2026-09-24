@@ -898,6 +898,134 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_copper_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_copper_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_copper_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_copper_inner_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_copper_inner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_gold_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_gold_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_gold_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_gold_inner_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_gold_inner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_niobium_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_niobium_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_niobium_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_niobium_inner_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_niobium_inner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_tantalium_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_tantalium_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_tantalium_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_tantalium_inner_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_tantalium_inner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_schrabidate_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_schrabidate_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_schrabidate_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_schrabidate_inner_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_schrabidate_inner_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_bus_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/capacitor_bus_out"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_electric_furnace_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_electric_furnace_front_off"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_electric_furnace_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_electric_furnace_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_electric_furnace_front_on"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/ingot_uranium"
     },
     {
@@ -3775,6 +3903,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/geiger_counter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_creative_new"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_potato"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cube_power"
     }
   ]
 }

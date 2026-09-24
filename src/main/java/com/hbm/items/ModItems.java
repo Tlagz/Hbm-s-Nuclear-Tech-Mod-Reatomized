@@ -6,6 +6,8 @@ import java.util.function.Function;
 
 import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.items.machine.ItemBattery;
+import com.hbm.items.machine.ItemBatteryCreative;
 import com.hbm.items.tool.ItemDosimeter;
 import com.hbm.items.tool.ItemGeigerCounter;
 import com.hbm.lib.RefStrings;
@@ -27,6 +29,10 @@ public class ModItems {
 	/// HAND-PORTED ///
 	public static final DeferredItem<ItemDosimeter> dosimeter = register("dosimeter", ItemDosimeter::new, new Item.Properties().stacksTo(1), NtmTab.CONSUMABLE);
 	public static final DeferredItem<ItemGeigerCounter> geiger_counter = register("geiger_counter", ItemGeigerCounter::new, new Item.Properties().stacksTo(1), NtmTab.CONSUMABLE);
+
+	public static final DeferredItem<ItemBatteryCreative> battery_creative = register("battery_creative", ItemBatteryCreative::new, new Item.Properties().stacksTo(1), NtmTab.CONTROL);
+	public static final DeferredItem<ItemBattery> battery_potato = register("battery_potato", p -> new ItemBattery(p, 1000, 0, 100), new Item.Properties().stacksTo(1), NtmTab.CONTROL);
+	public static final DeferredItem<ItemBattery> cube_power = register("cube_power", p -> new ItemBattery(p, 1000000000000000000L, 1000000000000000L, 1000000000000000L), new Item.Properties().stacksTo(1), NtmTab.CONTROL);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
 	// BEGIN GENERATED
@@ -705,6 +711,9 @@ public class ModItems {
 	static {
 		FLAT_MODELS.put(dosimeter, "items/dosimeter");
 		FLAT_MODELS.put(geiger_counter, "items/geiger_counter");
+		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
+		FLAT_MODELS.put(battery_potato, "items/battery_potato");
+		FLAT_MODELS.put(cube_power, "items/cube_power");
 	}
 
 	public static DeferredItem<Item> register(String name, NtmTab tab) {

@@ -12,6 +12,9 @@ import com.hbm.blocks.generic.BlockNTMGlass;
 import com.hbm.blocks.generic.BlockNoSpawn;
 import com.hbm.blocks.generic.BlockOre;
 import com.hbm.blocks.generic.BlockOutgas;
+import com.hbm.blocks.machine.MachineCapacitor;
+import com.hbm.blocks.machine.MachineCapacitorBus;
+import com.hbm.blocks.machine.MachineElectricFurnace;
 import com.hbm.blocks.network.BlockCable;
 import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ModItems;
@@ -43,6 +46,13 @@ public class ModBlocks {
 
 	/// HAND-PORTED ///
 	public static final DeferredBlock<BlockCable> red_cable = register("red_cable", BlockCable::new, props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
+	public static final DeferredBlock<MachineCapacitorBus> capacitor_bus = register("capacitor_bus", MachineCapacitorBus::new, props(Mat.IRON, 5.0F, 10.0F), null);
+	public static final DeferredBlock<MachineCapacitor> capacitor_copper = register("capacitor_copper", p -> new MachineCapacitor(p, 1_000_000L, "copper"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
+	public static final DeferredBlock<MachineCapacitor> capacitor_gold = register("capacitor_gold", p -> new MachineCapacitor(p, 5_000_000L, "gold"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
+	public static final DeferredBlock<MachineCapacitor> capacitor_niobium = register("capacitor_niobium", p -> new MachineCapacitor(p, 25_000_000L, "niobium"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
+	public static final DeferredBlock<MachineCapacitor> capacitor_tantalium = register("capacitor_tantalium", p -> new MachineCapacitor(p, 150_000_000L, "tantalium"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
+	public static final DeferredBlock<MachineCapacitor> capacitor_schrabidate = register("capacitor_schrabidate", p -> new MachineCapacitor(p, 50_000_000_000L, "schrabidate"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
+	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
 	// BEGIN GENERATED

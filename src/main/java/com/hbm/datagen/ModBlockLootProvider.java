@@ -7,6 +7,7 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.generic.BlockNTMGlass;
 import com.hbm.items.ItemEnums.EnumChunkType;
 import com.hbm.items.ItemEnums.EnumTarType;
+import com.hbm.items.ModDataComponents;
 import com.hbm.items.ModItems;
 
 import net.minecraft.core.HolderLookup;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -88,6 +90,13 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 				add(glass, createSilkTouchOnlyTable(glass));
 				handled.add(glass);
 			}
+		}
+
+		// capacitors keep their charge
+		for(var capacitor : java.util.List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
+			add(capacitor.get(), LootTable.lootTable().withPool(applyExplosionCondition(capacitor.get(), LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(capacitor.get()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ModDataComponents.CHARGE.get()))))));
+			handled.add(capacitor.get());
 		}
 
 		// molten meteor blocks turn into lava when broken and don't drop anything

@@ -31,6 +31,22 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 public class DevScene {
 
 	public static final boolean ENABLED = Boolean.getBoolean("hbm.devScene");
+	static BlockPos furnacePos;
+	private static int serverTicks = 0;
+
+	/** Opens the furnace GUI for the screenshot, has to happen on the server */
+	@SubscribeEvent
+	public static void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
+		if(!ENABLED || furnacePos == null) return;
+		serverTicks++;
+		if(serverTicks == 205) {
+			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+				if(player.level().getBlockEntity(furnacePos) instanceof net.minecraft.world.MenuProvider provider) {
+					player.openMenu(provider, buf -> buf.writeBlockPos(furnacePos));
+				}
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
@@ -59,9 +75,25 @@ public class DevScene {
 			i++;
 		}
 
+		// machines: furnace with a creative battery and iron, capacitors of every tier
+		BlockPos furnacePos = origin.offset(-7, 1, 6);
+		level.setBlockAndUpdate(furnacePos, ModBlocks.machine_electric_furnace_off.get().defaultBlockState()
+				.setValue(com.hbm.blocks.machine.MachineElectricFurnace.FACING, net.minecraft.core.Direction.NORTH));
+		if(level.getBlockEntity(furnacePos) instanceof com.hbm.tileentity.machine.TileEntityMachineElectricFurnace furnace) {
+			furnace.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+			furnace.setItem(1, new ItemStack(net.minecraft.world.item.Items.RAW_IRON, 64));
+		}
+		DevScene.furnacePos = furnacePos;
+		int c = 0;
+		for(var cap : java.util.List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
+			level.setBlockAndUpdate(origin.offset(-9 + c * 2, 1, 3), cap.get().defaultBlockState());
+			c++;
+		}
+		level.setBlockAndUpdate(origin.offset(-9, 2, 3), ModBlocks.capacitor_bus.get().defaultBlockState());
+
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
-		player.teleportTo(level, 0.5, origin.getY() + 3, -3.5, 0F, 5F);
+		player.teleportTo(level, -4.5, origin.getY() + 2, -1.5, 20F, 15F);
 		player.getInventory().clearContent();
 		player.getInventory().add(new ItemStack(ModItems.geiger_counter.get()));
 		player.getInventory().add(new ItemStack(ModBlocks.red_cable.get()));
@@ -94,18 +126,23 @@ public class DevScene {
 
 			ticks++;
 
-			if(ticks == 200) {
-				Screenshot.grab(mc.gameDirectory, "devscene_world.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 150 || ticks == 200) {
+				if(mc.screen != null) mc.setScreen(null);
+				Screenshot.grab(mc.gameDirectory, "devscene_world_" + ticks + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
+			if(ticks == 230) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
 			// creative tabs, one screenshot each
-			NtmTab[] tabs = { NtmTab.PARTS, NtmTab.BLOCKS, NtmTab.CONTROL, NtmTab.CONSUMABLE };
+			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 210 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 225 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 240 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 255 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 210 + tabs.length * 20) {
+			if(ticks == 240 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
