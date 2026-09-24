@@ -3,7 +3,9 @@ package com.hbm.main;
 import com.hbm.lib.RefStrings;
 import com.hbm.tileentity.ModTileEntities;
 import com.hbm.tileentity.TileEntityMachineBase;
+import com.hbm.tileentity.TileEntityProxyCombo;
 
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,7 +23,13 @@ public class ModCapabilities {
 		for(var holder : ModTileEntities.TILES.getEntries()) {
 			BlockEntityType<?> type = holder.get();
 			event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, (tile, side) -> {
-				if(!(tile instanceof TileEntityMachineBase machine)) return null;
+				// multiblock dummies with the inventory flag hand out the core's inventory
+				BlockEntity target = tile;
+				if(tile instanceof TileEntityProxyCombo proxy) {
+					if(!proxy.inventory) return null;
+					target = proxy.getTile();
+				}
+				if(!(target instanceof TileEntityMachineBase machine)) return null;
 				return side == null ? new InvWrapper(machine) : new SidedInvWrapper(machine, side);
 			});
 		}

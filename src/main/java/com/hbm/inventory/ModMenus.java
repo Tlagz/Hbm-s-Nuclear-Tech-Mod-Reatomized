@@ -1,8 +1,10 @@
 package com.hbm.inventory;
 
 import com.hbm.inventory.container.ContainerElectricFurnace;
+import com.hbm.inventory.container.ContainerMachineWoodBurner;
 import com.hbm.lib.RefStrings;
 import com.hbm.tileentity.machine.TileEntityMachineElectricFurnace;
+import com.hbm.tileentity.machine.TileEntityMachineWoodBurner;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -25,6 +27,9 @@ public class ModMenus {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerElectricFurnace>> ELECTRIC_FURNACE =
 			tile("electric_furnace", TileEntityMachineElectricFurnace.class, ContainerElectricFurnace::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachineWoodBurner>> WOOD_BURNER =
+			tile("machine_wood_burner", TileEntityMachineWoodBurner.class, ContainerMachineWoodBurner::new);
 
 	@FunctionalInterface
 	public interface TileMenuFactory<T extends BlockEntity, M extends AbstractContainerMenu> {

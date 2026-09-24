@@ -7,6 +7,7 @@
     "hbm:capacitor_niobium",
     "hbm:capacitor_tantalium",
     "hbm:capacitor_schrabidate",
+    "hbm:machine_wood_burner",
     "hbm:machine_electric_furnace_off",
     "hbm:structure_anchor",
     "hbm:ore_uranium",

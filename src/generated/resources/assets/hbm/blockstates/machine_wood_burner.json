@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_wood_burner"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_wood_burner"
+    }
+  }
+}

@@ -32,6 +32,7 @@ public class DevScene {
 
 	public static final boolean ENABLED = Boolean.getBoolean("hbm.devScene");
 	static BlockPos furnacePos;
+	static BlockPos burnerPos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -39,10 +40,20 @@ public class DevScene {
 	public static void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
 		if(!ENABLED || furnacePos == null) return;
 		serverTicks++;
-		if(serverTicks == 205) {
+		// second world screenshot: close up of the wood burner, holding its item
+		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				if(player.level().getBlockEntity(furnacePos) instanceof net.minecraft.world.MenuProvider provider) {
-					player.openMenu(provider, buf -> buf.writeBlockPos(furnacePos));
+				player.teleportTo(player.serverLevel(), burnerPos.getX() + 1.5, burnerPos.getY() + 1, burnerPos.getZ() - 3.5, 30F, 20F);
+				player.getInventory().selected = 0;
+				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
+			}
+		}
+		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : null;
+		if(open != null) {
+			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(player.level().getBlockEntity(open) instanceof net.minecraft.world.MenuProvider provider) {
+					player.openMenu(provider, buf -> buf.writeBlockPos(open));
 				}
 			}
 		}
@@ -91,10 +102,18 @@ public class DevScene {
 		}
 		level.setBlockAndUpdate(origin.offset(-9, 2, 3), ModBlocks.capacitor_bus.get().defaultBlockState());
 
+		// wood burner multiblock facing the player, running on logs
+		burnerPos = ModBlocks.machine_wood_burner.get().placeMultiblock(level, origin.offset(-3, 1, 1), net.minecraft.core.Direction.NORTH);
+		if(burnerPos != null && level.getBlockEntity(burnerPos) instanceof com.hbm.tileentity.machine.TileEntityMachineWoodBurner burner) {
+			burner.isOn = true;
+			burner.setItem(0, new ItemStack(net.minecraft.world.item.Items.OAK_LOG, 64));
+		}
+
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
 		player.teleportTo(level, -4.5, origin.getY() + 2, -1.5, 20F, 15F);
 		player.getInventory().clearContent();
+		player.getInventory().add(new ItemStack(ModBlocks.machine_wood_burner.get()));
 		player.getInventory().add(new ItemStack(ModItems.geiger_counter.get()));
 		player.getInventory().add(new ItemStack(ModBlocks.red_cable.get()));
 		player.getInventory().add(new ItemStack(ModItems.ingot_uranium.get(), 16));
@@ -134,15 +153,18 @@ public class DevScene {
 			if(ticks == 230) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
+			if(ticks == 270) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_wood_burner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
 
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 240 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 255 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 280 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 295 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 240 + tabs.length * 20) {
+			if(ticks == 280 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

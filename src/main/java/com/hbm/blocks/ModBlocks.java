@@ -13,6 +13,7 @@ import com.hbm.blocks.generic.BlockNoSpawn;
 import com.hbm.blocks.generic.BlockOre;
 import com.hbm.blocks.generic.BlockOutgas;
 import com.hbm.blocks.machine.MachineCapacitor;
+import com.hbm.blocks.machine.MachineWoodBurner;
 import com.hbm.blocks.machine.MachineCapacitorBus;
 import com.hbm.blocks.machine.MachineElectricFurnace;
 import com.hbm.blocks.network.BlockCable;
@@ -36,10 +37,14 @@ public class ModBlocks {
 
 	/** How datagen builds the model of generated blocks */
 	public static final Map<DeferredBlock<?>, BlockModel> MODELS = new LinkedHashMap<>();
+	/** All multiblocks, they share the proxy tile entity type */
+	public static final java.util.List<DeferredBlock<? extends BlockDummyable>> DUMMYABLES = new java.util.ArrayList<>();
+	/** Blocks rendered by a tile entity renderer: block -> particle texture, item uses the NTM item renderer */
+	public static final Map<DeferredBlock<?>, String> TILE_RENDERED = new LinkedHashMap<>();
 	/** Which tool mines the block, used by datagen for the mineable tags */
 	public static final Map<DeferredBlock<?>, Tool> TOOLS = new LinkedHashMap<>();
 	/** Blocks that can be used for beacon bases */
-	public static final Set<DeferredBlock<?>> BEACON_BASES = new HashSet<>();
+	public static final Set<DeferredBlock<?>> BEACON_BASES = new java.util.LinkedHashSet<>();
 
 	/** Marks "setResistance was never called", the resistance then follows the hardness like in 1.7.10 */
 	public static final float LEGACY_NONE = -1F;
@@ -52,6 +57,7 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineCapacitor> capacitor_niobium = register("capacitor_niobium", p -> new MachineCapacitor(p, 25_000_000L, "niobium"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
 	public static final DeferredBlock<MachineCapacitor> capacitor_tantalium = register("capacitor_tantalium", p -> new MachineCapacitor(p, 150_000_000L, "tantalium"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
 	public static final DeferredBlock<MachineCapacitor> capacitor_schrabidate = register("capacitor_schrabidate", p -> new MachineCapacitor(p, 50_000_000_000L, "schrabidate"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
+	public static final DeferredBlock<MachineWoodBurner> machine_wood_burner = dummyable("machine_wood_burner", MachineWoodBurner::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
@@ -325,6 +331,14 @@ public class ModBlocks {
 		MODELS.put(block, BlockModel.stairs(texture));
 		Tool tool = TOOLS.get(base);
 		if(tool != null) TOOLS.put(block, tool);
+		return block;
+	}
+
+
+	private static <T extends BlockDummyable> DeferredBlock<T> dummyable(String name, Function<BlockBehaviour.Properties, T> factory, PropsWithTool props, NtmTab tab, String particle) {
+		DeferredBlock<T> block = register(name, factory, props, tab);
+		DUMMYABLES.add(block);
+		TILE_RENDERED.put(block, particle);
 		return block;
 	}
 

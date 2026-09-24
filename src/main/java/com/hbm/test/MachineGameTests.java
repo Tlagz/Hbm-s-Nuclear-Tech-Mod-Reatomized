@@ -6,7 +6,9 @@ import com.hbm.blocks.machine.MachineCapacitor.TileEntityCapacitor;
 import com.hbm.blocks.machine.MachineCapacitorBus;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
+import com.hbm.tileentity.TileEntityProxyCombo;
 import com.hbm.tileentity.machine.TileEntityMachineElectricFurnace;
+import com.hbm.tileentity.machine.TileEntityMachineWoodBurner;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -54,6 +56,48 @@ public class MachineGameTests {
 		helper.succeedWhen(() -> {
 			helper.assertTrue(furnace.getItem(2).is(Items.IRON_INGOT), "furnace should have smelted iron with capacitor power, furnace power: " + furnace.power + ", output: " + furnace.getItem(2));
 			helper.assertTrue(capacitor.getPower() < 1_000_000L, "capacitor should have lost power");
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 400)
+	public static void woodBurnerMultiblockPowersFurnace(GameTestHelper helper) {
+		// facing north: dummies go 1 up, 1 back (south) and 1 to the left, the connection is 2 blocks behind the core
+		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 2));
+		BlockPos placed = ModBlocks.machine_wood_burner.get().placeMultiblock(helper.getLevel(), core, Direction.NORTH);
+		helper.assertTrue(core.equals(placed), "multiblock should have space");
+
+		int dummies = 0;
+		for(BlockPos p : BlockPos.betweenClosed(core.offset(-2, -1, -2), core.offset(2, 2, 2)))
+			if(helper.getLevel().getBlockState(p).is(ModBlocks.machine_wood_burner.get())) dummies++;
+		helper.assertTrue(dummies == 8, "wood burner should be 2x2x2, found " + dummies + " blocks");
+		helper.assertTrue(helper.getBlockEntity(new BlockPos(3, 1, 3)) instanceof TileEntityProxyCombo proxy && proxy.power, "back dummy should be a power proxy");
+
+		helper.setBlock(new BlockPos(3, 1, 4), ModBlocks.red_cable.get());
+		helper.setBlock(new BlockPos(3, 1, 5), ModBlocks.machine_electric_furnace_off.get());
+
+		TileEntityMachineWoodBurner burner = (TileEntityMachineWoodBurner) helper.getLevel().getBlockEntity(core);
+		burner.isOn = true;
+		burner.setItem(0, new ItemStack(Items.OAK_LOG, 4));
+
+		TileEntityMachineElectricFurnace furnace = (TileEntityMachineElectricFurnace) helper.getBlockEntity(new BlockPos(3, 1, 5));
+		furnace.setItem(1, new ItemStack(Items.RAW_IRON));
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(burner.getItem(0).getCount() < 4, "burner should consume logs");
+			helper.assertTrue(furnace.getItem(2).is(Items.IRON_INGOT), "furnace should smelt with wood burner power, burner power: " + burner.power + ", furnace: " + furnace.power);
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8")
+	public static void breakingDummyRemovesMultiblock(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 3));
+		ModBlocks.machine_wood_burner.get().placeMultiblock(helper.getLevel(), core, Direction.EAST);
+		// not helper.destroyBlock(helper.relativePos(..)), relativePos is broken for unrotated tests
+		helper.getLevel().destroyBlock(core.above(), false);
+
+		helper.succeedWhen(() -> {
+			for(BlockPos p : BlockPos.betweenClosed(core.offset(-2, -1, -2), core.offset(2, 2, 2)))
+				helper.assertFalse(helper.getLevel().getBlockState(p).is(ModBlocks.machine_wood_burner.get()), "all parts should be gone, found " + helper.getLevel().getBlockState(p) + " at " + p.subtract(core));
 		});
 	}
 }

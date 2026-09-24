@@ -13,6 +13,7 @@ import com.hbm.lib.RefStrings;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.StairBlock;
@@ -46,6 +47,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				texture("blocks/capacitor_bus_side"), texture("blocks/capacitor_bus_side"), texture("blocks/capacitor_bus_side")).texture("particle", texture("blocks/capacitor_bus_side"));
 		directionalBlock(ModBlocks.capacitor_bus.get(), bus);
 		simpleBlockItem(ModBlocks.capacitor_bus.get(), bus);
+
+		// blocks rendered by their tile entity: only a particle texture, the item uses the NTM item renderer
+		ModBlocks.TILE_RENDERED.forEach((holder, particle) -> {
+			ModelFile model = models().getBuilder(holder.getId().getPath()).texture("particle", texture(particle));
+			getVariantBuilder(holder.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
+			// display like vanilla's block/block (the 1.7.10 renderers expected those hand transforms), except the GUI
+			// which ItemRenderBase sets up itself to match the original inventory rendering
+			itemModels().getBuilder(holder.getId().getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity")).transforms()
+					.transform(ItemDisplayContext.GROUND).translation(0, 3, 0).scale(0.25F).end()
+					.transform(ItemDisplayContext.FIXED).scale(0.5F).end()
+					.transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(75, 45, 0).translation(0, 2.5F, 0).scale(0.375F).end()
+					.transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(75, 45, 0).translation(0, 2.5F, 0).scale(0.375F).end()
+					.transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 45, 0).scale(0.4F).end()
+					.transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 225, 0).scale(0.4F).end();
+		});
 
 		// original: separate _off/_on blocks, now LIT state
 		ModelFile furnaceOff = models().orientableWithBottom("machine_electric_furnace_off", texture("blocks/machine_electric_furnace_side"),

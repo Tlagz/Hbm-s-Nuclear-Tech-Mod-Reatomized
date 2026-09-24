@@ -1,10 +1,15 @@
 package com.hbm.inventory.gui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.hbm.inventory.fluid.tank.FluidTank;
 import com.hbm.lib.RefStrings;
 import com.hbm.util.BobMathUtil;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.inventory.Slot;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -76,6 +81,52 @@ public abstract class GuiInfoContainer<T extends AbstractContainerMenu> extends 
 		case 10: graphics.blit(guiUtil, x, y, 8, 32, 16, 16); break; //Large blue *
 		case 11: graphics.blit(guiUtil, x, y, 24, 32, 16, 16); break; //Large grey *
 		}
+	}
+
+	/**
+	 * The original's FluidTank.renderTank: fills the tank area from the bottom with the fluid's 16x16 GUI texture,
+	 * tinted with the fluid's GUI tint. y is the tank's bottom edge like in the original.
+	 */
+	public void renderTank(GuiGraphics graphics, FluidTank tank, int x, int y, int width, int height) {
+		if(tank.getMaxFill() <= 0 || tank.getFill() <= 0) return;
+
+		int filled = tank.getFill() * height / tank.getMaxFill();
+		int color = tank.getTankType().getTint();
+		graphics.setColor(((color >> 16) & 0xFF) / 255F, ((color >> 8) & 0xFF) / 255F, (color & 0xFF) / 255F, 1F);
+
+		ResourceLocation texture = tank.getTankType().getTexture();
+		int top = y - filled;
+		for(int dy = 0; dy < filled; dy += 16) {
+			int h = Math.min(16, filled - dy);
+			for(int dx = 0; dx < width; dx += 16) {
+				int w = Math.min(16, width - dx);
+				graphics.blit(texture, x + dx, y - dy - h, 0, 16 - h, w, h, 16, 16);
+			}
+		}
+
+		graphics.setColor(1F, 1F, 1F, 1F);
+	}
+
+	/** The original's FluidTank.renderTankInfo, the hover tooltip with type, fill and fluid traits */
+	public void renderTankInfo(GuiGraphics graphics, FluidTank tank, int mouseX, int mouseY, int x, int y, int width, int height) {
+		if(x <= mouseX && x + width > mouseX && y < mouseY && y + height >= mouseY) {
+
+			List<String> list = new ArrayList<>();
+			list.add(tank.getTankType().getLocalizedName());
+			list.add(tank.getFill() + "/" + tank.getMaxFill() + "mB");
+
+			if(tank.getPressure() != 0) {
+				list.add(ChatFormatting.RED + "Pressure: " + tank.getPressure() + " PU");
+				list.add((BobMathUtil.getBlink() ? ChatFormatting.RED : ChatFormatting.DARK_RED) + "Pressurized, use compressor!");
+			}
+
+			tank.getTankType().addInfo(list);
+			graphics.renderComponentTooltip(font, list.stream().map(s -> (Component) Component.literal(s)).toList(), mouseX, mouseY);
+		}
+	}
+
+	protected boolean isHovering(Slot slot, double mouseX, double mouseY) {
+		return this.isHovering(slot.x, slot.y, 16, 16, mouseX, mouseY);
 	}
 
 	protected boolean checkClick(int x, int y, int left, int top, int sizeX, int sizeY) {
