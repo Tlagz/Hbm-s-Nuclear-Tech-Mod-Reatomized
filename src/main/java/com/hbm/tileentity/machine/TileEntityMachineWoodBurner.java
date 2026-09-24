@@ -142,7 +142,7 @@ public class TileEntityMachineWoodBurner extends TileEntityMachineBase implement
 
 			if(powerGen > 0) {
 				Direction dir = getDir();
-				Direction rot = dir.getCounterClockWise();
+				Direction rot = dir.getClockWise(); // ForgeDirection.getRotation(UP)
 				level.addParticle(ParticleTypes.SMOKE, worldPosition.getX() + 0.5 - dir.getStepX() + rot.getStepX(), worldPosition.getY() + 4, worldPosition.getZ() + 0.5 - dir.getStepZ() + rot.getStepZ(), 0, 0.05, 0);
 			}
 		}
@@ -186,7 +186,7 @@ public class TileEntityMachineWoodBurner extends TileEntityMachineBase implement
 	/** Behind the machine, where the power and fluid connections are */
 	private DirPos[] getConPos() {
 		Direction dir = getDir();
-		Direction rot = dir.getCounterClockWise();
+		Direction rot = dir.getClockWise(); // ForgeDirection.getRotation(UP)
 		BlockPos back = worldPosition.relative(dir, -2);
 		return new DirPos[] {
 				new DirPos(back, dir.getOpposite()),

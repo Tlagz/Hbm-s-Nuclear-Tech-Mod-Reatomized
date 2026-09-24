@@ -61,7 +61,7 @@ public class MachineGameTests {
 
 	@GameTest(template = "empty_8x4x8", timeoutTicks = 400)
 	public static void woodBurnerMultiblockPowersFurnace(GameTestHelper helper) {
-		// facing north: dummies go 1 up, 1 back (south) and 1 to the left, the connection is 2 blocks behind the core
+		// facing north: dummies go 1 up, 1 back (south) and 1 to the side (east), the connection is 2 blocks behind the core
 		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 2));
 		BlockPos placed = ModBlocks.machine_wood_burner.get().placeMultiblock(helper.getLevel(), core, Direction.NORTH);
 		helper.assertTrue(core.equals(placed), "multiblock should have space");
@@ -70,7 +70,9 @@ public class MachineGameTests {
 		for(BlockPos p : BlockPos.betweenClosed(core.offset(-2, -1, -2), core.offset(2, 2, 2)))
 			if(helper.getLevel().getBlockState(p).is(ModBlocks.machine_wood_burner.get())) dummies++;
 		helper.assertTrue(dummies == 8, "wood burner should be 2x2x2, found " + dummies + " blocks");
+		// facing north the machine extends to the east (ForgeDirection.getRotation(UP) is clockwise)
 		helper.assertTrue(helper.getBlockEntity(new BlockPos(3, 1, 3)) instanceof TileEntityProxyCombo proxy && proxy.power, "back dummy should be a power proxy");
+		helper.assertTrue(helper.getBlockEntity(new BlockPos(4, 1, 3)) instanceof TileEntityProxyCombo proxy2 && proxy2.power, "second back dummy should be a power proxy");
 
 		helper.setBlock(new BlockPos(3, 1, 4), ModBlocks.red_cable.get());
 		helper.setBlock(new BlockPos(3, 1, 5), ModBlocks.machine_electric_furnace_off.get());

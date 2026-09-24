@@ -46,7 +46,7 @@ public class MachineWoodBurner extends BlockDummyable {
 	protected void fillSpace(Level world, BlockPos pos, Direction dir, int o) {
 		super.fillSpace(world, pos, dir, o);
 
-		Direction rot = dir.getCounterClockWise();
+		Direction rot = dir.getClockWise(); // ForgeDirection.getRotation(UP)
 
 		this.makeExtra(world, pos.relative(dir.getOpposite()));
 		this.makeExtra(world, pos.relative(dir.getOpposite()).relative(rot));
