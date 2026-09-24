@@ -49,6 +49,14 @@ public class DevScene {
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
 		}
+		// steel anvil GUI (no block entity, the tier comes with the menu)
+		if(serverTicks == 300) {
+			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.openMenu(new net.minecraft.world.SimpleMenuProvider((id, inv, p) -> new com.hbm.inventory.container.ContainerAnvil(id, inv, 2),
+						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
+			}
+		}
 		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : serverTicks == 275 ? barrelPos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
@@ -71,6 +79,8 @@ public class DevScene {
 		for(int x = -14; x <= 16; x++) for(int z = -12; z <= 12; z++) for(int y = 0; y <= 10; y++) {
 			level.setBlockAndUpdate(origin.offset(x, y, z), y == 0 ? Blocks.SMOOTH_STONE.defaultBlockState() : Blocks.AIR.defaultBlockState());
 		}
+		// the world is kept between runs, clearing the last run's machines drops their contents
+		level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, new net.minecraft.world.phys.AABB(origin).inflate(20)).forEach(net.minecraft.world.entity.Entity::discard);
 
 		// cables: straight line, corner, T, cross, vertical
 		for(int x = -5; x <= -1; x++) level.setBlockAndUpdate(origin.offset(x, 1, 6), ModBlocks.red_cable.get().defaultBlockState());
@@ -169,6 +179,16 @@ public class DevScene {
 			}
 		}
 
+		// anvils next to the press, facing both ways
+		{
+			int ax = 8;
+			for(var anvil : java.util.List.of(ModBlocks.anvil_iron, ModBlocks.anvil_steel, ModBlocks.anvil_desh, ModBlocks.anvil_murky)) {
+				var facing = ax % 2 == 0 ? net.minecraft.core.Direction.NORTH : net.minecraft.core.Direction.EAST;
+				level.setBlockAndUpdate(origin.offset(ax, 1, -8), anvil.get().defaultBlockState().setValue(com.hbm.blocks.machine.NTMAnvil.FACING, facing));
+				ax++;
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -181,6 +201,10 @@ public class DevScene {
 		player.getInventory().add(new ItemStack(ModBlocks.red_cable.get()));
 		player.getInventory().add(new ItemStack(ModItems.ingot_uranium.get(), 16));
 		player.getInventory().add(new ItemStack(ModBlocks.ore_uranium.get()));
+		// half the ingredients of the anvil's firebox recipe
+		player.getInventory().add(new ItemStack(net.minecraft.world.item.Items.FURNACE));
+		player.getInventory().add(new ItemStack(ModItems.plate_steel.get(), 8));
+		player.getInventory().add(new ItemStack(ModItems.ingot_copper.get(), 4));
 	}
 
 	@EventBusSubscriber(modid = RefStrings.MODID, value = Dist.CLIENT)
@@ -225,14 +249,31 @@ public class DevScene {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_wood_burner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
+			// anvil GUI: search for the firebox and select it
+			if(ticks == 318 && mc.screen instanceof com.hbm.inventory.gui.GUIAnvil anvil) {
+				try {
+					var search = com.hbm.inventory.gui.GUIAnvil.class.getDeclaredField("search");
+					search.setAccessible(true);
+					((net.minecraft.client.gui.components.EditBox) search.get(anvil)).setValue("firebox");
+					var selection = com.hbm.inventory.gui.GUIAnvil.class.getDeclaredField("selection");
+					selection.setAccessible(true);
+					selection.setInt(anvil, 0);
+				} catch(Exception ex) {
+					MainRegistry.logger.warn("DevScene: could not select the anvil recipe", ex);
+				}
+			}
+			if(ticks == 325) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_anvil.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 310 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 325 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 340 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 355 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 310 + tabs.length * 20) {
+			if(ticks == 340 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

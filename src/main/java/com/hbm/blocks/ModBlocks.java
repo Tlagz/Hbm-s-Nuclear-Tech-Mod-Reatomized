@@ -16,6 +16,7 @@ import com.hbm.blocks.machine.BlockFluidBarrel;
 import com.hbm.blocks.machine.MachineCapacitor;
 import com.hbm.blocks.machine.HeaterFirebox;
 import com.hbm.blocks.machine.MachineDiesel;
+import com.hbm.blocks.machine.NTMAnvil;
 import com.hbm.blocks.machine.MachinePress;
 import com.hbm.blocks.machine.MachineRefinery;
 import com.hbm.blocks.machine.MachineHeatBoiler;
@@ -49,6 +50,8 @@ public class ModBlocks {
 	public static final java.util.List<DeferredBlock<? extends BlockDummyable>> DUMMYABLES = new java.util.ArrayList<>();
 	/** Blocks rendered by a tile entity renderer: block -> particle texture, item uses the NTM item renderer */
 	public static final Map<DeferredBlock<?>, String> TILE_RENDERED = new LinkedHashMap<>();
+	/** NTM anvils: block -> side and top texture, used by datagen */
+	public static final Map<DeferredBlock<NTMAnvil>, String[]> ANVILS = new LinkedHashMap<>();
 	/** Which tool mines the block, used by datagen for the mineable tags */
 	public static final Map<DeferredBlock<?>, Tool> TOOLS = new LinkedHashMap<>();
 	/** Blocks that can be used for beacon bases */
@@ -83,6 +86,18 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineHeatBoiler> machine_boiler = dummyable("machine_boiler", MachineHeatBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_copper");
 	public static final DeferredBlock<MachineRefinery> machine_refinery = dummyable("machine_refinery", MachineRefinery::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/machine_refinery");
 	public static final DeferredBlock<MachinePress> machine_press = dummyable("machine_press", MachinePress::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_press");
+	public static final DeferredBlock<NTMAnvil> anvil_iron = anvil("anvil_iron", NTMAnvil.TIER_IRON, "blocks/anvil_iron", "blocks/anvil_iron");
+	public static final DeferredBlock<NTMAnvil> anvil_lead = anvil("anvil_lead", NTMAnvil.TIER_IRON, "blocks/anvil_lead", "blocks/anvil_lead");
+	public static final DeferredBlock<NTMAnvil> anvil_steel = anvil("anvil_steel", NTMAnvil.TIER_STEEL, "blocks/anvil_steel", "blocks/anvil_steel");
+	public static final DeferredBlock<NTMAnvil> anvil_desh = anvil("anvil_desh", NTMAnvil.TIER_OIL, "blocks/anvil_desh", "blocks/anvil_desh");
+	public static final DeferredBlock<NTMAnvil> anvil_ferrouranium = anvil("anvil_ferrouranium", NTMAnvil.TIER_NUCLEAR, "blocks/anvil_ferrouranium", "blocks/anvil_ferrouranium");
+	public static final DeferredBlock<NTMAnvil> anvil_saturnite = anvil("anvil_saturnite", NTMAnvil.TIER_RBMK, "blocks/anvil_saturnite", "blocks/anvil_saturnite");
+	public static final DeferredBlock<NTMAnvil> anvil_bismuth_bronze = anvil("anvil_bismuth_bronze", NTMAnvil.TIER_RBMK, "blocks/anvil_bismuth_bronze", "blocks/anvil_bismuth_bronze");
+	public static final DeferredBlock<NTMAnvil> anvil_arsenic_bronze = anvil("anvil_arsenic_bronze", NTMAnvil.TIER_RBMK, "blocks/anvil_arsenic_bronze", "blocks/anvil_arsenic_bronze");
+	public static final DeferredBlock<NTMAnvil> anvil_schrabidate = anvil("anvil_schrabidate", NTMAnvil.TIER_FUSION, "blocks/anvil_schrabidate", "blocks/anvil_schrabidate");
+	public static final DeferredBlock<NTMAnvil> anvil_dnt = anvil("anvil_dnt", NTMAnvil.TIER_PARTICLE, "blocks/anvil_dnt", "blocks/anvil_dnt");
+	public static final DeferredBlock<NTMAnvil> anvil_osmiridium = anvil("anvil_osmiridium", NTMAnvil.TIER_GERALD, "blocks/anvil_osmiridium", "blocks/anvil_osmiridium");
+	public static final DeferredBlock<NTMAnvil> anvil_murky = anvil("anvil_murky", 1916169, "blocks/anvil_steel", "blocks/anvil_murky");
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
@@ -373,6 +388,13 @@ public class ModBlocks {
 	private static <T extends Block> DeferredBlock<T> tileRendered(String name, Function<BlockBehaviour.Properties, T> factory, PropsWithTool props, NtmTab tab, String particle) {
 		DeferredBlock<T> block = register(name, factory, props, tab);
 		TILE_RENDERED.put(block, particle);
+		return block;
+	}
+
+
+	private static DeferredBlock<NTMAnvil> anvil(String name, int tier, String side, String top) {
+		DeferredBlock<NTMAnvil> block = register(name, p -> new NTMAnvil(p, tier), props(Mat.IRON, 5.0F, 100.0F).sound(SoundType.ANVIL), NtmTab.MACHINE);
+		ANVILS.put(block, new String[] { side, top });
 		return block;
 	}
 

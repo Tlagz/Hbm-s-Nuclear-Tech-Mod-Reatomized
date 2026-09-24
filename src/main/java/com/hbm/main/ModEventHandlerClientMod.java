@@ -35,6 +35,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
 		event.register(ModMenus.PRESS.get(), com.hbm.inventory.gui.GUIMachinePress::new);
+		event.register(ModMenus.ANVIL.get(), com.hbm.inventory.gui.GUIAnvil::new);
 	}
 
 	@SubscribeEvent

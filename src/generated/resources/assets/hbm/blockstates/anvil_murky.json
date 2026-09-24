@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hbm:block/anvil_murky"
+    },
+    "facing=north": {
+      "model": "hbm:block/anvil_murky",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "hbm:block/anvil_murky",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "hbm:block/anvil_murky"
+    }
+  }
+}

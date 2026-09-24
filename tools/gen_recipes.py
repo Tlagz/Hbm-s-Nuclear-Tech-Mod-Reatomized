@@ -337,26 +337,39 @@ def walk(body, emit, stats):
 		if body[i] == '{':
 			j = match_close(body, i, '{', '}')
 			walk(body[i + 1:j], emit, stats); i = j + 1; continue
-		# plain statement up to the next top level ';'
-		j, depth = i, 0
-		while j < n:
-			c = body[j]
-			if c == '"' or c == "'":
-				k = j + 1
-				while k < n and body[k] != c: k += 2 if body[k] == '\\' else 1
-				j = k
-			elif c in '([{': depth += 1
-			elif c in ')]}': depth -= 1
-			elif c == ';' and depth == 0: break
-			j += 1
+		j = statement_end(body, i)
 		emit(body[i:j]); i = j + 1
+
+def statement_end(body, i):
+	"""Index of the ';' ending the plain statement at i (skipping nested brackets and string literals)"""
+	j, depth, n = i, 0, len(body)
+	while j < n:
+		c = body[j]
+		if c == '"' or c == "'":
+			k = j + 1
+			while k < n and body[k] != c: k += 2 if body[k] == '\\' else 1
+			j = k
+		elif c in '([{': depth += 1
+		elif c in ')]}': depth -= 1
+		elif c == ';' and depth == 0: break
+		j += 1
+	return j
 
 def take_branch(body, i):
 	while body[i] in ' \t\r\n': i += 1
 	if body[i] == '{':
 		j = match_close(body, i, '{', '}')
 		return j + 1, body[i + 1:j]
-	j = body.index(';', i)
+	# a braceless body can itself be a control statement: for(...) if(...) { ... }
+	m = re.match(r'(if|for|while)\s*\(', body[i:])
+	if m:
+		p = body.index('(', i); q = match_close(body, p, '(', ')')
+		j, _ = take_branch(body, q + 1)
+		if m.group(1) == 'if':
+			e = re.match(r'\s*else\b', body[j:])
+			if e: j, _ = take_branch(body, j + e.end())
+		return j, body[i:j]
+	j = statement_end(body, i)
 	return j + 1, body[i:j + 1]
 
 HEADER = '''package com.hbm.crafting.gen;

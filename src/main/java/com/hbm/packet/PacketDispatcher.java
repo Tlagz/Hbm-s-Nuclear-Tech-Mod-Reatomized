@@ -25,5 +25,6 @@ public class PacketDispatcher {
 		registrar.playToClient(BufPacket.TYPE, BufPacket.STREAM_CODEC, BufPacket::handle);
 		registrar.playToServer(NBTControlPacket.TYPE, NBTControlPacket.STREAM_CODEC, NBTControlPacket::handle);
 		registrar.playToServer(NBTItemControlPacket.TYPE, NBTItemControlPacket.STREAM_CODEC, NBTItemControlPacket::handle);
+		registrar.playToServer(com.hbm.packet.toserver.AnvilCraftPacket.TYPE, com.hbm.packet.toserver.AnvilCraftPacket.STREAM_CODEC, com.hbm.packet.toserver.AnvilCraftPacket::handle);
 	}
 }

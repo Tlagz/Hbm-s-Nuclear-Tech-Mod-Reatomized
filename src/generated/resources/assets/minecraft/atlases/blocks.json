@@ -946,6 +946,54 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_ferrouranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_dnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/anvil_murky"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {

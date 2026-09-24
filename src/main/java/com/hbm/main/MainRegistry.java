@@ -64,6 +64,7 @@ public class MainRegistry {
 			com.hbm.inventory.FluidContainerRegistry.register();
 			com.hbm.inventory.recipes.RefineryRecipes.registerDefaults();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
+			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 		});
 	}
 }

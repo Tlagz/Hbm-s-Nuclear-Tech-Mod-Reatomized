@@ -3,6 +3,7 @@ package com.hbm.inventory;
 import com.hbm.inventory.container.ContainerBarrel;
 import com.hbm.inventory.container.ContainerElectricFurnace;
 import com.hbm.inventory.container.ContainerMachineDiesel;
+import com.hbm.inventory.container.ContainerAnvil;
 import com.hbm.inventory.container.ContainerMachinePress;
 import com.hbm.inventory.container.ContainerMachineRefinery;
 import com.hbm.inventory.container.ContainerFirebox;
@@ -56,6 +57,10 @@ public class ModMenus {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachinePress>> PRESS =
 			tile("machine_press", com.hbm.tileentity.machine.TileEntityMachinePress.class, ContainerMachinePress::new);
+
+	/** The anvil has no block entity, its tier comes with the menu */
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerAnvil>> ANVIL = MENUS.register("anvil",
+			() -> IMenuTypeExtension.create((int id, Inventory inv, RegistryFriendlyByteBuf buf) -> new ContainerAnvil(id, inv, buf.readInt())));
 
 	@FunctionalInterface
 	public interface TileMenuFactory<T extends BlockEntity, M extends AbstractContainerMenu> {

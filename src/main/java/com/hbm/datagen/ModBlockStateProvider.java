@@ -40,6 +40,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		cable(ModBlocks.red_cable, "blocks/cable_neo", "blocks/cable_neo");
 		pipe(ModBlocks.fluid_duct_neo);
 		for(var barrel : ModBlocks.BARRELS) barrel(barrel);
+		ModBlocks.ANVILS.forEach(this::anvil);
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -163,6 +164,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			int x = dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0;
 			int y = dir.getAxis().isHorizontal() ? ((int) dir.toYRot() + 180) % 360 : 0;
 			return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
+		});
+		simpleBlockItem(block.get(), model);
+	}
+
+	/**
+	 * NTM anvils: the original's anvil.obj, the top part has its own texture (the murky anvil's differs).
+	 * The model is long along z, north/south facing anvils are turned by 90 degrees like the original's ISBRH.
+	 */
+	private void anvil(DeferredBlock<? extends Block> block, String[] textures) {
+		String name = block.getId().getPath();
+		ResourceLocation side = texture(textures[0]);
+		ResourceLocation top = texture(textures[1]);
+		BlockModelBuilder model = models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block"))).texture("particle", side);
+		CompositeModelBuilder<BlockModelBuilder> composite = model.customLoader(CompositeModelBuilder::begin);
+		for(int part = 0; part < 2; part++) {
+			BlockModelBuilder child = models().nested().texture("texture0", part == 0 ? top : side);
+			ObjModelBuilder<BlockModelBuilder> obj = child.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/anvil.obj")).flipV(true).automaticCulling(false);
+			for(String p : List.of("Top", "Bottom", "Front", "Back", "Left", "Right")) obj.visibility(p, part == 0 ? p.equals("Top") : !p.equals("Top"));
+			obj.end();
+			child.rootTransforms().translation(0.5F, 0, 0.5F);
+			composite.child(part == 0 ? "top" : "sides", child);
+		}
+		composite.end();
+
+		getVariantBuilder(block.get()).forAllStates(state -> {
+			Direction dir = state.getValue(com.hbm.blocks.machine.NTMAnvil.FACING);
+			return ConfiguredModel.builder().modelFile(model).rotationY(dir.getAxis() == Direction.Axis.Z ? 90 : 0).build();
 		});
 		simpleBlockItem(block.get(), model);
 	}
