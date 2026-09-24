@@ -27,6 +27,7 @@ public class WorldConfig {
 	private record Rate(String name, String key, String comment, int def) { }
 
 	private static final Rate[] RATES = {
+			new Rate("oilSpawn", "2.21_oilSpawnRate", "Spawns an oil bubble every nTH chunk", 100),
 			new Rate("uraniumSpawn", "2.00_uraniumSpawnrate", "Amount of uranium ore veins per chunk", 7),
 			new Rate("titaniumSpawn", "2.01_titaniumSpawnrate", "Amount of titanium ore veins per chunk", 8),
 			new Rate("sulfurSpawn", "2.02_sulfurSpawnrate", "Amount of sulfur ore veins per chunk", 5),

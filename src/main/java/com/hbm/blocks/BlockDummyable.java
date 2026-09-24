@@ -284,6 +284,26 @@ public abstract class BlockDummyable extends Block implements EntityBlock {
 		super.onRemove(state, world, pos, newState, movedByPiston);
 	}
 
+	/**
+	 * The original's onBlockHarvested: only the block the player breaks drops the machine, with the core's
+	 * persistent data (IPersistentNBT) read before the chain removal takes the core away. The loot tables of
+	 * dummyables are empty, the rest of the structure disappears without drops.
+	 */
+	@Override
+	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+
+		if(!world.isClientSide && !player.isCreative()) {
+			ItemStack drop = new ItemStack(this);
+			BlockPos core = findCore(world, pos);
+			if(core != null && world.getBlockEntity(core) != null) {
+				drop.applyComponents(world.getBlockEntity(core).collectComponents());
+			}
+			Block.popResource(world, pos, drop);
+		}
+
+		return super.playerWillDestroy(world, pos, state, player);
+	}
+
 	@Override
 	protected RenderShape getRenderShape(BlockState state) {
 		return RenderShape.INVISIBLE;

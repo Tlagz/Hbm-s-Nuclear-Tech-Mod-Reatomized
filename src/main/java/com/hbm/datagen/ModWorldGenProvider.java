@@ -70,14 +70,20 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 	}
 
 	private static void configured(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+		context.register(OIL_BUBBLE_CONFIGURED, new ConfiguredFeature<>(ModWorldGen.OIL_BUBBLE.get(), net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.INSTANCE));
 		for(OreVein vein : ModWorldGen.ORES) {
 			context.register(configuredKey(vein), new ConfiguredFeature<>(Feature.ORE,
 					new OreConfiguration(List.of(OreConfiguration.target(target(vein.target()), vein.ore().get().defaultBlockState())), vein.size())));
 		}
 	}
 
+	private static final ResourceKey<ConfiguredFeature<?, ?>> OIL_BUBBLE_CONFIGURED = ResourceKey.create(Registries.CONFIGURED_FEATURE, RefStrings.loc("oil_bubble"));
+	private static final ResourceKey<PlacedFeature> OIL_BUBBLE_PLACED = ResourceKey.create(Registries.PLACED_FEATURE, RefStrings.loc("oil_bubble"));
+
 	private static void placed(BootstrapContext<PlacedFeature> context) {
 		HolderGetter<ConfiguredFeature<?, ?>> configured = context.lookup(Registries.CONFIGURED_FEATURE);
+		// oil bubbles: the feature rolls its own chance (oilSpawn config) and height
+		context.register(OIL_BUBBLE_PLACED, new PlacedFeature(configured.getOrThrow(OIL_BUBBLE_CONFIGURED), List.of(InSquarePlacement.spread(), BiomeFilter.biome())));
 		for(OreVein vein : ModWorldGen.ORES) {
 			context.register(placedKey(vein), new PlacedFeature(configured.getOrThrow(configuredKey(vein)), List.of(
 					new ConfigCountPlacement(vein.config(), vein.dimension()),
@@ -90,6 +96,10 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 	private static void biomeModifiers(BootstrapContext<BiomeModifier> context) {
 		HolderGetter<PlacedFeature> placed = context.lookup(Registries.PLACED_FEATURE);
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
+
+		context.register(ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, RefStrings.loc("oil_overworld")),
+				new BiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+						HolderSet.direct(placed.getOrThrow(OIL_BUBBLE_PLACED)), GenerationStep.Decoration.UNDERGROUND_ORES));
 
 		for(String dimension : List.of("overworld", "nether", "end")) {
 			List<OreVein> veins = ModWorldGen.ORES.stream().filter(v -> v.dimension().equals(dimension)).toList();

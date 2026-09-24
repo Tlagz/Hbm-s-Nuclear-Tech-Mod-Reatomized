@@ -15,6 +15,8 @@ public class ResourceManager {
 	public static final HFRWavefrontObject wood_burner = new HFRWavefrontObject(RefStrings.loc("models/machines/wood_burner.obj"));
 
 	//// TEXTURES ////
+	public static final HFRWavefrontObject derrick = new HFRWavefrontObject(RefStrings.loc("models/machines/derrick.obj"));
+	public static final ResourceLocation derrick_tex = RefStrings.loc("textures/models/machines/derrick.png");
 	public static final HFRWavefrontObject dieselgen = new HFRWavefrontObject(RefStrings.loc("models/machines/dieselgen.obj"));
 	public static final ResourceLocation dieselgen_tex = RefStrings.loc("textures/models/machines/dieselgen.png");
 	public static final ResourceLocation wood_burner_tex = RefStrings.loc("textures/models/machines/wood_burner.png");

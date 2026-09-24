@@ -31,18 +31,21 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.WOOD_BURNER.get(), GUIMachineWoodBurner::new);
 		event.register(ModMenus.BARREL.get(), com.hbm.inventory.gui.GUIBarrel::new);
 		event.register(ModMenus.DIESEL.get(), com.hbm.inventory.gui.GUIMachineDiesel::new);
+		event.register(ModMenus.OIL_WELL.get(), com.hbm.inventory.gui.GUIMachineOilWell::new);
 	}
 
 	@SubscribeEvent
 	public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModTileEntities.WOOD_BURNER.get(), RenderWoodBurner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.DIESEL.get(), com.hbm.render.tileentity.RenderDieselGen::new);
+		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
 	}
 
 	@SubscribeEvent
 	public static void registerItemRenderers(RegisterClientExtensionsEvent event) {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_wood_burner.get().asItem(), RenderWoodBurner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_diesel.get().asItem(), com.hbm.render.tileentity.RenderDieselGen.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override

@@ -1,0 +1,11 @@
+{
+  "feature": "hbm:oil_bubble",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

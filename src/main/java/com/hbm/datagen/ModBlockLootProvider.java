@@ -116,6 +116,14 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		add(ModBlocks.block_meteor_molten.get(), LootTable.lootTable());
 		handled.add(ModBlocks.block_meteor_molten.get());
 
+		// multiblocks drop through BlockDummyable.playerWillDestroy, the drill pipe drops nothing (BlockNoDrop)
+		for(var dummyable : ModBlocks.DUMMYABLES) {
+			add(dummyable.get(), LootTable.lootTable());
+			handled.add(dummyable.get());
+		}
+		add(ModBlocks.oil_pipe.get(), LootTable.lootTable());
+		handled.add(ModBlocks.oil_pipe.get());
+
 		for(Block block : getKnownBlocks()) {
 			if(!handled.contains(block)) dropSelf(block);
 		}

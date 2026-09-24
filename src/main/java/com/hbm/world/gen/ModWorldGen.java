@@ -18,7 +18,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
  * datagen (ModWorldGenProvider) from this table.
  *
  * TODO gneiss (schist strata) ores, clusters, depth deposits, bedrock ores, gas bubbles, alexandrite,
- *  limestone/stone resources, oil deposits, nether coal, end trixite
+ *  limestone/stone resources, oil sand, nether coal, end trixite
  */
 public class ModWorldGen {
 
@@ -26,6 +26,11 @@ public class ModWorldGen {
 
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<ConfigCountPlacement>> CONFIG_COUNT =
 			PLACEMENT_MODIFIERS.register("config_count", () -> () -> ConfigCountPlacement.CODEC);
+
+	public static final DeferredRegister<net.minecraft.world.level.levelgen.feature.Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, RefStrings.MODID);
+
+	public static final DeferredHolder<net.minecraft.world.level.levelgen.feature.Feature<?>, OilBubbleFeature> OIL_BUBBLE =
+			FEATURES.register("oil_bubble", () -> new OilBubbleFeature(net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.CODEC));
 
 	public enum Target { STONE, NETHERRACK, END_STONE }
 

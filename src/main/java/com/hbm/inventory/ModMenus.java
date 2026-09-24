@@ -3,6 +3,7 @@ package com.hbm.inventory;
 import com.hbm.inventory.container.ContainerBarrel;
 import com.hbm.inventory.container.ContainerElectricFurnace;
 import com.hbm.inventory.container.ContainerMachineDiesel;
+import com.hbm.inventory.container.ContainerMachineOilWell;
 import com.hbm.inventory.container.ContainerMachineWoodBurner;
 import com.hbm.lib.RefStrings;
 import com.hbm.tileentity.machine.TileEntityMachineElectricFurnace;
@@ -40,6 +41,9 @@ public class ModMenus {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachineDiesel>> DIESEL =
 			tile("machine_diesel", TileEntityMachineDiesel.class, ContainerMachineDiesel::new);
+
+	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachineOilWell>> OIL_WELL =
+			tile("machine_well", com.hbm.tileentity.machine.oil.TileEntityOilDrillBase.class, ContainerMachineOilWell::new);
 
 	@FunctionalInterface
 	public interface TileMenuFactory<T extends BlockEntity, M extends AbstractContainerMenu> {

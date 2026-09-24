@@ -44,6 +44,7 @@ public class MainRegistry {
 		ModAttachments.ATTACHMENTS.register(modEventBus);
 		HbmPotion.EFFECTS.register(modEventBus);
 		ModWorldGen.PLACEMENT_MODIFIERS.register(modEventBus);
+		ModWorldGen.FEATURES.register(modEventBus);
 		ModMenus.MENUS.register(modEventBus);
 		ModDataComponents.COMPONENTS.register(modEventBus);
 

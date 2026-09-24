@@ -44,7 +44,7 @@ public class DevScene {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), burnerPos.getX() + 3.5, burnerPos.getY(), burnerPos.getZ() - 5.5, -20F, 30F);
+				player.teleportTo(player.serverLevel(), burnerPos.getX() + 3.5, burnerPos.getY(), burnerPos.getZ() - 6.5, -25F, 5F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
@@ -148,6 +148,9 @@ public class DevScene {
 			level.setBlockAndUpdate(barrelPos.north(), ModBlocks.machine_diesel.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineDiesel.FACING, net.minecraft.core.Direction.WEST));
 			if(level.getBlockEntity(barrelPos.north()) instanceof com.hbm.tileentity.machine.TileEntityMachineDiesel diesel) diesel.isOn = true;
 		}
+
+		// oil derrick
+		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
