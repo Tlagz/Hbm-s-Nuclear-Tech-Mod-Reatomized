@@ -1,5 +1,15 @@
 package com.hbm.tileentity.machine;
 
+import java.util.HashMap;
+import java.util.List;
+
+import com.hbm.blocks.ModBlocks;
+import com.hbm.inventory.UpgradeManagerNT;
+import com.hbm.items.machine.ItemMachineUpgrade.UpgradeType;
+import com.hbm.tileentity.IUpgradeInfoProvider;
+import com.hbm.util.i18n.I18nUtil;
+import net.minecraft.ChatFormatting;
+
 import java.util.Optional;
 
 import com.hbm.blocks.machine.MachineElectricFurnace;
@@ -34,7 +44,9 @@ import net.minecraft.world.level.block.state.BlockState;
  *
  * TODO machine upgrades (speed/power), the upgrade slot accepts nothing until ItemMachineUpgrade is ported
  */
-public class TileEntityMachineElectricFurnace extends TileEntityMachineBase implements IEnergyReceiverMK2, MenuProvider {
+public class TileEntityMachineElectricFurnace extends TileEntityMachineBase implements IEnergyReceiverMK2, MenuProvider, IUpgradeInfoProvider {
+
+	public UpgradeManagerNT upgradeManager = new UpgradeManagerNT(this);
 
 	// HOLY FUCKING SHIT I SPENT 5 DAYS ON THIS SHITFUCK CLASS FILE
 	// thanks Martin, vaer and Bob for the help
@@ -177,6 +189,16 @@ public class TileEntityMachineElectricFurnace extends TileEntityMachineBase impl
 			this.consumption = 50;
 			this.maxProgress = 100;
 
+			upgradeManager.checkSlots(slots, 3, 3);
+
+			int speedLevel = upgradeManager.getLevel(UpgradeType.SPEED);
+			int powerLevel = upgradeManager.getLevel(UpgradeType.POWER);
+
+			maxProgress -= speedLevel * 25;
+			consumption += speedLevel * 50;
+			maxProgress += powerLevel * 10;
+			consumption -= powerLevel * 15;
+
 			if(!hasPower()) {
 				cooldown = 20;
 			}
@@ -257,5 +279,31 @@ public class TileEntityMachineElectricFurnace extends TileEntityMachineBase impl
 	@Override
 	public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
 		return new ContainerElectricFurnace(id, inv, this);
+	}
+
+	@Override
+	public boolean canProvideInfo(UpgradeType type, int level, boolean extendedInfo) {
+		return type == UpgradeType.SPEED || type == UpgradeType.POWER;
+	}
+
+	@Override
+	public void provideInfo(UpgradeType type, int level, List<String> info, boolean extendedInfo) {
+		info.add(IUpgradeInfoProvider.getStandardLabel(ModBlocks.machine_electric_furnace_off.get()));
+		if(type == UpgradeType.SPEED) {
+			info.add(ChatFormatting.GREEN + I18nUtil.resolveKey(KEY_DELAY, "-" + (level * 25) + "%"));
+			info.add(ChatFormatting.RED + I18nUtil.resolveKey(KEY_CONSUMPTION, "+" + (level * 100) + "%"));
+		}
+		if(type == UpgradeType.POWER) {
+			info.add(ChatFormatting.GREEN + I18nUtil.resolveKey(KEY_CONSUMPTION, "-" + (level * 30) + "%"));
+			info.add(ChatFormatting.RED + I18nUtil.resolveKey(KEY_DELAY, "+" + (level * 10) + "%"));
+		}
+	}
+
+	@Override
+	public HashMap<UpgradeType, Integer> getValidUpgrades() {
+		HashMap<UpgradeType, Integer> upgrades = new HashMap<>();
+		upgrades.put(UpgradeType.SPEED, 3);
+		upgrades.put(UpgradeType.POWER, 3);
+		return upgrades;
 	}
 }

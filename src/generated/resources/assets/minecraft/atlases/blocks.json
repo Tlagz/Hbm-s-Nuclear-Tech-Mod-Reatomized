@@ -3942,6 +3942,118 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_speed_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_speed_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_speed_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_effect_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_effect_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_effect_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_power_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_power_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_power_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_fortune_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_fortune_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_fortune_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_afterburn_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_afterburn_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_afterburn_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_overdrive_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_overdrive_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_overdrive_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_radius"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_health"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_smelter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_shredder"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_centrifuge"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_crystallizer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_nullifier"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_screm"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_gc_speed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_5g"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/fluid_barrel_infinite"
     },
     {

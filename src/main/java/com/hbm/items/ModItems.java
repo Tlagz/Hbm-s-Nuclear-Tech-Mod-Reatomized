@@ -13,6 +13,8 @@ import com.hbm.items.machine.ItemFluidIDMulti;
 import com.hbm.items.machine.ItemFluidTank;
 import com.hbm.items.machine.ItemGasTank;
 import com.hbm.items.machine.ItemInfiniteFluid;
+import com.hbm.items.machine.ItemMachineUpgrade;
+import com.hbm.items.machine.ItemMachineUpgrade.UpgradeType;
 import com.hbm.inventory.fluid.Fluids;
 import com.hbm.items.tool.ItemDosimeter;
 import com.hbm.items.tool.ItemGeigerCounter;
@@ -716,6 +718,36 @@ public class ModItems {
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
 
+	/// MACHINE UPGRADES (TODO ejector/stack/muffler upgrades, ItemMachineUpgrade subclasses) ///
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_1 = upgrade("upgrade_speed_1", UpgradeType.SPEED, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_2 = upgrade("upgrade_speed_2", UpgradeType.SPEED, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_3 = upgrade("upgrade_speed_3", UpgradeType.SPEED, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_effect_1 = upgrade("upgrade_effect_1", UpgradeType.EFFECT, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_effect_2 = upgrade("upgrade_effect_2", UpgradeType.EFFECT, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_effect_3 = upgrade("upgrade_effect_3", UpgradeType.EFFECT, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_power_1 = upgrade("upgrade_power_1", UpgradeType.POWER, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_power_2 = upgrade("upgrade_power_2", UpgradeType.POWER, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_power_3 = upgrade("upgrade_power_3", UpgradeType.POWER, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_fortune_1 = upgrade("upgrade_fortune_1", UpgradeType.FORTUNE, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_fortune_2 = upgrade("upgrade_fortune_2", UpgradeType.FORTUNE, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_fortune_3 = upgrade("upgrade_fortune_3", UpgradeType.FORTUNE, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_afterburn_1 = upgrade("upgrade_afterburn_1", UpgradeType.AFTERBURN, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_afterburn_2 = upgrade("upgrade_afterburn_2", UpgradeType.AFTERBURN, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_afterburn_3 = upgrade("upgrade_afterburn_3", UpgradeType.AFTERBURN, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_overdrive_1 = upgrade("upgrade_overdrive_1", UpgradeType.OVERDRIVE, 1, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_overdrive_2 = upgrade("upgrade_overdrive_2", UpgradeType.OVERDRIVE, 2, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_overdrive_3 = upgrade("upgrade_overdrive_3", UpgradeType.OVERDRIVE, 3, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_radius = upgrade("upgrade_radius", UpgradeType.SPECIAL, 0, 16);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_health = upgrade("upgrade_health", UpgradeType.SPECIAL, 0, 16);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_smelter = upgrade("upgrade_smelter", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_shredder = upgrade("upgrade_shredder", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_centrifuge = upgrade("upgrade_centrifuge", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_crystallizer = upgrade("upgrade_crystallizer", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_nullifier = upgrade("upgrade_nullifier", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_screm = upgrade("upgrade_screm", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_gc_speed = upgrade("upgrade_gc_speed", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_5g = upgrade("upgrade_5g", UpgradeType.SPECIAL, 0, 1);
+
 	/// FLUID CONTAINERS (the fluid is the FLUID_TYPE component, the original's damage value) ///
 	public static final DeferredItem<ItemCanister> canister_full = fluidItem("canister_full", p -> new ItemCanister(p.craftRemainder(canister_empty.get())), canister_empty, NtmTab.CONTROL, "items/canister_empty", "items/canister_overlay");
 	public static final DeferredItem<ItemGasTank> gas_full = fluidItem("gas_full", p -> new ItemGasTank(p.craftRemainder(gas_empty.get())), gas_empty, NtmTab.CONTROL, "items/gas_empty", "items/gas_bottle", "items/gas_label");
@@ -732,6 +764,13 @@ public class ModItems {
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");
+	}
+
+	/** Machine upgrade with a flat model, in the control tab like the original */
+	private static DeferredItem<ItemMachineUpgrade> upgrade(String name, UpgradeType type, int tier, int stackSize) {
+		DeferredItem<ItemMachineUpgrade> item = register(name, p -> new ItemMachineUpgrade(p.stacksTo(stackSize), type, tier), new Item.Properties(), NtmTab.CONTROL);
+		FLAT_MODELS.put(item, "items/" + name);
+		return item;
 	}
 
 	/** Hand-ported item placed in the tab after "after" (or appended), with a flat or layered model */

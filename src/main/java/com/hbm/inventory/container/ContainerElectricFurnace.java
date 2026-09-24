@@ -23,7 +23,7 @@ public class ContainerElectricFurnace extends ContainerBase<TileEntityMachineEle
 		this.addSlot(new FurnaceResultSlot(invPlayer.player, tedf, 2, 80, 35));
 		//Upgrades
 		this.addSlot(new Slot(tedf, 3, 111, 34) {
-			@Override public boolean mayPlace(ItemStack stack) { return false; }
+			@Override public boolean mayPlace(ItemStack stack) { return stack.getItem() instanceof com.hbm.items.machine.ItemMachineUpgrade; }
 		});
 
 		this.addPlayerInventory(invPlayer, 8, 104);

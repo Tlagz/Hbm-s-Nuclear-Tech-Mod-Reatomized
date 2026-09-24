@@ -37,6 +37,22 @@ public class MachineGameTests {
 		});
 	}
 
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 150)
+	public static void furnaceSpeedUpgrade(GameTestHelper helper) {
+		// speed III: 25 ticks per item instead of 100, 4 items can only finish in time with the upgrade
+		BlockPos pos = new BlockPos(2, 1, 2);
+		helper.setBlock(pos, ModBlocks.machine_electric_furnace_off.get());
+		TileEntityMachineElectricFurnace furnace = (TileEntityMachineElectricFurnace) helper.getBlockEntity(pos);
+		furnace.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+		furnace.setItem(1, new ItemStack(Items.RAW_IRON, 4));
+		furnace.setItem(3, new ItemStack(ModItems.upgrade_speed_3.get()));
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(furnace.maxProgress == 25, "speed III should cut the process time to 25, is " + furnace.maxProgress);
+			helper.assertTrue(furnace.getItem(2).getCount() == 4, "4 iron should be smelted, output: " + furnace.getItem(2));
+		});
+	}
+
 	@GameTest(template = "empty_8x4x8", timeoutTicks = 300)
 	public static void capacitorPowersFurnaceThroughBusAndCable(GameTestHelper helper) {
 		// capacitor front faces west (receiving side), its back (east) leads into a bus pointing east,
