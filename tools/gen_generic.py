@@ -1,13 +1,13 @@
 """
-Translates the original's AssemblyMachineRecipes.registerDefaults into
-com.hbm.inventory.recipes.gen.GenAssemblyMachineRecipes, using the expression translation of gen_recipes.py
-and the AStack translation of gen_anvil.py. Recipes referencing anything that isn't ported yet are skipped,
-the summary lists the most common blockers.
+Translates the registerDefaults of the original's generic recipe sets (AssemblyMachineRecipes,
+ChemicalPlantRecipes...) into com.hbm.inventory.recipes.gen.Gen<Set>, using the expression translation of
+gen_recipes.py and the AStack translation of gen_anvil.py. Recipes referencing anything that isn't ported yet
+are skipped, the summary lists the most common blockers.
 
 Expensive mode and 528 mode are off (their inputItemsEx/inputFluidsEx/setPools528 calls are dropped),
-the fluid package loop and the Mekanism recipes are left out.
+loops (e.g. the assembler's fluid packages) and mod compat recipes are left out.
 
-  python tools/gen_assembly.py
+  python tools/gen_generic.py
 """
 import os, re, sys
 from collections import Counter
@@ -17,7 +17,8 @@ import gen_recipes as g
 import gen_anvil as a
 from gen_recipes import Skip, split_top, match_close
 
-SRC = os.path.join(g.ORIG, 'inventory', 'recipes', 'AssemblyMachineRecipes.java')
+# recipe set class in the original (inventory/recipes) -> generated class
+TARGETS = ['AssemblyMachineRecipes', 'ChemicalPlantRecipes']
 OUT_DIR = os.path.join(g.PORT, 'inventory', 'recipes', 'gen')
 FLUIDS = os.path.join(g.PORT, 'inventory', 'fluid', 'Fluids.java')
 
@@ -26,17 +27,32 @@ DROPPED = {'inputItemsEx', 'inputFluidsEx', 'setPools528'}
 def load_fluids():
 	return set(re.findall(r'public static FluidType (\w+)', g.read(FLUIDS)))
 
+def resolve(e):
+	"""config ternaries (GeneralConfig.enable528PressurizedRecipes ? a : b) -> the branch of the default config"""
+	parts = split_top(e, '?')
+	if len(parts) != 2: return e.strip()
+	cond = parts[0].strip()
+	branches = split_top(parts[1], ':')
+	val = g.eval_condition(cond)
+	if val is None or len(branches) != 2: raise Skip('condition:' + cond[:40])
+	return resolve(branches[0] if val else branches[1])
+
+def fluid_ref(e, fluids):
+	fm = re.fullmatch(r'Fluids\.(\w+)', resolve(e))
+	if not fm: raise Skip('fluid expr:' + e.strip()[:30])
+	if fm.group(1) not in fluids: raise Skip('fluid:' + fm.group(1))
+	return 'Fluids.' + fm.group(1)
+
 def fluid_stack(e, fluids):
 	m = re.fullmatch(r'new\s+FluidStack\s*\((.*)\)', e.strip(), re.S)
 	if not m: raise Skip('fluidstack:' + e.strip()[:30])
 	args = split_top(m.group(1))
-	fm = re.fullmatch(r'Fluids\.(\w+)', args[0].strip())
-	if not fm: raise Skip('fluid expr:' + args[0].strip()[:30])
-	if fm.group(1) not in fluids: raise Skip('fluid:' + fm.group(1))
-	nums = [x.strip() for x in args[1:]]
+	ref = fluid_ref(args[0], fluids)
+	nums = [resolve(x) for x in args[1:]]
+	if len(nums) == 2 and nums[1] == '0': nums = nums[:1]  # no pressure
 	for n in nums:
 		if not re.fullmatch(r'[\d_]+', n): raise Skip('fluid amount:' + n)
-	return 'new FluidStack(Fluids.%s, %s)' % (fm.group(1), ', '.join(nums))
+	return 'new FluidStack(%s, %s)' % (ref, ', '.join(nums))
 
 def chance_output(e, sym):
 	"""new ChanceOutput(stack[, chance][, weight])"""
@@ -54,6 +70,21 @@ def output_item(e, sym):
 	if m: return 'new ChanceOutputMulti(%s)' % ', '.join(chance_output(x, sym) for x in split_top(m.group(1)))
 	if re.match(r'new\s+ChanceOutput\s*\(', e): return chance_output(e, sym)
 	return 'new ChanceOutput(%s)' % g.translate(e, 'result', sym)
+
+def icon(args, sym, fluids):
+	"""setIcon(stack) / setIcon(item) / setIcon(item, meta), a fluid ID as meta means a fluid container stack"""
+	first = args[0].strip()
+	if len(args) == 1:
+		if first.startswith('new ItemStack') or first.startswith('DictFrame'): return g.translate(first, 'result', sym)
+		return 'new ItemStack(%s)' % g.item_ref(first, 'result', sym)[1]
+	if len(args) == 2:
+		fm = re.fullmatch(r'(Fluids\.\w+)\.getID\(\)', args[1].strip())
+		if fm:
+			kind, ref = g.item_ref(first, 'result', sym)
+			return 'ItemFluidContainerBase.withFluid(%s, %s)' % (ref, fluid_ref(fm.group(1), fluids))
+		kind, ref = g.item_ref(first, 'result', sym, a.enum_meta(args[1]))
+		return 'new ItemStack(%s)' % ref
+	raise Skip('setIcon args')
 
 def pool(e, local):
 	"""GenericRecipes.POOL_PREFIX_ALT + "plates" -> same expression, with local string variables inlined"""
@@ -95,11 +126,7 @@ def translate_register(stmt, sym, fluids, local):
 		elif name == 'setNameWrapper':
 			out += '.setNameWrapper(%s)' % g.translate(args[0], 'result', sym)
 		elif name == 'setIcon':
-			if len(args) == 1 and not args[0].strip().startswith('new ItemStack') and not args[0].strip().startswith('DictFrame'):
-				out += '.setIcon(new ItemStack(%s))' % g.item_ref(args[0].strip(), 'result', sym)[1]
-			elif len(args) == 1:
-				out += '.setIcon(%s)' % g.translate(args[0], 'result', sym)
-			else: raise Skip('setIcon args')
+			out += '.setIcon(%s)' % icon(args, sym, fluids)
 		elif name == 'outputItems':
 			out += '.outputItems(%s)' % ', '.join(output_item(x, sym) for x in args)
 		elif name == 'inputItems':
@@ -133,16 +160,17 @@ import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutput;
 import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutputMulti;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ModItems;
+import com.hbm.items.machine.ItemFluidContainerBase;
 %s
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 /**
- * GENERATED by tools/gen_assembly.py from the original's AssemblyMachineRecipes, do not edit.
+ * GENERATED by tools/gen_generic.py from the original's %s, do not edit.
  * %d recipes translated, %d skipped (not ported yet or not translatable).
  */
 @SuppressWarnings("unused")
-public class GenAssemblyMachineRecipes {
+public class Gen%s {
 
 	public static void register(GenericRecipes<GenericRecipe> set) {
 %s
@@ -150,11 +178,9 @@ public class GenAssemblyMachineRecipes {
 }
 '''
 
-def generate():
-	sym = g.load_symbols()
-	fluids = load_fluids()
-	src = g.strip_comments(g.read(SRC))
-	lines, skipped, local = [], Counter(), {}
+def generate_set(name, sym, fluids):
+	src = g.strip_comments(g.read(os.path.join(g.ORIG, 'inventory', 'recipes', name + '.java')))
+	lines, local = [], {}
 	stats = {'skipped': Counter()}
 
 	def emit(stmt):
@@ -167,19 +193,28 @@ def generate():
 		except Skip as ex:
 			stats['skipped'].update([ex.reason])
 
-	g.CONFIG_DEFAULTS['no528'] = True  # local copy of !GeneralConfig.enable528
 	g.walk(g.method_body(src, 'registerDefaults'), emit, stats)
-	skipped.update(stats['skipped'])
 
 	body = '\n'.join(lines)
+	skipped = sum(stats['skipped'].values())
 	os.makedirs(OUT_DIR, exist_ok=True)
-	with open(os.path.join(OUT_DIR, 'GenAssemblyMachineRecipes.java'), 'w', encoding='utf-8', newline='\n') as f:
-		f.write(HEADER % (g.enum_import_lines(sym, body), len(lines), sum(skipped.values()), body))
-	print('assembly recipes %d, skipped %d' % (len(lines), sum(skipped.values())))
+	with open(os.path.join(OUT_DIR, 'Gen%s.java' % name), 'w', encoding='utf-8', newline='\n') as f:
+		f.write(HEADER % (g.enum_import_lines(sym, body), name, len(lines), skipped, name, body))
+	print('%-24s %4d recipes, %4d skipped' % (name, len(lines), skipped))
+	return stats['skipped']
+
+def generate():
+	sym = g.load_symbols()
+	fluids = load_fluids()
+	g.CONFIG_DEFAULTS['no528'] = True  # local copy of !GeneralConfig.enable528
+	g.CONFIG_DEFAULTS['GeneralConfig.enable528PressurizedRecipes'] = False
+	skipped = Counter()
+	for name in TARGETS: skipped.update(generate_set(name, sym, fluids))
 	blockers = Counter()
 	for r, n in skipped.items():
 		blockers[r if r.startswith(('item:', 'block:', 'fluid:')) else r.split(':')[0]] += n
-	for r, n in blockers.most_common(40): print('  %4d  %s' % (n, r))
+	print('\nmost common first blockers:')
+	for r, n in blockers.most_common(30): print('  %4d  %s' % (n, r))
 
 if __name__ == '__main__':
 	generate()

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_chemical_plant"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_chemical_plant"
+    }
+  }
+}

@@ -37,6 +37,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.PRESS.get(), com.hbm.inventory.gui.GUIMachinePress::new);
 		event.register(ModMenus.ANVIL.get(), com.hbm.inventory.gui.GUIAnvil::new);
 		event.register(ModMenus.ASSEMBLY_MACHINE.get(), com.hbm.inventory.gui.GUIMachineAssemblyMachine::new);
+		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
 	}
 
 	@SubscribeEvent
@@ -49,6 +50,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.REFINERY.get(), com.hbm.render.tileentity.RenderRefinery::new);
 		event.registerBlockEntityRenderer(ModTileEntities.PRESS.get(), com.hbm.render.tileentity.RenderPress::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_MACHINE.get(), com.hbm.render.tileentity.RenderAssemblyMachine::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 	}
 
 	@SubscribeEvent
@@ -61,6 +63,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_refinery.get().asItem(), com.hbm.render.tileentity.RenderRefinery.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_press.get().asItem(), com.hbm.render.tileentity.RenderPress.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_machine.get().asItem(), com.hbm.render.tileentity.RenderAssemblyMachine.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_plant.get().asItem(), com.hbm.render.tileentity.RenderChemicalPlant.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override
@@ -79,6 +82,7 @@ public class ModEventHandlerClientMod {
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidTank.getColor(stack, tint),
 				com.hbm.items.ModItems.fluid_tank_full.get(), com.hbm.items.ModItems.fluid_tank_lead_full.get(), com.hbm.items.ModItems.fluid_barrel_full.get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIDMulti.getColor(stack, tint), com.hbm.items.ModItems.fluid_identifier_multi.get());
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIcon.getColor(stack), com.hbm.items.ModItems.fluid_icon.get());
 		// the original's inventory pipe uses the color of NONE
 		event.register((stack, tint) -> 0xFF000000 | (tint == 0 ? com.hbm.inventory.fluid.Fluids.NONE.getColor() : 0xFFFFFF), com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
 	}

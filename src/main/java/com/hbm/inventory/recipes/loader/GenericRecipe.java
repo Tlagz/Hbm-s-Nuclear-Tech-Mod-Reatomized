@@ -11,6 +11,7 @@ import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutput;
 import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutputMulti;
 import com.hbm.inventory.recipes.loader.GenericRecipes.IOutput;
 import com.hbm.items.ModItems;
+import com.hbm.items.machine.ItemFluidIcon;
 import com.hbm.util.BobMathUtil;
 import com.hbm.util.i18n.I18nUtil;
 
@@ -22,7 +23,7 @@ import net.minecraft.world.level.ItemLike;
  * A recipe of the generic recipe system (assembly machine, chemical plant etc.): item and fluid in- and outputs,
  * duration, power, blueprint pools and auto switch groups.
  *
- * TODO ItemFluidIcon as the icon of fluid-only recipes, NEI extras (JEI)
+ * TODO NEI extras (JEI)
  */
 public class GenericRecipe {
 
@@ -111,6 +112,9 @@ public class GenericRecipe {
 				if(outputItem[0] instanceof ChanceOutput single) icon = single.stack.copy();
 				if(outputItem[0] instanceof ChanceOutputMulti multi) icon = multi.pool.get(0).stack.copy();
 				return icon;
+			}
+			if(outputFluid != null) {
+				icon = ItemFluidIcon.make(outputFluid[0]);
 			}
 		}
 

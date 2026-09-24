@@ -89,6 +89,12 @@ public class HFRWavefrontObject {
 		if(faces != null) render(pose, consumer, faces, light, overlay, r, g, b, a);
 	}
 
+	/** Tinted with shifted texture coordinates, the original's GL_TEXTURE matrix translation (scrolling textures) */
+	public void renderPartShifted(String partName, PoseStack pose, VertexConsumer consumer, int light, int overlay, float r, float g, float b, float a, float du, float dv) {
+		float[][] faces = getGroups().get(partName);
+		if(faces != null) render(pose, consumer, faces, light, overlay, r, g, b, a, du, dv);
+	}
+
 	public void renderOnly(PoseStack pose, VertexConsumer consumer, int light, String... groupNames) {
 		for(String name : groupNames) renderPart(name, pose, consumer, light);
 	}
@@ -101,6 +107,10 @@ public class HFRWavefrontObject {
 	}
 
 	private static void render(PoseStack pose, VertexConsumer consumer, float[][] faces, int light, int overlay, float r, float g, float b, float a) {
+		render(pose, consumer, faces, light, overlay, r, g, b, a, 0F, 0F);
+	}
+
+	private static void render(PoseStack pose, VertexConsumer consumer, float[][] faces, int light, int overlay, float r, float g, float b, float a, float du, float dv) {
 		PoseStack.Pose last = pose.last();
 		Matrix4f matrix = last.pose();
 		Matrix3f normalMatrix = last.normal();
@@ -112,7 +122,7 @@ public class HFRWavefrontObject {
 				normal.set(face[o + 5], face[o + 6], face[o + 7]).mul(normalMatrix);
 				consumer.addVertex(matrix, face[o], face[o + 1], face[o + 2])
 						.setColor(r, g, b, a)
-						.setUv(face[o + 3], face[o + 4])
+						.setUv(face[o + 3] + du, face[o + 4] + dv)
 						.setOverlay(overlay)
 						.setLight(light)
 						.setNormal(normal.x, normal.y, normal.z);

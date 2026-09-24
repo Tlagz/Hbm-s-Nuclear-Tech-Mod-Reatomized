@@ -801,6 +801,9 @@ public class ModItems {
 	public static final ItemEnumMulti.Variants<EnumPartType> part_generic = multi("part_generic", "part_generic", EnumPartType.class, true, part -> "items/" + part.texName, NtmTab.PARTS, new Item.Properties());
 	public static final ItemEnumMulti.Variants<EnumExpensiveType> item_expensive = multi("item_expensive", "item_expensive", EnumExpensiveType.class, true, true, NtmTab.PARTS, new Item.Properties());
 
+	/** Fluid stand-in for recipe displays, tinted with the fluid color, not in a creative tab like the original */
+	public static final DeferredItem<com.hbm.items.machine.ItemFluidIcon> fluid_icon = register("fluid_icon", com.hbm.items.machine.ItemFluidIcon::new, new Item.Properties(), null);
+
 	/** Unlocks pooled recipes of generic recipe machines, the model picks the texture by the pool (item property "hbm:pool") */
 	public static final DeferredItem<com.hbm.items.machine.ItemBlueprints> blueprints = register("blueprints", com.hbm.items.machine.ItemBlueprints::new, new Item.Properties(), NtmTab.TEMPLATE);
 
@@ -810,6 +813,7 @@ public class ModItems {
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");
+		FLAT_MODELS.put(fluid_icon, "items/fluid_icon");
 	}
 
 	/** Press stamp with a flat model, in the control tab like the original */

@@ -4418,6 +4418,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/fluid_icon"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/canister_overlay"
     },
     {

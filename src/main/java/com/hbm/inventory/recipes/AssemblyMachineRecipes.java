@@ -5,7 +5,7 @@ import com.hbm.inventory.recipes.loader.GenericRecipe;
 import com.hbm.inventory.recipes.loader.GenericRecipes;
 
 /**
- * Assembly machine recipes. The recipe list is translated from the original by tools/gen_assembly.py
+ * Assembly machine recipes. The recipe list is translated from the original by tools/gen_generic.py
  * (GenAssemblyMachineRecipes), recipes with items that aren't ported yet are left out.
  *
  * TODO the fluid package recipes (fluid_pack_full isn't ported), recipe config file, JEI

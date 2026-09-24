@@ -86,6 +86,7 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineHeatBoiler> machine_boiler = dummyable("machine_boiler", MachineHeatBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_copper");
 	public static final DeferredBlock<MachineRefinery> machine_refinery = dummyable("machine_refinery", MachineRefinery::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/machine_refinery");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineAssemblyMachine> machine_assembly_machine = dummyable("machine_assembly_machine", com.hbm.blocks.machine.MachineAssemblyMachine::new, props(Mat.IRON, 5.0F, 30.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineChemicalPlant> machine_chemical_plant = dummyable("machine_chemical_plant", com.hbm.blocks.machine.MachineChemicalPlant::new, props(Mat.IRON, 5.0F, 30.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<MachinePress> machine_press = dummyable("machine_press", MachinePress::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_press");
 	public static final DeferredBlock<NTMAnvil> anvil_iron = anvil("anvil_iron", NTMAnvil.TIER_IRON, "blocks/anvil_iron", "blocks/anvil_iron");
 	public static final DeferredBlock<NTMAnvil> anvil_lead = anvil("anvil_lead", NTMAnvil.TIER_IRON, "blocks/anvil_lead", "blocks/anvil_lead");

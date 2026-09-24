@@ -35,6 +35,7 @@ public class DevScene {
 	static BlockPos burnerPos;
 	static BlockPos barrelPos;
 	static BlockPos assemblerPos;
+	static BlockPos chemplantPos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -51,20 +52,20 @@ public class DevScene {
 			}
 		}
 		// third world screenshot: the running assembly machine
-		if(serverTicks == 188 && assemblerPos != null) {
+		if(serverTicks == 186 && assemblerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), -0.5, -56.3, -10.5, -37F, 30F);
+				player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
 			}
 		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
-		if(serverTicks == 300) {
+		if(serverTicks == 310) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.openMenu(new net.minecraft.world.SimpleMenuProvider((id, inv, p) -> new com.hbm.inventory.container.ContainerAnvil(id, inv, 2),
 						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
 			}
 		}
-		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : serverTicks == 275 ? barrelPos : serverTicks == 335 ? assemblerPos : null;
+		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -208,6 +209,20 @@ public class DevScene {
 			}
 		}
 
+		// chemical plant next to the assembler, making sulfuric acid
+		{
+			chemplantPos = ModBlocks.machine_chemical_plant.get().placeMultiblock(level, origin.offset(-1, 1, -8), net.minecraft.core.Direction.NORTH);
+			if(chemplantPos != null && level.getBlockEntity(chemplantPos) instanceof com.hbm.tileentity.machine.TileEntityMachineChemicalPlant chemplant) {
+				chemplant.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+				chemplant.chemplantModule.setRecipe("chem.sulfuricacid", false);
+				chemplant.inputTanks[0].setTankType(com.hbm.inventory.fluid.Fluids.PEROXIDE);
+				chemplant.inputTanks[0].setFill(24_000);
+				chemplant.inputTanks[1].setTankType(com.hbm.inventory.fluid.Fluids.WATER);
+				chemplant.inputTanks[1].setFill(24_000);
+				chemplant.setItem(4, new ItemStack(ModItems.sulfur.get(), 64));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -253,23 +268,23 @@ public class DevScene {
 			// screenshots must not catch the pause menu when the window is in the background
 			mc.options.pauseOnLostFocus = false;
 
-			if(ticks == 150 || ticks == 185 || ticks == 202) {
+			if(ticks == 150 || ticks == 185 || ticks == 205) {
 				if(mc.screen != null) mc.setScreen(null);
 				Screenshot.grab(mc.gameDirectory, "devscene_world_" + ticks + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 230) {
+			if(ticks == 240) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
-			if(ticks == 295) {
+			if(ticks == 305) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_barrel.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
-			if(ticks == 270) {
+			if(ticks == 280) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_wood_burner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
 			// anvil GUI: search for the firebox and select it
-			if(ticks == 318 && mc.screen instanceof com.hbm.inventory.gui.GUIAnvil anvil) {
+			if(ticks == 328 && mc.screen instanceof com.hbm.inventory.gui.GUIAnvil anvil) {
 				try {
 					var search = com.hbm.inventory.gui.GUIAnvil.class.getDeclaredField("search");
 					search.setAccessible(true);
@@ -281,31 +296,35 @@ public class DevScene {
 					MainRegistry.logger.warn("DevScene: could not select the anvil recipe", ex);
 				}
 			}
-			if(ticks == 325) {
+			if(ticks == 335) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_anvil.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
 			// assembly machine GUI, then its recipe selector (the blueprint unlocks the plates)
-			if(ticks == 360) {
+			if(ticks == 370) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_assembler.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
-			if(ticks == 365 && mc.screen instanceof com.hbm.inventory.gui.GUIMachineAssemblyMachine gui && assemblerPos != null) {
+			if(ticks == 375 && mc.screen instanceof com.hbm.inventory.gui.GUIMachineAssemblyMachine gui && assemblerPos != null) {
 				var module = gui.getMenu().tile.assemblerModule;
 				com.hbm.inventory.gui.GUIScreenRecipeSelector.openSelector(module.getRecipeSet(), assemblerPos, module.getRecipeName(), 0,
 						com.hbm.items.machine.ItemBlueprints.grabPool(gui.getMenu().tile.getItem(1)), gui);
 			}
-			if(ticks == 375) {
+			if(ticks == 385) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_recipe_selector.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
+			if(ticks == 420) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_chemplant.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 390 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 405 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 440 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 455 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 390 + tabs.length * 20) {
+			if(ticks == 440 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
