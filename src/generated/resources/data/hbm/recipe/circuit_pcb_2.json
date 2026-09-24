@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/gold"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "P": {
+      "tag": "c:plates/gold"
+    }
+  },
+  "pattern": [
+    "I",
+    "P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:circuit_pcb"
+  }
+}

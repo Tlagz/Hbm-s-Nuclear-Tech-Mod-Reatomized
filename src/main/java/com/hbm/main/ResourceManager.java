@@ -32,4 +32,6 @@ public class ResourceManager {
 	public static final HFRWavefrontObject dieselgen = new HFRWavefrontObject(RefStrings.loc("models/machines/dieselgen.obj"));
 	public static final ResourceLocation dieselgen_tex = RefStrings.loc("textures/models/machines/dieselgen.png");
 	public static final ResourceLocation wood_burner_tex = RefStrings.loc("textures/models/machines/wood_burner.png");
+	public static final HFRWavefrontObject assembly_machine = new HFRWavefrontObject(RefStrings.loc("models/machines/assembly_machine.obj"));
+	public static final ResourceLocation assembly_machine_tex = RefStrings.loc("textures/models/machines/assembly_machine.png");
 }

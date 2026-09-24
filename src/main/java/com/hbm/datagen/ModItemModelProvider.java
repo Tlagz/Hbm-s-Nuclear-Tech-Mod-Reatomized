@@ -20,6 +20,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 	protected void registerModels() {
 		ModItems.FLAT_MODELS.forEach(this::flat);
 		ModItems.LAYERED_MODELS.forEach(this::layered);
+		blueprints();
+	}
+
+	/** Blueprint texture by pool type (ItemBlueprints.poolType): regular, discover, secret, 528 */
+	private void blueprints() {
+		String[] suffixes = { "_discover", "_secret", "_528" };
+		var base = withExistingParent("blueprints", mcLoc("item/generated")).texture("layer0", texture("items/blueprints"));
+		for(int i = 0; i < suffixes.length; i++) {
+			var variant = withExistingParent("blueprints" + suffixes[i], mcLoc("item/generated")).texture("layer0", texture("items/blueprints" + suffixes[i]));
+			base.override().predicate(modLoc("pool"), i + 1).model(variant).end();
+		}
 	}
 
 	/** Flat item model using the original's texture location, textures/items/[name].png */

@@ -20,6 +20,7 @@
     "hbm:heater_firebox",
     "hbm:machine_boiler",
     "hbm:machine_refinery",
+    "hbm:machine_assembly_machine",
     "hbm:machine_press",
     "hbm:anvil_iron",
     "hbm:anvil_lead",

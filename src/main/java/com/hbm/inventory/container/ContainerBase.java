@@ -34,6 +34,15 @@ public abstract class ContainerBase<T extends TileEntityMachineBase> extends Abs
 		}
 	}
 
+	/** Several tile slots at a time (SlotNonRetarded), row by row */
+	protected void addSlots(net.minecraft.world.Container inv, int from, int x, int y, int rows, int cols) {
+		for(int row = 0; row < rows; row++) {
+			for(int col = 0; col < cols; col++) {
+				this.addSlot(new SlotNonRetarded(inv, col + row * cols + from, x + col * 18, y + row * 18));
+			}
+		}
+	}
+
 	protected boolean mergeItemStack(ItemStack stack, int start, int end, boolean reverse) {
 		return this.moveItemStackTo(stack, start, end, reverse);
 	}

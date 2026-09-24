@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/aluminum"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/aluminum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:dusts/aluminum"
+    },
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/aluminum"
+    }
+  },
+  "pattern": [
+    "IAI",
+    "W W"
+  ],
+  "result": {
+    "count": 2,
+    "id": "hbm:circuit_capacitor"
+  }
+}

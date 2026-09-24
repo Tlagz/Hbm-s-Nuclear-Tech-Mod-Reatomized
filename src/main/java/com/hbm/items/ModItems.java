@@ -6,6 +6,8 @@ import java.util.function.Function;
 
 import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.items.ItemGenericPart.EnumPartType;
+import com.hbm.items.machine.ItemCircuit.EnumCircuitType;
 import com.hbm.items.machine.ItemBattery;
 import com.hbm.items.machine.ItemBatteryCreative;
 import com.hbm.items.machine.ItemCanister;
@@ -794,6 +796,14 @@ public class ModItems {
 	public static final DeferredItem<ItemInfiniteFluid> inf_water = fluidItem("inf_water", p -> new ItemInfiniteFluid(p.stacksTo(1), Fluids.WATER, 50), fluid_barrel_infinite, NtmTab.CONTROL, "items/inf_water");
 	public static final DeferredItem<ItemFluidIDMulti> fluid_identifier_multi = fluidItem("fluid_identifier_multi", p -> new ItemFluidIDMulti(p.stacksTo(1)), null, NtmTab.TEMPLATE, "items/fluid_identifier_multi", "items/fluid_identifier_overlay");
 
+	/// PARTS (TODO item_expensive's "Expensive mode item" tooltip) ///
+	public static final ItemEnumMulti.Variants<EnumCircuitType> circuit = multi("circuit", "circuit", EnumCircuitType.class, true, true, NtmTab.PARTS, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumPartType> part_generic = multi("part_generic", "part_generic", EnumPartType.class, true, part -> "items/" + part.texName, NtmTab.PARTS, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumExpensiveType> item_expensive = multi("item_expensive", "item_expensive", EnumExpensiveType.class, true, true, NtmTab.PARTS, new Item.Properties());
+
+	/** Unlocks pooled recipes of generic recipe machines, the model picks the texture by the pool (item property "hbm:pool") */
+	public static final DeferredItem<com.hbm.items.machine.ItemBlueprints> blueprints = register("blueprints", com.hbm.items.machine.ItemBlueprints::new, new Item.Properties(), NtmTab.TEMPLATE);
+
 	static {
 		FLAT_MODELS.put(dosimeter, "items/dosimeter");
 		FLAT_MODELS.put(geiger_counter, "items/geiger_counter");
@@ -847,6 +857,11 @@ public class ModItems {
 	 * the original had one texture per value (multiTexture), items/[name] otherwise.
 	 */
 	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, boolean multiTexture, NtmTab tab, Item.Properties props) {
+		return multi(name, originalName, theEnum, multiName, value -> "items/" + name + (multiTexture ? "." + value.name().toLowerCase(java.util.Locale.US) : ""), tab, props);
+	}
+
+	/** ItemEnumMulti with custom texture names per variant (the original's overridden registerIcons) */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, Function<E, String> texture, NtmTab tab, Item.Properties props) {
 		ItemEnumMulti.Variants<E> variants = new ItemEnumMulti.Variants<>(name, theEnum);
 		E[] order = theEnum.getEnumConstants();
 		if(order[0] instanceof com.hbm.interfaces.IOrderedEnum ordered) {
@@ -858,7 +873,7 @@ public class ModItems {
 			String descriptionId = "item.hbm." + originalName.toLowerCase() + (multiName ? "." + lower : "");
 			DeferredItem<ItemEnumMulti> item = register(ItemEnumMulti.Variants.variantName(name, value), p -> new ItemEnumMulti(p, descriptionId), props, tab);
 			variants.put(value, item);
-			FLAT_MODELS.put(item, "items/" + name + (multiTexture ? "." + lower : ""));
+			FLAT_MODELS.put(item, texture.apply(value));
 		}
 		return variants;
 	}

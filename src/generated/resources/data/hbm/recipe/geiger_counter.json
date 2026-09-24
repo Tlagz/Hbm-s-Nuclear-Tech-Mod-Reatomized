@@ -1,0 +1,70 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_rubber"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/beryllium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/beryllium"
+    },
+    "C": {
+      "item": "hbm:circuit_basic"
+    },
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "P": {
+      "tag": "c:ingots/any_rubber"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/gold"
+    }
+  },
+  "pattern": [
+    "GPP",
+    "WCS",
+    "WBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:geiger_counter"
+  }
+}

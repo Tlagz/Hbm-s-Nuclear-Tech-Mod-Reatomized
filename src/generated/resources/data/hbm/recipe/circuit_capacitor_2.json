@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/niobium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/copper"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "N": {
+      "tag": "c:nuggets/niobium"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/copper"
+    }
+  },
+  "pattern": [
+    "I",
+    "N",
+    "W"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:circuit_capacitor"
+  }
+}

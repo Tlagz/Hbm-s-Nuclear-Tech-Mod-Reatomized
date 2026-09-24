@@ -36,6 +36,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
 		event.register(ModMenus.PRESS.get(), com.hbm.inventory.gui.GUIMachinePress::new);
 		event.register(ModMenus.ANVIL.get(), com.hbm.inventory.gui.GUIAnvil::new);
+		event.register(ModMenus.ASSEMBLY_MACHINE.get(), com.hbm.inventory.gui.GUIMachineAssemblyMachine::new);
 	}
 
 	@SubscribeEvent
@@ -47,6 +48,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
 		event.registerBlockEntityRenderer(ModTileEntities.REFINERY.get(), com.hbm.render.tileentity.RenderRefinery::new);
 		event.registerBlockEntityRenderer(ModTileEntities.PRESS.get(), com.hbm.render.tileentity.RenderPress::new);
+		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_MACHINE.get(), com.hbm.render.tileentity.RenderAssemblyMachine::new);
 	}
 
 	@SubscribeEvent
@@ -58,6 +60,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_refinery.get().asItem(), com.hbm.render.tileentity.RenderRefinery.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_press.get().asItem(), com.hbm.render.tileentity.RenderPress.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_machine.get().asItem(), com.hbm.render.tileentity.RenderAssemblyMachine.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override
@@ -95,6 +98,9 @@ public class ModEventHandlerClientMod {
 			// item model overrides pick the pipe texture by the placed style
 			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.blocks.ModBlocks.fluid_duct_neo.get().asItem(), com.hbm.lib.RefStrings.loc("style"),
 					(stack, level, entity, seed) -> com.hbm.items.block.ItemBlockStyled.getValue(stack, com.hbm.blocks.network.FluidDuctStandard.STYLE));
+			// blueprint texture by pool type
+			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.items.ModItems.blueprints.get(), com.hbm.lib.RefStrings.loc("pool"),
+					(stack, level, entity, seed) -> com.hbm.items.machine.ItemBlueprints.poolType(stack));
 		});
 	}
 

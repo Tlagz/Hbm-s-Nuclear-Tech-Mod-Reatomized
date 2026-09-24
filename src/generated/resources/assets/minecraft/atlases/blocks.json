@@ -4250,6 +4250,154 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/circuit.vacuum_tube"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.numitron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.capacitor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.capacitor_tantalium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.atomic_clock"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.pcb"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.silicon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.chip"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.chip_bismoid"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.chip_quantum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.analog"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.basic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.advanced"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.capacitor_board"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.bismoid"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.quantum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.crystal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.controller_chassis"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.controller"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.controller_advanced"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/circuit.controller_quantum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_pneumatic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_hydraulic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_electric"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/low_density_element"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/heavy_duty_element"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/glass_polarized"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.steel_plating"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.heavy_frame"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.lead_plating"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.ferro_plating"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.computer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.bronze_tubes"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.plastic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.gold_dust"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/item_expensive.degenerate_matter"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {
@@ -4299,6 +4447,22 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/fluid_identifier_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blueprints"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blueprints_discover"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blueprints_secret"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blueprints_528"
     }
   ]
 }

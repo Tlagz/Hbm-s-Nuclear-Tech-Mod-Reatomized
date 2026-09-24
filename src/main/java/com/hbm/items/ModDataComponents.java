@@ -29,6 +29,10 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE = COMPONENTS.registerComponentType("fluid_type",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
 
+	/** Blueprint pool of a blueprint item (the original's "pool" NBT string) */
+	public static final Supplier<DataComponentType<String>> BLUEPRINT_POOL = COMPONENTS.registerComponentType("blueprint_pool",
+			builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
+
 	/** Secondary fluid of the multi fluid identifier (the original's "fluid2" NBT) */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE_SECONDARY = COMPONENTS.registerComponentType("fluid_type_secondary",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));

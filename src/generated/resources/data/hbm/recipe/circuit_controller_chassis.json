@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:circuit_pcb"
+    },
+    "C": {
+      "item": "hbm:crt_display"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "CBB",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:circuit_controller_chassis"
+  }
+}

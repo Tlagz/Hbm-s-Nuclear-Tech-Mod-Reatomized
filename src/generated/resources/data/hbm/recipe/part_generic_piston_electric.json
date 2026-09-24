@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_resistant_alloy"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:ingots/any_plastic"
+    },
+    "I": {
+      "tag": "c:ingots/any_resistant_alloy"
+    },
+    "P": {
+      "item": "hbm:motor"
+    }
+  },
+  "pattern": [
+    " I ",
+    "CPC",
+    " I "
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:part_generic_piston_electric"
+  }
+}

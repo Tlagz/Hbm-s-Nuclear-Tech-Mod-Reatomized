@@ -1,0 +1,43 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/copper"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/iron"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "hbm:circuit_analog"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    },
+    "P": {
+      "item": "hbm:plate_polymer"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/copper"
+    }
+  },
+  "pattern": [
+    "WIW",
+    "PCP",
+    "WIW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:upgrade_template"
+  }
+}

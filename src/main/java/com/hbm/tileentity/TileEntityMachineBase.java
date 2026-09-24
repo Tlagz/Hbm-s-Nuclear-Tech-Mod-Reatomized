@@ -148,7 +148,8 @@ public abstract class TileEntityMachineBase extends TileEntityLoadedBase impleme
 	protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
 		super.loadAdditional(nbt, registries);
 		// same layout as the original ("items" list with a "slot" byte per entry)
-		slots = NonNullList.withSize(slots.size(), ItemStack.EMPTY);
+		// cleared in place, machine modules (ModuleMachineBase) hold on to the list
+		for(int i = 0; i < slots.size(); i++) slots.set(i, ItemStack.EMPTY);
 		ListTag list = nbt.getList("items", Tag.TAG_COMPOUND);
 		for(int i = 0; i < list.size(); i++) {
 			CompoundTag entry = list.getCompound(i);

@@ -58,6 +58,9 @@ public class ModMenus {
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachinePress>> PRESS =
 			tile("machine_press", com.hbm.tileentity.machine.TileEntityMachinePress.class, ContainerMachinePress::new);
 
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineAssemblyMachine>> ASSEMBLY_MACHINE =
+			tile("machine_assembly_machine", com.hbm.tileentity.machine.TileEntityMachineAssemblyMachine.class, com.hbm.inventory.container.ContainerMachineAssemblyMachine::new);
+
 	/** The anvil has no block entity, its tier comes with the menu */
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerAnvil>> ANVIL = MENUS.register("anvil",
 			() -> IMenuTypeExtension.create((int id, Inventory inv, RegistryFriendlyByteBuf buf) -> new ContainerAnvil(id, inv, buf.readInt())));

@@ -107,6 +107,26 @@ public abstract class GuiInfoContainer<T extends AbstractContainerMenu> extends 
 		graphics.setColor(1F, 1F, 1F, 1F);
 	}
 
+	/** renderTank with the original's orientation 1: fills from the left edge to the right. y is the bottom edge. */
+	public void renderTankHorizontal(GuiGraphics graphics, FluidTank tank, int x, int y, int width, int height) {
+		if(tank.getMaxFill() <= 0 || tank.getFill() <= 0) return;
+
+		int filled = tank.getFill() * width / tank.getMaxFill();
+		int color = tank.getTankType().getTint();
+		graphics.setColor(((color >> 16) & 0xFF) / 255F, ((color >> 8) & 0xFF) / 255F, (color & 0xFF) / 255F, 1F);
+
+		ResourceLocation texture = tank.getTankType().getTexture();
+		for(int dx = 0; dx < filled; dx += 16) {
+			int w = Math.min(16, filled - dx);
+			for(int dy = 0; dy < height; dy += 16) {
+				int h = Math.min(16, height - dy);
+				graphics.blit(texture, x + dx, y - height + dy, 0, 0, w, h, 16, 16);
+			}
+		}
+
+		graphics.setColor(1F, 1F, 1F, 1F);
+	}
+
 	/** The original's FluidTank.renderTankInfo, the hover tooltip with type, fill and fluid traits */
 	public void renderTankInfo(GuiGraphics graphics, FluidTank tank, int mouseX, int mouseY, int x, int y, int width, int height) {
 		if(x <= mouseX && x + width > mouseX && y < mouseY && y + height >= mouseY) {

@@ -133,7 +133,7 @@ import com.hbm.inventory.recipes.anvil.AnvilRecipes.OverlayType;
 import com.hbm.inventory.recipes.anvil.AnvilSmithingRecipe;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ModItems;
-
+%s
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -174,7 +174,8 @@ def generate():
 
 	os.makedirs(OUT_DIR, exist_ok=True)
 	with open(os.path.join(OUT_DIR, 'GenAnvilRecipes.java'), 'w', encoding='utf-8', newline='\n') as f:
-		f.write(HEADER % (len(smithing), len(construction), sum(skipped.values()), '\n'.join(smithing), '\n'.join(construction)))
+		imports = g.enum_import_lines(sym, '\n'.join(smithing + construction))
+		f.write(HEADER % (imports, len(smithing), len(construction), sum(skipped.values()), '\n'.join(smithing), '\n'.join(construction)))
 	print('smithing %d, construction %d, skipped %d' % (len(smithing), len(construction), sum(skipped.values())))
 	blockers = Counter()
 	for r, n in skipped.items():

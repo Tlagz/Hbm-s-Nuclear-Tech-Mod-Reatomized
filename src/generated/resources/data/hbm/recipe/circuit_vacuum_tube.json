@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:glass_panes"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/tungsten"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/tungsten"
+    }
+  },
+  "pattern": [
+    "G",
+    "W",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:circuit_vacuum_tube"
+  }
+}

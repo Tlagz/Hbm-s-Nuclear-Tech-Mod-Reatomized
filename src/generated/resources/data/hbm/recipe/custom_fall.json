@@ -1,0 +1,53 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_rubber"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/saturnite"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:shells/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "hbm:circuit_advanced"
+    },
+    "H": {
+      "tag": "hbm:shells/steel"
+    },
+    "I": {
+      "tag": "c:ingots/any_rubber"
+    },
+    "P": {
+      "tag": "c:plates/saturnite"
+    },
+    "W": {
+      "item": "hbm:coil_copper"
+    }
+  },
+  "pattern": [
+    "IIP",
+    "CHW",
+    "IIP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:custom_fall"
+  }
+}

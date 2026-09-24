@@ -142,7 +142,7 @@ def split_top(s, sep=','):
 	return parts
 
 def method_body(src, name):
-	m = re.search(r'(?:public|private|protected)?\s*static\s+void\s+' + name + r'\s*\(\s*\)\s*\{', src)
+	m = re.search(r'(?:public|private|protected)?\s*(?:static\s+)?void\s+' + name + r'\s*\(\s*\)\s*\{', src)
 	if not m: raise ValueError('no method ' + name)
 	start = m.end() - 1
 	return src[start + 1:match_close(src, start, '{', '}')]
@@ -162,6 +162,18 @@ def load_symbols():
 	for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', enums):
 		body = m.group(2).split(';')[0]
 		sym['enums'][m.group(1)] = set(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M))
+	# enums declared in other item classes (e.g. ItemCircuit.EnumCircuitType), generated files import them
+	sym['enum_imports'] = {}
+	for dirpath, _, files in os.walk(os.path.join(PORT, 'items')):
+		for f in files:
+			if not f.endswith('.java') or f == 'ItemEnums.java': continue
+			src = read(os.path.join(dirpath, f))
+			pkg = re.search(r'package ([\w.]+);', src).group(1)
+			for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', src):
+				if m.group(1) in sym['enums']: continue
+				body = m.group(2).split(';')[0]
+				sym['enums'][m.group(1)] = set(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M))
+				sym['enum_imports'][m.group(1)] = '%s.%s.%s' % (pkg, f[:-5], m.group(1))
 	sym['mc_items'] = set(re.findall(r'public static final Item (\w+) =', read(os.path.join(NF, 'world', 'item', 'Items.java'))))
 	sym['mc_tags'] = set(re.findall(r'public static final TagKey<Item> (\w+) =', read(os.path.join(NF, 'tags', 'ItemTags.java'))))
 	return sym
@@ -380,7 +392,7 @@ import static com.hbm.inventory.OreDictManager.*;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ModItems;
-
+%s
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -396,6 +408,11 @@ public class Gen%s {
 	}
 }
 '''
+
+def enum_import_lines(sym, body):
+	"""import lines for the non-ItemEnums enums used in a generated body"""
+	used = sorted(path for name, path in sym['enum_imports'].items() if re.search(r'\b%s\.' % name, body))
+	return ''.join('import %s;\n' % p for p in used)
 
 def generate():
 	sym = load_symbols()
@@ -417,7 +434,7 @@ def generate():
 			walk(method_body(src, method), emit, stats)
 		skipped = sum(stats['skipped'].values())
 		with open(os.path.join(OUT, 'Gen%s.java' % name), 'w', encoding='utf-8', newline='\n') as f:
-			f.write(HEADER % (name, len(lines), skipped, name, '\n'.join(lines)))
+			f.write(HEADER % (enum_import_lines(sym, '\n'.join(lines)), name, len(lines), skipped, name, '\n'.join(lines)))
 		print('%-18s %4d generated, %4d skipped' % (name, len(lines), skipped))
 		total_ok += len(lines); all_skipped.update(stats['skipped'])
 	print('total: %d generated, %d skipped' % (total_ok, sum(all_skipped.values())))

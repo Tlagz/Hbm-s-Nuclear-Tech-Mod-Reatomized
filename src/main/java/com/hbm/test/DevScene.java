@@ -34,6 +34,7 @@ public class DevScene {
 	static BlockPos furnacePos;
 	static BlockPos burnerPos;
 	static BlockPos barrelPos;
+	static BlockPos assemblerPos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -49,6 +50,12 @@ public class DevScene {
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
 		}
+		// third world screenshot: the running assembly machine
+		if(serverTicks == 188 && assemblerPos != null) {
+			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+				player.teleportTo(player.serverLevel(), -0.5, -56.3, -10.5, -37F, 30F);
+			}
+		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
 		if(serverTicks == 300) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
@@ -57,7 +64,7 @@ public class DevScene {
 						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
 			}
 		}
-		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : serverTicks == 275 ? barrelPos : null;
+		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : serverTicks == 275 ? barrelPos : serverTicks == 335 ? assemblerPos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -189,6 +196,18 @@ public class DevScene {
 			}
 		}
 
+		// assembly machine next to the press, making hazmat cloth
+		{
+			assemblerPos = ModBlocks.machine_assembly_machine.get().placeMultiblock(level, origin.offset(2, 1, -8), net.minecraft.core.Direction.NORTH);
+			if(assemblerPos != null && level.getBlockEntity(assemblerPos) instanceof com.hbm.tileentity.machine.TileEntityMachineAssemblyMachine assembler) {
+				assembler.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+				assembler.setItem(1, com.hbm.items.machine.ItemBlueprints.make(com.hbm.inventory.recipes.loader.GenericRecipes.POOL_PREFIX_ALT + "plates"));
+				assembler.assemblerModule.setRecipe("ass.hazcloth", false);
+				assembler.setItem(4, new ItemStack(ModItems.powder_lead.get(), 64));
+				assembler.setItem(5, new ItemStack(net.minecraft.world.item.Items.STRING, 64));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -234,7 +253,7 @@ public class DevScene {
 			// screenshots must not catch the pause menu when the window is in the background
 			mc.options.pauseOnLostFocus = false;
 
-			if(ticks == 150 || ticks == 185) {
+			if(ticks == 150 || ticks == 185 || ticks == 202) {
 				if(mc.screen != null) mc.setScreen(null);
 				Screenshot.grab(mc.gameDirectory, "devscene_world_" + ticks + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
@@ -266,14 +285,27 @@ public class DevScene {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_anvil.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
+			// assembly machine GUI, then its recipe selector (the blueprint unlocks the plates)
+			if(ticks == 360) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_assembler.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+			if(ticks == 365 && mc.screen instanceof com.hbm.inventory.gui.GUIMachineAssemblyMachine gui && assemblerPos != null) {
+				var module = gui.getMenu().tile.assemblerModule;
+				com.hbm.inventory.gui.GUIScreenRecipeSelector.openSelector(module.getRecipeSet(), assemblerPos, module.getRecipeName(), 0,
+						com.hbm.items.machine.ItemBlueprints.grabPool(gui.getMenu().tile.getItem(1)), gui);
+			}
+			if(ticks == 375) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_recipe_selector.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 340 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 355 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 390 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 405 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 340 + tabs.length * 20) {
+			if(ticks == 390 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

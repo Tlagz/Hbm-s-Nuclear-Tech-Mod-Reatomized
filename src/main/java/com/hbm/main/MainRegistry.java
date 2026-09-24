@@ -65,6 +65,9 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.RefineryRecipes.registerDefaults();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
+			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();
+			com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.initialize();
+			logger.info("Assembly machine recipes: " + com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.recipeOrderedList.size());
 		});
 	}
 }

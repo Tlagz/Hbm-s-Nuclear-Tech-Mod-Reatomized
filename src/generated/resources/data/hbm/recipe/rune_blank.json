@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/starmetal"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "hbm:circuit_bismoid"
+    },
+    "P": {
+      "item": "hbm:powder_magic"
+    },
+    "S": {
+      "tag": "c:ingots/starmetal"
+    }
+  },
+  "pattern": [
+    "PSP",
+    "SDS",
+    "PSP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:rune_blank"
+  }
+}
