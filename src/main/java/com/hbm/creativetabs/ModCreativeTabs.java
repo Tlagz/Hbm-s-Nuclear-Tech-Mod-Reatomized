@@ -43,7 +43,11 @@ public class ModCreativeTabs {
 		BY_TAB.put(tab, TABS.register(tab.name().toLowerCase(), () -> CreativeModeTab.builder()
 				.title(Component.translatable("itemGroup." + tab.legacyName))
 				.icon(() -> new ItemStack(icon.get()))
-				.displayItems((params, output) -> tab.entries.forEach(e -> output.accept(e.get())))
+				.displayItems((params, output) -> tab.entries.forEach(e -> {
+					// items with subtypes (fluid containers etc.) list one stack per type like the original's getSubItems
+					if(e.get().asItem() instanceof com.hbm.items.ISubItems sub) sub.getSubItems().forEach(output::accept);
+					else output.accept(e.get());
+				}))
 				.build()));
 	}
 }

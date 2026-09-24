@@ -37,7 +37,7 @@ import net.minecraft.world.phys.AABB;
  * Burns furnace fuels (logs and wood burn longer) or flammable fluids for 100 HE/t.
  * Slots: 0 fuel, 1 ash, 2 fluid identifier, 3/4 fluid container in/out, 5 battery.
  *
- * TODO fluid identifier / container slots (fluid items not ported), config, EnergyControl info
+ * TODO config, EnergyControl info
  */
 public class TileEntityMachineWoodBurner extends TileEntityMachineBase implements IFluidStandardReceiverMK2, IControlReceiver, IEnergyProviderMK2, MenuProvider {
 
@@ -79,6 +79,8 @@ public class TileEntityMachineWoodBurner extends TileEntityMachineBase implement
 			powerGen = 0;
 
 			this.power = Library.chargeItemsFromTE(slots, 5, power, maxPower);
+			this.tank.setType(2, slots);
+			this.tank.loadTank(3, 4, slots);
 
 			for(DirPos pos : getConPos()) {
 				if(power > 0) this.tryProvide(level, pos, pos.getDir());

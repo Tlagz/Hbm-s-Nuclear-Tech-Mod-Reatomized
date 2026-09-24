@@ -59,6 +59,8 @@ public class MainRegistry {
 			OreDictManager.registerOres();
 			HazardRegistry.registerItems();
 			Fluids.reloadFluids();
+			// after the fluids (custom ones included) and all items exist
+			com.hbm.inventory.FluidContainerRegistry.register();
 		});
 	}
 }

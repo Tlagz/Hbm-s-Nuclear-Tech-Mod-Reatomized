@@ -1,16 +1,30 @@
 package com.hbm.inventory.fluid.tank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.hbm.inventory.FluidStack;
 import com.hbm.inventory.fluid.FluidType;
 import com.hbm.inventory.fluid.Fluids;
+import com.hbm.items.ModItems;
+import com.hbm.items.machine.IItemFluidIdentifier;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
 
 public class FluidTank implements Cloneable {
 	
 	public static final FluidTank[] EMPTY_ARRAY = new FluidTank[0];
+
+	public static final List<FluidLoadingHandler> loadingHandlers = new ArrayList<FluidLoadingHandler>();
+
+	static {
+		loadingHandlers.add(new FluidLoaderStandard());
+		loadingHandlers.add(new FluidLoaderFillableItem());
+		loadingHandlers.add(new FluidLoaderInfinite());
+	}
 
 	protected FluidType type;
 	protected int fluid;
@@ -67,8 +81,74 @@ public class FluidTank implements Cloneable {
 		return 0;
 	}
 	
-	// TODO loadTank/unloadTank/setType (filling tanks from canisters and fluid identifiers) come back with the
-	//  fluid container items, renderTank/renderTankInfo with the GUI system (phase 3)
+	//Fills tank from canisters
+	public boolean loadTank(int in, int out, List<ItemStack> slots) {
+		if(slots.get(in).isEmpty()) return false;
+
+		boolean isInfiniteBarrel = slots.get(in).is(ModItems.fluid_barrel_infinite.get());
+		if(!isInfiniteBarrel && pressure != 0) return false;
+
+		int prev = this.getFill();
+
+		for(FluidLoadingHandler handler : loadingHandlers) {
+			if(handler.emptyItem(slots, in, out, this)) {
+				break;
+			}
+		}
+
+		return this.getFill() > prev;
+	}
+
+	//Fills canisters from tank
+	public boolean unloadTank(int in, int out, List<ItemStack> slots) {
+		if(slots.get(in).isEmpty()) return false;
+
+		int prev = this.getFill();
+
+		for(FluidLoadingHandler handler : loadingHandlers) {
+			if(handler.fillItem(slots, in, out, this)) {
+				break;
+			}
+		}
+
+		return this.getFill() < prev;
+	}
+
+	public boolean setType(int in, List<ItemStack> slots) {
+		return setType(in, in, slots);
+	}
+
+	/**
+	 * Changes the tank type to the one of the fluid identifier in slot "in" and returns true if successful.
+	 * With in != out the identifier is moved to the "out" slot.
+	 */
+	public boolean setType(int in, int out, List<ItemStack> slots) {
+
+		if(!slots.get(in).isEmpty() && slots.get(in).getItem() instanceof IItemFluidIdentifier id) {
+
+			if(in == out) {
+				FluidType newType = id.getType(null, null, slots.get(in));
+
+				if(type != newType) {
+					type = newType;
+					fluid = 0;
+					return true;
+				}
+
+			} else if(slots.get(out).isEmpty()) {
+				FluidType newType = id.getType(null, null, slots.get(in));
+				if(type != newType) {
+					type = newType;
+					slots.set(out, slots.get(in).copy());
+					slots.set(in, ItemStack.EMPTY);
+					fluid = 0;
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 
 	//Called by TE to save fillstate
 	public void writeToNBT(CompoundTag nbt, String s) {

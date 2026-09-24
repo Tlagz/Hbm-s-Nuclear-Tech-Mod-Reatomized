@@ -8,6 +8,12 @@ import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.machine.ItemBattery;
 import com.hbm.items.machine.ItemBatteryCreative;
+import com.hbm.items.machine.ItemCanister;
+import com.hbm.items.machine.ItemFluidIDMulti;
+import com.hbm.items.machine.ItemFluidTank;
+import com.hbm.items.machine.ItemGasTank;
+import com.hbm.items.machine.ItemInfiniteFluid;
+import com.hbm.inventory.fluid.Fluids;
 import com.hbm.items.tool.ItemDosimeter;
 import com.hbm.items.tool.ItemGeigerCounter;
 import com.hbm.lib.RefStrings;
@@ -25,6 +31,8 @@ public class ModItems {
 
 	/** Items with a plain flat model, item -> texture path (e.g. "items/ingot_uranium"), used by datagen */
 	public static final Map<DeferredItem<?>, String> FLAT_MODELS = new LinkedHashMap<>();
+	/** Items with several tinted layers (layer0, layer1...), used by datagen, tints come from the item color handler */
+	public static final Map<DeferredItem<?>, String[]> LAYERED_MODELS = new LinkedHashMap<>();
 
 	/// HAND-PORTED ///
 	public static final DeferredItem<ItemDosimeter> dosimeter = register("dosimeter", ItemDosimeter::new, new Item.Properties().stacksTo(1), NtmTab.CONSUMABLE);
@@ -708,12 +716,31 @@ public class ModItems {
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
 
+	/// FLUID CONTAINERS (the fluid is the FLUID_TYPE component, the original's damage value) ///
+	public static final DeferredItem<ItemCanister> canister_full = fluidItem("canister_full", p -> new ItemCanister(p.craftRemainder(canister_empty.get())), canister_empty, NtmTab.CONTROL, "items/canister_empty", "items/canister_overlay");
+	public static final DeferredItem<ItemGasTank> gas_full = fluidItem("gas_full", p -> new ItemGasTank(p.craftRemainder(gas_empty.get())), gas_empty, NtmTab.CONTROL, "items/gas_empty", "items/gas_bottle", "items/gas_label");
+	public static final DeferredItem<ItemFluidTank> fluid_tank_full = fluidItem("fluid_tank_full", p -> new ItemFluidTank(p.craftRemainder(fluid_tank_empty.get())), fluid_tank_empty, NtmTab.CONTROL, "items/fluid_tank", "items/fluid_tank_overlay");
+	public static final DeferredItem<ItemFluidTank> fluid_tank_lead_full = fluidItem("fluid_tank_lead_full", p -> new ItemFluidTank(p.craftRemainder(fluid_tank_lead_empty.get())), fluid_tank_lead_empty, NtmTab.CONTROL, "items/fluid_tank_lead", "items/fluid_tank_lead_overlay");
+	public static final DeferredItem<ItemFluidTank> fluid_barrel_full = fluidItem("fluid_barrel_full", p -> new ItemFluidTank(p.craftRemainder(fluid_barrel_empty.get())), fluid_barrel_empty, NtmTab.CONTROL, "items/fluid_barrel", "items/fluid_barrel_overlay");
+	public static final DeferredItem<ItemInfiniteFluid> fluid_barrel_infinite = fluidItem("fluid_barrel_infinite", p -> new ItemInfiniteFluid(p.stacksTo(1), null, 1_000_000_000), fluid_barrel_full, NtmTab.CONTROL, "items/fluid_barrel_infinite");
+	public static final DeferredItem<ItemInfiniteFluid> inf_water = fluidItem("inf_water", p -> new ItemInfiniteFluid(p.stacksTo(1), Fluids.WATER, 50), fluid_barrel_infinite, NtmTab.CONTROL, "items/inf_water");
+	public static final DeferredItem<ItemFluidIDMulti> fluid_identifier_multi = fluidItem("fluid_identifier_multi", p -> new ItemFluidIDMulti(p.stacksTo(1)), null, NtmTab.TEMPLATE, "items/fluid_identifier_multi", "items/fluid_identifier_overlay");
+
 	static {
 		FLAT_MODELS.put(dosimeter, "items/dosimeter");
 		FLAT_MODELS.put(geiger_counter, "items/geiger_counter");
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");
+	}
+
+	/** Hand-ported item placed in the tab after "after" (or appended), with a flat or layered model */
+	private static <T extends Item> DeferredItem<T> fluidItem(String name, Function<Item.Properties, T> factory, DeferredItem<?> after, NtmTab tab, String... layers) {
+		DeferredItem<T> item = register(name, factory, new Item.Properties(), null);
+		if(after != null) tab.addAfter(item, after); else tab.add(item);
+		if(layers.length == 1) FLAT_MODELS.put(item, layers[0]);
+		else LAYERED_MODELS.put(item, layers);
+		return item;
 	}
 
 	public static DeferredItem<Item> register(String name, NtmTab tab) {

@@ -4,6 +4,7 @@ import com.hbm.lib.RefStrings;
 import com.hbm.packet.toclient.BufPacket;
 import com.hbm.packet.toclient.ExtPropPacket;
 import com.hbm.packet.toserver.NBTControlPacket;
+import com.hbm.packet.toserver.NBTItemControlPacket;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -23,5 +24,6 @@ public class PacketDispatcher {
 		registrar.playToClient(ExtPropPacket.TYPE, ExtPropPacket.STREAM_CODEC, ExtPropPacket::handle);
 		registrar.playToClient(BufPacket.TYPE, BufPacket.STREAM_CODEC, BufPacket::handle);
 		registrar.playToServer(NBTControlPacket.TYPE, NBTControlPacket.STREAM_CODEC, NBTControlPacket::handle);
+		registrar.playToServer(NBTItemControlPacket.TYPE, NBTItemControlPacket.STREAM_CODEC, NBTItemControlPacket::handle);
 	}
 }

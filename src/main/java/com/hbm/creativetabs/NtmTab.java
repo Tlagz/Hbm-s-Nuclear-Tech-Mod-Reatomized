@@ -32,4 +32,11 @@ public enum NtmTab {
 	public void add(Supplier<? extends ItemLike> entry) {
 		entries.add(entry);
 	}
+
+	/** Keeps the original's tab order for hand-ported items, e.g. a full container right after its empty one */
+	public void addAfter(Supplier<? extends ItemLike> entry, Supplier<? extends ItemLike> after) {
+		int index = entries.indexOf(after);
+		if(index < 0) entries.add(entry);
+		else entries.add(index + 1, entry);
+	}
 }

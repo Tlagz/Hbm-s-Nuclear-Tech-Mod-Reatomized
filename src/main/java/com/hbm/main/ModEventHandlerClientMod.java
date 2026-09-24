@@ -49,6 +49,16 @@ public class ModEventHandlerClientMod {
 		for(var block : ModBlocks.TILE_RENDERED.keySet()) event.registerItem(extension, block.get().asItem());
 	}
 
+	/** Tinted layers of fluid containers, the original's getColorFromItemStack(stack, pass) */
+	@SubscribeEvent
+	public static void registerItemColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Item event) {
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemCanister.getColor(stack, tint), com.hbm.items.ModItems.canister_full.get());
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemGasTank.getColor(stack, tint), com.hbm.items.ModItems.gas_full.get());
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidTank.getColor(stack, tint),
+				com.hbm.items.ModItems.fluid_tank_full.get(), com.hbm.items.ModItems.fluid_tank_lead_full.get(), com.hbm.items.ModItems.fluid_barrel_full.get());
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIDMulti.getColor(stack, tint), com.hbm.items.ModItems.fluid_identifier_multi.get());
+	}
+
 	/** OBJ models are parsed lazily, drop them when resource packs change */
 	@SubscribeEvent
 	public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {

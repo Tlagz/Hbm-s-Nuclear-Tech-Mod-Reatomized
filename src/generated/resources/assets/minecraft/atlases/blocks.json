@@ -3898,6 +3898,14 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/fluid_barrel_infinite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/inf_water"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {
@@ -3915,6 +3923,38 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/cube_power"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/canister_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gas_bottle"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/gas_label"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_tank_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_tank_lead_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_barrel_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_identifier_multi"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/fluid_identifier_overlay"
     }
   ]
 }
