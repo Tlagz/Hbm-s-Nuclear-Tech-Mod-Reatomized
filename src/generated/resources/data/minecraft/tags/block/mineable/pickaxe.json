@@ -20,6 +20,7 @@
     "hbm:heater_firebox",
     "hbm:machine_boiler",
     "hbm:machine_refinery",
+    "hbm:machine_press",
     "hbm:machine_electric_furnace_off",
     "hbm:structure_anchor",
     "hbm:ore_uranium",

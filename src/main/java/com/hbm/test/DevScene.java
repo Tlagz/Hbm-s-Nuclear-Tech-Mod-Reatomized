@@ -44,7 +44,7 @@ public class DevScene {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), burnerPos.getX() + 13.5, burnerPos.getY() + 1, burnerPos.getZ() - 13.5, 0F, 10F);
+				player.teleportTo(player.serverLevel(), 4.5, -59, -10.8, -20F, 25F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
@@ -157,6 +157,16 @@ public class DevScene {
 			if(fb != null && level.getBlockEntity(fb) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox heater) heater.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
 			if(bo != null && level.getBlockEntity(bo) instanceof com.hbm.tileentity.machine.TileEntityHeatBoiler boiler) { boiler.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.OIL); boiler.tanks[0].setFill(8000); }
 			ModBlocks.machine_refinery.get().placeMultiblock(level, origin.offset(12, 1, -5), N);
+		}
+
+		// burner press pressing iron plates
+		{
+			BlockPos pr = ModBlocks.machine_press.get().placeMultiblock(level, origin.offset(5, 1, -7), net.minecraft.core.Direction.NORTH);
+			if(pr != null && level.getBlockEntity(pr) instanceof com.hbm.tileentity.machine.TileEntityMachinePress press) {
+				press.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+				press.setItem(1, new ItemStack(ModItems.stamp_iron_plate.get()));
+				press.setItem(2, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 64));
+			}
 		}
 
 		// oil derrick

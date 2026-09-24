@@ -9,6 +9,7 @@ import com.hbm.tileentity.machine.storage.TileEntityBarrel;
 import com.hbm.tileentity.machine.TileEntityMachineWoodBurner;
 import com.hbm.tileentity.machine.TileEntityMachineDiesel;
 import com.hbm.tileentity.machine.TileEntityHeaterFirebox;
+import com.hbm.tileentity.machine.TileEntityMachinePress;
 import com.hbm.tileentity.machine.TileEntityHeatBoiler;
 import com.hbm.tileentity.machine.oil.TileEntityMachineOilWell;
 import com.hbm.tileentity.machine.oil.TileEntityMachineRefinery;
@@ -29,6 +30,9 @@ public class ModTileEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityCapacitor>> CAPACITOR = TILES.register("capacitor",
 			() -> BlockEntityType.Builder.of(TileEntityCapacitor::new, ModBlocks.capacitor_copper.get(), ModBlocks.capacitor_gold.get(),
 					ModBlocks.capacitor_niobium.get(), ModBlocks.capacitor_tantalium.get(), ModBlocks.capacitor_schrabidate.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachinePress>> PRESS = TILES.register("machine_press",
+			() -> BlockEntityType.Builder.of(TileEntityMachinePress::new, ModBlocks.machine_press.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityHeaterFirebox>> FIREBOX = TILES.register("heater_firebox",
 			() -> BlockEntityType.Builder.of(TileEntityHeaterFirebox::new, ModBlocks.heater_firebox.get()).build(null));

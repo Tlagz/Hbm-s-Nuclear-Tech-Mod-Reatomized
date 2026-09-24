@@ -63,6 +63,7 @@ public class MainRegistry {
 			// after the fluids (custom ones included) and all items exist
 			com.hbm.inventory.FluidContainerRegistry.register();
 			com.hbm.inventory.recipes.RefineryRecipes.registerDefaults();
+			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 		});
 	}
 }

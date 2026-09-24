@@ -20,6 +20,10 @@ public class ResourceManager {
 	public static final HFRWavefrontObject boiler = new HFRWavefrontObject(RefStrings.loc("models/machines/boiler.obj"));
 	public static final HFRWavefrontObject boiler_burst = new HFRWavefrontObject(RefStrings.loc("models/machines/boiler_burst.obj"));
 	public static final ResourceLocation boiler_tex = RefStrings.loc("textures/models/machines/boiler.png");
+	public static final HFRWavefrontObject press_body = new HFRWavefrontObject(RefStrings.loc("models/press_body.obj"));
+	public static final HFRWavefrontObject press_head = new HFRWavefrontObject(RefStrings.loc("models/press_head.obj"));
+	public static final ResourceLocation press_body_tex = RefStrings.loc("textures/models/press_body.png");
+	public static final ResourceLocation press_head_tex = RefStrings.loc("textures/models/press_head.png");
 	public static final HFRWavefrontObject refinery = new HFRWavefrontObject(RefStrings.loc("models/refinery.obj"));
 	public static final HFRWavefrontObject refinery_exploded = new HFRWavefrontObject(RefStrings.loc("models/refinery_exploded.obj"));
 	public static final ResourceLocation refinery_tex = RefStrings.loc("textures/models/refinery.png");

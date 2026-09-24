@@ -14,6 +14,8 @@ import com.hbm.items.machine.ItemFluidTank;
 import com.hbm.items.machine.ItemGasTank;
 import com.hbm.items.machine.ItemInfiniteFluid;
 import com.hbm.items.machine.ItemMachineUpgrade;
+import com.hbm.items.machine.ItemStamp;
+import com.hbm.items.machine.ItemStamp.StampType;
 import com.hbm.items.machine.ItemMachineUpgrade.UpgradeType;
 import com.hbm.inventory.fluid.Fluids;
 import com.hbm.items.tool.ItemDosimeter;
@@ -718,6 +720,40 @@ public class ModItems {
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
 
+	/// PRESS STAMPS ///
+	public static final DeferredItem<ItemStamp> stamp_stone_flat = stamp("stamp_stone_flat", 32, StampType.FLAT, "items/stamp_stone_flat");
+	public static final DeferredItem<ItemStamp> stamp_stone_plate = stamp("stamp_stone_plate", 32, StampType.PLATE, "items/stamp_stone_plate");
+	public static final DeferredItem<ItemStamp> stamp_stone_wire = stamp("stamp_stone_wire", 32, StampType.WIRE, "items/stamp_stone_wire");
+	public static final DeferredItem<ItemStamp> stamp_stone_circuit = stamp("stamp_stone_circuit", 32, StampType.CIRCUIT, "items/stamp_stone_circuit");
+	public static final DeferredItem<ItemStamp> stamp_iron_flat = stamp("stamp_iron_flat", 64, StampType.FLAT, "items/stamp_iron_flat");
+	public static final DeferredItem<ItemStamp> stamp_iron_plate = stamp("stamp_iron_plate", 64, StampType.PLATE, "items/stamp_iron_plate");
+	public static final DeferredItem<ItemStamp> stamp_iron_wire = stamp("stamp_iron_wire", 64, StampType.WIRE, "items/stamp_iron_wire");
+	public static final DeferredItem<ItemStamp> stamp_iron_circuit = stamp("stamp_iron_circuit", 64, StampType.CIRCUIT, "items/stamp_iron_circuit");
+	public static final DeferredItem<ItemStamp> stamp_steel_flat = stamp("stamp_steel_flat", 192, StampType.FLAT, "items/stamp_steel_flat");
+	public static final DeferredItem<ItemStamp> stamp_steel_plate = stamp("stamp_steel_plate", 192, StampType.PLATE, "items/stamp_steel_plate");
+	public static final DeferredItem<ItemStamp> stamp_steel_wire = stamp("stamp_steel_wire", 192, StampType.WIRE, "items/stamp_steel_wire");
+	public static final DeferredItem<ItemStamp> stamp_steel_circuit = stamp("stamp_steel_circuit", 192, StampType.CIRCUIT, "items/stamp_steel_circuit");
+	public static final DeferredItem<ItemStamp> stamp_titanium_flat = stamp("stamp_titanium_flat", 256, StampType.FLAT, "items/stamp_titanium_flat");
+	public static final DeferredItem<ItemStamp> stamp_titanium_plate = stamp("stamp_titanium_plate", 256, StampType.PLATE, "items/stamp_titanium_plate");
+	public static final DeferredItem<ItemStamp> stamp_titanium_wire = stamp("stamp_titanium_wire", 256, StampType.WIRE, "items/stamp_titanium_wire");
+	public static final DeferredItem<ItemStamp> stamp_titanium_circuit = stamp("stamp_titanium_circuit", 256, StampType.CIRCUIT, "items/stamp_titanium_circuit");
+	public static final DeferredItem<ItemStamp> stamp_obsidian_flat = stamp("stamp_obsidian_flat", 512, StampType.FLAT, "items/stamp_obsidian_flat");
+	public static final DeferredItem<ItemStamp> stamp_obsidian_plate = stamp("stamp_obsidian_plate", 512, StampType.PLATE, "items/stamp_obsidian_plate");
+	public static final DeferredItem<ItemStamp> stamp_obsidian_wire = stamp("stamp_obsidian_wire", 512, StampType.WIRE, "items/stamp_obsidian_wire");
+	public static final DeferredItem<ItemStamp> stamp_obsidian_circuit = stamp("stamp_obsidian_circuit", 512, StampType.CIRCUIT, "items/stamp_obsidian_circuit");
+	public static final DeferredItem<ItemStamp> stamp_desh_flat = stamp("stamp_desh_flat", 0, StampType.FLAT, "items/stamp_desh_flat");
+	public static final DeferredItem<ItemStamp> stamp_desh_plate = stamp("stamp_desh_plate", 0, StampType.PLATE, "items/stamp_desh_plate");
+	public static final DeferredItem<ItemStamp> stamp_desh_wire = stamp("stamp_desh_wire", 0, StampType.WIRE, "items/stamp_desh_wire");
+	public static final DeferredItem<ItemStamp> stamp_desh_circuit = stamp("stamp_desh_circuit", 0, StampType.CIRCUIT, "items/stamp_desh_circuit");
+	public static final DeferredItem<ItemStamp> stamp_357 = stamp("stamp_357", 1000, StampType.C357, "items/stamp_357");
+	public static final DeferredItem<ItemStamp> stamp_44 = stamp("stamp_44", 1000, StampType.C44, "items/stamp_44");
+	public static final DeferredItem<ItemStamp> stamp_9 = stamp("stamp_9", 1000, StampType.C9, "items/stamp_9");
+	public static final DeferredItem<ItemStamp> stamp_50 = stamp("stamp_50", 1000, StampType.C50, "items/stamp_50");
+	public static final DeferredItem<ItemStamp> stamp_desh_357 = stamp("stamp_desh_357", 0, StampType.C357, "items/stamp_357_desh");
+	public static final DeferredItem<ItemStamp> stamp_desh_44 = stamp("stamp_desh_44", 0, StampType.C44, "items/stamp_44_desh");
+	public static final DeferredItem<ItemStamp> stamp_desh_9 = stamp("stamp_desh_9", 0, StampType.C9, "items/stamp_9_desh");
+	public static final DeferredItem<ItemStamp> stamp_desh_50 = stamp("stamp_desh_50", 0, StampType.C50, "items/stamp_50_desh");
+
 	/// MACHINE UPGRADES (TODO ejector/stack/muffler upgrades, ItemMachineUpgrade subclasses) ///
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_1 = upgrade("upgrade_speed_1", UpgradeType.SPEED, 1, 1);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_2 = upgrade("upgrade_speed_2", UpgradeType.SPEED, 2, 1);
@@ -764,6 +800,13 @@ public class ModItems {
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");
+	}
+
+	/** Press stamp with a flat model, in the control tab like the original */
+	private static DeferredItem<ItemStamp> stamp(String name, int dura, StampType type, String texture) {
+		DeferredItem<ItemStamp> item = register(name, p -> new ItemStamp(p, dura, type), new Item.Properties(), NtmTab.CONTROL);
+		FLAT_MODELS.put(item, texture);
+		return item;
 	}
 
 	/** Machine upgrade with a flat model, in the control tab like the original */

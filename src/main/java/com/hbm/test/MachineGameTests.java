@@ -37,6 +37,22 @@ public class MachineGameTests {
 		});
 	}
 
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 400)
+	public static void pressMakesPlates(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 3));
+		ModBlocks.machine_press.get().placeMultiblock(helper.getLevel(), core, Direction.NORTH);
+		com.hbm.tileentity.machine.TileEntityMachinePress press = (com.hbm.tileentity.machine.TileEntityMachinePress) helper.getLevel().getBlockEntity(core);
+		press.setItem(0, new ItemStack(Items.COAL, 4));
+		press.setItem(1, new ItemStack(ModItems.stamp_iron_plate.get()));
+		press.setItem(2, new ItemStack(Items.IRON_INGOT, 3));
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(com.hbm.inventory.recipes.PressRecipes.recipes.size() > 10, "press recipes should be registered");
+			helper.assertTrue(press.getItem(3).is(ModItems.plate_iron.get()), "the press should make iron plates, output: " + press.getItem(3) + ", press " + press.press + ", speed " + press.speed);
+			helper.assertTrue(press.getItem(1).getDamageValue() >= 1, "the stamp should wear down");
+		});
+	}
+
 	@GameTest(template = "empty_8x4x8", timeoutTicks = 150)
 	public static void furnaceSpeedUpgrade(GameTestHelper helper) {
 		// speed III: 25 ticks per item instead of 100, 4 items can only finish in time with the upgrade

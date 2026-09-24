@@ -1058,6 +1058,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_press"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_electric_furnace_side"
     },
     {
@@ -3947,6 +3951,134 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/nothing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_stone_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_stone_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_stone_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_stone_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_iron_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_iron_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_iron_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_iron_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_steel_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_steel_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_steel_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_steel_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_titanium_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_titanium_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_titanium_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_titanium_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_obsidian_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_obsidian_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_obsidian_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_obsidian_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_desh_flat"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_desh_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_desh_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_desh_circuit"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_357"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_44"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_9"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_50"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_357_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_44_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_9_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/stamp_50_desh"
     },
     {
       "type": "minecraft:single",

@@ -34,6 +34,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.OIL_WELL.get(), com.hbm.inventory.gui.GUIMachineOilWell::new);
 		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
+		event.register(ModMenus.PRESS.get(), com.hbm.inventory.gui.GUIMachinePress::new);
 	}
 
 	@SubscribeEvent
@@ -44,6 +45,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
 		event.registerBlockEntityRenderer(ModTileEntities.REFINERY.get(), com.hbm.render.tileentity.RenderRefinery::new);
+		event.registerBlockEntityRenderer(ModTileEntities.PRESS.get(), com.hbm.render.tileentity.RenderPress::new);
 	}
 
 	@SubscribeEvent
@@ -54,6 +56,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_refinery.get().asItem(), com.hbm.render.tileentity.RenderRefinery.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_press.get().asItem(), com.hbm.render.tileentity.RenderPress.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override

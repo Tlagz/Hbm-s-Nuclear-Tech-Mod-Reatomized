@@ -16,6 +16,7 @@ import com.hbm.blocks.machine.BlockFluidBarrel;
 import com.hbm.blocks.machine.MachineCapacitor;
 import com.hbm.blocks.machine.HeaterFirebox;
 import com.hbm.blocks.machine.MachineDiesel;
+import com.hbm.blocks.machine.MachinePress;
 import com.hbm.blocks.machine.MachineRefinery;
 import com.hbm.blocks.machine.MachineHeatBoiler;
 import com.hbm.blocks.machine.MachineOilWell;
@@ -81,6 +82,7 @@ public class ModBlocks {
 	public static final DeferredBlock<HeaterFirebox> heater_firebox = dummyable("heater_firebox", HeaterFirebox::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<MachineHeatBoiler> machine_boiler = dummyable("machine_boiler", MachineHeatBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_copper");
 	public static final DeferredBlock<MachineRefinery> machine_refinery = dummyable("machine_refinery", MachineRefinery::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/machine_refinery");
+	public static final DeferredBlock<MachinePress> machine_press = dummyable("machine_press", MachinePress::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_press");
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
