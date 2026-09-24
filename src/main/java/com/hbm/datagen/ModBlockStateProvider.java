@@ -39,6 +39,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
 		cable(ModBlocks.red_cable, "blocks/cable_neo", "blocks/cable_neo");
 		pipe(ModBlocks.fluid_duct_neo);
+		for(var barrel : ModBlocks.BARRELS) barrel(barrel);
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -163,6 +164,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			int y = dir.getAxis().isHorizontal() ? ((int) dir.toYRot() + 180) % 360 : 0;
 			return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
 		});
+		simpleBlockItem(block.get(), model);
+	}
+
+	/** Barrels: the original's barrel.obj "Barrel" part with the barrel's texture, the model is centered on x/z */
+	private void barrel(DeferredBlock<? extends Block> block) {
+		String name = block.getId().getPath();
+		ResourceLocation texture = texture("blocks/" + name);
+		BlockModelBuilder model = models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("texture0", texture).texture("particle", texture).renderType("cutout")
+				.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/barrel.obj")).flipV(true).automaticCulling(false)
+				.visibility("Barrel", true).visibility("Connector", false).end();
+		model.rootTransforms().translation(0.5F, 0, 0.5F);
+		simpleBlock(block.get(), model);
 		simpleBlockItem(block.get(), model);
 	}
 

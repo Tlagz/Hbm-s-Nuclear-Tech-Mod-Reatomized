@@ -922,6 +922,26 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/barrel_plastic"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/barrel_corroded"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/barrel_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/barrel_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/barrel_antimatter"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {

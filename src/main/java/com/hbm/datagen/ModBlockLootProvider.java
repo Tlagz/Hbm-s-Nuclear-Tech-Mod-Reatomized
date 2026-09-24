@@ -97,6 +97,14 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 				.add(LootItem.lootTableItem(ModBlocks.fluid_duct_neo.get()).apply(net.minecraft.world.level.storage.loot.functions.CopyBlockState.copyState(ModBlocks.fluid_duct_neo.get()).copy(com.hbm.blocks.network.FluidDuctStandard.STYLE))))));
 		handled.add(ModBlocks.fluid_duct_neo.get());
 
+		// barrels keep their fluid (IPersistentNBT)
+		for(var barrel : ModBlocks.BARRELS) {
+			if(barrel == ModBlocks.barrel_corroded) continue;
+			add(barrel.get(), LootTable.lootTable().withPool(applyExplosionCondition(barrel.get(), LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(barrel.get()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(ModDataComponents.PERSISTENT.get()))))));
+			handled.add(barrel.get());
+		}
+
 		// capacitors keep their charge
 		for(var capacitor : java.util.List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			add(capacitor.get(), LootTable.lootTable().withPool(applyExplosionCondition(capacitor.get(), LootPool.lootPool().setRolls(ConstantValue.exactly(1))

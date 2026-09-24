@@ -2,6 +2,11 @@
   "values": [
     "hbm:red_cable",
     "hbm:fluid_duct_neo",
+    "hbm:barrel_plastic",
+    "hbm:barrel_corroded",
+    "hbm:barrel_steel",
+    "hbm:barrel_tcalloy",
+    "hbm:barrel_antimatter",
     "hbm:capacitor_bus",
     "hbm:capacitor_copper",
     "hbm:capacitor_gold",

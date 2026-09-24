@@ -29,6 +29,7 @@ public class ModEventHandlerClientMod {
 	public static void registerScreens(RegisterMenuScreensEvent event) {
 		event.register(ModMenus.ELECTRIC_FURNACE.get(), GUIMachineElectricFurnace::new);
 		event.register(ModMenus.WOOD_BURNER.get(), GUIMachineWoodBurner::new);
+		event.register(ModMenus.BARREL.get(), com.hbm.inventory.gui.GUIBarrel::new);
 	}
 
 	@SubscribeEvent

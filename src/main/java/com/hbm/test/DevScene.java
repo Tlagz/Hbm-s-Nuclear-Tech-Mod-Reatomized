@@ -33,6 +33,7 @@ public class DevScene {
 	public static final boolean ENABLED = Boolean.getBoolean("hbm.devScene");
 	static BlockPos furnacePos;
 	static BlockPos burnerPos;
+	static BlockPos barrelPos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -43,12 +44,12 @@ public class DevScene {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), burnerPos.getX() + 0.5, burnerPos.getY(), burnerPos.getZ() - 4.5, -25F, 35F);
+				player.teleportTo(player.serverLevel(), burnerPos.getX() + 3.5, burnerPos.getY(), burnerPos.getZ() - 5.5, -20F, 30F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
 		}
-		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : null;
+		BlockPos open = serverTicks == 205 ? furnacePos : serverTicks == 245 ? burnerPos : serverTicks == 275 ? barrelPos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -129,6 +130,21 @@ public class DevScene {
 			for(int x = 0; x <= 2; x++) com.hbm.blocks.network.FluidDuctStandard.refreshConnections(level, origin.offset(x, 1, -1));
 		}
 
+		// barrels of every kind next to the pipes, the steel one with diesel feeding a pipe
+		{
+			int bx = 4;
+			for(var barrel : ModBlocks.BARRELS) {
+				level.setBlockAndUpdate(origin.offset(bx, 1, -1), barrel.get().defaultBlockState());
+				bx++;
+			}
+			barrelPos = origin.offset(6, 1, -1);
+			if(level.getBlockEntity(barrelPos) instanceof com.hbm.tileentity.machine.storage.TileEntityBarrel barrel) {
+				barrel.tank.setTankType(com.hbm.inventory.fluid.Fluids.DIESEL);
+				barrel.tank.setFill(10000);
+				barrel.setItem(2, com.hbm.items.machine.ItemFluidContainerBase.withFluid(com.hbm.items.ModItems.canister_full, com.hbm.inventory.fluid.Fluids.DIESEL).copyWithCount(3));
+			}
+		}
+
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
 		player.teleportTo(level, -4.5, origin.getY() + 2, -1.5, 20F, 15F);
@@ -175,6 +191,9 @@ public class DevScene {
 			if(ticks == 230) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
+			if(ticks == 295) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_barrel.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
 			if(ticks == 270) {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_wood_burner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
@@ -182,11 +201,11 @@ public class DevScene {
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 280 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 295 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 310 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 325 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 280 + tabs.length * 20) {
+			if(ticks == 310 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

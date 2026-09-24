@@ -12,6 +12,7 @@ import com.hbm.blocks.generic.BlockNTMGlass;
 import com.hbm.blocks.generic.BlockNoSpawn;
 import com.hbm.blocks.generic.BlockOre;
 import com.hbm.blocks.generic.BlockOutgas;
+import com.hbm.blocks.machine.BlockFluidBarrel;
 import com.hbm.blocks.machine.MachineCapacitor;
 import com.hbm.blocks.network.FluidDuctStandard;
 import com.hbm.blocks.machine.MachineWoodBurner;
@@ -54,6 +55,13 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockCable> red_cable = register("red_cable", BlockCable::new, props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
 	public static final DeferredBlock<FluidDuctStandard> fluid_duct_neo = registerWithItem("fluid_duct_neo", FluidDuctStandard::new, props(Mat.IRON, 5.0F, 10.0F).noOcclusion().sound(ModSoundTypes.PIPE), NtmTab.MACHINE,
 			block -> new com.hbm.items.block.ItemBlockStyled(block, FluidDuctStandard.STYLE, new net.minecraft.world.item.Item.Properties()));
+	public static final DeferredBlock<BlockFluidBarrel> barrel_plastic = register("barrel_plastic", p -> new BlockFluidBarrel(p, 12000), props(Mat.IRON, 2.0F, 5.0F).sound(SoundType.STONE), NtmTab.MACHINE);
+	public static final DeferredBlock<BlockFluidBarrel> barrel_corroded = register("barrel_corroded", p -> new BlockFluidBarrel(p, 6000), props(Mat.IRON, 2.0F, 5.0F).sound(SoundType.METAL), null);
+	public static final DeferredBlock<BlockFluidBarrel> barrel_steel = register("barrel_steel", p -> new BlockFluidBarrel(p, 16000), props(Mat.IRON, 2.0F, 5.0F).sound(SoundType.METAL), NtmTab.MACHINE);
+	public static final DeferredBlock<BlockFluidBarrel> barrel_tcalloy = register("barrel_tcalloy", p -> new BlockFluidBarrel(p, 24000), props(Mat.IRON, 2.0F, 5.0F).sound(SoundType.METAL), NtmTab.MACHINE);
+	public static final DeferredBlock<BlockFluidBarrel> barrel_antimatter = register("barrel_antimatter", p -> new BlockFluidBarrel(p, 16000), props(Mat.IRON, 2.0F, 5.0F).sound(SoundType.METAL), NtmTab.MACHINE);
+	/** All fluid barrels, the texture is textures/blocks/[name].png */
+	public static final java.util.List<DeferredBlock<BlockFluidBarrel>> BARRELS = java.util.List.of(barrel_plastic, barrel_corroded, barrel_steel, barrel_tcalloy, barrel_antimatter);
 	public static final DeferredBlock<MachineCapacitorBus> capacitor_bus = register("capacitor_bus", MachineCapacitorBus::new, props(Mat.IRON, 5.0F, 10.0F), null);
 	public static final DeferredBlock<MachineCapacitor> capacitor_copper = register("capacitor_copper", p -> new MachineCapacitor(p, 1_000_000L, "copper"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineCapacitor> capacitor_gold = register("capacitor_gold", p -> new MachineCapacitor(p, 5_000_000L, "gold"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);

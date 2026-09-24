@@ -18,6 +18,13 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<Long>> CHARGE = COMPONENTS.registerComponentType("charge",
 			builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
 
+	/**
+	 * Machine data kept when the block is broken (the original's IPersistentNBT "persistent" tag), e.g. a barrel's
+	 * tank. Written by the tile's collectImplicitComponents, copied to the drop by the loot table, applied on placement.
+	 */
+	public static final Supplier<DataComponentType<net.minecraft.world.item.component.CustomData>> PERSISTENT = COMPONENTS.registerComponentType("persistent",
+			builder -> builder.persistent(net.minecraft.world.item.component.CustomData.CODEC).networkSynchronized(net.minecraft.world.item.component.CustomData.STREAM_CODEC));
+
 	/** Fluid ID of fluid containers and identifiers, the original stored it as the item damage */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE = COMPONENTS.registerComponentType("fluid_type",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
