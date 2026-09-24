@@ -5,6 +5,7 @@ import com.hbm.util.DirPos;
 import com.hbm.inventory.fluid.Fluids;
 import com.hbm.inventory.fluid.tank.FluidTank;
 import com.hbm.packet.toclient.BufPacket;
+import com.hbm.sound.AudioWrapper;
 
 import api.hbm.energymk2.IEnergyProviderMK2;
 import api.hbm.energymk2.IEnergyReceiverMK2;
@@ -26,7 +27,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 /**
  * Base class of (almost) all NTM tile entities.
  *
- * TODO tilting (machine gravity), audio loops
+ * TODO tilting (machine gravity)
  */
 public abstract class TileEntityLoadedBase extends BlockEntity implements ILoadedTile, IBufPacketReceiver {
 
@@ -141,6 +142,16 @@ public abstract class TileEntityLoadedBase extends BlockEntity implements ILoade
 
 	public float getVolume(float baseVolume) {
 		return muffled ? baseVolume * 0.1F : baseVolume;
+	}
+
+	/** The machine's looping sound (client side), null if it has none */
+	public AudioWrapper createAudioLoop() { return null; }
+
+	public AudioWrapper rebootAudio(AudioWrapper wrapper) {
+		wrapper.stopSound();
+		AudioWrapper audio = createAudioLoop();
+		audio.startSound();
+		return audio;
 	}
 
 	private byte[] lastPackedBuf;

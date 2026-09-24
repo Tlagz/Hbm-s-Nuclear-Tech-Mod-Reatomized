@@ -14,6 +14,7 @@ import com.hbm.blocks.generic.BlockOre;
 import com.hbm.blocks.generic.BlockOutgas;
 import com.hbm.blocks.machine.BlockFluidBarrel;
 import com.hbm.blocks.machine.MachineCapacitor;
+import com.hbm.blocks.machine.MachineDiesel;
 import com.hbm.blocks.network.FluidDuctStandard;
 import com.hbm.blocks.machine.MachineWoodBurner;
 import com.hbm.blocks.machine.MachineCapacitorBus;
@@ -69,6 +70,7 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineCapacitor> capacitor_tantalium = register("capacitor_tantalium", p -> new MachineCapacitor(p, 150_000_000L, "tantalium"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
 	public static final DeferredBlock<MachineCapacitor> capacitor_schrabidate = register("capacitor_schrabidate", p -> new MachineCapacitor(p, 50_000_000_000L, "schrabidate"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
 	public static final DeferredBlock<MachineWoodBurner> machine_wood_burner = dummyable("machine_wood_burner", MachineWoodBurner::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<MachineDiesel> machine_diesel = tileRendered("machine_diesel", MachineDiesel::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
 	/// GENERATED from the original's declarations by tools/gen_content.py, don't edit by hand ///
@@ -354,6 +356,13 @@ public class ModBlocks {
 		return block;
 	}
 
+
+	/** Block drawn by its tile entity renderer (the original's getRenderType -1), the item uses the NTM item renderer */
+	private static <T extends Block> DeferredBlock<T> tileRendered(String name, Function<BlockBehaviour.Properties, T> factory, PropsWithTool props, NtmTab tab, String particle) {
+		DeferredBlock<T> block = register(name, factory, props, tab);
+		TILE_RENDERED.put(block, particle);
+		return block;
+	}
 
 	private static <T extends BlockDummyable> DeferredBlock<T> dummyable(String name, Function<BlockBehaviour.Properties, T> factory, PropsWithTool props, NtmTab tab, String particle) {
 		DeferredBlock<T> block = register(name, factory, props, tab);

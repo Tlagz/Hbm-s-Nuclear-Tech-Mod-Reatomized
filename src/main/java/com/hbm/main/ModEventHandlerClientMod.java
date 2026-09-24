@@ -30,16 +30,19 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.ELECTRIC_FURNACE.get(), GUIMachineElectricFurnace::new);
 		event.register(ModMenus.WOOD_BURNER.get(), GUIMachineWoodBurner::new);
 		event.register(ModMenus.BARREL.get(), com.hbm.inventory.gui.GUIBarrel::new);
+		event.register(ModMenus.DIESEL.get(), com.hbm.inventory.gui.GUIMachineDiesel::new);
 	}
 
 	@SubscribeEvent
 	public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModTileEntities.WOOD_BURNER.get(), RenderWoodBurner::new);
+		event.registerBlockEntityRenderer(ModTileEntities.DIESEL.get(), com.hbm.render.tileentity.RenderDieselGen::new);
 	}
 
 	@SubscribeEvent
 	public static void registerItemRenderers(RegisterClientExtensionsEvent event) {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_wood_burner.get().asItem(), RenderWoodBurner.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_diesel.get().asItem(), com.hbm.render.tileentity.RenderDieselGen.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
 			@Override

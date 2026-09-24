@@ -7,6 +7,7 @@ import com.hbm.tileentity.machine.TileEntityMachineElectricFurnace;
 import com.hbm.tileentity.network.TileEntityPipeBaseNT;
 import com.hbm.tileentity.machine.storage.TileEntityBarrel;
 import com.hbm.tileentity.machine.TileEntityMachineWoodBurner;
+import com.hbm.tileentity.machine.TileEntityMachineDiesel;
 import com.hbm.tileentity.network.TileEntityCableBaseNT;
 
 import net.minecraft.core.registries.Registries;
@@ -24,6 +25,9 @@ public class ModTileEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityCapacitor>> CAPACITOR = TILES.register("capacitor",
 			() -> BlockEntityType.Builder.of(TileEntityCapacitor::new, ModBlocks.capacitor_copper.get(), ModBlocks.capacitor_gold.get(),
 					ModBlocks.capacitor_niobium.get(), ModBlocks.capacitor_tantalium.get(), ModBlocks.capacitor_schrabidate.get()).build(null));
+
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachineDiesel>> DIESEL = TILES.register("machine_diesel",
+			() -> BlockEntityType.Builder.of(TileEntityMachineDiesel::new, ModBlocks.machine_diesel.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityBarrel>> BARREL = TILES.register("barrel",
 			() -> BlockEntityType.Builder.of(TileEntityBarrel::new, ModBlocks.barrel_plastic.get(), ModBlocks.barrel_steel.get(), ModBlocks.barrel_tcalloy.get(), ModBlocks.barrel_antimatter.get()).build(null));
