@@ -1,0 +1,53 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/plutonium239"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/pluonium240"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/pluonium240"
+    },
+    {
+      "tag": "c:nuggets/pluonium240"
+    },
+    {
+      "tag": "c:nuggets/pluonium240"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:ingot_pu_mix"
+  }
+}

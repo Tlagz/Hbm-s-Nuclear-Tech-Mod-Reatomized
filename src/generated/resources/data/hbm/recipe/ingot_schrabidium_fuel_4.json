@@ -1,0 +1,53 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/schrabidium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/neptunium237"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/schrabidium"
+    },
+    {
+      "tag": "c:nuggets/schrabidium"
+    },
+    {
+      "tag": "c:nuggets/schrabidium"
+    },
+    {
+      "tag": "c:nuggets/neptunium237"
+    },
+    {
+      "tag": "c:nuggets/neptunium237"
+    },
+    {
+      "tag": "c:nuggets/neptunium237"
+    },
+    {
+      "item": "hbm:nugget_beryllium"
+    },
+    {
+      "item": "hbm:nugget_beryllium"
+    },
+    {
+      "item": "hbm:nugget_beryllium"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:ingot_schrabidium_fuel"
+  }
+}

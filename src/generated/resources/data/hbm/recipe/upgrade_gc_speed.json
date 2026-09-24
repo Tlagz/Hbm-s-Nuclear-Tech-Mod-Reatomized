@@ -1,0 +1,46 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/rubber"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/niobium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "hbm:coil_gold"
+    },
+    "M": {
+      "item": "hbm:motor"
+    },
+    "N": {
+      "tag": "c:ingots/niobium"
+    },
+    "R": {
+      "tag": "c:ingots/rubber"
+    },
+    "U": {
+      "item": "hbm:upgrade_template"
+    }
+  },
+  "pattern": [
+    "GNG",
+    "RUR",
+    "GMG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:upgrade_gc_speed"
+  }
+}

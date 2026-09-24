@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/asbestos"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/asbestos"
+    },
+    "C": {
+      "item": "minecraft:brick"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "CBC",
+    "CBC"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:tile_lab"
+  }
+}

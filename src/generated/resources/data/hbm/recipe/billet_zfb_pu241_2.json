@@ -1,0 +1,58 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/zirconium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/uranium235"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/plutonium240"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/plutonium241"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/uranium235"
+    },
+    {
+      "tag": "hbm:billets/plutonium240"
+    },
+    {
+      "tag": "hbm:billets/plutonium241"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:billet_zfb_pu241"
+  }
+}

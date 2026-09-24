@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/aluminum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "hbm:plate_polymer"
+    },
+    "P": {
+      "tag": "c:plates/aluminum"
+    }
+  },
+  "pattern": [
+    "IPI",
+    "I I",
+    "IPI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:barrel_plastic"
+  }
+}

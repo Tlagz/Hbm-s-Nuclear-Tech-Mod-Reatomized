@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/workers_alloy"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/tungsten"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:storage_blocks/workers_alloy"
+    },
+    "S": {
+      "tag": "c:ingots/steel"
+    },
+    "T": {
+      "tag": "c:storage_blocks/tungsten"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "DTD",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:shimmer_head"
+  }
+}

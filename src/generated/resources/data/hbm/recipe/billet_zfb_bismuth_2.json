@@ -1,0 +1,58 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/zirconium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/uranium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/plutonium241"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/bismuth"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/uranium"
+    },
+    {
+      "tag": "hbm:billets/plutonium241"
+    },
+    {
+      "tag": "hbm:billets/bismuth"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:billet_zfb_bismuth"
+  }
+}

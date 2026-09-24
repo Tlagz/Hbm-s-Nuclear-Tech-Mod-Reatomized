@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/zirconium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "hbm:fine_wires/lead"
+    },
+    "Z": {
+      "tag": "hbm:fine_wires/zirconium"
+    }
+  },
+  "pattern": [
+    "ZLZ",
+    "L L",
+    "ZLZ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:icf_pellet_empty"
+  }
+}

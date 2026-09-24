@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/redstone"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "hbm:solid_fuel"
+    }
+  },
+  "pattern": [
+    " P ",
+    "SRS",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:solid_fuel_presto"
+  }
+}

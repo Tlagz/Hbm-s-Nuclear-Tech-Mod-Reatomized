@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/tennessine"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/euphemium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "tag": "c:ingots/euphemium"
+    },
+    "T": {
+      "tag": "c:dusts/tennessine"
+    }
+  },
+  "pattern": [
+    "TET",
+    "ETE",
+    "TET"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:ams_catalyst_blank"
+  }
+}

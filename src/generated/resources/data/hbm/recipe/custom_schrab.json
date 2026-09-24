@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/copper"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/lead"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/schrabidium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:plates/copper"
+    },
+    "L": {
+      "tag": "c:plates/lead"
+    },
+    "U": {
+      "tag": "c:ingots/schrabidium"
+    }
+  },
+  "pattern": [
+    " C ",
+    "LUL",
+    "LUL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:custom_schrab"
+  }
+}

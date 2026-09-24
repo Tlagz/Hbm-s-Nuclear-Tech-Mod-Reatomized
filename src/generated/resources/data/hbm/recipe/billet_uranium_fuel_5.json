@@ -1,0 +1,44 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/u238"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/u235"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/u238"
+    },
+    {
+      "tag": "c:nuggets/u238"
+    },
+    {
+      "tag": "c:nuggets/u238"
+    },
+    {
+      "tag": "c:nuggets/u238"
+    },
+    {
+      "tag": "c:nuggets/u238"
+    },
+    {
+      "tag": "c:nuggets/u235"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:billet_uranium_fuel"
+  }
+}

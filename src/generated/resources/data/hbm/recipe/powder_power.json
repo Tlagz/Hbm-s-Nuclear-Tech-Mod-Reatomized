@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/glowstone"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/diamond"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/magnetized_tungsten"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "tag": "c:dusts/diamond"
+    },
+    {
+      "tag": "c:dusts/magnetized_tungsten"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "hbm:powder_power"
+  }
+}

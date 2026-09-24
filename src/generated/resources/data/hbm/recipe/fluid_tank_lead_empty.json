@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/lead"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/uranium238"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "c:plates/lead"
+    },
+    "T": {
+      "item": "hbm:fluid_tank_empty"
+    },
+    "U": {
+      "tag": "hbm:billets/uranium238"
+    }
+  },
+  "pattern": [
+    "LUL",
+    "LTL",
+    "LUL"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:fluid_tank_lead_empty"
+  }
+}

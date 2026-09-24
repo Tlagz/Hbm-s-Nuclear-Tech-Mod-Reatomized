@@ -1,0 +1,50 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:dense_wires/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/workers_alloy"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "hbm:dense_wires/gold"
+    },
+    "D": {
+      "tag": "c:ingots/workers_alloy"
+    },
+    "M": {
+      "item": "hbm:motor"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "DMD",
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:motor_desh"
+  }
+}

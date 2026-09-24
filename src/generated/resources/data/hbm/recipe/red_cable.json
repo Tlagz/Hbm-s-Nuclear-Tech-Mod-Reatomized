@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/mingrade"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "tag": "hbm:fine_wires/mingrade"
+    },
+    "W": {
+      "item": "hbm:plate_polymer"
+    }
+  },
+  "pattern": [
+    " W ",
+    "RRR",
+    " W "
+  ],
+  "result": {
+    "count": 16,
+    "id": "hbm:red_cable"
+  }
+}

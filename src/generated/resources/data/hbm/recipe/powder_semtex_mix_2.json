@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/saltpeter"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:solid_fuel"
+    },
+    {
+      "item": "hbm:ballistite"
+    },
+    {
+      "tag": "c:dusts/saltpeter"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:powder_semtex_mix"
+  }
+}

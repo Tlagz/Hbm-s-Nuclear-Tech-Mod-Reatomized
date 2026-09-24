@@ -1,0 +1,43 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:dense_wires/magnetized_tungsten"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:cast_plates/saturnite"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "hbm:cast_plates/saturnite"
+    },
+    "S": {
+      "item": "hbm:powder_power"
+    },
+    "T": {
+      "item": "hbm:crystal_trixite"
+    },
+    "W": {
+      "tag": "hbm:dense_wires/magnetized_tungsten"
+    }
+  },
+  "pattern": [
+    " W ",
+    "DTD",
+    "DSD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:battery_trixite"
+  }
+}

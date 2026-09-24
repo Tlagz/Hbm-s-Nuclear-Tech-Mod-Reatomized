@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:bricks/normal"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:bricks/normal"
+    }
+  },
+  "pattern": [
+    "BB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:plate_polymer"
+  }
+}

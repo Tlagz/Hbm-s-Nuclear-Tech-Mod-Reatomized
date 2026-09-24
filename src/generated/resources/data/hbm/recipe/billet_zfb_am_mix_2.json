@@ -1,0 +1,51 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/zirconium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/plutonium241"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/americium_rg"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/zirconium"
+    },
+    {
+      "tag": "hbm:billets/plutonium241"
+    },
+    {
+      "tag": "hbm:billets/plutonium241"
+    },
+    {
+      "tag": "hbm:billets/americium_rg"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:billet_zfb_am_mix"
+  }
+}

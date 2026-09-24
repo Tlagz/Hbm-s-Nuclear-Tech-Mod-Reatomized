@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/zirconium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "hbm:rod_quad_empty"
+    },
+    "Z": {
+      "tag": "c:ingots/zirconium"
+    }
+  },
+  "pattern": [
+    "ZRZ",
+    "Z Z",
+    "ZRZ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:rbmk_fuel_empty"
+  }
+}

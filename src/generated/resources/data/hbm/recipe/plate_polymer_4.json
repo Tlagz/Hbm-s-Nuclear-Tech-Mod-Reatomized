@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/asbestos"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:ingots/asbestos"
+    }
+  },
+  "pattern": [
+    "DD"
+  ],
+  "result": {
+    "count": 16,
+    "id": "hbm:plate_polymer"
+  }
+}

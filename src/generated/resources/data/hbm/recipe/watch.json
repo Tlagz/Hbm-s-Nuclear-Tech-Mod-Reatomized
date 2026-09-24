@@ -1,0 +1,43 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/euphemium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/blue"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "tag": "c:ingots/euphemium"
+    },
+    "L": {
+      "tag": "c:dyes/blue"
+    },
+    "W": {
+      "item": "minecraft:clock"
+    },
+    "Y": {
+      "item": "hbm:billet_yharonite"
+    }
+  },
+  "pattern": [
+    "LYL",
+    "EWE",
+    "LYL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:watch"
+  }
+}

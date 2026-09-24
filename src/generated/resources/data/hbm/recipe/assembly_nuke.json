@@ -1,0 +1,50 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/weapon_steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:shells/weapon_steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "hbm:ball_tatb"
+    },
+    "P": {
+      "tag": "c:plates/weapon_steel"
+    },
+    "S": {
+      "tag": "hbm:shells/weapon_steel"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/gold"
+    }
+  },
+  "pattern": [
+    " WP",
+    "SEP",
+    " WP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:assembly_nuke"
+  }
+}

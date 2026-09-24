@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/starmetal"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/schrabidium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": {
+      "item": "hbm:meteor_polished"
+    },
+    "S": {
+      "tag": "c:storage_blocks/starmetal"
+    },
+    "W": {
+      "tag": "hbm:fine_wires/schrabidium"
+    }
+  },
+  "pattern": [
+    "MSM",
+    "MWM",
+    "MSM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:meteor_battery"
+  }
+}

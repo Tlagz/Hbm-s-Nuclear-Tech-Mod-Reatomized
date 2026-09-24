@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:slime_balls"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "hbm:plant_item_rope"
+    },
+    "S": {
+      "tag": "c:slime_balls"
+    }
+  },
+  "pattern": [
+    "RSR"
+  ],
+  "result": {
+    "count": 4,
+    "id": "minecraft:lead"
+  }
+}

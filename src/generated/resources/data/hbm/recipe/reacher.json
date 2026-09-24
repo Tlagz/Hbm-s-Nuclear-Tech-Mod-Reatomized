@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:bolts/tungsten"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tungsten"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_rubber"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "hbm:bolts/tungsten"
+    },
+    "I": {
+      "tag": "c:ingots/tungsten"
+    },
+    "P": {
+      "tag": "c:ingots/any_rubber"
+    }
+  },
+  "pattern": [
+    "BIB",
+    "P P",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:reacher"
+  }
+}

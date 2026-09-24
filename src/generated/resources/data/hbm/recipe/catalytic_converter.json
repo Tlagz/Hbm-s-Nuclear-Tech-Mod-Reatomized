@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_hard_plastic"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/cobalt"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_bismoid"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/any_bismoid"
+    },
+    "C": {
+      "tag": "c:dusts/cobalt"
+    },
+    "P": {
+      "tag": "c:ingots/any_hard_plastic"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "PBP",
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:catalytic_converter"
+  }
+}

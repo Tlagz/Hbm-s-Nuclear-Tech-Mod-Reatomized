@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/uranium238"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:nugget_am_mix"
+    },
+    {
+      "item": "hbm:nugget_am_mix"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:billet_americium_fuel"
+  }
+}

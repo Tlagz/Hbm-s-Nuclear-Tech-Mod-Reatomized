@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "hbm:cell_empty"
+    },
+    "T": {
+      "item": "hbm:mike_deut"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DTD",
+    "DDD"
+  ],
+  "result": {
+    "count": 8,
+    "id": "hbm:cell_deuterium"
+  }
+}

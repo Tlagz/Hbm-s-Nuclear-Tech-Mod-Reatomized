@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/uranium238"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "hbm:brick_ducrete"
+    },
+    "S": {
+      "item": "hbm:plate_steel"
+    },
+    "U": {
+      "tag": "hbm:billets/uranium238"
+    }
+  },
+  "pattern": [
+    "DSD",
+    "SUS",
+    "DSD"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:reinforced_ducrete"
+  }
+}

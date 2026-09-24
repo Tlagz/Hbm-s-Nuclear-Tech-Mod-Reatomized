@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/iron"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/aluminum"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/iron"
+    },
+    {
+      "tag": "c:dusts/iron"
+    },
+    {
+      "tag": "c:dusts/iron"
+    },
+    {
+      "tag": "c:dusts/aluminum"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:powder_thermite"
+  }
+}

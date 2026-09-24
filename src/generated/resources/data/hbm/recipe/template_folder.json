@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:dyes"
+    },
+    "L": {
+      "tag": "c:dyes"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "LPL",
+    "BPB",
+    "LPL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:template_folder"
+  }
+}

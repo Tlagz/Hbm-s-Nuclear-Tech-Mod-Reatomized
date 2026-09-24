@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/plutonium239"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:billet_uranium_fuel"
+    },
+    {
+      "item": "hbm:billet_uranium_fuel"
+    },
+    {
+      "tag": "hbm:billets/plutonium239"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "hbm:billet_mox_fuel"
+  }
+}

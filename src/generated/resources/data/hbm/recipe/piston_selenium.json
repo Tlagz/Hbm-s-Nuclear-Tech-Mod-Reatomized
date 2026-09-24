@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/tungsten"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:bolts/dura_steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "hbm:bolts/dura_steel"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "T": {
+      "tag": "c:ingots/tungsten"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "STS",
+    " D "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:piston_selenium"
+  }
+}

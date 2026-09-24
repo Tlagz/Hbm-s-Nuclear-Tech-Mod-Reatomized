@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/plutonium239"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "tag": "c:nuggets/plutonium239"
+    },
+    {
+      "item": "hbm:nugget_uranium_fuel"
+    },
+    {
+      "item": "hbm:nugget_uranium_fuel"
+    },
+    {
+      "item": "hbm:nugget_uranium_fuel"
+    },
+    {
+      "item": "hbm:nugget_uranium_fuel"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:billet_mox_fuel"
+  }
+}

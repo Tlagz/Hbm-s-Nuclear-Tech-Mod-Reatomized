@@ -1,0 +1,44 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/neptunium237"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/uranium238"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/neptunium237"
+    },
+    {
+      "tag": "c:nuggets/neptunium237"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    },
+    {
+      "tag": "c:nuggets/uranium238"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:billet_neptunium_fuel"
+  }
+}

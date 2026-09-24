@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:particle_empty"
+    },
+    {
+      "tag": "c:dusts/lead"
+    },
+    {
+      "item": "hbm:pellet_charged"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:particle_lead"
+  }
+}

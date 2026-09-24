@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:cast_plates/lead"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:glass_panes"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "S": {
+      "tag": "hbm:cast_plates/lead"
+    },
+    "T": {
+      "item": "hbm:coil_gold"
+    }
+  },
+  "pattern": [
+    "STS",
+    "G G",
+    "STS"
+  ],
+  "result": {
+    "count": 2,
+    "id": "hbm:particle_empty"
+  }
+}

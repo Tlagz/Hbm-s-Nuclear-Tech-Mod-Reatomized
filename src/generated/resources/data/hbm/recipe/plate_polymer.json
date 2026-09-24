@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "pattern": [
+    "DD"
+  ],
+  "result": {
+    "count": 8,
+    "id": "hbm:plate_polymer"
+  }
+}

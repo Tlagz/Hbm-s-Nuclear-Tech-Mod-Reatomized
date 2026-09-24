@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_resistant_alloy"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/sulfur"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "hbm:catalyst_clay"
+    },
+    "S": {
+      "tag": "c:dusts/sulfur"
+    },
+    "T": {
+      "tag": "c:ingots/any_resistant_alloy"
+    }
+  },
+  "pattern": [
+    "TST",
+    "SCS",
+    "TST"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:deuterium_filter"
+  }
+}

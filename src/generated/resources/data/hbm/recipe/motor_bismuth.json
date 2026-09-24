@@ -1,0 +1,57 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/bismuth"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:dense_wires/neodymium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:cast_plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/dura_steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:nuggets/bismuth"
+    },
+    "C": {
+      "tag": "hbm:dense_wires/neodymium"
+    },
+    "D": {
+      "tag": "c:ingots/dura_steel"
+    },
+    "S": {
+      "tag": "hbm:cast_plates/steel"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "SDS",
+    "BCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:motor_bismuth"
+  }
+}

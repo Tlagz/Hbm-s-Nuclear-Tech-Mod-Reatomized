@@ -1,0 +1,53 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/am241"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/am242"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/am241"
+    },
+    {
+      "tag": "c:nuggets/am241"
+    },
+    {
+      "tag": "c:nuggets/am241"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    },
+    {
+      "tag": "c:nuggets/am242"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:ingot_am_mix"
+  }
+}

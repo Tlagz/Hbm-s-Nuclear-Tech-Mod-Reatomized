@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "hbm:powder_fire"
+    },
+    "S": {
+      "tag": "c:plates/steel"
+    },
+    "U": {
+      "item": "hbm:upgrade_template"
+    }
+  },
+  "pattern": [
+    "SPS",
+    "PUP",
+    "SPS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:upgrade_nullifier"
+  }
+}

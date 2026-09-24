@@ -1,0 +1,88 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/boron"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/lanthanum"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/cerium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/cobalt"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/lithium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/neodymium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dusts/niobium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dusts/boron"
+    },
+    {
+      "tag": "c:dusts/boron"
+    },
+    {
+      "tag": "c:dusts/lanthanum"
+    },
+    {
+      "tag": "c:dusts/lanthanum"
+    },
+    {
+      "tag": "c:dusts/cerium"
+    },
+    {
+      "tag": "c:dusts/cobalt"
+    },
+    {
+      "tag": "c:dusts/lithium"
+    },
+    {
+      "tag": "c:dusts/neodymium"
+    },
+    {
+      "tag": "c:dusts/niobium"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "hbm:powder_desh_mix"
+  }
+}

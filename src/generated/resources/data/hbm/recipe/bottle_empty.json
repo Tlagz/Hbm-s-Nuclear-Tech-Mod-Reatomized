@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:glass_panes"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_panes"
+    }
+  },
+  "pattern": [
+    " G ",
+    "G G",
+    "GGG"
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:bottle_empty"
+  }
+}

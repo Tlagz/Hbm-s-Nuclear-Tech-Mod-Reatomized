@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:clay_ball"
+    },
+    "C": {
+      "item": "hbm:concrete"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CBC",
+    " C "
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:brick_concrete"
+  }
+}

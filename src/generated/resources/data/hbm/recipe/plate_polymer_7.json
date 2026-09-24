@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/nether_brick"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:ingots/nether_brick"
+    }
+  },
+  "pattern": [
+    "BB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:plate_polymer"
+  }
+}

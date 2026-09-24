@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/beryllium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:cast_plates/iron"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:pipes/dura_steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "c:storage_blocks/beryllium"
+    },
+    "I": {
+      "tag": "hbm:cast_plates/iron"
+    },
+    "T": {
+      "tag": "hbm:pipes/dura_steel"
+    }
+  },
+  "pattern": [
+    "IBI",
+    "BTB",
+    "IBI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:flywheel_beryllium"
+  }
+}

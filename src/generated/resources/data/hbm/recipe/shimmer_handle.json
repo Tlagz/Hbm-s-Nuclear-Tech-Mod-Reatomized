@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:plates/gold"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "pattern": [
+    "GP",
+    "GP",
+    "GP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:shimmer_handle"
+  }
+}

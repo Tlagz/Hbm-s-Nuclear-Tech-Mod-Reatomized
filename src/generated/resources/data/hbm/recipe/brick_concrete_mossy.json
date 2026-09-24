@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "hbm:brick_concrete"
+    },
+    "V": {
+      "item": "minecraft:vine"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CVC",
+    "CCC"
+  ],
+  "result": {
+    "count": 8,
+    "id": "hbm:brick_concrete_mossy"
+  }
+}

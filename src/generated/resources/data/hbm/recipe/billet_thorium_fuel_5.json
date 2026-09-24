@@ -1,0 +1,44 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/th232"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/u233"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:nuggets/th232"
+    },
+    {
+      "tag": "c:nuggets/th232"
+    },
+    {
+      "tag": "c:nuggets/th232"
+    },
+    {
+      "tag": "c:nuggets/th232"
+    },
+    {
+      "tag": "c:nuggets/th232"
+    },
+    {
+      "tag": "c:nuggets/u233"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:billet_thorium_fuel"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/tungsten"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:plates/steel"
+    },
+    {
+      "item": "hbm:plate_polymer"
+    },
+    {
+      "tag": "hbm:fine_wires/tungsten"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:fuse"
+  }
+}
