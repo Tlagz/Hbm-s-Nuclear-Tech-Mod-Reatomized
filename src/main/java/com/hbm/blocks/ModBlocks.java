@@ -13,6 +13,7 @@ import com.hbm.blocks.generic.BlockNoSpawn;
 import com.hbm.blocks.generic.BlockOre;
 import com.hbm.blocks.generic.BlockOutgas;
 import com.hbm.blocks.machine.MachineCapacitor;
+import com.hbm.blocks.network.FluidDuctStandard;
 import com.hbm.blocks.machine.MachineWoodBurner;
 import com.hbm.blocks.machine.MachineCapacitorBus;
 import com.hbm.blocks.machine.MachineElectricFurnace;
@@ -51,6 +52,8 @@ public class ModBlocks {
 
 	/// HAND-PORTED ///
 	public static final DeferredBlock<BlockCable> red_cable = register("red_cable", BlockCable::new, props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
+	public static final DeferredBlock<FluidDuctStandard> fluid_duct_neo = registerWithItem("fluid_duct_neo", FluidDuctStandard::new, props(Mat.IRON, 5.0F, 10.0F).noOcclusion().sound(ModSoundTypes.PIPE), NtmTab.MACHINE,
+			block -> new com.hbm.items.block.ItemBlockStyled(block, FluidDuctStandard.STYLE, new net.minecraft.world.item.Item.Properties()));
 	public static final DeferredBlock<MachineCapacitorBus> capacitor_bus = register("capacitor_bus", MachineCapacitorBus::new, props(Mat.IRON, 5.0F, 10.0F), null);
 	public static final DeferredBlock<MachineCapacitor> capacitor_copper = register("capacitor_copper", p -> new MachineCapacitor(p, 1_000_000L, "copper"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineCapacitor> capacitor_gold = register("capacitor_gold", p -> new MachineCapacitor(p, 5_000_000L, "gold"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
@@ -296,6 +299,15 @@ public class ModBlocks {
 	public static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties props, NtmTab tab) {
 		DeferredBlock<T> block = BLOCKS.registerBlock(name, factory, props);
 		ModItems.ITEMS.registerSimpleBlockItem(block);
+		if(tab != null) tab.add(block);
+		return block;
+	}
+
+	/** Block with its own BlockItem class */
+	private static <T extends Block> DeferredBlock<T> registerWithItem(String name, Function<BlockBehaviour.Properties, T> factory, PropsWithTool props, NtmTab tab, Function<T, ? extends net.minecraft.world.item.BlockItem> item) {
+		DeferredBlock<T> block = BLOCKS.registerBlock(name, factory, props.props);
+		ModItems.ITEMS.register(name, () -> item.apply(block.get()));
+		if(props.tool != null) TOOLS.put(block, props.tool);
 		if(tab != null) tab.add(block);
 		return block;
 	}

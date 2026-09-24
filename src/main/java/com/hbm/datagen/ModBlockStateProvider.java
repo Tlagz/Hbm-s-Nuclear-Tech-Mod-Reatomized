@@ -8,6 +8,7 @@ import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.machine.MachineCapacitor;
 import com.hbm.blocks.machine.MachineElectricFurnace;
 import com.hbm.blocks.network.BlockCable;
+import com.hbm.blocks.network.FluidDuctStandard;
 import com.hbm.lib.RefStrings;
 
 import net.minecraft.core.Direction;
@@ -37,6 +38,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		ModBlocks.MODELS.forEach(this::generated);
 
 		cable(ModBlocks.red_cable, "blocks/cable_neo", "blocks/cable_neo");
+		pipe(ModBlocks.fluid_duct_neo);
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -162,6 +164,86 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
 		});
 		simpleBlockItem(block.get(), model);
+	}
+
+	private static final List<String> PIPE_PARTS = List.of("pX", "nX", "pY", "nY", "pZ", "nZ", "ppn", "ppp", "npn", "npp", "pnn", "pnp", "nnn", "nnp");
+
+	/**
+	 * Pipes: the original RenderTestPipe drew every part twice, the pipe texture and the overlay tinted with the
+	 * fluid color. Here each model is a composite of both, the overlay child uses hbm_tinted.mtl (tint index 0,
+	 * the block color handler returns the fluid color). One model per style and visible part set.
+	 */
+	private void pipe(DeferredBlock<? extends Block> block) {
+		String name = block.getId().getPath();
+		Map<String, ModelFile> cache = new HashMap<>();
+
+		getVariantBuilder(block.get()).forAllStates(state -> {
+			int style = state.getValue(FluidDuctStandard.STYLE);
+			int mask = FluidDuctStandard.connectionMask(state);
+			List<String> parts = pipeParts(mask);
+			String key = style + "_" + String.join("_", parts).toLowerCase();
+			ModelFile model = cache.computeIfAbsent(key, k -> pipeModel(name + "_" + k, FluidDuctStandard.STYLE_TEXTURES[style], parts, false));
+			return ConfiguredModel.builder().modelFile(model).build();
+		});
+
+		// inventory: the four horizontal arms, one model per style picked by the "style" item property
+		var item = itemModels().getBuilder(name).parent(pipeModel(name + "_inventory_0", FluidDuctStandard.STYLE_TEXTURES[0], List.of("pX", "nX", "pZ", "nZ"), true));
+		for(int style = 1; style < FluidDuctStandard.STYLE_TEXTURES.length; style++) {
+			item.override().predicate(modLoc("style"), style)
+					.model(pipeModel(name + "_inventory_" + style, FluidDuctStandard.STYLE_TEXTURES[style], List.of("pX", "nX", "pZ", "nZ"), true)).end();
+		}
+	}
+
+	/** The original's part selection, including its pZ/nZ swap in the junction case */
+	private static List<String> pipeParts(int mask) {
+		boolean pX = (mask & (1 << Direction.EAST.ordinal())) != 0;
+		boolean nX = (mask & (1 << Direction.WEST.ordinal())) != 0;
+		boolean pY = (mask & (1 << Direction.UP.ordinal())) != 0;
+		boolean nY = (mask & (1 << Direction.DOWN.ordinal())) != 0;
+		boolean pZ = (mask & (1 << Direction.SOUTH.ordinal())) != 0;
+		boolean nZ = (mask & (1 << Direction.NORTH.ordinal())) != 0;
+
+		if(mask == 0) return List.of("pX", "nX", "pY", "nY", "pZ", "nZ");
+		if(!pY && !nY && !pZ && !nZ) return List.of("pX", "nX");
+		if(!pX && !nX && !pZ && !nZ) return List.of("pY", "nY");
+		if(!pX && !nX && !pY && !nY) return List.of("pZ", "nZ");
+
+		List<String> parts = new java.util.ArrayList<>();
+		if(pX) parts.add("pX");
+		if(nX) parts.add("nX");
+		if(pY) parts.add("pY");
+		if(nY) parts.add("nY");
+		if(pZ) parts.add("nZ");
+		if(nZ) parts.add("pZ");
+		if(!pX && !pY && !pZ) parts.add("ppn");
+		if(!pX && !pY && !nZ) parts.add("ppp");
+		if(!nX && !pY && !pZ) parts.add("npn");
+		if(!nX && !pY && !nZ) parts.add("npp");
+		if(!pX && !nY && !pZ) parts.add("pnn");
+		if(!pX && !nY && !nZ) parts.add("pnp");
+		if(!nX && !nY && !pZ) parts.add("nnn");
+		if(!nX && !nY && !nZ) parts.add("nnp");
+		return parts;
+	}
+
+	private BlockModelBuilder pipeModel(String name, String tex, List<String> visible, boolean inventory) {
+		ResourceLocation base = texture("blocks/" + tex);
+		ResourceLocation overlay = texture("blocks/" + tex + "_overlay");
+		BlockModelBuilder model = models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("particle", base).renderType("cutout");
+		CompositeModelBuilder<BlockModelBuilder> composite = model.customLoader(CompositeModelBuilder::begin);
+		for(int layer = 0; layer < 2; layer++) {
+			// composite children bake with their own render type, the root one is not inherited
+			BlockModelBuilder child = models().nested().texture("texture0", layer == 0 ? base : overlay).renderType("cutout");
+			ObjModelBuilder<BlockModelBuilder> obj = child.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/pipe_neo.obj")).flipV(true).automaticCulling(false);
+			if(layer == 1) obj.overrideMaterialLibrary(modLoc("models/hbm_tinted.mtl"));
+			for(String part : PIPE_PARTS) obj.visibility(part, visible.contains(part));
+			obj.end();
+			child.rootTransforms().translation(0.5F, 0.5F, 0.5F);
+			composite.child(layer == 0 ? "pipe" : "overlay", child);
+		}
+		composite.end();
+		return model;
 	}
 
 	private static final List<String> CABLE_PARTS = List.of("Core", "posX", "negX", "posY", "negY", "posZ", "negZ", "CX", "CY", "CZ");

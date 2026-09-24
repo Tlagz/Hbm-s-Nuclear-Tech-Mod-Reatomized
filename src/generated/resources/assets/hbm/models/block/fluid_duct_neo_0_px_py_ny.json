@@ -1,0 +1,81 @@
+{
+  "parent": "minecraft:block/block",
+  "children": {
+    "overlay": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_neo.obj",
+      "mtl_override": "hbm:models/hbm_tinted.mtl",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_neo_overlay"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "nX": false,
+        "nY": true,
+        "nZ": false,
+        "nnn": false,
+        "nnp": false,
+        "npn": false,
+        "npp": false,
+        "pX": true,
+        "pY": true,
+        "pZ": false,
+        "pnn": false,
+        "pnp": false,
+        "ppn": false,
+        "ppp": false
+      }
+    },
+    "pipe": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_neo.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_neo"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "nX": false,
+        "nY": true,
+        "nZ": false,
+        "nnn": false,
+        "nnp": false,
+        "npn": false,
+        "npp": false,
+        "pX": true,
+        "pY": true,
+        "pZ": false,
+        "pnn": false,
+        "pnp": false,
+        "ppn": false,
+        "ppp": false
+      }
+    }
+  },
+  "item_render_order": [
+    "pipe",
+    "overlay"
+  ],
+  "loader": "neoforge:composite",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "hbm:blocks/pipe_neo"
+  }
+}

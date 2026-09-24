@@ -1,0 +1,17 @@
+{
+  "parent": "hbm:block/fluid_duct_neo_inventory_0",
+  "overrides": [
+    {
+      "model": "hbm:block/fluid_duct_neo_inventory_1",
+      "predicate": {
+        "hbm:style": 1.0
+      }
+    },
+    {
+      "model": "hbm:block/fluid_duct_neo_inventory_2",
+      "predicate": {
+        "hbm:style": 2.0
+      }
+    }
+  ]
+}

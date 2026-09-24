@@ -1,0 +1,580 @@
+{
+  "variants": {
+    "down=false,east=false,north=false,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_ny_pz_nz"
+    },
+    "down=false,east=false,north=false,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx"
+    },
+    "down=false,east=false,north=false,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny"
+    },
+    "down=false,east=false,north=false,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_pnn_pnp"
+    },
+    "down=false,east=false,north=false,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_ny_pz_nz"
+    },
+    "down=false,east=false,north=false,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx"
+    },
+    "down=false,east=false,north=false,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny"
+    },
+    "down=false,east=false,north=false,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_pnn_pnp"
+    },
+    "down=false,east=false,north=false,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_ny_pz_nz"
+    },
+    "down=false,east=false,north=false,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx"
+    },
+    "down=false,east=false,north=false,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny"
+    },
+    "down=false,east=false,north=false,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_pnn_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_pz_nz"
+    },
+    "down=false,east=false,north=false,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_nz_ppp_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_nz_pnp_nnp"
+    },
+    "down=false,east=false,north=false,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_nz_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_pz_nz"
+    },
+    "down=false,east=false,north=false,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_nz_ppp_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_nz_pnp_nnp"
+    },
+    "down=false,east=false,north=false,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_nz_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_pz_nz"
+    },
+    "down=false,east=false,north=false,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_nz_ppp_pnp"
+    },
+    "down=false,east=false,north=false,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_nz_pnp_nnp"
+    },
+    "down=false,east=false,north=false,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_nz_pnp"
+    },
+    "down=false,east=false,north=true,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_pz_nz"
+    },
+    "down=false,east=false,north=true,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_pz_ppn_pnn"
+    },
+    "down=false,east=false,north=true,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_pz_pnn_nnn"
+    },
+    "down=false,east=false,north=true,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_pz_pnn"
+    },
+    "down=false,east=false,north=true,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_pz_nz"
+    },
+    "down=false,east=false,north=true,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_pz_ppn_pnn"
+    },
+    "down=false,east=false,north=true,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_pz_pnn_nnn"
+    },
+    "down=false,east=false,north=true,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_pz_pnn"
+    },
+    "down=false,east=false,north=true,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_pz_nz"
+    },
+    "down=false,east=false,north=true,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_pz_ppn_pnn"
+    },
+    "down=false,east=false,north=true,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_pz_pnn_nnn"
+    },
+    "down=false,east=false,north=true,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_pz_pnn"
+    },
+    "down=false,east=false,north=true,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_pz_nz"
+    },
+    "down=false,east=false,north=true,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_pz_nz"
+    },
+    "down=false,east=false,north=true,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_pz_nz"
+    },
+    "down=false,east=false,north=true,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_nz_pz"
+    },
+    "down=false,east=false,north=true,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_nz_pz"
+    },
+    "down=false,east=true,north=false,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_nnn_nnp"
+    },
+    "down=false,east=true,north=false,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py"
+    },
+    "down=false,east=true,north=false,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_nnn_nnp"
+    },
+    "down=false,east=true,north=false,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py"
+    },
+    "down=false,east=true,north=false,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx"
+    },
+    "down=false,east=true,north=false,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_nnn_nnp"
+    },
+    "down=false,east=true,north=false,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py"
+    },
+    "down=false,east=true,north=false,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nz_npp_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_nz"
+    },
+    "down=false,east=true,north=false,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_nz_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_nz"
+    },
+    "down=false,east=true,north=false,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nz_npp_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_nz"
+    },
+    "down=false,east=true,north=false,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_nz_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_nz"
+    },
+    "down=false,east=true,north=false,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nz_npp_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_nz"
+    },
+    "down=false,east=true,north=false,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_nz_nnp"
+    },
+    "down=false,east=true,north=false,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_nz"
+    },
+    "down=false,east=true,north=true,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_pz_npn_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_pz"
+    },
+    "down=false,east=true,north=true,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_pz_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_pz"
+    },
+    "down=false,east=true,north=true,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_pz_npn_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_pz"
+    },
+    "down=false,east=true,north=true,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_pz_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_pz"
+    },
+    "down=false,east=true,north=true,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_pz_npn_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_pz"
+    },
+    "down=false,east=true,north=true,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_pz_nnn"
+    },
+    "down=false,east=true,north=true,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_nz_pz"
+    },
+    "down=false,east=true,north=true,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_nz_pz"
+    },
+    "down=true,east=false,north=false,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_ny_ppn_ppp"
+    },
+    "down=true,east=false,north=false,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_ny_ppn_ppp"
+    },
+    "down=true,east=false,north=false,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_ny_ppn_ppp"
+    },
+    "down=true,east=false,north=false,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny"
+    },
+    "down=true,east=false,north=false,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_ny"
+    },
+    "down=true,east=false,north=false,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_ny_nz_ppp_npp"
+    },
+    "down=true,east=false,north=false,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_ny_nz_ppp"
+    },
+    "down=true,east=false,north=false,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny_nz"
+    },
+    "down=true,east=false,north=false,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_ny_nz"
+    },
+    "down=true,east=false,north=false,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_ny_nz_ppp_npp"
+    },
+    "down=true,east=false,north=false,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_ny_nz_ppp"
+    },
+    "down=true,east=false,north=false,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny_nz"
+    },
+    "down=true,east=false,north=false,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_ny_nz"
+    },
+    "down=true,east=false,north=false,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_ny_nz_ppp_npp"
+    },
+    "down=true,east=false,north=false,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_ny_nz_ppp"
+    },
+    "down=true,east=false,north=false,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny_nz"
+    },
+    "down=true,east=false,north=false,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_ny_nz"
+    },
+    "down=true,east=false,north=true,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_ny_pz_ppn_npn"
+    },
+    "down=true,east=false,north=true,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_ny_pz_ppn"
+    },
+    "down=true,east=false,north=true,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_ny_pz_ppn_npn"
+    },
+    "down=true,east=false,north=true,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_ny_pz_ppn"
+    },
+    "down=true,east=false,north=true,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_ny_pz_ppn_npn"
+    },
+    "down=true,east=false,north=true,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_ny_pz_ppn"
+    },
+    "down=true,east=false,north=true,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_ny_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_py_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_nx_py_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_py_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_nx_py_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_py_ny_nz_pz"
+    },
+    "down=true,east=false,north=true,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_nx_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=false,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_ny_npn_npp"
+    },
+    "down=true,east=true,north=false,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_ny_npn_npp"
+    },
+    "down=true,east=true,north=false,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_ny_npn_npp"
+    },
+    "down=true,east=true,north=false,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_ny"
+    },
+    "down=true,east=true,north=false,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_ny"
+    },
+    "down=true,east=true,north=false,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_ny_nz_npp"
+    },
+    "down=true,east=true,north=false,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_ny_nz_npp"
+    },
+    "down=true,east=true,north=false,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_ny_nz_npp"
+    },
+    "down=true,east=true,north=false,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_ny_nz"
+    },
+    "down=true,east=true,north=false,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_ny_nz"
+    },
+    "down=true,east=true,north=true,south=false,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_ny_pz_npn"
+    },
+    "down=true,east=true,north=true,south=false,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_ny_pz_npn"
+    },
+    "down=true,east=true,north=true,south=false,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_ny_pz_npn"
+    },
+    "down=true,east=true,north=true,south=false,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=false,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_ny_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=0,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=0,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=0,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_0_px_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=0,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_0_px_nx_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=1,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=1,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=1,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_1_px_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=1,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_1_px_nx_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=2,up=false,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=2,up=false,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=2,up=true,west=false": {
+      "model": "hbm:block/fluid_duct_neo_2_px_py_ny_nz_pz"
+    },
+    "down=true,east=true,north=true,south=true,style=2,up=true,west=true": {
+      "model": "hbm:block/fluid_duct_neo_2_px_nx_py_ny_nz_pz"
+    }
+  }
+}

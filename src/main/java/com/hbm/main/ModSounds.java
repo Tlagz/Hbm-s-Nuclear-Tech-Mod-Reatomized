@@ -35,6 +35,13 @@ public class ModSounds {
 		}
 	}
 
+	/** The registry holder of a sound, for things that need a supplier (e.g. DeferredSoundType) */
+	public static DeferredHolder<SoundEvent, SoundEvent> holder(String name) {
+		DeferredHolder<SoundEvent, SoundEvent> holder = BY_NAME.get(name.toLowerCase());
+		if(holder == null) throw new IllegalArgumentException("Unknown hbm sound " + name);
+		return holder;
+	}
+
 	/** Looks up a sound by its original (case insensitive) name, e.g. "block.crateBreak" */
 	public static SoundEvent get(String name) {
 		DeferredHolder<SoundEvent, SoundEvent> holder = BY_NAME.get(name.toLowerCase());

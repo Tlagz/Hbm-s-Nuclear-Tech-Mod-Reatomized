@@ -43,7 +43,7 @@ public class DevScene {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
-				player.teleportTo(player.serverLevel(), burnerPos.getX() + 1.5, burnerPos.getY() + 1, burnerPos.getZ() - 3.5, 30F, 20F);
+				player.teleportTo(player.serverLevel(), burnerPos.getX() + 0.5, burnerPos.getY(), burnerPos.getZ() - 4.5, -25F, 35F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
 			}
@@ -67,7 +67,7 @@ public class DevScene {
 		BlockPos origin = new BlockPos(0, -60, 0);
 
 		// clear and floor
-		for(int x = -14; x <= 14; x++) for(int z = -2; z <= 12; z++) for(int y = 0; y <= 10; y++) {
+		for(int x = -14; x <= 14; x++) for(int z = -7; z <= 12; z++) for(int y = 0; y <= 10; y++) {
 			level.setBlockAndUpdate(origin.offset(x, y, z), y == 0 ? Blocks.SMOOTH_STONE.defaultBlockState() : Blocks.AIR.defaultBlockState());
 		}
 
@@ -109,6 +109,26 @@ public class DevScene {
 			burner.setItem(0, new ItemStack(net.minecraft.world.item.Items.OAK_LOG, 64));
 		}
 
+		// pipes in front of the burner: a diesel line with a riser and a T, a silver kerosene pipe, colored untyped pipes
+		{
+			var duct = ModBlocks.fluid_duct_neo.get();
+			var S = com.hbm.blocks.network.FluidDuctStandard.STYLE;
+			java.util.List<BlockPos> pipes = new java.util.ArrayList<>();
+			for(int x = -7; x <= -4; x++) pipes.add(origin.offset(x, 1, -1));
+			pipes.add(origin.offset(-6, 2, -1));
+			pipes.add(origin.offset(-6, 3, -1));
+			pipes.add(origin.offset(-5, 1, 0));
+			for(BlockPos p : pipes) level.setBlockAndUpdate(p, duct.defaultBlockState());
+			for(BlockPos p : pipes) com.hbm.blocks.network.FluidDuctStandard.setType(level, p, com.hbm.inventory.fluid.Fluids.DIESEL);
+
+			level.setBlockAndUpdate(origin.offset(-2, 1, -1), duct.defaultBlockState().setValue(S, 1));
+			com.hbm.blocks.network.FluidDuctStandard.setType(level, origin.offset(-2, 1, -1), com.hbm.inventory.fluid.Fluids.KEROSENE);
+			for(int x = 0; x <= 1; x++) level.setBlockAndUpdate(origin.offset(x, 1, -1), duct.defaultBlockState().setValue(S, 2));
+			level.setBlockAndUpdate(origin.offset(2, 1, -1), duct.defaultBlockState().setValue(S, 2));
+			com.hbm.blocks.network.FluidDuctStandard.setType(level, origin.offset(2, 1, -1), com.hbm.inventory.fluid.Fluids.WATER);
+			for(int x = 0; x <= 2; x++) com.hbm.blocks.network.FluidDuctStandard.refreshConnections(level, origin.offset(x, 1, -1));
+		}
+
 		player.setGameMode(GameType.CREATIVE);
 		level.setDayTime(6000);
 		player.teleportTo(level, -4.5, origin.getY() + 2, -1.5, 20F, 15F);
@@ -144,8 +164,10 @@ public class DevScene {
 			if(mc.level == null || mc.player == null) return;
 
 			ticks++;
+			// screenshots must not catch the pause menu when the window is in the background
+			mc.options.pauseOnLostFocus = false;
 
-			if(ticks == 150 || ticks == 200) {
+			if(ticks == 150 || ticks == 185) {
 				if(mc.screen != null) mc.setScreen(null);
 				Screenshot.grab(mc.gameDirectory, "devscene_world_" + ticks + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}

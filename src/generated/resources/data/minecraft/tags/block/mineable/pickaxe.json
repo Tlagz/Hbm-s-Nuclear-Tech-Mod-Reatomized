@@ -1,6 +1,7 @@
 {
   "values": [
     "hbm:red_cable",
+    "hbm:fluid_duct_neo",
     "hbm:capacitor_bus",
     "hbm:capacitor_copper",
     "hbm:capacitor_gold",

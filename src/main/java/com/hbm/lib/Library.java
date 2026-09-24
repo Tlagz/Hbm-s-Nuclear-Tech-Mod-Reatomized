@@ -2,11 +2,14 @@ package com.hbm.lib;
 
 import java.util.List;
 
+import com.hbm.inventory.fluid.FluidType;
 import com.hbm.items.machine.ItemBatteryCreative;
 
 import api.hbm.energymk2.IBatteryItem;
 import api.hbm.energymk2.IEnergyConnectorBlock;
 import api.hbm.energymk2.IEnergyConnectorMK2;
+import api.hbm.fluidmk2.IFluidConnectorBlockMK2;
+import api.hbm.fluidmk2.IFluidConnectorMK2;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -58,6 +61,32 @@ public class Library {
 		}
 
 		return power;
+	}
+
+	/**
+	 * Whether a pipe of this fluid type can connect to the block at pos
+	 * @param dir the direction from the pipe towards pos
+	 */
+	public static boolean canConnectFluid(BlockGetter world, BlockPos pos, Direction dir, FluidType type) {
+
+		if(world instanceof LevelReader reader && reader.isOutsideBuildHeight(pos))
+			return false;
+
+		BlockState state = world.getBlockState(pos);
+
+		if(state.getBlock() instanceof IFluidConnectorBlockMK2 con) {
+			if(con.canConnect(type, world, pos, dir.getOpposite() /* machine's connecting side */))
+				return true;
+		}
+
+		BlockEntity te = world.getBlockEntity(pos);
+
+		if(te instanceof IFluidConnectorMK2 con) {
+			if(con.canConnect(type, dir.getOpposite() /* machine's connecting side */))
+				return true;
+		}
+
+		return false;
 	}
 
 	/**

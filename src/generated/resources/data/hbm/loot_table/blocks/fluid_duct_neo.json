@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "hbm:fluid_duct_neo",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "style"
+              ]
+            }
+          ],
+          "name": "hbm:fluid_duct_neo"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "hbm:blocks/fluid_duct_neo"
+}

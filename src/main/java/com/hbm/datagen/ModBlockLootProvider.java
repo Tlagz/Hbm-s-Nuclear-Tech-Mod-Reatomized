@@ -92,6 +92,11 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 			}
 		}
 
+		// pipes keep their style (the original dropped the metadata)
+		add(ModBlocks.fluid_duct_neo.get(), LootTable.lootTable().withPool(applyExplosionCondition(ModBlocks.fluid_duct_neo.get(), LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+				.add(LootItem.lootTableItem(ModBlocks.fluid_duct_neo.get()).apply(net.minecraft.world.level.storage.loot.functions.CopyBlockState.copyState(ModBlocks.fluid_duct_neo.get()).copy(com.hbm.blocks.network.FluidDuctStandard.STYLE))))));
+		handled.add(ModBlocks.fluid_duct_neo.get());
+
 		// capacitors keep their charge
 		for(var capacitor : java.util.List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			add(capacitor.get(), LootTable.lootTable().withPool(applyExplosionCondition(capacitor.get(), LootPool.lootPool().setRolls(ConstantValue.exactly(1))

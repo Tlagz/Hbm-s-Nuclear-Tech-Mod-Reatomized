@@ -57,6 +57,26 @@ public class ModEventHandlerClientMod {
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidTank.getColor(stack, tint),
 				com.hbm.items.ModItems.fluid_tank_full.get(), com.hbm.items.ModItems.fluid_tank_lead_full.get(), com.hbm.items.ModItems.fluid_barrel_full.get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIDMulti.getColor(stack, tint), com.hbm.items.ModItems.fluid_identifier_multi.get());
+		// the original's inventory pipe uses the color of NONE
+		event.register((stack, tint) -> 0xFF000000 | (tint == 0 ? com.hbm.inventory.fluid.Fluids.NONE.getColor() : 0xFFFFFF), com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
+	}
+
+	/** Pipe overlays are tinted with the pipe's fluid color, read from the tile entity */
+	@SubscribeEvent
+	public static void registerBlockColors(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.Block event) {
+		event.register((state, world, pos, tint) -> {
+			if(tint != 0 || world == null || pos == null) return 0xFFFFFF;
+			return com.hbm.blocks.network.FluidDuctStandard.getType(world, pos).getColor();
+		}, com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
+	}
+
+	@SubscribeEvent
+	public static void clientSetup(net.neoforged.fml.event.lifecycle.FMLClientSetupEvent event) {
+		event.enqueueWork(() -> {
+			// item model overrides pick the pipe texture by the placed style
+			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.blocks.ModBlocks.fluid_duct_neo.get().asItem(), com.hbm.lib.RefStrings.loc("style"),
+					(stack, level, entity, seed) -> com.hbm.items.block.ItemBlockStyled.getValue(stack, com.hbm.blocks.network.FluidDuctStandard.STYLE));
+		});
 	}
 
 	/** OBJ models are parsed lazily, drop them when resource packs change */

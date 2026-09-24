@@ -898,6 +898,30 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_neo"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_neo_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_silver"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_silver_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_colored"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_colored_overlay"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {
