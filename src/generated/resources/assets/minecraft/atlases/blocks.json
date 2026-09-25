@@ -1130,6 +1130,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_shredder_bottom_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_shredder_top_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_shredder_front_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_shredder_side_alt"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/ingot_uranium"
     },
     {
@@ -5171,6 +5187,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/fluid_icon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blades_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blades_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/blades_desh"
     },
     {
       "type": "minecraft:single",

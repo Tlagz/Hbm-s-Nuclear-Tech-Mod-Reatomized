@@ -831,6 +831,11 @@ public class ModItems {
 	public static final AutogenItems part_stock = autogen("part_stock", "part_stock", MaterialShapes.STOCK, Map.of());
 	public static final AutogenItems part_grip = autogen("part_grip", "part_grip", MaterialShapes.GRIP, Map.of());
 
+	/** Shredder blades, desh blades don't wear */
+	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_steel = register("blades_steel", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(400), NtmTab.CONTROL);
+	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_titanium = register("blades_titanium", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(500), NtmTab.CONTROL);
+	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_desh = register("blades_desh", com.hbm.items.machine.ItemBlades::new, new Item.Properties().stacksTo(1), NtmTab.CONTROL);
+
 	/** Fluid stand-in for recipe displays, tinted with the fluid color, not in a creative tab like the original */
 	public static final DeferredItem<com.hbm.items.machine.ItemFluidIcon> fluid_icon = register("fluid_icon", com.hbm.items.machine.ItemFluidIcon::new, new Item.Properties(), null);
 
@@ -844,6 +849,9 @@ public class ModItems {
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");
 		FLAT_MODELS.put(fluid_icon, "items/fluid_icon");
+		FLAT_MODELS.put(blades_steel, "items/blades_steel");
+		FLAT_MODELS.put(blades_titanium, "items/blades_titanium");
+		FLAT_MODELS.put(blades_desh, "items/blades_desh");
 	}
 
 	/** Press stamp with a flat model, in the control tab like the original */

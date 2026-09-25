@@ -74,6 +74,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				texture("blocks/machine_electric_furnace_front_on"), texture("blocks/machine_electric_furnace_bottom"), texture("blocks/machine_electric_furnace_top"));
 		horizontalBlock(ModBlocks.machine_electric_furnace_off.get(), state -> state.getValue(MachineElectricFurnace.LIT) ? furnaceOn : furnaceOff);
 		simpleBlockItem(ModBlocks.machine_electric_furnace_off.get(), furnaceOff);
+
+		// the shredder has its front texture on north and south, the side texture on east and west
+		ModelFile shredder = models().cube("machine_shredder", texture("blocks/machine_shredder_bottom_alt"), texture("blocks/machine_shredder_top_alt"),
+				texture("blocks/machine_shredder_front_alt"), texture("blocks/machine_shredder_front_alt"), texture("blocks/machine_shredder_side_alt"), texture("blocks/machine_shredder_side_alt"))
+				.texture("particle", texture("blocks/machine_shredder_side_alt"));
+		simpleBlock(ModBlocks.machine_shredder.get(), shredder);
+		simpleBlockItem(ModBlocks.machine_shredder.get(), shredder);
 	}
 
 	/** Models of generated blocks, see ModBlocks.BlockModel */

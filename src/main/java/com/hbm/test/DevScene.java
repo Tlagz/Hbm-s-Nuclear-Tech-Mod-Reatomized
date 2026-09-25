@@ -39,6 +39,7 @@ public class DevScene {
 	static BlockPos chemplantPos;
 	static BlockPos welderPos;
 	static BlockPos blastFurnacePos;
+	static BlockPos shredderPos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -68,7 +69,7 @@ public class DevScene {
 						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
 			}
 		}
-		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : serverTicks == 435 ? welderPos : serverTicks == 475 ? blastFurnacePos : null;
+		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : serverTicks == 435 ? welderPos : serverTicks == 475 ? blastFurnacePos : serverTicks == 515 ? shredderPos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -246,6 +247,20 @@ public class DevScene {
 			}
 		}
 
+		// shredder in front of the assembler, doubling iron ore (close to the third camera, plain blocks close their GUI beyond 8 blocks)
+		{
+			shredderPos = origin.offset(3, 1, -10);
+			level.setBlockAndUpdate(shredderPos, ModBlocks.machine_shredder.get().defaultBlockState());
+			if(level.getBlockEntity(shredderPos) instanceof com.hbm.tileentity.machine.TileEntityMachineShredder shredder) {
+				shredder.setItem(29, new ItemStack(ModItems.battery_creative.get()));
+				shredder.setItem(27, new ItemStack(ModItems.blades_steel.get()));
+				shredder.setItem(28, new ItemStack(ModItems.blades_titanium.get()));
+				shredder.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 64));
+				shredder.setItem(1, new ItemStack(ModBlocks.ore_uranium.get(), 64));
+				shredder.setItem(2, new ItemStack(net.minecraft.world.item.Items.COBBLESTONE, 64));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -361,14 +376,18 @@ public class DevScene {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_blast_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
+			if(ticks == 540) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_shredder.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 520 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 535 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 560 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 575 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 520 + tabs.length * 20) {
+			if(ticks == 560 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

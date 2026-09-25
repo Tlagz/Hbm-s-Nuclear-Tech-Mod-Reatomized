@@ -40,6 +40,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
 		event.register(ModMenus.ARC_WELDER.get(), com.hbm.inventory.gui.GUIMachineArcWelder::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
+		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
 
 	@SubscribeEvent
