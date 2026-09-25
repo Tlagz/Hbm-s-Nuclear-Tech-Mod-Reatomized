@@ -69,6 +69,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ChemicalPlantRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ArcWelderRecipes.registerDefaults();
+			com.hbm.inventory.recipes.BlastFurnaceRecipesNT.INSTANCE.initialize();
 			logger.info("Generic recipes: " + com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.recipeOrderedList.size() + " assembly machine, "
 					+ com.hbm.inventory.recipes.ChemicalPlantRecipes.INSTANCE.recipeOrderedList.size() + " chemical plant");
 		});

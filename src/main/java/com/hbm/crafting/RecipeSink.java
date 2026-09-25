@@ -19,11 +19,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
@@ -42,6 +44,7 @@ public class RecipeSink {
 	private final Map<String, Integer> names = new HashMap<>();
 	public int shaped = 0;
 	public int shapeless = 0;
+	public int smelting = 0;
 
 	public RecipeSink(RecipeOutput output) {
 		this.output = output;
@@ -85,6 +88,14 @@ public class RecipeSink {
 		shapeless++;
 	}
 
+	/** GameRegistry.addSmelting(input, result, xp): a furnace recipe with the vanilla cooking time */
+	public void addSmelting(Object in, ItemStack result, float xp) {
+		Set<ICondition> conditions = new LinkedHashSet<>();
+		SmeltingRecipe recipe = new SmeltingRecipe("", CookingBookCategory.MISC, ingredient(in, conditions), result.copy(), xp, 200);
+		output.accept(id("smelting/", result), recipe, null, conditions.toArray(new ICondition[0]));
+		smelting++;
+	}
+
 	private Ingredient ingredient(Object o, Set<ICondition> conditions) {
 		if(o instanceof String key) {
 			TagKey<Item> tag = OreDictManager.tag(key);
@@ -108,7 +119,11 @@ public class RecipeSink {
 
 	/** hbm:[output]_[n], numbered in registration order since many outputs have several recipes */
 	private ResourceLocation id(ItemStack result) {
-		String path = BuiltInRegistries.ITEM.getKey(result.getItem()).getPath();
+		return id("", result);
+	}
+
+	private ResourceLocation id(String prefix, ItemStack result) {
+		String path = prefix + BuiltInRegistries.ITEM.getKey(result.getItem()).getPath();
 		int n = names.merge(path, 1, Integer::sum);
 		return RefStrings.loc(n == 1 ? path : path + "_" + n);
 	}

@@ -30,6 +30,7 @@ SOURCES = [
 	('WeaponRecipes', os.path.join(ORIG, 'crafting', 'WeaponRecipes.java'), ['register']),
 	('ConsumableRecipes', os.path.join(ORIG, 'crafting', 'ConsumableRecipes.java'), ['register']),
 	('PowderRecipes', os.path.join(ORIG, 'crafting', 'PowderRecipes.java'), ['register']),
+	('SmeltingRecipes', os.path.join(ORIG, 'crafting', 'SmeltingRecipes.java'), ['AddSmeltingRec']),
 ]
 
 # recipe functions of RecipeBase: name -> how many leading args are item-like "results"
@@ -38,7 +39,7 @@ RECIPE_FUNCS = {
 	'add1To9Pair', 'add1To9', 'add9To1', 'addMineralSet', 'addBillet', 'addBilletFragment', 'addBilletToIngot',
 	'addHelmet', 'addChest', 'addLegs', 'addBoots', 'addSword', 'addPickaxe', 'addAxe', 'addShovel', 'addHoe',
 	'addFuelRodBillet', 'addDualFuelRodBillet', 'addQuadFuelRodBillet',
-	'addRodBilletUnload', 'addDualRodBilletUnload', 'addQuadRodBilletUnload',
+	'addRodBilletUnload', 'addDualRodBilletUnload', 'addQuadRodBilletUnload', 'addSmelting',
 }
 
 # config flags and their defaults
@@ -249,6 +250,7 @@ def item_ref(e, role, sym, meta=None):
 def translate(e, role, sym):
 	e = e.strip()
 	if re.fullmatch(r'"(?:[^"\\]|\\.)*"', e): return e
+	if re.fullmatch(r'-?\d+\.\d*[Ff]?|-?\d+[Ff]', e): return e if e[-1] in 'Ff' else e + 'F'
 	if re.fullmatch(r"'(?:[^'\\]|\\.)'", e): return e
 	if re.fullmatch(r'-?\d+', e): return e
 	m = re.fullmatch(r'new\s+String\s*\[\s*\]\s*\{(.*)\}', e, re.S)
@@ -331,7 +333,9 @@ def translate_call(stmt, sym):
 		om = re.fullmatch(r'new\s+Object\s*\[\s*\]\s*\{(.*)\}', a, re.S)
 		if om: flat.extend(split_top(om.group(1)))
 		else: flat.append(a)
-	out = [translate(a, 'result' if i == 0 else 'ingredient', sym) for i, a in enumerate(flat)]
+	# addSmelting(input, result, xp) has the result second
+	result_index = 1 if name == 'addSmelting' else 0
+	out = [translate(a, 'result' if i == result_index else 'ingredient', sym) for i, a in enumerate(flat)]
 	return '%s(%s);' % (name, ', '.join(out))
 
 def eval_condition(cond):

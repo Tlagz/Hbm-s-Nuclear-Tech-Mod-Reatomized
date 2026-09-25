@@ -17,8 +17,8 @@ import gen_recipes as g
 import gen_anvil as a
 from gen_recipes import Skip, split_top, match_close
 
-# recipe set class in the original (inventory/recipes) -> generated class
-TARGETS = ['AssemblyMachineRecipes', 'ChemicalPlantRecipes']
+# recipe set class in the original (inventory/recipes) -> its recipe class, generated into Gen<set>
+TARGETS = {'AssemblyMachineRecipes': 'GenericRecipe', 'ChemicalPlantRecipes': 'GenericRecipe', 'BlastFurnaceRecipesNT': 'GenericRecipeNoPower'}
 OUT_DIR = os.path.join(g.PORT, 'inventory', 'recipes', 'gen')
 FLUIDS = os.path.join(g.PORT, 'inventory', 'fluid', 'Fluids.java')
 
@@ -99,12 +99,14 @@ def pool(e, local):
 	return ' + '.join(parts)
 
 def translate_register(stmt, sym, fluids, local):
-	m = re.fullmatch(r'this\.register\s*\((.*)\)', stmt.strip(), re.S)
+	m = re.fullmatch(r'this\.register\s*\((?:\(\s*\w+\s*\)\s*)?(.*)\)', stmt.strip(), re.S)
 	if not m: raise Skip('statement')
 	e = m.group(1).strip()
-	nm = re.match(r'new\s+GenericRecipe\s*\(\s*("(?:[^"\\]|\\.)*")\s*\)', e)
+	nm = re.match(r'new\s+(GenericRecipe\w*)\s*\(\s*("(?:[^"\\]|\\.)*")\s*\)', e)
 	if not nm: raise Skip('recipe name')
-	out = 'set.register(new GenericRecipe(%s)' % nm.group(1)
+	cls = nm.group(1)
+	# the chain returns GenericRecipe, subclasses need the cast back like in the original
+	out = 'set.register(%snew %s(%s)' % ('' if cls == 'GenericRecipe' else '(%s) ' % cls, cls, nm.group(2))
 	i = nm.end()
 	while i < len(e):
 		while i < len(e) and e[i] in ' \t\r\n': i += 1
@@ -154,6 +156,7 @@ import com.hbm.inventory.FluidStack;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
 import com.hbm.inventory.fluid.Fluids;
+import com.hbm.inventory.recipes.GenericRecipeNoPower;
 import com.hbm.inventory.recipes.loader.GenericRecipe;
 import com.hbm.inventory.recipes.loader.GenericRecipes;
 import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutput;
@@ -173,7 +176,7 @@ import net.minecraft.world.item.Items;
 @SuppressWarnings("unused")
 public class Gen%s {
 
-	public static void register(GenericRecipes<GenericRecipe> set) {
+	public static void register(GenericRecipes<%s> set) {
 %s
 	}
 }
@@ -200,7 +203,7 @@ def generate_set(name, sym, fluids):
 	skipped = sum(stats['skipped'].values())
 	os.makedirs(OUT_DIR, exist_ok=True)
 	with open(os.path.join(OUT_DIR, 'Gen%s.java' % name), 'w', encoding='utf-8', newline='\n') as f:
-		f.write(HEADER % (g.enum_import_lines(sym, body), name, len(lines), skipped, name, body))
+		f.write(HEADER % (g.enum_import_lines(sym, body), name, len(lines), skipped, name, TARGETS[name], body))
 	print('%-24s %4d recipes, %4d skipped' % (name, len(lines), skipped))
 	return stats['skipped']
 

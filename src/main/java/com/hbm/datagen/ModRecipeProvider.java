@@ -11,6 +11,7 @@ import com.hbm.crafting.gen.GenCraftingManager;
 import com.hbm.crafting.gen.GenMineralRecipes;
 import com.hbm.crafting.gen.GenPowderRecipes;
 import com.hbm.crafting.gen.GenRodRecipes;
+import com.hbm.crafting.gen.GenSmeltingRecipes;
 import com.hbm.crafting.gen.GenToolRecipes;
 import com.hbm.crafting.gen.GenWeaponRecipes;
 import com.hbm.inventory.OreDictManager;
@@ -22,7 +23,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 
 /**
- * Crafting recipes, translated from the original's CraftingManager and recipe classes by tools/gen_recipes.py,
+ * Crafting and smelting recipes, translated from the original's CraftingManager and recipe classes by tools/gen_recipes.py,
  * in the same order as the original registered them.
  */
 public class ModRecipeProvider extends RecipeProvider {
@@ -47,8 +48,9 @@ public class ModRecipeProvider extends RecipeProvider {
 		GenWeaponRecipes.register();
 		GenConsumableRecipes.register();
 		GenPowderRecipes.register();
+		GenSmeltingRecipes.register();
 
 		RecipeBase.sink = null;
-		MainRegistry.logger.info("Crafting recipes: " + sink.shaped + " shaped, " + sink.shapeless + " shapeless");
+		MainRegistry.logger.info("Crafting recipes: " + sink.shaped + " shaped, " + sink.shapeless + " shapeless, " + sink.smelting + " smelting");
 	}
 }

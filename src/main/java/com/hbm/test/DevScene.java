@@ -38,6 +38,7 @@ public class DevScene {
 	static BlockPos assemblerPos;
 	static BlockPos chemplantPos;
 	static BlockPos welderPos;
+	static BlockPos blastFurnacePos;
 	private static int serverTicks = 0;
 
 	/** Opens the furnace GUI for the screenshot, has to happen on the server */
@@ -67,7 +68,7 @@ public class DevScene {
 						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
 			}
 		}
-		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : serverTicks == 435 ? welderPos : null;
+		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : serverTicks == 435 ? welderPos : serverTicks == 475 ? blastFurnacePos : null;
 		if(open != null) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -235,6 +236,16 @@ public class DevScene {
 			}
 		}
 
+		// blast furnace behind the welder, making steel
+		{
+			blastFurnacePos = ModBlocks.machine_blast_furnace.get().placeMultiblock(level, origin.offset(-6, 1, -4), net.minecraft.core.Direction.NORTH);
+			if(blastFurnacePos != null && level.getBlockEntity(blastFurnacePos) instanceof com.hbm.tileentity.machine.TileEntityMachineBlastFurnace furnace) {
+				furnace.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+				furnace.setItem(1, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 64));
+				furnace.setItem(2, new ItemStack(net.minecraft.world.item.Items.SAND, 64));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -346,14 +357,18 @@ public class DevScene {
 				Screenshot.grab(mc.gameDirectory, "devscene_gui_arc_welder.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
+			if(ticks == 500) {
+				Screenshot.grab(mc.gameDirectory, "devscene_gui_blast_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			}
+
 			// creative tabs, one screenshot each
 			NtmTab[] tabs = { NtmTab.MACHINE, NtmTab.CONTROL };
 			for(int t = 0; t < tabs.length; t++) {
-				if(ticks == 480 + t * 20) openTab(mc, tabs[t]);
-				if(ticks == 495 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+				if(ticks == 520 + t * 20) openTab(mc, tabs[t]);
+				if(ticks == 535 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 480 + tabs.length * 20) {
+			if(ticks == 520 + tabs.length * 20) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

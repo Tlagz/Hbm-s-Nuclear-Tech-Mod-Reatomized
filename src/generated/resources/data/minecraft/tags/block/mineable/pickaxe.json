@@ -23,6 +23,7 @@
     "hbm:machine_assembly_machine",
     "hbm:machine_chemical_plant",
     "hbm:machine_arc_welder",
+    "hbm:machine_blast_furnace",
     "hbm:machine_press",
     "hbm:anvil_iron",
     "hbm:anvil_lead",

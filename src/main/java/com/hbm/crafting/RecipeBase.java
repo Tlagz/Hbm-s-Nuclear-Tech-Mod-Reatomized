@@ -22,6 +22,7 @@ public class RecipeBase {
 	/** new ItemStack(item, count) without the ItemLike/Holder overload ambiguity of DeferredItem */
 	public static ItemStack stack(ItemLike item, int count) { return new ItemStack(item, count); }
 	public static void addShapelessAuto(ItemStack result, Object... ins) { sink.addShapelessAuto(result, ins); }
+	public static void addSmelting(Object in, ItemStack result, float xp) { sink.addSmelting(in, result, xp); }
 
 	/// MineralRecipes ///
 
