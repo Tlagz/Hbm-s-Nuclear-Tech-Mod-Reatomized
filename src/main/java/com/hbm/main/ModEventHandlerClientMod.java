@@ -39,6 +39,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.ASSEMBLY_MACHINE.get(), com.hbm.inventory.gui.GUIMachineAssemblyMachine::new);
 		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
 		event.register(ModMenus.ARC_WELDER.get(), com.hbm.inventory.gui.GUIMachineArcWelder::new);
+		event.register(ModMenus.ARC_FURNACE.get(), com.hbm.inventory.gui.GUIMachineArcFurnaceLarge::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -55,6 +56,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_MACHINE.get(), com.hbm.render.tileentity.RenderAssemblyMachine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_WELDER.get(), com.hbm.render.tileentity.RenderArcWelder::new);
+		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BLAST_FURNACE.get(), com.hbm.render.tileentity.RenderBlastFurnace::new);
 	}
 
@@ -70,6 +72,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_machine.get().asItem(), com.hbm.render.tileentity.RenderAssemblyMachine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_plant.get().asItem(), com.hbm.render.tileentity.RenderChemicalPlant.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_welder.get().asItem(), com.hbm.render.tileentity.RenderArcWelder.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_blast_furnace.get().asItem(), com.hbm.render.tileentity.RenderBlastFurnace.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {

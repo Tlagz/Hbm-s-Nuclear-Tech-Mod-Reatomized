@@ -1,5 +1,7 @@
 package com.hbm.inventory.material;
 
+import net.minecraft.world.item.ItemStack;
+
 import static com.hbm.inventory.OreDictManager.*;
 // single static imports shadow OreDictManager's prefix strings of the same name
 import static com.hbm.inventory.material.MaterialShapes.ANY;
@@ -227,6 +229,69 @@ public class Mats {
 		public MaterialStack copy() {
 			return new MaterialStack(material, amount);
 		}
+	}
+
+	/** getMaterialsFromItem results by item, the lookup checks a lot of tags; cleared when tags reload */
+	private static final java.util.Map<ComparableStack, List<MaterialStack>> materialCache = new java.util.concurrent.ConcurrentHashMap<>();
+
+	public static void clearCache() {
+		materialCache.clear();
+	}
+
+	/**
+	 * What an item is made of: the material entries of its ore dictionary names (item tags here, an ore entry like
+	 * oreIron or [shape][material] like ingotSteel), plus the fixed entries of MatDistribution.
+	 * Will not respect stacksizes - all stacks will be treated as a singular.
+	 * TODO scraps (ItemScraps.getMats) once the foundry is ported
+	 */
+	public static List<MaterialStack> getMaterialsFromItem(ItemStack stack) {
+		if(stack.isEmpty()) return new ArrayList<>();
+		ComparableStack key = new ComparableStack(stack).makeSingular();
+		return new ArrayList<>(materialCache.computeIfAbsent(key, k -> lookUpMaterials(stack)));
+	}
+
+	private static List<MaterialStack> lookUpMaterials(ItemStack stack) {
+		List<MaterialStack> list = new ArrayList<>();
+
+		boolean found = false;
+		for(java.util.Map.Entry<String, List<MaterialStack>> entry : materialOreEntries.entrySet()) {
+			if(stack.is(com.hbm.inventory.OreDictManager.tag(entry.getKey()))) {
+				list.addAll(entry.getValue());
+				found = true;
+				break;
+			}
+		}
+
+		if(!found) {
+			outer:
+			for(NTMMaterial material : orderedList) {
+				if(material.smeltsInto.smeltable != SmeltingBehavior.SMELTABLE && material.smeltsInto.smeltable != SmeltingBehavior.ADDITIVE) continue;
+				for(String name : material.names) {
+					for(java.util.Map.Entry<String, MaterialShapes> prefix : prefixByName.entrySet()) {
+						if(stack.is(com.hbm.inventory.OreDictManager.tag(prefix.getKey() + name))) {
+							list.add(new MaterialStack(material, prefix.getValue().q(1)));
+							break outer;
+						}
+					}
+				}
+			}
+		}
+
+		List<MaterialStack> entries = materialEntries.get(new ComparableStack(stack).makeSingular());
+
+		if(entries != null) {
+			entries.forEach(x -> { if(x != null) list.add(x); });
+		}
+
+		return list;
+	}
+
+	/** The materials an item smelts into (e.g. hematite into iron), converted with the material's conversion rate */
+	public static List<MaterialStack> getSmeltingMaterialsFromItem(ItemStack stack) {
+		List<MaterialStack> baseMats = getMaterialsFromItem(stack);
+		List<MaterialStack> smelting = new ArrayList<>();
+		baseMats.forEach(x -> smelting.add(new MaterialStack(x.material.smeltsInto, (int) (x.amount * x.material.convOut / x.material.convIn))));
+		return smelting;
 	}
 
 	public static String formatAmount(int amount, boolean showInMb) {

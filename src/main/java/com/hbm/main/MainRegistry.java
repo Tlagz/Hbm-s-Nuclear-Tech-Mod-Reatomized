@@ -59,6 +59,7 @@ public class MainRegistry {
 			Fluids.init();
 			OreDictManager.registerOres();
 			HazardRegistry.registerItems();
+			com.hbm.inventory.material.MatDistribution.registerDefaults();
 			Fluids.reloadFluids();
 			// after the fluids (custom ones included) and all items exist
 			com.hbm.inventory.FluidContainerRegistry.register();

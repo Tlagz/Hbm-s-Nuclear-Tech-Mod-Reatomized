@@ -64,6 +64,8 @@ public class ModMenus {
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineChemicalPlant>> CHEMICAL_PLANT =
 			tile("machine_chemical_plant", com.hbm.tileentity.machine.TileEntityMachineChemicalPlant.class, com.hbm.inventory.container.ContainerMachineChemicalPlant::new);
 
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
+			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =
 			tile("machine_arc_welder", com.hbm.tileentity.machine.TileEntityMachineArcWelder.class, com.hbm.inventory.container.ContainerMachineArcWelder::new);
 

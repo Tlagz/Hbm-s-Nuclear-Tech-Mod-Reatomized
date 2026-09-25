@@ -38,6 +38,8 @@ public class ResourceManager {
 	public static final ResourceLocation chemical_plant_tex = RefStrings.loc("textures/models/machines/chemical_plant.png");
 	public static final HFRWavefrontObject arc_welder = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_welder.obj")).noSmooth();
 	public static final ResourceLocation arc_welder_tex = RefStrings.loc("textures/models/machines/arc_welder.png");
+	public static final HFRWavefrontObject arc_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_furnace.obj"));
+	public static final ResourceLocation arc_furnace_tex = RefStrings.loc("textures/models/machines/arc_furnace.png");
 	public static final HFRWavefrontObject blast_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/blast_furnace.obj")).noSmooth();
 	public static final ResourceLocation blast_furnace_tex = RefStrings.loc("textures/models/machines/blast_furnace.png");
 	public static final HFRWavefrontObject battery_socket = new HFRWavefrontObject(RefStrings.loc("models/machines/battery.obj"));

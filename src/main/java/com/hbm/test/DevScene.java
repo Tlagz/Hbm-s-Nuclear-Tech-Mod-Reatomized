@@ -40,6 +40,7 @@ public class DevScene {
 	static BlockPos welderPos;
 	static BlockPos blastFurnacePos;
 	static BlockPos shredderPos;
+	static BlockPos arcFurnacePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -82,6 +83,14 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), -10.5, -59, -5.2, 180F, 28F);
+			}
+		}
+		// the arc furnace from the west and its GUI
+		if(serverTicks == 640 || serverTicks == 680) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 640) player.teleportTo(player.serverLevel(), 0.5, -59, 7.5, -100F, -12F);
+				else if(arcFurnacePos != null && player.level().getBlockEntity(arcFurnacePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(arcFurnacePos));
 			}
 		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
@@ -316,6 +325,17 @@ public class DevScene {
 			}
 		}
 
+		// electric arc furnace on the east side, spout towards the west, melting sand
+		{
+			arcFurnacePos = ModBlocks.machine_arc_furnace.get().placeMultiblock(level, origin.offset(10, 1, 6), net.minecraft.core.Direction.WEST);
+			if(arcFurnacePos != null && level.getBlockEntity(arcFurnacePos) instanceof com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge arc) {
+				arc.setItem(3, new ItemStack(ModItems.battery_creative.get()));
+				for(int e = 0; e < 3; e++) arc.setItem(e, ModItems.arc_electrode.stack(com.hbm.items.machine.ItemArcElectrode.EnumElectrodeType.values()[e]));
+				arc.setItem(25, new ItemStack(net.minecraft.world.item.Items.SAND, 64));
+				arc.setItem(4, new ItemStack(ModItems.upgrade_speed_3.get()));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -458,7 +478,10 @@ public class DevScene {
 			if(ticks == 600) mc.setScreen(null);
 			if(ticks == 625) Screenshot.grab(mc.gameDirectory, "devscene_world_deco.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 640) {
+			if(ticks == 670) Screenshot.grab(mc.gameDirectory, "devscene_world_arc_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 705) Screenshot.grab(mc.gameDirectory, "devscene_gui_arc_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 720) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
