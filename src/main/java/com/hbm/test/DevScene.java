@@ -86,6 +86,13 @@ public class DevScene {
 			}
 		}
 		// the arc furnace from the west and its GUI
+		// close-up of the foundry under the spout
+		if(serverTicks == 715) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 5.3, -59, 6.5, -90F, 50F);
+			}
+		}
 		if(serverTicks == 640 || serverTicks == 680) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -331,8 +338,21 @@ public class DevScene {
 			if(arcFurnacePos != null && level.getBlockEntity(arcFurnacePos) instanceof com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge arc) {
 				arc.setItem(3, new ItemStack(ModItems.battery_creative.get()));
 				for(int e = 0; e < 3; e++) arc.setItem(e, ModItems.arc_electrode.stack(com.hbm.items.machine.ItemArcElectrode.EnumElectrodeType.values()[e]));
-				arc.setItem(25, new ItemStack(net.minecraft.world.item.Items.SAND, 64));
 				arc.setItem(4, new ItemStack(ModItems.upgrade_speed_3.get()));
+				// liquid mode: molten steel poured out of the spout into the channels below
+				arc.liquidMode = true;
+				arc.setItem(25, new ItemStack(ModItems.ingot_steel.get(), 64));
+			}
+			// foundry under the spout: channels leading to an ingot mold, a plate mold and a wire mold
+			int[][] molds = { {8, 5, 2}, {8, 7, 3}, {7, 6, 4} };
+			for(int[] m : molds) {
+				BlockPos moldPos = origin.offset(m[0], 1, m[1]);
+				level.setBlockAndUpdate(moldPos, ModBlocks.foundry_mold.get().defaultBlockState());
+				if(level.getBlockEntity(moldPos) instanceof com.hbm.tileentity.machine.TileEntityFoundryMold mold) mold.slots.set(0, com.hbm.items.machine.ItemMold.stack(m[2]));
+			}
+			// channels after the molds, their connections come from the neighbors
+			for(BlockPos ch : java.util.List.of(origin.offset(9, 1, 6), origin.offset(8, 1, 6))) {
+				level.setBlockAndUpdate(ch, net.minecraft.world.level.block.Block.updateFromNeighbourShapes(ModBlocks.foundry_channel.get().defaultBlockState(), level, ch));
 			}
 		}
 
@@ -481,7 +501,9 @@ public class DevScene {
 			if(ticks == 670) Screenshot.grab(mc.gameDirectory, "devscene_world_arc_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 705) Screenshot.grab(mc.gameDirectory, "devscene_gui_arc_furnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 720) {
+			if(ticks == 740) Screenshot.grab(mc.gameDirectory, "devscene_world_foundry.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 750) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

@@ -17,7 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 /**
  * Electric arc furnace, 5x5 with the spout sticking out the front. Power and items go in through the six ports
  * on the sides.
- * TODO emptying the molten contents with a shovel (ItemScraps)
+ * Using a shovel on it empties the molten contents as scraps.
  */
 public class MachineArcFurnaceLarge extends BlockDummyable {
 
@@ -69,5 +69,22 @@ public class MachineArcFurnaceLarge extends BlockDummyable {
 	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
 		return this.standardOpenBehavior(world, pos, player);
+	}
+
+	@Override
+	protected net.minecraft.world.ItemInteractionResult useItemOn(net.minecraft.world.item.ItemStack held, BlockState state, Level world, BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hit) {
+		if(player.isShiftKeyDown() || !held.canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SHOVEL_DIG)) return net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+		if(world.isClientSide) return net.minecraft.world.ItemInteractionResult.SUCCESS;
+
+		BlockPos core = this.findCore(world, pos);
+		if(core != null && world.getBlockEntity(core) instanceof TileEntityMachineArcFurnaceLarge furnace) {
+			for(com.hbm.inventory.material.Mats.MaterialStack stack : furnace.liquids) {
+				net.minecraft.world.item.ItemStack scrap = com.hbm.items.machine.ItemScraps.create(new com.hbm.inventory.material.Mats.MaterialStack(stack.material, stack.amount));
+				if(!player.getInventory().add(scrap)) player.drop(scrap, false);
+			}
+			furnace.liquids.clear();
+			furnace.setChanged();
+		}
+		return net.minecraft.world.ItemInteractionResult.SUCCESS;
 	}
 }

@@ -31,7 +31,11 @@ public class ModCapabilities {
 					if(!proxy.inventory) return null;
 					target = proxy.getTile();
 				}
-				if(!(target instanceof TileEntityMachineBase machine)) return null;
+				// other inventories with sided access, e.g. foundry molds handing out the cast item
+				if(!(target instanceof TileEntityMachineBase machine)) {
+					if(target instanceof net.minecraft.world.WorldlyContainer worldly) return side == null ? new InvWrapper(worldly) : new SidedInvWrapper(worldly, side);
+					return null;
+				}
 				if(side == null) return new InvWrapper(machine);
 				// machines with port specific slots see which block is asked (the core counts as a port too)
 				if(machine instanceof IConditionalInvAccess access) return new SidedInvWrapper(new ConditionalInvView(machine, access, tile.getBlockPos()), side);

@@ -57,6 +57,9 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_WELDER.get(), com.hbm.render.tileentity.RenderArcWelder::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BLAST_FURNACE.get(), com.hbm.render.tileentity.RenderBlastFurnace::new);
 	}
 
@@ -108,6 +111,8 @@ public class ModEventHandlerClientMod {
 		for(var dye : com.hbm.items.machine.ItemChemicalDye.EnumChemDye.values()) {
 			event.register((stack, tint) -> 0xFF000000 | (tint == 1 ? dye.color : 0xFFFFFF), com.hbm.items.ModItems.chemical_dye.get(dye).get(), com.hbm.items.ModItems.crayon.get(dye).get());
 		}
+		// scraps in their material's color
+		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemScraps.getColor(stack), com.hbm.items.ModItems.scraps.get());
 		// the original's inventory pipe uses the color of NONE
 		event.register((stack, tint) -> 0xFF000000 | (tint == 0 ? com.hbm.inventory.fluid.Fluids.NONE.getColor() : 0xFFFFFF), com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
 	}
@@ -127,6 +132,9 @@ public class ModEventHandlerClientMod {
 			// item model overrides pick the pipe texture by the placed style
 			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.blocks.ModBlocks.fluid_duct_neo.get().asItem(), com.hbm.lib.RefStrings.loc("style"),
 					(stack, level, entity, seed) -> com.hbm.items.block.ItemBlockStyled.getValue(stack, com.hbm.blocks.network.FluidDuctStandard.STYLE));
+			// scraps texture: solid, liquid or liquid additive
+			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.items.ModItems.scraps.get(), com.hbm.lib.RefStrings.loc("scrap_type"),
+					(stack, level, entity, seed) -> com.hbm.items.machine.ItemScraps.getModelType(stack));
 			// blueprint texture by pool type
 			net.minecraft.client.renderer.item.ItemProperties.register(com.hbm.items.ModItems.blueprints.get(), com.hbm.lib.RefStrings.loc("pool"),
 					(stack, level, entity, seed) -> com.hbm.items.machine.ItemBlueprints.poolType(stack));

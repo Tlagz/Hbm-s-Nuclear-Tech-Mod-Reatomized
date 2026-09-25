@@ -1402,6 +1402,82 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_mold_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_mold_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_mold_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_mold_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_basin_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_basin_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_basin_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_basin_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_channel_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_channel_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_channel_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_channel_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_front"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_filter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_outlet_lock"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {
@@ -6002,6 +6078,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/screwdriver"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/screwdriver_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/hand_drill"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/hand_drill_desh"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {
@@ -6039,6 +6131,110 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/rag"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_nugget"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_billet"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_ingot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_plate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_wire"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_plate_cast"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_wire_dense"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_blade"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_blades"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_stamp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_shell"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_pipe"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_ingots"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_plates"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_plates_cast"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_wires_dense"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_block"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_c9"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_c50"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_barrel_light"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_barrel_heavy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_receiver_light"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_receiver_heavy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_mechanism"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_stock"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mold_grip"
     },
     {
       "type": "minecraft:single",
@@ -6103,6 +6299,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/blueprints_528"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scraps"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scraps_liquid"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/scraps_additive"
     }
   ]
 }

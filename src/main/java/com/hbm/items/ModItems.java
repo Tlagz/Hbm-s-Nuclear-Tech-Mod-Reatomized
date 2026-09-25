@@ -875,6 +875,15 @@ public class ModItems {
 			"items/crayon", "items/crayon_overlay");
 	public static final DeferredItem<com.hbm.items.special.ItemRag> rag = register("rag", com.hbm.items.special.ItemRag::new, new Item.Properties(), NtmTab.PARTS);
 
+	/// FOUNDRY ///
+	/** Scraps of any material and amount (components), tinted with the material's color, see ModItemModelProvider */
+	public static final DeferredItem<com.hbm.items.machine.ItemScraps> scraps = register("scraps", com.hbm.items.machine.ItemScraps::new, new Item.Properties(), NtmTab.PARTS);
+	/** Screwdrivers and hand drills for IToolable blocks, also crafting tools */
+	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver = tooling("screwdriver", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 100);
+	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver_desh = tooling("screwdriver_desh", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 0);
+	public static final DeferredItem<com.hbm.items.tool.ItemTooling> hand_drill = tooling("hand_drill", com.hbm.blocks.IToolable.ToolType.HAND_DRILL, 100);
+	public static final DeferredItem<com.hbm.items.tool.ItemTooling> hand_drill_desh = tooling("hand_drill_desh", com.hbm.blocks.IToolable.ToolType.HAND_DRILL, 0);
+
 	/** Shredder blades, desh blades don't wear */
 	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_steel = register("blades_steel", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(400), NtmTab.CONTROL);
 	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_titanium = register("blades_titanium", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(500), NtmTab.CONTROL);
@@ -897,6 +906,12 @@ public class ModItems {
 		FLAT_MODELS.put(blades_titanium, "items/blades_titanium");
 		FLAT_MODELS.put(blades_desh, "items/blades_desh");
 		FLAT_MODELS.put(rag, "items/rag");
+		// foundry molds, one item per mold in the original's order, the recipes use ItemMold.get(id)
+		for(com.hbm.items.machine.ItemMold.Mold mold : com.hbm.items.machine.ItemMold.molds) {
+			DeferredItem<com.hbm.items.machine.ItemMold> item = register("mold_" + mold.name, p -> new com.hbm.items.machine.ItemMold(p, mold), new Item.Properties(), NtmTab.CONTROL);
+			com.hbm.items.machine.ItemMold.ITEMS.put(mold.id, item);
+			FLAT_MODELS.put(item, "items/mold_" + mold.name);
+		}
 	}
 
 	/** Press stamp with a flat model, in the control tab like the original */
@@ -954,6 +969,14 @@ public class ModItems {
 			LAYERED_MODELS.put(item, layers);
 		}
 		return variants;
+	}
+
+	/** Screwdriver or hand drill, held like a tool */
+	private static DeferredItem<com.hbm.items.tool.ItemTooling> tooling(String name, com.hbm.blocks.IToolable.ToolType type, int durability) {
+		DeferredItem<com.hbm.items.tool.ItemTooling> item = register(name, p -> new com.hbm.items.tool.ItemTooling(p, type, durability), new Item.Properties(), NtmTab.CONTROL);
+		FLAT_MODELS.put(item, "items/" + name);
+		HANDHELD.add(item);
+		return item;
 	}
 
 	/** Variants held like tools (setFull3D) */

@@ -257,6 +257,10 @@ def item_ref(e, role, sym, meta=None):
 	m = re.fullmatch(r'Item\.getItemFromBlock\s*\((.*)\)', e, re.S)
 	if m: e = m.group(1).strip()
 	m = re.fullmatch(r'(?:com\.hbm\.items\.)?ModItems\.(\w+)', e)
+	if m and m.group(1) == 'mold':
+		# molds are one item per mold id (the original's item damage)
+		if meta is None or not meta.strip().isdigit(): raise Skip('mold without id')
+		return ('variant', 'com.hbm.items.machine.ItemMold.get(%s)' % meta.strip())
 	if m:
 		kind = sym['items'].get(m.group(1))
 		if kind is None: raise Skip('item:' + m.group(1))

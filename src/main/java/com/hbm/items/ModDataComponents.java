@@ -45,6 +45,14 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<Integer>> ELECTRODE_WEAR = COMPONENTS.registerComponentType("electrode_wear",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
 
+	/** Material id, amount in quanta and liquid flag of foundry scraps (the original's item damage and NBT) */
+	public static final Supplier<DataComponentType<Integer>> SCRAP_MATERIAL = COMPONENTS.registerComponentType("scrap_material",
+			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+	public static final Supplier<DataComponentType<Integer>> SCRAP_AMOUNT = COMPONENTS.registerComponentType("scrap_amount",
+			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+	public static final Supplier<DataComponentType<Boolean>> SCRAP_LIQUID = COMPONENTS.registerComponentType("scrap_liquid",
+			builder -> builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
 	/** Secondary fluid of the multi fluid identifier (the original's "fluid2" NBT) */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE_SECONDARY = COMPONENTS.registerComponentType("fluid_type_secondary",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));

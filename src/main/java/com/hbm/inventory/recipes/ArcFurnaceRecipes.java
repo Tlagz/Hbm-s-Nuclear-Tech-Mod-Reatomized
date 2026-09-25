@@ -45,7 +45,7 @@ import net.neoforged.neoforge.event.TagsUpdatedEvent;
  * custom smeltables of MatDistribution and for furnace recipes of ingots, ores, plates and blocks. Those need item
  * tags and the smelting recipes, so the whole list is built on first use and rebuilt after tags reload.
  *
- * TODO bedrock ore recipes (ItemBedrockOreNew), scraps in liquid mode (ItemScraps), JSON config, JEI
+ * TODO bedrock ore recipes (ItemBedrockOreNew), JSON config, JEI
  */
 @EventBusSubscriber(modid = RefStrings.MODID)
 public class ArcFurnaceRecipes {
@@ -187,6 +187,16 @@ public class ArcFurnaceRecipes {
 	public static synchronized ArcFurnaceRecipe getOutput(ItemStack stack, boolean liquid, Level level) {
 
 		if(stack.isEmpty()) return null;
+
+		// scraps melt back into their material
+		if(liquid && stack.is(ModItems.scraps.get())) {
+			MaterialStack mats = com.hbm.items.machine.ItemScraps.getMats(stack);
+			if(mats != null && mats.material.smeltable == SmeltingBehavior.SMELTABLE) {
+				return new ArcFurnaceRecipe().fluid(mats);
+			}
+			return null;
+		}
+
 		if(!built) build(level);
 
 		ComparableStack cacheKey = new ComparableStack(stack).makeSingular();

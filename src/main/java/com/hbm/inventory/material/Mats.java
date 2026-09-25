@@ -242,10 +242,10 @@ public class Mats {
 	 * What an item is made of: the material entries of its ore dictionary names (item tags here, an ore entry like
 	 * oreIron or [shape][material] like ingotSteel), plus the fixed entries of MatDistribution.
 	 * Will not respect stacksizes - all stacks will be treated as a singular.
-	 * TODO scraps (ItemScraps.getMats) once the foundry is ported
 	 */
 	public static List<MaterialStack> getMaterialsFromItem(ItemStack stack) {
 		if(stack.isEmpty()) return new ArrayList<>();
+		if(stack.is(com.hbm.items.ModItems.scraps.get())) return lookUpMaterials(stack);
 		ComparableStack key = new ComparableStack(stack).makeSingular();
 		return new ArrayList<>(materialCache.computeIfAbsent(key, k -> lookUpMaterials(stack)));
 	}
@@ -282,6 +282,10 @@ public class Mats {
 		if(entries != null) {
 			entries.forEach(x -> { if(x != null) list.add(x); });
 		}
+
+		// scraps carry their material in components, not cached
+		MaterialStack scrap = com.hbm.items.machine.ItemScraps.getMats(stack);
+		if(scrap != null) list.add(scrap);
 
 		return list;
 	}

@@ -152,6 +152,12 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.generic.BlockMetalFence> fence_metal = register("fence_metal", p -> new com.hbm.blocks.generic.BlockMetalFence(p, false), props(Mat.IRON, 15.0F, 0.25F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.generic.BlockMetalFence> fence_metal_post = register("fence_metal_post", p -> new com.hbm.blocks.generic.BlockMetalFence(p, true), props(Mat.IRON, 15.0F, 0.25F), NtmTab.MACHINE);
 
+	/// FOUNDRY: models by datagen, the molten contents by RenderFoundry ///
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundryMold> foundry_mold = register("foundry_mold", com.hbm.blocks.machine.FoundryMold::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundryBasin> foundry_basin = register("foundry_basin", com.hbm.blocks.machine.FoundryBasin::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundryChannel> foundry_channel = register("foundry_channel", com.hbm.blocks.machine.FoundryChannel::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundryOutlet> foundry_outlet = register("foundry_outlet", com.hbm.blocks.machine.FoundryOutlet::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineShredder> machine_shredder = register("machine_shredder", com.hbm.blocks.machine.MachineShredder::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 

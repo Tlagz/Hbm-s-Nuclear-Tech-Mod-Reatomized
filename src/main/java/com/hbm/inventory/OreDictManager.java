@@ -505,6 +505,9 @@ public class OreDictManager {
 
 		registerAutogen();
 		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
+		// screwdrivers are crafting tools
+		registerExtra(KEY_TOOL_SCREWDRIVER, ModItems.screwdriver);
+		registerExtra(KEY_TOOL_SCREWDRIVER, ModItems.screwdriver_desh);
 		// all colored concrete (the original's metadata loop)
 		ANY_CONCRETE.any(ModBlocks.concrete_colored_ext.all());
 		// chemical dyes and crayons count as the dye of their color
@@ -675,6 +678,11 @@ public class OreDictManager {
 	/** The tag an ore dict key maps to, e.g. "ingotUranium" -> c:ingots/uranium */
 	public static TagKey<Item> tag(String key) {
 		return TagKey.create(Registries.ITEM, tagLocation(key));
+	}
+
+	/** The parent tag of every item of a shape, e.g. c:ingots for "ingot" */
+	public static TagKey<Item> shapeTag(String prefix) {
+		return TagKey.create(Registries.ITEM, ResourceLocation.parse(SHAPE_TAGS.get(prefix)));
 	}
 
 	public static ResourceLocation tagLocation(String key) {

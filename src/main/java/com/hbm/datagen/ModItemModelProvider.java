@@ -26,6 +26,17 @@ public class ModItemModelProvider extends ItemModelProvider {
 		ModItems.LAYERED_MODELS.forEach(this::layered);
 		ModItems.ITEM_RENDERED.forEach(this::rendered);
 		blueprints();
+		scraps();
+	}
+
+	/** Scraps: solid, liquid and liquid additive textures picked by ItemScraps.getModelType, all tinted */
+	private void scraps() {
+		String[] textures = { "items/scraps", "items/scraps_liquid", "items/scraps_additive" };
+		var base = withExistingParent("scraps", mcLoc("item/generated")).texture("layer0", texture(textures[0]));
+		for(int i = 1; i < textures.length; i++) {
+			var variant = withExistingParent("scraps" + textures[i].substring(textures[i].indexOf('_')), mcLoc("item/generated")).texture("layer0", texture(textures[i]));
+			base.override().predicate(modLoc("scrap_type"), i).model(variant).end();
+		}
 	}
 
 	/** Items drawn by the NTM item renderer, display transforms like the tile rendered blocks' items */

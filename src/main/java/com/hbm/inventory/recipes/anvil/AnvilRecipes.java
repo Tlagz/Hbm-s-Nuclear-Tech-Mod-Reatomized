@@ -33,10 +33,36 @@ public class AnvilRecipes {
 	public static List<AnvilConstructionRecipe> constructionRecipes = new ArrayList<>();
 
 	/** Needs all items, called during common setup */
+	/** Foundry molds pressed from a blank mold with any item of the shape as the template */
+	private static void registerMolds() {
+		smithingRecipes.add(new AnvilSmithingMold(0, new OreDictStack(GOLD.nugget()), "nugget", 1));
+		smithingRecipes.add(new AnvilSmithingMold(1, new OreDictStack(U.billet()), "billet", 1));
+		smithingRecipes.add(new AnvilSmithingMold(2, new OreDictStack(IRON.ingot()), "ingot", 1));
+		smithingRecipes.add(new AnvilSmithingMold(3, new OreDictStack(IRON.plate()), "plate", 1));
+		smithingRecipes.add(new AnvilSmithingMold(19, new OreDictStack(IRON.plateCast()), "plateTriple", 1));
+		smithingRecipes.add(new AnvilSmithingMold(13, new OreDictStack(IRON.plateCast(), 3), "plateTriple", 3));
+		smithingRecipes.add(new AnvilSmithingMold(4, new OreDictStack(CU.wireFine()), "wireFine", 1));
+		smithingRecipes.add(new AnvilSmithingMold(5, new ComparableStack(ModItems.blade_titanium.get()),
+				new ItemStack(ModItems.blade_titanium.get()), new ItemStack(ModItems.blade_tungsten.get())));
+		smithingRecipes.add(new AnvilSmithingMold(6, new ComparableStack(ModItems.blades_steel.get()),
+				new ItemStack(ModItems.blades_steel.get()), new ItemStack(ModItems.blades_titanium.get())));
+		smithingRecipes.add(new AnvilSmithingMold(7, new ComparableStack(ModItems.stamp_iron_flat.get()),
+				new ItemStack(ModItems.stamp_stone_flat.get()), new ItemStack(ModItems.stamp_iron_flat.get()), new ItemStack(ModItems.stamp_steel_flat.get()),
+				new ItemStack(ModItems.stamp_titanium_flat.get()), new ItemStack(ModItems.stamp_obsidian_flat.get())));
+		smithingRecipes.add(new AnvilSmithingMold(8, new OreDictStack(STEEL.shell()), "shell", 1));
+		smithingRecipes.add(new AnvilSmithingMold(9, new OreDictStack(STEEL.pipe()), "pipe", 1));
+		smithingRecipes.add(new AnvilSmithingMold(10, new OreDictStack(IRON.ingot(), 9), "ingot", 9));
+		smithingRecipes.add(new AnvilSmithingMold(11, new OreDictStack(IRON.plate(), 9), "plate", 9));
+		smithingRecipes.add(new AnvilSmithingMold(12, new OreDictStack(IRON.block()), "block", 1));
+		smithingRecipes.add(new AnvilSmithingMold(20, new OreDictStack(MINGRADE.wireDense(), 1), "wireDense", 1));
+		smithingRecipes.add(new AnvilSmithingMold(21, new OreDictStack(MINGRADE.wireDense(), 9), "wireDense", 9));
+	}
+
 	public static void register() {
 		smithingRecipes.clear();
 		constructionRecipes.clear();
 		registerAnvilUpgrades();
+		registerMolds();
 		GenAnvilRecipes.registerSmithing();
 		GenAnvilRecipes.registerConstruction();
 		registerMaterialConstruction();

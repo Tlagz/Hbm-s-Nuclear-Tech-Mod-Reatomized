@@ -48,6 +48,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		grate(ModBlocks.steel_grate_wide, "blocks/grate_wide_top");
 		metalFence(ModBlocks.fence_metal);
 		metalFence(ModBlocks.fence_metal_post);
+		foundryVessel(ModBlocks.foundry_mold, "mold", 8);
+		foundryVessel(ModBlocks.foundry_basin, "basin", 16);
+		foundryChannel();
+		foundryOutlet();
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -387,6 +391,100 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			return ConfiguredModel.builder().modelFile(models.get(mask)).build();
 		}, com.hbm.blocks.generic.BlockMetalFence.WATERLOGGED);
 		simpleBlockItem(fence, models.get(2 | 8));
+	}
+
+	/**
+	 * Molds and basins: an open box with 2 pixel walls and floor (the original's inner faces at 0.125/0.875),
+	 * [name]_top on the rim, _side outside, _inner inside and _bottom on the floor.
+	 */
+	private void foundryVessel(DeferredBlock<? extends Block> block, String name, float height) {
+		String path = "blocks/foundry_" + name;
+		BlockModelBuilder model = models().getBuilder(block.getId().getPath()).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture(path + "_top")).texture("side", texture(path + "_side")).texture("inner", texture(path + "_inner"))
+				.texture("bottom", texture(path + "_bottom")).texture("particle", texture(path + "_side")).renderType("cutout");
+		model.element().from(0, 0, 0).to(16, 2, 16).face(Direction.UP).texture("#bottom").end().face(Direction.DOWN).texture("#bottom").cullface(Direction.DOWN).end()
+				.face(Direction.NORTH).texture("#side").end().face(Direction.SOUTH).texture("#side").end().face(Direction.WEST).texture("#side").end().face(Direction.EAST).texture("#side").end().end();
+		// walls: west, east, north, south with the outer face towards their side
+		float[][] walls = { {0, 0, 2, 16}, {14, 0, 16, 16}, {2, 0, 14, 2}, {2, 14, 14, 16} };
+		Direction[] outer = { Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH };
+		for(int i = 0; i < 4; i++) {
+			float[] w = walls[i];
+			var element = model.element().from(w[0], 2, w[1]).to(w[2], height, w[3]);
+			element.face(Direction.UP).texture("#top").end();
+			for(Direction dir : Direction.Plane.HORIZONTAL) element.face(dir).texture(dir == outer[i] ? "#side" : "#inner").end();
+			element.end();
+		}
+		simpleBlock(block.get(), model);
+		simpleBlockItem(block.get(), model);
+	}
+
+	/** Foundry channel: the center with its corner posts, an arm towards every connection and an end wall towards the others */
+	private void foundryChannel() {
+		ResourceLocation top = texture("blocks/foundry_channel_top"), side = texture("blocks/foundry_channel_side"), inner = texture("blocks/foundry_channel_inner"), bottom = texture("blocks/foundry_channel_bottom");
+		java.util.function.Function<String, BlockModelBuilder> base = name -> models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", top).texture("side", side).texture("inner", inner).texture("bottom", bottom).texture("particle", side).renderType("cutout");
+
+		BlockModelBuilder center = base.apply("foundry_channel_center");
+		center.element().from(5, 0, 5).to(11, 2, 11).allFaces((dir, face) -> face.texture(dir == Direction.UP || dir == Direction.DOWN ? "#bottom" : "#side")).end();
+		for(float[] post : new float[][] { {5, 5}, {10, 5}, {5, 10}, {10, 10} }) {
+			center.element().from(post[0], 2, post[1]).to(post[0] + 1, 8, post[1] + 1).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : "#side")).end();
+		}
+
+		// east versions, turned for the other directions
+		BlockModelBuilder arm = base.apply("foundry_channel_arm");
+		arm.element().from(11, 0, 5).to(16, 2, 11).allFaces((dir, face) -> face.texture(dir == Direction.UP || dir == Direction.DOWN ? "#bottom" : "#side")).end();
+		arm.element().from(11, 2, 5).to(16, 8, 6).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.SOUTH ? "#inner" : "#side")).end();
+		arm.element().from(11, 2, 10).to(16, 8, 11).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.NORTH ? "#inner" : "#side")).end();
+
+		BlockModelBuilder end = base.apply("foundry_channel_end");
+		end.element().from(10, 2, 6).to(11, 8, 10).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.WEST ? "#inner" : "#side")).end();
+
+		var builder = getMultipartBuilder(ModBlocks.foundry_channel.get());
+		builder.part().modelFile(center).addModel().end();
+		Direction[] dirs = { Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.NORTH };
+		for(int i = 0; i < 4; i++) {
+			var prop = com.hbm.blocks.machine.FoundryChannel.property(dirs[i]);
+			builder.part().modelFile(arm).rotationY(i * 90).addModel().condition(prop, true).end();
+			builder.part().modelFile(end).rotationY(i * 90).addModel().condition(prop, false).end();
+		}
+
+		// inventory: straight along x
+		BlockModelBuilder item = base.apply("foundry_channel_inventory");
+		item.element().from(0, 0, 5).to(16, 2, 11).allFaces((dir, face) -> face.texture(dir == Direction.UP || dir == Direction.DOWN ? "#bottom" : "#side")).end();
+		item.element().from(0, 2, 5).to(16, 8, 6).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.SOUTH ? "#inner" : "#side")).end();
+		item.element().from(0, 2, 10).to(16, 8, 11).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.NORTH ? "#inner" : "#side")).end();
+		simpleBlockItem(ModBlocks.foundry_channel.get(), item);
+	}
+
+	/**
+	 * Foundry outlet, modeled facing north (sitting in the south part of its block, towards the channel): floor, side
+	 * walls and the open front texture on both ends, the filter and the lock as planes near the channel.
+	 */
+	private void foundryOutlet() {
+		String p = "blocks/foundry_outlet_";
+		BlockModelBuilder model = models().getBuilder("foundry_outlet").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture(p + "top")).texture("side", texture(p + "side")).texture("inner", texture(p + "inner")).texture("bottom", texture(p + "bottom"))
+				.texture("front", texture(p + "front")).texture("particle", texture(p + "side")).renderType("cutout");
+		model.element().from(5, 0, 10).to(11, 2, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP || dir == Direction.DOWN ? "#bottom" : "#side")).end();
+		model.element().from(5, 2, 10).to(6, 8, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.EAST ? "#inner" : "#side")).end();
+		model.element().from(10, 2, 10).to(11, 8, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.WEST ? "#inner" : "#side")).end();
+		model.element().from(5, 0, 10).to(11, 8, 16).face(Direction.NORTH).texture("#front").end().face(Direction.SOUTH).texture("#front").end().end();
+
+		BlockModelBuilder filter = models().getBuilder("foundry_outlet_filter").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("filter", texture(p + "filter")).texture("particle", texture(p + "filter")).renderType("cutout");
+		filter.element().from(6, 1, 15.5F).to(10, 8, 15.5F).face(Direction.NORTH).texture("#filter").end().face(Direction.SOUTH).texture("#filter").end().end();
+		BlockModelBuilder lock = models().getBuilder("foundry_outlet_lock").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("lock", texture(p + "lock")).texture("particle", texture(p + "lock")).renderType("cutout");
+		lock.element().from(6, 1, 15).to(10, 8, 15).face(Direction.NORTH).texture("#lock").end().face(Direction.SOUTH).texture("#lock").end().end();
+
+		var builder = getMultipartBuilder(ModBlocks.foundry_outlet.get());
+		for(Direction dir : Direction.Plane.HORIZONTAL) {
+			int y = ((int) dir.toYRot() + 180) % 360;
+			builder.part().modelFile(model).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).end();
+			builder.part().modelFile(filter).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).condition(com.hbm.blocks.machine.FoundryOutlet.FILTER, true).end();
+			builder.part().modelFile(lock).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).condition(com.hbm.blocks.machine.FoundryOutlet.LOCK, true).end();
+		}
+		simpleBlockItem(ModBlocks.foundry_outlet.get(), model);
 	}
 
 	/** Barrels: the original's barrel.obj "Barrel" part with the barrel's texture, the model is centered on x/z */
