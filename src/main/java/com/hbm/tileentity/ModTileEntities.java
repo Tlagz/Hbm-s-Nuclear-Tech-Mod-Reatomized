@@ -46,6 +46,9 @@ public class ModTileEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineChemicalPlant>> CHEMICAL_PLANT = TILES.register("machine_chemical_plant",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineChemicalPlant::new, ModBlocks.machine_chemical_plant.get()).build(null));
 
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineArcWelder>> ARC_WELDER = TILES.register("machine_arc_welder",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineArcWelder::new, ModBlocks.machine_arc_welder.get()).build(null));
+
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachineRefinery>> REFINERY = TILES.register("machine_refinery",
 			() -> BlockEntityType.Builder.of(TileEntityMachineRefinery::new, ModBlocks.machine_refinery.get()).build(null));
 

@@ -1,6 +1,8 @@
 package com.hbm.main;
 
 import com.hbm.lib.RefStrings;
+import com.hbm.tileentity.ConditionalInvView;
+import com.hbm.tileentity.IConditionalInvAccess;
 import com.hbm.tileentity.ModTileEntities;
 import com.hbm.tileentity.TileEntityMachineBase;
 import com.hbm.tileentity.TileEntityProxyCombo;
@@ -30,7 +32,10 @@ public class ModCapabilities {
 					target = proxy.getTile();
 				}
 				if(!(target instanceof TileEntityMachineBase machine)) return null;
-				return side == null ? new InvWrapper(machine) : new SidedInvWrapper(machine, side);
+				if(side == null) return new InvWrapper(machine);
+				// machines with port specific slots see which block is asked (the core counts as a port too)
+				if(machine instanceof IConditionalInvAccess access) return new SidedInvWrapper(new ConditionalInvView(machine, access, tile.getBlockPos()), side);
+				return new SidedInvWrapper(machine, side);
 			});
 		}
 	}

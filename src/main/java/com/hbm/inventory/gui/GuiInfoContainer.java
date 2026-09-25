@@ -47,6 +47,32 @@ public abstract class GuiInfoContainer<T extends AbstractContainerMenu> extends 
 		graphics.blit(texture, x, y, u, v, width, height);
 	}
 
+	/** Which upgrades the machine takes and how many, for the upgrade info panel */
+	public List<String> getUpgradeInfo(Object tile) {
+		List<String> lines = new ArrayList<>();
+
+		if(tile instanceof com.hbm.tileentity.IUpgradeInfoProvider provider) {
+
+			lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.title"));
+
+			for(com.hbm.items.machine.ItemMachineUpgrade.UpgradeType type : com.hbm.items.machine.ItemMachineUpgrade.UpgradeType.values()) {
+				if(provider.canProvideInfo(type, 0, false)) {
+					int maxLevel = provider.getValidUpgrades().get(type);
+					switch(type) {
+					case SPEED: lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.speed", maxLevel)); break;
+					case POWER: lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.power", maxLevel)); break;
+					case EFFECT: lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.effectiveness", maxLevel)); break;
+					case AFTERBURN: lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.afterburner", maxLevel)); break;
+					case OVERDRIVE: lines.add(com.hbm.util.i18n.I18nUtil.resolveKey("upgrade.gui.overdrive", maxLevel)); break;
+					default: break;
+					}
+				}
+			}
+		}
+
+		return lines;
+	}
+
 	public void drawElectricityInfo(GuiGraphics graphics, int mouseX, int mouseY, int x, int y, int width, int height, long power, long maxPower) {
 		if(x <= mouseX && x + width > mouseX && y < mouseY && y + height >= mouseY)
 			drawInfo(graphics, new String[] { BobMathUtil.getShortNumber(power) + "/" + BobMathUtil.getShortNumber(maxPower) + "HE" }, mouseX, mouseY);
