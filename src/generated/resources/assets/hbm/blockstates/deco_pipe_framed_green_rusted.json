@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "hbm:block/deco_pipe_framed_green_rusted",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "hbm:block/deco_pipe_framed_green_rusted"
+    },
+    "axis=z": {
+      "model": "hbm:block/deco_pipe_framed_green_rusted",
+      "x": 90
+    }
+  }
+}

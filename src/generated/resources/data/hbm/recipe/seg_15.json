@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/titanium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:steel_scaffolds"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:steel_beam"
+    },
+    "P": {
+      "tag": "c:plates/titanium"
+    },
+    "S": {
+      "tag": "hbm:steel_scaffolds"
+    }
+  },
+  "pattern": [
+    "PP",
+    "SS",
+    "BB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:seg_15"
+  }
+}

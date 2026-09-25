@@ -1,0 +1,55 @@
+{
+  "parent": "minecraft:block/block",
+  "children": {
+    "side": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_side_marked"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Side": true,
+        "Top": false
+      }
+    },
+    "top": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_top_marked"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Side": false,
+        "Top": true
+      }
+    }
+  },
+  "item_render_order": [
+    "top",
+    "side"
+  ],
+  "loader": "neoforge:composite",
+  "textures": {
+    "particle": "hbm:blocks/pipe_side_marked"
+  }
+}

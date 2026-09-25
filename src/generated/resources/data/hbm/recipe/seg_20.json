@@ -1,0 +1,50 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:steel_scaffolds"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:steel_beam"
+    },
+    "G": {
+      "tag": "c:plates/gold"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "S": {
+      "tag": "hbm:steel_scaffolds"
+    }
+  },
+  "pattern": [
+    "PGP",
+    "SSS",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:seg_20"
+  }
+}

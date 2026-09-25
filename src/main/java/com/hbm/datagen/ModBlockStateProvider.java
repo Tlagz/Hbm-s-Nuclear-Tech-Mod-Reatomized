@@ -42,6 +42,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		for(var barrel : ModBlocks.BARRELS) barrel(barrel);
 		ModBlocks.ANVILS.forEach(this::anvil);
 		ModBlocks.SCAFFOLDS.forEach(this::scaffold);
+		decoBlocks();
+		for(var pipe : ModBlocks.PIPES) decoPipe(pipe);
+		grate(ModBlocks.steel_grate, "blocks/grate_top");
+		grate(ModBlocks.steel_grate_wide, "blocks/grate_wide_top");
+		metalFence(ModBlocks.fence_metal);
+		metalFence(ModBlocks.fence_metal_post);
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -229,6 +235,158 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		}
 		getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(models[state.getValue(com.hbm.blocks.generic.BlockScaffold.ORIENTATION)]).build());
 		simpleBlockItem(block.get(), models[0]);
+	}
+
+	/**
+	 * Steel walls and corners: the boxes of their shape with the wall texture on every face (the original rendered its
+	 * bounds with renderStandardBlock), one model per facing. The roof is the original's ModelSteelRoof, the beam beam.obj.
+	 */
+	private void decoBlocks() {
+		for(var block : List.of(ModBlocks.steel_wall, ModBlocks.steel_corner)) {
+			String name = block.getId().getPath();
+			ResourceLocation tex = texture("blocks/steel_wall");
+			Map<Direction, ModelFile> models = new HashMap<>();
+			for(Direction dir : Direction.Plane.HORIZONTAL) {
+				BlockModelBuilder model = models().getBuilder(name + "_" + dir.getName()).parent(models().getExistingFile(mcLoc("block/block"))).texture("wall", tex).texture("particle", tex);
+				var shape = block.get().type == com.hbm.blocks.generic.DecoBlock.Type.WALL ? com.hbm.blocks.generic.DecoBlock.wall(dir) : com.hbm.blocks.generic.DecoBlock.corner(dir);
+				for(var box : shape.toAabbs()) {
+					model.element().from((float) box.minX * 16, (float) box.minY * 16, (float) box.minZ * 16).to((float) box.maxX * 16, (float) box.maxY * 16, (float) box.maxZ * 16)
+							.allFaces((face, builder) -> builder.texture("#wall")).end();
+				}
+				models.put(dir, model);
+			}
+			getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(models.get(state.getValue(com.hbm.blocks.generic.DecoBlock.FACING))).build());
+			simpleBlockItem(block.get(), models.get(Direction.SOUTH));
+		}
+
+		// ModelSteelRoof: a plate with two ridges, 64x32 box UVs, drawn upside down around the block like every 1.7.10 ModelBase
+		BlockModelBuilder roof = models().getBuilder("steel_roof").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("roof", texture("models/steelroof")).texture("particle", texture("blocks/steel_roof"));
+		modelBox(roof, "#roof", 64, 32, -8, 23, -8, 16, 1, 16, 0, 0);
+		modelBox(roof, "#roof", 64, 32, -3, 22, -8, 1, 1, 16, 30, 15);
+		modelBox(roof, "#roof", 64, 32, -8, 21, 2, 16, 2, 2, 0, 17);
+		simpleBlock(ModBlocks.steel_roof.get(), roof);
+		simpleBlockItem(ModBlocks.steel_roof.get(), roof);
+
+		ResourceLocation beamTex = texture("blocks/steel_beam");
+		BlockModelBuilder beam = models().getBuilder("steel_beam").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("texture0", beamTex).texture("particle", beamTex)
+				.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/beam.obj")).flipV(true).automaticCulling(false).end();
+		beam.rootTransforms().translation(0.5F, 0, 0.5F);
+		simpleBlock(ModBlocks.steel_beam.get(), beam);
+		simpleBlockItem(ModBlocks.steel_beam.get(), beam);
+	}
+
+	/**
+	 * One box of a 1.7.10 ModelBase (ModelRenderer.addBox at a rotation point, (x, y, z) = point + offset) as a model
+	 * element. Tile entity renderers drew those models turned upside down around the block's bottom center,
+	 * so model (x, y, z) is block pixel (8 - x, 24 - y, 8 + z). The faces get the ModelBox texture layout at (u, v).
+	 */
+	private static void modelBox(BlockModelBuilder model, String texture, int texW, int texH, float x, float y, float z, int dx, int dy, int dz, int u, int v) {
+		float su = 16F / texW, sv = 16F / texH;
+		var element = model.element().from(8 - x - dx, 24 - y - dy, 8 + z).to(8 - x, 24 - y, 8 + z + dz);
+		// ModelBox: -x face (world east), +x (west), top, bottom, -z (north), +z (south)
+		float[][] rects = {
+				{ u, v + dz, u + dz, v + dz + dy },
+				{ u + dz + dx, v + dz, u + dz + dx + dz, v + dz + dy },
+				{ u + dz, v, u + dz + dx, v + dz },
+				{ u + dz + dx, v, u + dz + dx + dx, v + dz },
+				{ u + dz, v + dz, u + dz + dx, v + dz + dy },
+				{ u + dz + dx + dz, v + dz, u + dz + dx + dz + dx, v + dz + dy } };
+		Direction[] faces = { Direction.EAST, Direction.WEST, Direction.UP, Direction.DOWN, Direction.NORTH, Direction.SOUTH };
+		for(int i = 0; i < 6; i++) {
+			float[] r = rects[i];
+			element.face(faces[i]).texture(texture).uvs(r[0] * su, r[1] * sv, r[2] * su, r[3] * sv).end();
+		}
+		element.end();
+	}
+
+	/**
+	 * Decorative pipes: pipe.obj / pipe_rim.obj / pipe_quad.obj with the end texture on "Top" and the side texture on
+	 * "Side", framed pipes add pipe_frame.obj's frame and mesh. Pointing up, turned onto the axis like a log.
+	 */
+	private void decoPipe(DeferredBlock<com.hbm.blocks.generic.BlockPipe> block) {
+		var pipe = block.get();
+		String name = block.getId().getPath();
+		BlockModelBuilder model = models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block"))).texture("particle", texture(pipe.side));
+		CompositeModelBuilder<BlockModelBuilder> composite = model.customLoader(CompositeModelBuilder::begin);
+		String[][] parts = pipe.style == com.hbm.blocks.generic.BlockPipe.Style.FRAMED
+				? new String[][] { {pipe.style.model, "Top", pipe.top}, {pipe.style.model, "Side", pipe.side}, {"pipe_frame", "Frame", "blocks/pipe_frame"}, {"pipe_frame", "Mesh", "blocks/pipe_mesh"} }
+				: new String[][] { {pipe.style.model, "Top", pipe.top}, {pipe.style.model, "Side", pipe.side} };
+		for(String[] part : parts) {
+			BlockModelBuilder child = models().nested().texture("texture0", texture(part[2])).renderType("cutout");
+			ObjModelBuilder<BlockModelBuilder> obj = child.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/" + part[0] + ".obj")).flipV(true).automaticCulling(false);
+			for(String other : part[0].equals("pipe_frame") ? List.of("Frame", "Mesh") : List.of("Top", "Side")) obj.visibility(other, other.equals(part[1]));
+			obj.end();
+			child.rootTransforms().translation(0.5F, 0.5F, 0.5F);
+			composite.child(part[1].toLowerCase(), child);
+		}
+		composite.end();
+
+		getVariantBuilder(pipe).forAllStates(state -> switch(state.getValue(RotatedPillarBlock.AXIS)) {
+			case X -> ConfiguredModel.builder().modelFile(model).rotationX(90).rotationY(90).build();
+			case Z -> ConfiguredModel.builder().modelFile(model).rotationX(90).build();
+			default -> ConfiguredModel.builder().modelFile(model).build();
+		});
+		simpleBlockItem(pipe, model);
+	}
+
+	/** Grates: a 2 pixel plate at the level's height with the grate texture on top and bottom, the side strip around */
+	private void grate(DeferredBlock<com.hbm.blocks.generic.BlockGrate> block, String top) {
+		String name = block.getId().getPath();
+		ResourceLocation topTex = texture(top), sideTex = texture("blocks/grate_side");
+		ModelFile[] models = new ModelFile[10];
+		for(int level = 0; level < 10; level++) {
+			float y = (float) com.hbm.blocks.generic.BlockGrate.getY(level) * 16;
+			// the side strip of the plate's height, the levels outside the block use the nearest one
+			float v = Math.clamp(16 - y - 2, 0, 14);
+			BlockModelBuilder model = models().getBuilder(name + "_" + level).parent(models().getExistingFile(mcLoc("block/block")))
+					.texture("top", topTex).texture("side", sideTex).texture("particle", topTex).renderType("cutout");
+			model.element().from(0, y, 0).to(16, y + 2, 16)
+					.face(Direction.UP).texture("#top").uvs(0, 0, 16, 16).end()
+					.face(Direction.DOWN).texture("#top").uvs(0, 0, 16, 16).end()
+					.face(Direction.NORTH).texture("#side").uvs(0, v, 16, v + 2).end()
+					.face(Direction.SOUTH).texture("#side").uvs(0, v, 16, v + 2).end()
+					.face(Direction.EAST).texture("#side").uvs(0, v, 16, v + 2).end()
+					.face(Direction.WEST).texture("#side").uvs(0, v, 16, v + 2).end()
+					.end();
+			models[level] = model;
+		}
+		getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(models[state.getValue(com.hbm.blocks.generic.BlockGrate.LEVEL)]).build());
+		simpleBlockItem(block.get(), models[0]);
+	}
+
+	/**
+	 * Chain link fences (the original's RenderFence): flat fence panels through the middle towards every connection
+	 * and the post, one model per connection combination.
+	 */
+	private void metalFence(DeferredBlock<com.hbm.blocks.generic.BlockMetalFence> block) {
+		var fence = block.get();
+		String name = block.getId().getPath();
+		ResourceLocation panel = texture("blocks/fence_metal"), post = texture("blocks/fence_metal_post");
+		Map<Integer, ModelFile> models = new HashMap<>();
+		for(int mask = 0; mask < 16; mask++) {
+			boolean n = (mask & 1) != 0, e = (mask & 2) != 0, s = (mask & 4) != 0, w = (mask & 8) != 0;
+			BlockModelBuilder model = models().getBuilder(name + "_" + mask).parent(models().getExistingFile(mcLoc("block/block")))
+					.texture("panel", panel).texture("post", post).texture("particle", panel).renderType("cutout");
+			boolean hasX = e || w, hasZ = n || s;
+			if(!hasX && !hasZ) hasX = true;
+			float min = 7, max = 9;
+			if(hasX) model.element().from(w ? 0 : min, 0, 8).to(e ? 16 : max, 16, 8)
+					.face(Direction.NORTH).texture("#panel").end().face(Direction.SOUTH).texture("#panel").end().end();
+			if(hasZ) model.element().from(8, 0, n ? 0 : min).to(8, 16, s ? 16 : max)
+					.face(Direction.EAST).texture("#panel").end().face(Direction.WEST).texture("#panel").end().end();
+			if(com.hbm.blocks.generic.BlockMetalFence.showPost(fence.alwaysPost, n, e, s, w)) {
+				model.element().from(6, 0, 6).to(10, 16, 10).allFaces((face, builder) -> builder.texture("#post")).end();
+			}
+			models.put(mask, model);
+		}
+		getVariantBuilder(fence).forAllStatesExcept(state -> {
+			int mask = (state.getValue(com.hbm.blocks.generic.BlockMetalFence.NORTH) ? 1 : 0) | (state.getValue(com.hbm.blocks.generic.BlockMetalFence.EAST) ? 2 : 0)
+					| (state.getValue(com.hbm.blocks.generic.BlockMetalFence.SOUTH) ? 4 : 0) | (state.getValue(com.hbm.blocks.generic.BlockMetalFence.WEST) ? 8 : 0);
+			return ConfiguredModel.builder().modelFile(models.get(mask)).build();
+		}, com.hbm.blocks.generic.BlockMetalFence.WATERLOGGED);
+		simpleBlockItem(fence, models.get(2 | 8));
 	}
 
 	/** Barrels: the original's barrel.obj "Barrel" part with the barrel's texture, the model is centered on x/z */

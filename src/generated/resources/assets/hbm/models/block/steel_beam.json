@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:block/block",
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/blocks/beam.obj",
+  "textures": {
+    "particle": "hbm:blocks/steel_beam",
+    "texture0": "hbm:blocks/steel_beam"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  }
+}

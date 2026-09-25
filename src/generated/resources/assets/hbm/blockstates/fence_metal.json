@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "east=false,north=false,south=false,west=false": {
+      "model": "hbm:block/fence_metal_0"
+    },
+    "east=false,north=false,south=false,west=true": {
+      "model": "hbm:block/fence_metal_8"
+    },
+    "east=false,north=false,south=true,west=false": {
+      "model": "hbm:block/fence_metal_4"
+    },
+    "east=false,north=false,south=true,west=true": {
+      "model": "hbm:block/fence_metal_12"
+    },
+    "east=false,north=true,south=false,west=false": {
+      "model": "hbm:block/fence_metal_1"
+    },
+    "east=false,north=true,south=false,west=true": {
+      "model": "hbm:block/fence_metal_9"
+    },
+    "east=false,north=true,south=true,west=false": {
+      "model": "hbm:block/fence_metal_5"
+    },
+    "east=false,north=true,south=true,west=true": {
+      "model": "hbm:block/fence_metal_13"
+    },
+    "east=true,north=false,south=false,west=false": {
+      "model": "hbm:block/fence_metal_2"
+    },
+    "east=true,north=false,south=false,west=true": {
+      "model": "hbm:block/fence_metal_10"
+    },
+    "east=true,north=false,south=true,west=false": {
+      "model": "hbm:block/fence_metal_6"
+    },
+    "east=true,north=false,south=true,west=true": {
+      "model": "hbm:block/fence_metal_14"
+    },
+    "east=true,north=true,south=false,west=false": {
+      "model": "hbm:block/fence_metal_3"
+    },
+    "east=true,north=true,south=false,west=true": {
+      "model": "hbm:block/fence_metal_11"
+    },
+    "east=true,north=true,south=true,west=false": {
+      "model": "hbm:block/fence_metal_7"
+    },
+    "east=true,north=true,south=true,west=true": {
+      "model": "hbm:block/fence_metal_15"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:pipes/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "hbm:pipes/steel"
+    }
+  },
+  "pattern": [
+    "PP"
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:deco_pipe"
+  }
+}

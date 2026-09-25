@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "hbm:block/deco_pipe_rim_green",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "hbm:block/deco_pipe_rim_green"
+    },
+    "axis=z": {
+      "model": "hbm:block/deco_pipe_rim_green",
+      "x": 90
+    }
+  }
+}

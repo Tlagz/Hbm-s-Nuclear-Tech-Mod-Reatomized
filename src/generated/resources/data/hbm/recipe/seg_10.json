@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/aluminum"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:steel_scaffolds"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:steel_beam"
+    },
+    "P": {
+      "tag": "c:plates/aluminum"
+    },
+    "S": {
+      "tag": "hbm:steel_scaffolds"
+    }
+  },
+  "pattern": [
+    "P",
+    "S",
+    "B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:seg_10"
+  }
+}

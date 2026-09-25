@@ -77,6 +77,13 @@ public class DevScene {
 				else player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
 			}
 		}
+		// last world screenshot: the deco blocks
+		if(serverTicks == 600) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), -10.5, -59, -5.2, 180F, 28F);
+			}
+		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
 		if(serverTicks == 310) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -283,6 +290,32 @@ public class DevScene {
 			for(int s = 0; s < 4; s++) level.setBlockAndUpdate(origin.offset(-10 + s, 1, 1), scaffolds.get(s).get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockScaffold.ORIENTATION, s));
 		}
 
+		// deco blocks in the corner: walls, roof, beam, grates in front, pipes on every axis behind, fences at the edge
+		{
+			var S = com.hbm.blocks.generic.DecoBlock.FACING;
+			level.setBlockAndUpdate(origin.offset(-13, 1, -9), ModBlocks.steel_wall.get().defaultBlockState().setValue(S, net.minecraft.core.Direction.NORTH));
+			level.setBlockAndUpdate(origin.offset(-12, 1, -9), ModBlocks.steel_corner.get().defaultBlockState().setValue(S, net.minecraft.core.Direction.NORTH));
+			level.setBlockAndUpdate(origin.offset(-11, 1, -9), ModBlocks.steel_roof.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(-10, 1, -9), ModBlocks.steel_beam.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(-9, 1, -9), ModBlocks.steel_grate.get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockGrate.LEVEL, 3));
+			level.setBlockAndUpdate(origin.offset(-8, 1, -9), ModBlocks.steel_grate_wide.get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockGrate.LEVEL, 6));
+			var A = net.minecraft.world.level.block.RotatedPillarBlock.AXIS;
+			level.setBlockAndUpdate(origin.offset(-13, 1, -11), ModBlocks.deco_pipe.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(-12, 1, -11), ModBlocks.deco_pipe_rim_rusted.get().defaultBlockState().setValue(A, net.minecraft.core.Direction.Axis.X));
+			level.setBlockAndUpdate(origin.offset(-11, 1, -11), ModBlocks.deco_pipe_quad_green.get().defaultBlockState().setValue(A, net.minecraft.core.Direction.Axis.Z));
+			level.setBlockAndUpdate(origin.offset(-10, 1, -11), ModBlocks.deco_pipe_framed_red.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(-9, 1, -11), ModBlocks.deco_pipe_marked.get().defaultBlockState().setValue(A, net.minecraft.core.Direction.Axis.X));
+			for(int x = -13; x <= -9; x++) {
+				BlockPos fencePos = origin.offset(x, 1, -12);
+				level.setBlockAndUpdate(fencePos, (x == -11 ? ModBlocks.fence_metal_post : ModBlocks.fence_metal).get().defaultBlockState());
+			}
+			for(int x = -13; x <= -9; x++) {
+				BlockPos fencePos = origin.offset(x, 1, -12);
+				level.setBlockAndUpdate(fencePos, level.getBlockState(fencePos).updateShape(net.minecraft.core.Direction.EAST, level.getBlockState(fencePos.east()), level, fencePos, fencePos.east())
+						.updateShape(net.minecraft.core.Direction.WEST, level.getBlockState(fencePos.west()), level, fencePos, fencePos.west()));
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -421,7 +454,11 @@ public class DevScene {
 				if(ticks == 575 + t * 20) Screenshot.grab(mc.gameDirectory, "devscene_tab_" + tabs[t].name().toLowerCase() + ".png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			}
 
-			if(ticks == 560 + tabs.length * 20) {
+			// deco blocks, the server moves the camera at 600
+			if(ticks == 600) mc.setScreen(null);
+			if(ticks == 625) Screenshot.grab(mc.gameDirectory, "devscene_world_deco.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 640) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

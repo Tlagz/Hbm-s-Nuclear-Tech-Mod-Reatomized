@@ -1310,6 +1310,98 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/steel_wall"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:models/steelroof"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/steel_roof"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/steel_beam"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side_rusty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top_rusty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side_green"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top_green"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side_green_rusty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top_green_rusty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_side_marked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_top_marked"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_frame"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/pipe_mesh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/grate_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/grate_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/grate_wide_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/fence_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/fence_metal_post"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {

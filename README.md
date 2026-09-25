@@ -59,7 +59,7 @@ the crucible side of the material system (Mats.getMaterialsFromItem, material en
 | 1 | Core: registries, HE energy network, fluids, hazards/radiation, pollution, effects, packets, config | done |
 | 2 | Materials: ores, ingots, powders, tags, ore generation | mostly done (see below); material system (Mats, autogen wires/bolts/plates/shells/pipes/gun parts with recolored textures) |
 | 3 | Simple machines + GUIs, cables and pipes | in progress: machine/GUI base, cables, capacitors, batteries, electric furnace, fluid containers + identifier, pipes, barrels, diesel, upgrades, oil chain (derrick, firebox, boiler, refinery), look overlay, burner press, NTM anvils (smithing + construction), assembly machine and chemical plant (generic recipes, recipe selector, blueprints), arc welder, blast furnace (steel), smelting recipes, shredder (ore doubling, recipes from item tags) |
-| 4 | Rendering: OBJ loader for block entity renderers, animation system | in progress: OBJ tile/item renderers, multiblocks (BlockDummyable), wood burner, steel scaffolds (OBJ block models with root transforms); animations open |
+| 4 | Rendering: OBJ loader for block entity renderers, animation system | in progress: OBJ tile/item renderers, multiblocks (BlockDummyable), wood burner, steel scaffolds (OBJ block models with root transforms), deco pipes, steel walls/roofs/beams, grates, metal fences; animations open |
 | 5 | Large machines, multiblocks, reactors | |
 | 6 | Entities, missiles, bombs, explosions, fallout | |
 | 7 | Weapons | |

@@ -254,6 +254,7 @@ SOUNDS = {
     "soundTypeGravel": "SoundType.GRAVEL", "soundTypeSand": "SoundType.SAND", "soundTypeWood": "SoundType.WOOD",
     "soundTypeCloth": "SoundType.WOOL", "soundTypeSnow": "SoundType.SNOW", "soundTypePiston": "SoundType.STONE",
     "soundTypeGrass": "SoundType.GRASS",
+    "grate": "ModSoundTypes.GRATE", "platemetal": "ModSoundTypes.PLATEMETAL",
 }
 
 

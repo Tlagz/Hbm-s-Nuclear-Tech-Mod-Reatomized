@@ -113,6 +113,44 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold_white = scaffold("steel_scaffold_white", "scaffold_white");
 	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold_yellow = scaffold("steel_scaffold_yellow", "scaffold_yellow");
 
+	/// DECO: steel walls, beams, grates, pipes, fences ///
+	public static final DeferredBlock<com.hbm.blocks.generic.DecoBlock> steel_wall = register("steel_wall", p -> new com.hbm.blocks.generic.DecoBlock(p, com.hbm.blocks.generic.DecoBlock.Type.WALL), props(Mat.IRON, 5.0F, 15.0F), NtmTab.BLOCKS);
+	public static final DeferredBlock<com.hbm.blocks.generic.DecoBlock> steel_corner = register("steel_corner", p -> new com.hbm.blocks.generic.DecoBlock(p, com.hbm.blocks.generic.DecoBlock.Type.CORNER), props(Mat.IRON, 15.0F, 15.0F), NtmTab.BLOCKS);
+	public static final DeferredBlock<com.hbm.blocks.generic.DecoBlock> steel_roof = register("steel_roof", p -> new com.hbm.blocks.generic.DecoBlock(p, com.hbm.blocks.generic.DecoBlock.Type.ROOF), props(Mat.IRON, 5.0F, 15.0F), NtmTab.BLOCKS);
+	public static final DeferredBlock<com.hbm.blocks.generic.DecoBlock> steel_beam = register("steel_beam", p -> new com.hbm.blocks.generic.DecoBlock(p, com.hbm.blocks.generic.DecoBlock.Type.BEAM), props(Mat.IRON, 5.0F, 15.0F), NtmTab.BLOCKS);
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockGrate> steel_grate = register("steel_grate", p -> new com.hbm.blocks.generic.BlockGrate(p, false), props(Mat.IRON, 2.0F, 5.0F).sound(ModSoundTypes.GRATE), NtmTab.BLOCKS);
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockGrate> steel_grate_wide = register("steel_grate_wide", p -> new com.hbm.blocks.generic.BlockGrate(p, true), props(Mat.IRON, 2.0F, 5.0F).sound(ModSoundTypes.GRATE), NtmTab.BLOCKS);
+
+	/** Decorative pipes, used by datagen */
+	public static final java.util.List<DeferredBlock<com.hbm.blocks.generic.BlockPipe>> PIPES = new java.util.ArrayList<>();
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe = pipe("deco_pipe", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rusted = pipe("deco_pipe_rusted", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_green = pipe("deco_pipe_green", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "_green");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_green_rusted = pipe("deco_pipe_green_rusted", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "_green_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_red = pipe("deco_pipe_red", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "_red");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_marked = pipe("deco_pipe_marked", com.hbm.blocks.generic.BlockPipe.Style.PLAIN, "_marked");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim = pipe("deco_pipe_rim", com.hbm.blocks.generic.BlockPipe.Style.RIM, "");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim_rusted = pipe("deco_pipe_rim_rusted", com.hbm.blocks.generic.BlockPipe.Style.RIM, "_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim_green = pipe("deco_pipe_rim_green", com.hbm.blocks.generic.BlockPipe.Style.RIM, "_green");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim_green_rusted = pipe("deco_pipe_rim_green_rusted", com.hbm.blocks.generic.BlockPipe.Style.RIM, "_green_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim_red = pipe("deco_pipe_rim_red", com.hbm.blocks.generic.BlockPipe.Style.RIM, "_red");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_rim_marked = pipe("deco_pipe_rim_marked", com.hbm.blocks.generic.BlockPipe.Style.RIM, "_marked");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed = pipe("deco_pipe_framed", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed_rusted = pipe("deco_pipe_framed_rusted", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed_green = pipe("deco_pipe_framed_green", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "_green");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed_green_rusted = pipe("deco_pipe_framed_green_rusted", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "_green_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed_red = pipe("deco_pipe_framed_red", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "_red");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_framed_marked = pipe("deco_pipe_framed_marked", com.hbm.blocks.generic.BlockPipe.Style.FRAMED, "_marked");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad = pipe("deco_pipe_quad", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad_rusted = pipe("deco_pipe_quad_rusted", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad_green = pipe("deco_pipe_quad_green", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "_green");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad_green_rusted = pipe("deco_pipe_quad_green_rusted", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "_green_rusty");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad_red = pipe("deco_pipe_quad_red", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "_red");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockPipe> deco_pipe_quad_marked = pipe("deco_pipe_quad_marked", com.hbm.blocks.generic.BlockPipe.Style.QUAD, "_marked");
+
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockMetalFence> fence_metal = register("fence_metal", p -> new com.hbm.blocks.generic.BlockMetalFence(p, false), props(Mat.IRON, 15.0F, 0.25F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockMetalFence> fence_metal_post = register("fence_metal_post", p -> new com.hbm.blocks.generic.BlockMetalFence(p, true), props(Mat.IRON, 15.0F, 0.25F), NtmTab.MACHINE);
+
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineShredder> machine_shredder = register("machine_shredder", com.hbm.blocks.machine.MachineShredder::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
@@ -256,7 +294,7 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockOre> deco_rusty_steel = generated("deco_rusty_steel", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_rusty_steel"));
 	public static final DeferredBlock<BlockOre> deco_lead = generated("deco_lead", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_lead"));
 	public static final DeferredBlock<BlockOre> deco_beryllium = generated("deco_beryllium", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_beryllium"));
-	public static final BlockEnumMulti.Variants<PlatemetalType> platemetal = multi("platemetal", PlatemetalType.class, "block.hbm.platemetal.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS,
+	public static final BlockEnumMulti.Variants<PlatemetalType> platemetal = multi("platemetal", PlatemetalType.class, "block.hbm.platemetal.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F).sound(ModSoundTypes.PLATEMETAL), NtmTab.BLOCKS,
 			BlockModel.cube("blocks/platemetal.base"), BlockModel.cube("blocks/platemetal.black"), BlockModel.cube("blocks/platemetal.white"), BlockModel.cube("blocks/platemetal.red"), BlockModel.cube("blocks/platemetal.green"), BlockModel.cube("blocks/platemetal.light_gray"), BlockModel.cube("blocks/platemetal.blue"), BlockModel.cube("blocks/platemetal.purple"), BlockModel.cube("blocks/platemetal.cyan"), BlockModel.cube("blocks/platemetal.pink"), BlockModel.cube("blocks/platemetal.lime"), BlockModel.cube("blocks/platemetal.yellow"), BlockModel.cube("blocks/platemetal.light_blue"), BlockModel.cube("blocks/platemetal.magenta"), BlockModel.cube("blocks/platemetal.orange"));
 	public static final DeferredBlock<BlockOutgas> deco_asbestos = generated("deco_asbestos", p -> new BlockOutgas(p).setOutgas(true, 5, true).noFortune(), props(Mat.CLOTH, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_asbestos"));
 	public static final DeferredBlock<Block> deco_rbmk = generated("deco_rbmk", Block::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/rbmk/rbmk_top"));
@@ -451,6 +489,14 @@ public class ModBlocks {
 		return block;
 	}
 
+
+	/** Decorative pipe with the textures pipe_top[suffix] and pipe_side[suffix] */
+	private static DeferredBlock<com.hbm.blocks.generic.BlockPipe> pipe(String name, com.hbm.blocks.generic.BlockPipe.Style style, String suffix) {
+		DeferredBlock<com.hbm.blocks.generic.BlockPipe> block = register(name, p -> new com.hbm.blocks.generic.BlockPipe(p, style, "blocks/pipe_top" + suffix, "blocks/pipe_side" + suffix),
+				props(Mat.IRON, 2.0F, 5.0F).sound(ModSoundTypes.GRATE), NtmTab.BLOCKS);
+		PIPES.add(block);
+		return block;
+	}
 
 	private static DeferredBlock<com.hbm.blocks.generic.BlockScaffold> scaffold(String name, String texture) {
 		DeferredBlock<com.hbm.blocks.generic.BlockScaffold> block = register(name, p -> new com.hbm.blocks.generic.BlockScaffold(p, "block.hbm.steel_scaffold"), props(Mat.IRON, 5.0F, 15.0F), NtmTab.BLOCKS);

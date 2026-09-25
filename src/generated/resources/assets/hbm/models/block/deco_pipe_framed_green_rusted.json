@@ -1,0 +1,99 @@
+{
+  "parent": "minecraft:block/block",
+  "children": {
+    "frame": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_frame.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_frame"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Frame": true,
+        "Mesh": false
+      }
+    },
+    "mesh": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_frame.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_mesh"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Frame": false,
+        "Mesh": true
+      }
+    },
+    "side": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_rim.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_side_green_rusty"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Side": true,
+        "Top": false
+      }
+    },
+    "top": {
+      "automatic_culling": false,
+      "flip_v": true,
+      "loader": "neoforge:obj",
+      "model": "hbm:models/blocks/pipe_rim.obj",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture0": "hbm:blocks/pipe_top_green_rusty"
+      },
+      "transform": {
+        "translation": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "visibility": {
+        "Side": false,
+        "Top": true
+      }
+    }
+  },
+  "item_render_order": [
+    "top",
+    "side",
+    "frame",
+    "mesh"
+  ],
+  "loader": "neoforge:composite",
+  "textures": {
+    "particle": "hbm:blocks/pipe_side_green_rusty"
+  }
+}
