@@ -98,6 +98,15 @@ BLOCK_ANY_KEYS = {
 	'steel_scaffold': '"steelScaffolds"',
 }
 
+def enum_constants(body):
+	"""constant names of an enum body (before the first ';'), in declaration order"""
+	body = re.sub(r'//[^\n]*|/\*.*?\*/', '', body, flags=re.S)
+	names = []
+	for part in split_top(body):
+		m = re.match(r'\s*([A-Z][A-Z0-9_]*)\b', part)
+		if m: names.append(m.group(1))
+	return list(dict.fromkeys(names))
+
 def read(path):
 	with open(path, encoding='utf-8') as f: return f.read()
 
@@ -175,7 +184,7 @@ def load_symbols():
 	enums = read(os.path.join(PORT, 'items', 'ItemEnums.java'))
 	for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', enums):
 		body = m.group(2).split(';')[0]
-		sym['enums'][m.group(1)] = list(dict.fromkeys(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M)))
+		sym['enums'][m.group(1)] = enum_constants(body)
 	# enums declared in other item classes (e.g. ItemCircuit.EnumCircuitType), generated files import them
 	sym['enum_imports'] = {}
 	for dirpath, _, files in [w for d in ('items', 'blocks') for w in os.walk(os.path.join(PORT, d))]:
@@ -186,7 +195,7 @@ def load_symbols():
 			for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', src):
 				if m.group(1) in sym['enums']: continue
 				body = m.group(2).split(';')[0]
-				sym['enums'][m.group(1)] = list(dict.fromkeys(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M)))
+				sym['enums'][m.group(1)] = enum_constants(body)
 				sym['enum_imports'][m.group(1)] = '%s.%s.%s' % (pkg, f[:-5], m.group(1))
 	# material autogen items (ModItems.wire_fine...) and the shapes each material has
 	for m in re.finditer(r'AutogenItems\s+(\w+)\s*=\s*autogen\("\w+",\s*"\w+",\s*MaterialShapes\.(\w+)', items): sym['items'][m.group(1)] = 'autogen:' + m.group(2)
