@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/bakelite"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "tag": "c:ingots/bakelite"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "  W"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:part_stock_bakelite"
+  }
+}

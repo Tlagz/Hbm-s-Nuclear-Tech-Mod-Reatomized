@@ -3,6 +3,7 @@ package com.hbm.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import com.hbm.crafting.RecipeBase;
+import com.hbm.crafting.MaterialRecipes;
 import com.hbm.crafting.RecipeSink;
 import com.hbm.crafting.gen.GenArmorRecipes;
 import com.hbm.crafting.gen.GenConsumableRecipes;
@@ -38,6 +39,7 @@ public class ModRecipeProvider extends RecipeProvider {
 		RecipeBase.sink = sink;
 
 		GenCraftingManager.register();
+		MaterialRecipes.register();
 		GenMineralRecipes.register();
 		GenRodRecipes.register();
 		GenToolRecipes.register();

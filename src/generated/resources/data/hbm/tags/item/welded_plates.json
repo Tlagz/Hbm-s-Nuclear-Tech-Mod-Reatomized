@@ -1,5 +1,16 @@
 {
   "values": [
+    "#hbm:welded_plates/iron",
+    "#hbm:welded_plates/titanium",
+    "#hbm:welded_plates/copper",
+    "#hbm:welded_plates/tungsten",
+    "#hbm:welded_plates/aluminum",
+    "#hbm:welded_plates/zirconium",
+    "#hbm:welded_plates/osmiridium",
+    "#hbm:welded_plates/steel",
+    "#hbm:welded_plates/tc_alloy",
+    "#hbm:welded_plates/cd_alloy",
+    "#hbm:welded_plates/cmb_steel",
     "#hbm:welded_plates/any_resistant_alloy"
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/pvc"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "tag": "c:ingots/pvc"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "  W"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:part_stock_pvc"
+  }
+}

@@ -4398,6 +4398,758 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bolt_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bolt_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bolt_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bolt_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_diamond"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_redstone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_bauxite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_cryolite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_uranium238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_thorium232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_polonium210"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_technetium99"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_radium226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_aluminum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/bedrock_ore_fragment_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_tantalum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_neodymium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_beryllium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_emerald"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_borax"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_lanthanum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_sodium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_sodalite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_strontium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_saltpeter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_fluorite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_red_phosphorus"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_chlorocalcite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_molysite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_cinnabar"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_silicon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/bedrock_ore_fragment_rare_earth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_aluminum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/shell_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_aluminum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/pipe_rubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_redstone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_neodymium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_borax"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_sodium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_strontium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/ingot_raw_slag"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_aluminum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_starmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_ferrouranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_cmb_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_cast_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_aluminum"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_osmiridium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/plate_welded_cmb_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_carbon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_fine_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_fine_zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_fine_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wire_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_schrabidate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_titanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_neodymium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_niobium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_mingrade"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_starmetal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_bscco"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_magnetized_tungsten"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/wire_dense_dineutronium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_light_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_ferrouranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_barrel_heavy_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_light_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_ferrouranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_tc_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_cd_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_bismuth_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_arsenic_bronze"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_receiver_heavy_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_mechanism_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_mechanism_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_mechanism_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_wood"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_bakelite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_polycarbonate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_stock_pvc"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_wood"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_bone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_dura_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_workers_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_gun_metal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_weapon_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_polymer"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_bakelite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_rubber"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_polycarbonate"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/autogen/part_grip_pvc"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {

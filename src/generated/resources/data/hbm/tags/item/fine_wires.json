@@ -1,0 +1,15 @@
+{
+  "values": [
+    "#hbm:fine_wires/carbon",
+    "#hbm:fine_wires/gold",
+    "#hbm:fine_wires/schrabidium",
+    "#hbm:fine_wires/copper",
+    "#hbm:fine_wires/tungsten",
+    "#hbm:fine_wires/aluminum",
+    "#hbm:fine_wires/lead",
+    "#hbm:fine_wires/zirconium",
+    "#hbm:fine_wires/steel",
+    "#hbm:fine_wires/mingrade",
+    "#hbm:fine_wires/magnetized_tungsten"
+  ]
+}

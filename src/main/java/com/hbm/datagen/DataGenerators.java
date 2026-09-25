@@ -26,6 +26,7 @@ public class DataGenerators {
 		ExistingFileHelper efh = event.getExistingFileHelper();
 		CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
 
+		generator.addProvider(event.includeClient(), new MaterialTextureProvider(output));
 		generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, efh));
 		generator.addProvider(event.includeClient(), new ModItemModelProvider(output, efh));
 		// has to come after the model providers, it collects the textures they use

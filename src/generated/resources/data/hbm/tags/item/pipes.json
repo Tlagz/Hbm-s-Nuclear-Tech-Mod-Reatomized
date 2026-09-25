@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#hbm:pipes/iron",
+    "#hbm:pipes/copper",
+    "#hbm:pipes/aluminum",
+    "#hbm:pipes/lead",
+    "#hbm:pipes/steel",
+    "#hbm:pipes/dura_steel",
+    "#hbm:pipes/rubber"
+  ]
+}

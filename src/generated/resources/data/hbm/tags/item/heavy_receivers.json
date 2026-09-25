@@ -1,5 +1,14 @@
 {
   "values": [
+    "#hbm:heavy_receivers/dura_steel",
+    "#hbm:heavy_receivers/ferrouranium",
+    "#hbm:heavy_receivers/tc_alloy",
+    "#hbm:heavy_receivers/cd_alloy",
+    "#hbm:heavy_receivers/bismuth_bronze",
+    "#hbm:heavy_receivers/arsenic_bronze",
+    "#hbm:heavy_receivers/gun_metal",
+    "#hbm:heavy_receivers/weapon_steel",
+    "#hbm:heavy_receivers/saturnite",
     "#hbm:heavy_receivers/any_resistant_alloy",
     "#hbm:heavy_receivers/any_bismoid_bronze"
   ]

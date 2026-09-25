@@ -9,7 +9,12 @@ import com.hbm.inventory.RecipesCommon.AStack;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
+import com.hbm.inventory.OreDictManager;
+import com.hbm.inventory.material.MaterialShapes;
+import com.hbm.inventory.material.Mats;
+import com.hbm.inventory.material.NTMMaterial;
 import com.hbm.inventory.recipes.anvil.gen.GenAnvilRecipes;
+import com.hbm.items.ModItems;
 import com.hbm.main.MainRegistry;
 
 import net.minecraft.world.item.ItemStack;
@@ -34,6 +39,7 @@ public class AnvilRecipes {
 		registerAnvilUpgrades();
 		GenAnvilRecipes.registerSmithing();
 		GenAnvilRecipes.registerConstruction();
+		registerMaterialConstruction();
 		MainRegistry.logger.info("Anvil recipes: " + smithingRecipes.size() + " smithing, " + constructionRecipes.size() + " construction");
 	}
 
@@ -49,6 +55,26 @@ public class AnvilRecipes {
 			smithingRecipes.add(new AnvilSmithingRecipe(1, new ItemStack(ModBlocks.anvil_schrabidate.get()), new ComparableStack(anvil), new OreDictStack(SBD.ingot(), 10)));
 			smithingRecipes.add(new AnvilSmithingRecipe(1, new ItemStack(ModBlocks.anvil_dnt.get()), new ComparableStack(anvil), new OreDictStack(DNT.ingot(), 10)));
 			smithingRecipes.add(new AnvilSmithingRecipe(1, new ItemStack(ModBlocks.anvil_osmiridium.get()), new ComparableStack(anvil), new OreDictStack(OSMIRIDIUM.ingot(), 10)));
+		}
+	}
+
+	/** The original's loops over the materials (wires, shells, pipes), not translated by gen_anvil.py */
+	private static void registerMaterialConstruction() {
+		for(NTMMaterial mat : Mats.orderedList) {
+			if(mat.autogen.contains(MaterialShapes.WIRE) && OreDictManager.exists(MaterialShapes.INGOT.make(mat))) {
+				constructionRecipes.add(new AnvilConstructionRecipe(new OreDictStack(MaterialShapes.INGOT.name() + mat.names[0]), new AnvilOutput(ModItems.wire_fine.stack(mat, 8))).setTier(4));
+			}
+		}
+
+		for(NTMMaterial mat : Mats.orderedList) if(mat.autogen.contains(MaterialShapes.SHELL)) constructionRecipes.add(new AnvilConstructionRecipe(
+				new OreDictStack(MaterialShapes.PLATE.name() + mat.names[0], 4),
+				new AnvilOutput(ModItems.shell.stack(mat))).setTier(1));
+		for(NTMMaterial mat : Mats.orderedList) if(mat.autogen.contains(MaterialShapes.PIPE)) {
+			String key = (OreDictManager.exists(MaterialShapes.PLATE.name() + mat.names[0]) ?
+					MaterialShapes.PLATE.name() + mat.names[0] : MaterialShapes.INGOT.name() + mat.names[0]);
+			constructionRecipes.add(new AnvilConstructionRecipe(
+					new OreDictStack(key, 3),
+					new AnvilOutput(ModItems.pipe.stack(mat))).setTier(1));
 		}
 	}
 

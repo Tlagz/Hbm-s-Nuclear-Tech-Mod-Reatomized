@@ -500,7 +500,37 @@ public class OreDictManager {
 		registerExtra("blockGlassBlack", ModBlocks.glass_ash);
 		registerExtra("itemSilicon", ModItems.billet_silicon);
 
+		registerAutogen();
 		registerGroups();
+	}
+
+	/** The material autogen items under every name of their material, cast/welded plates and dense wires only for smeltable materials */
+	private static void registerAutogen() {
+		for(com.hbm.inventory.material.NTMMaterial mat : com.hbm.inventory.material.Mats.orderedList) {
+			if(mat.smeltable == com.hbm.inventory.material.NTMMaterial.SmeltingBehavior.SMELTABLE) {
+				registerAutogen(mat, ModItems.plate_cast);
+				registerAutogen(mat, ModItems.plate_welded);
+				registerAutogen(mat, ModItems.wire_dense);
+			}
+			registerAutogen(mat, ModItems.bolt);
+			registerAutogen(mat, ModItems.ingot_raw);
+			registerAutogen(mat, ModItems.shell);
+			registerAutogen(mat, ModItems.pipe);
+			registerAutogen(mat, ModItems.bedrock_ore_fragment);
+			registerAutogen(mat, ModItems.wire_fine);
+			registerAutogen(mat, ModItems.part_barrel_light);
+			registerAutogen(mat, ModItems.part_barrel_heavy);
+			registerAutogen(mat, ModItems.part_receiver_light);
+			registerAutogen(mat, ModItems.part_receiver_heavy);
+			registerAutogen(mat, ModItems.part_mechanism);
+			registerAutogen(mat, ModItems.part_stock);
+			registerAutogen(mat, ModItems.part_grip);
+		}
+	}
+
+	private static void registerAutogen(com.hbm.inventory.material.NTMMaterial mat, com.hbm.items.special.ItemAutogen.AutogenItems items) {
+		if(items.get(mat) == null) return;
+		for(String name : mat.names) registerExtra(items.shape.name() + name, items.get(mat));
 	}
 
 	public static void registerGroups() {
@@ -520,6 +550,15 @@ public class OreDictManager {
 			return;
 		}
 		ENTRIES.computeIfAbsent(key, k -> new ArrayList<>()).add(thing);
+	}
+
+	/** Vanilla items NeoForge's common tags cover, the original's Forge registered them in the ore dictionary */
+	private static final java.util.Set<String> VANILLA_KEYS = java.util.Set.of("ingotIron", "ingotGold", "ingotCopper", "ingotNetherite",
+			"gemDiamond", "gemEmerald", "gemLapis", "gemQuartz", "dustRedstone", "dustGlowstone", "nuggetIron", "nuggetGold");
+
+	/** The original's OreDictionary.doesOreNameExist, needs registerOres to have run */
+	public static boolean exists(String key) {
+		return ENTRIES.containsKey(key) || GROUPS.containsKey(key) || VANILLA_KEYS.contains(key);
 	}
 
 	/** Resolves a registered thing (item, block, deferred holder) to its item */

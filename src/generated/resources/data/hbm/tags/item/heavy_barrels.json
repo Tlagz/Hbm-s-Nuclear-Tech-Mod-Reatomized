@@ -1,5 +1,14 @@
 {
   "values": [
+    "#hbm:heavy_barrels/steel",
+    "#hbm:heavy_barrels/dura_steel",
+    "#hbm:heavy_barrels/workers_alloy",
+    "#hbm:heavy_barrels/ferrouranium",
+    "#hbm:heavy_barrels/tc_alloy",
+    "#hbm:heavy_barrels/cd_alloy",
+    "#hbm:heavy_barrels/gun_metal",
+    "#hbm:heavy_barrels/weapon_steel",
+    "#hbm:heavy_barrels/saturnite",
     "#hbm:heavy_barrels/any_resistant_alloy",
     "#hbm:heavy_barrels/any_bismoid_bronze"
   ]

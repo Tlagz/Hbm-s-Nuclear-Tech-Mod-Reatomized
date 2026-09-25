@@ -1,5 +1,14 @@
 {
   "values": [
+    "#hbm:stocks/wood",
+    "#hbm:stocks/workers_alloy",
+    "#hbm:stocks/gun_metal",
+    "#hbm:stocks/weapon_steel",
+    "#hbm:stocks/saturnite",
+    "#hbm:stocks/polymer",
+    "#hbm:stocks/bakelite",
+    "#hbm:stocks/polycarbonate",
+    "#hbm:stocks/pvc",
     "#hbm:stocks/any_plastic",
     "#hbm:stocks/any_hard_plastic"
   ]

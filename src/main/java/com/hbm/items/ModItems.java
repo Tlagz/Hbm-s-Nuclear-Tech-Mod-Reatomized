@@ -1,6 +1,8 @@
 package com.hbm.items;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -20,6 +22,11 @@ import com.hbm.items.machine.ItemStamp;
 import com.hbm.items.machine.ItemStamp.StampType;
 import com.hbm.items.machine.ItemMachineUpgrade.UpgradeType;
 import com.hbm.inventory.fluid.Fluids;
+import com.hbm.inventory.material.MaterialShapes;
+import com.hbm.inventory.material.Mats;
+import com.hbm.inventory.material.NTMMaterial;
+import com.hbm.items.special.ItemAutogen;
+import com.hbm.items.special.ItemAutogen.AutogenItems;
 import com.hbm.items.tool.ItemDosimeter;
 import com.hbm.items.tool.ItemGeigerCounter;
 import com.hbm.lib.RefStrings;
@@ -801,6 +808,29 @@ public class ModItems {
 	public static final ItemEnumMulti.Variants<EnumPartType> part_generic = multi("part_generic", "part_generic", EnumPartType.class, true, part -> "items/" + part.texName, NtmTab.PARTS, new Item.Properties());
 	public static final ItemEnumMulti.Variants<EnumExpensiveType> item_expensive = multi("item_expensive", "item_expensive", EnumExpensiveType.class, true, true, NtmTab.PARTS, new Item.Properties());
 
+	/// MATERIAL AUTOGEN: one item per material that has the shape, textures overridden like the original's aot() ///
+	public static final List<AutogenItems> AUTOGEN = new ArrayList<>();
+	public static final AutogenItems bolt = autogen("bolt", "boltntm", MaterialShapes.BOLT, Map.of());
+	public static final AutogenItems bedrock_ore_fragment = autogen("bedrock_ore_fragment", "bedrock_ore_fragment", MaterialShapes.FRAGMENT, Map.of(Mats.MAT_BISMUTH, "bedrock_ore_fragment_bismuth"));
+	public static final AutogenItems shell = autogen("shell", "shellntm", MaterialShapes.SHELL, Map.of());
+	public static final AutogenItems pipe = autogen("pipe", "pipentm", MaterialShapes.PIPE, Map.of());
+	public static final AutogenItems ingot_raw = autogen("ingot_raw", "ingot_raw", MaterialShapes.INGOT, Map.of());
+	public static final AutogenItems plate_cast = autogen("plate_cast", "plate_cast", MaterialShapes.CASTPLATE, Map.of(Mats.MAT_BISMUTH, "plate_cast_bismuth"));
+	public static final AutogenItems plate_welded = autogen("plate_welded", "plate_welded", MaterialShapes.WELDEDPLATE, Map.of());
+	public static final AutogenItems wire_fine = autogen("wire_fine", "wire_fine", MaterialShapes.WIRE, Map.of(
+			Mats.MAT_ALUMINIUM, "wire_aluminium", Mats.MAT_COPPER, "wire_copper",
+			Mats.MAT_MINGRADE, "wire_red_copper", Mats.MAT_GOLD, "wire_gold",
+			Mats.MAT_TUNGSTEN, "wire_tungsten", Mats.MAT_CARBON, "wire_carbon",
+			Mats.MAT_SCHRABIDIUM, "wire_schrabidium", Mats.MAT_MAGTUNG, "wire_magnetized_tungsten"));
+	public static final AutogenItems wire_dense = autogen("wire_dense", "wire_dense", MaterialShapes.DENSEWIRE, Map.of());
+	public static final AutogenItems part_barrel_light = autogen("part_barrel_light", "part_barrel_light", MaterialShapes.LIGHTBARREL, Map.of());
+	public static final AutogenItems part_barrel_heavy = autogen("part_barrel_heavy", "part_barrel_heavy", MaterialShapes.HEAVYBARREL, Map.of());
+	public static final AutogenItems part_receiver_light = autogen("part_receiver_light", "part_receiver_light", MaterialShapes.LIGHTRECEIVER, Map.of());
+	public static final AutogenItems part_receiver_heavy = autogen("part_receiver_heavy", "part_receiver_heavy", MaterialShapes.HEAVYRECEIVER, Map.of());
+	public static final AutogenItems part_mechanism = autogen("part_mechanism", "part_mechanism", MaterialShapes.MECHANISM, Map.of());
+	public static final AutogenItems part_stock = autogen("part_stock", "part_stock", MaterialShapes.STOCK, Map.of());
+	public static final AutogenItems part_grip = autogen("part_grip", "part_grip", MaterialShapes.GRIP, Map.of());
+
 	/** Fluid stand-in for recipe displays, tinted with the fluid color, not in a creative tab like the original */
 	public static final DeferredItem<com.hbm.items.machine.ItemFluidIcon> fluid_icon = register("fluid_icon", com.hbm.items.machine.ItemFluidIcon::new, new Item.Properties(), null);
 
@@ -880,6 +910,20 @@ public class ModItems {
 			FLAT_MODELS.put(item, texture.apply(value));
 		}
 		return variants;
+	}
+
+	/** ItemAutogen for every material with the shape in its autogen, in material order like the original's sub items */
+	private static AutogenItems autogen(String name, String unlocalizedName, MaterialShapes shape, Map<NTMMaterial, String> textureOverrides) {
+		AutogenItems set = new AutogenItems(name, shape, "items/" + name, textureOverrides);
+		String descriptionId = "item.hbm." + unlocalizedName;
+		for(NTMMaterial mat : Mats.orderedList) {
+			if(!mat.autogen.contains(shape)) continue;
+			DeferredItem<ItemAutogen> item = register(AutogenItems.itemName(name, mat), p -> new ItemAutogen(p, shape, mat, descriptionId), new Item.Properties(), NtmTab.PARTS);
+			set.put(mat, item);
+			FLAT_MODELS.put(item, set.texture(mat));
+		}
+		AUTOGEN.add(set);
+		return set;
 	}
 
 	/** ItemCustomLore, tooltip from the "item.[original name].desc" translation */

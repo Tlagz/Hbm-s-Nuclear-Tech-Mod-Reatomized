@@ -83,6 +83,10 @@ public class ModEventHandlerClientMod {
 				com.hbm.items.ModItems.fluid_tank_full.get(), com.hbm.items.ModItems.fluid_tank_lead_full.get(), com.hbm.items.ModItems.fluid_barrel_full.get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIDMulti.getColor(stack, tint), com.hbm.items.ModItems.fluid_identifier_multi.get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIcon.getColor(stack), com.hbm.items.ModItems.fluid_icon.get());
+		// autogen items without their own or a recolored texture are tinted with the molten color
+		for(var set : com.hbm.items.ModItems.AUTOGEN) for(var mat : set.materials()) {
+			if(set.isTinted(mat)) event.register((stack, tint) -> 0xFF000000 | mat.moltenColor, set.get(mat).get());
+		}
 		// the original's inventory pipe uses the color of NONE
 		event.register((stack, tint) -> 0xFF000000 | (tint == 0 ? com.hbm.inventory.fluid.Fluids.NONE.getColor() : 0xFFFFFF), com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
 	}

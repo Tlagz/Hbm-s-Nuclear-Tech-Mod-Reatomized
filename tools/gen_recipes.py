@@ -174,6 +174,12 @@ def load_symbols():
 				body = m.group(2).split(';')[0]
 				sym['enums'][m.group(1)] = set(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M))
 				sym['enum_imports'][m.group(1)] = '%s.%s.%s' % (pkg, f[:-5], m.group(1))
+	# material autogen items (ModItems.wire_fine...) and the shapes each material has
+	for m in re.finditer(r'AutogenItems\s+(\w+)\s*=\s*autogen\("\w+",\s*"\w+",\s*MaterialShapes\.(\w+)', items): sym['items'][m.group(1)] = 'autogen:' + m.group(2)
+	sym['mat_shapes'] = {}
+	for m in re.finditer(r'public static final NTMMaterial (MAT_\w+)\s*=([^;]*);', read(os.path.join(PORT, 'inventory', 'material', 'Mats.java'))):
+		auto = re.search(r'\.setAutogen\(([^)]*)\)', m.group(2))
+		sym['mat_shapes'][m.group(1)] = set(x.strip() for x in auto.group(1).split(',')) if auto else set()
 	sym['mc_items'] = set(re.findall(r'public static final Item (\w+) =', read(os.path.join(NF, 'world', 'item', 'Items.java'))))
 	sym['mc_tags'] = set(re.findall(r'public static final TagKey<Item> (\w+) =', read(os.path.join(NF, 'tags', 'ItemTags.java'))))
 	return sym
@@ -203,6 +209,13 @@ def vanilla(name, meta, role, sym):
 	if field in sym['mc_items']: return 'Items.' + field
 	raise Skip('vanilla ' + name)
 
+def autogen_ref(name, kind, meta, sym):
+	"""ModItems.wire_fine + Mats.MAT_COPPER.id -> ModItems.wire_fine.get(Mats.MAT_COPPER), if the material has that shape"""
+	mm = re.fullmatch(r'(?:Mats\.)?(MAT_\w+)\.id', (meta or '').strip())
+	if not mm: raise Skip('autogen without material:' + name)
+	if kind.split(':')[1] not in sym['mat_shapes'].get(mm.group(1), ()): raise Skip('autogen shape:' + name + '/' + mm.group(1))
+	return 'ModItems.%s.get(Mats.%s)' % (name, mm.group(1))
+
 def item_ref(e, role, sym, meta=None):
 	"""reference to an item or block (without count)"""
 	m = re.fullmatch(r'Item\.getItemFromBlock\s*\((.*)\)', e, re.S)
@@ -218,6 +231,8 @@ def item_ref(e, role, sym, meta=None):
 				if mm and mm.group(1) == enum and mm.group(2) in sym['enums'].get(enum, ()):
 					return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, mm.group(2)))
 			raise Skip('variants without enum:' + m.group(1))
+		if kind.startswith('autogen:'):
+			return ('variant', autogen_ref(m.group(1), kind, meta, sym))
 		if meta is not None and meta != '0': raise Skip('item meta:' + m.group(1))
 		return ('item', 'ModItems.' + m.group(1))
 	m = re.fullmatch(r'(?:com\.hbm\.blocks\.)?ModBlocks\.(\w+)', e)
@@ -273,6 +288,15 @@ def translate(e, role, sym):
 		raise Skip('constant:' + m.group(1))
 	m = re.fullmatch(r'Item\.getItemFromBlock\s*\((.*)\)', e, re.S)
 	if m: return item_ref(m.group(1).strip(), role, sym)[1]
+	m = re.fullmatch(r'(?:Mats\.)?(MAT_\w+)\.make\s*\((.*)\)', e, re.S)
+	if m:
+		args = split_top(m.group(2))
+		im = re.fullmatch(r'ModItems\.(\w+)', args[0].strip())
+		kind = sym['items'].get(im.group(1)) if im else None
+		if not kind or not kind.startswith('autogen:'): raise Skip('make:' + args[0].strip()[:30])
+		count = args[1].strip() if len(args) > 1 else '1'
+		if not re.fullmatch(r'\d+', count): raise Skip('count:' + count)
+		return 'stack(%s, %s)' % (autogen_ref(im.group(1), kind, m.group(1) + '.id', sym), count)
 	m = re.fullmatch(r'ModItems\.(\w+)\.stackFromEnum\s*\((.*)\)', e, re.S)
 	if m:
 		args = split_top(m.group(2))
@@ -391,6 +415,7 @@ import static com.hbm.inventory.OreDictManager.*;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.inventory.material.Mats;
 import com.hbm.items.ModItems;
 %s
 import net.minecraft.world.item.ItemStack;

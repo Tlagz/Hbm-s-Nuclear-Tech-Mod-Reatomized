@@ -1,5 +1,15 @@
 {
   "values": [
+    "#hbm:light_receivers/steel",
+    "#hbm:light_receivers/dura_steel",
+    "#hbm:light_receivers/workers_alloy",
+    "#hbm:light_receivers/tc_alloy",
+    "#hbm:light_receivers/cd_alloy",
+    "#hbm:light_receivers/bismuth_bronze",
+    "#hbm:light_receivers/arsenic_bronze",
+    "#hbm:light_receivers/gun_metal",
+    "#hbm:light_receivers/weapon_steel",
+    "#hbm:light_receivers/saturnite",
     "#hbm:light_receivers/any_resistant_alloy",
     "#hbm:light_receivers/any_bismoid_bronze"
   ]

@@ -1,5 +1,15 @@
 {
   "values": [
+    "#hbm:light_barrels/steel",
+    "#hbm:light_barrels/dura_steel",
+    "#hbm:light_barrels/workers_alloy",
+    "#hbm:light_barrels/tc_alloy",
+    "#hbm:light_barrels/cd_alloy",
+    "#hbm:light_barrels/bismuth_bronze",
+    "#hbm:light_barrels/arsenic_bronze",
+    "#hbm:light_barrels/gun_metal",
+    "#hbm:light_barrels/weapon_steel",
+    "#hbm:light_barrels/saturnite",
     "#hbm:light_barrels/any_resistant_alloy",
     "#hbm:light_barrels/any_bismoid_bronze"
   ]

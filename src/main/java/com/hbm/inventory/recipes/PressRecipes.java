@@ -9,7 +9,12 @@ import java.util.Map.Entry;
 import com.hbm.inventory.RecipesCommon.AStack;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
+import com.hbm.inventory.material.MaterialShapes;
+import com.hbm.inventory.material.Mats;
+import com.hbm.inventory.material.NTMMaterial;
 import com.hbm.items.ItemEnums.EnumBriquetteType;
+import com.hbm.items.ItemEnums.EnumCasingType;
+import com.hbm.items.machine.ItemCircuit.EnumCircuitType;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemStamp;
 import com.hbm.items.machine.ItemStamp.StampType;
@@ -25,7 +30,7 @@ import net.minecraft.world.item.Items;
  * Burner press recipes: ingredient + stamp type -> output.
  * Items that aren't ported yet are looked up by name and skipped.
  *
- * TODO wire recipes (material system: wire_fine per NTMMaterial), JSON config (SerializableRecipe), JEI
+ * TODO printed pages (page_of_), JSON config (SerializableRecipe), JEI
  */
 public class PressRecipes {
 
@@ -81,7 +86,18 @@ public class PressRecipes {
 		makeRecipe(StampType.PLATE, new OreDictStack(BIGMT.ingot()),			out("plate_saturnite"));
 		makeRecipe(StampType.PLATE, new OreDictStack(DURA.ingot()),				out("plate_dura_steel"));
 
-		// TODO casings (EnumCasingType), silicon circuits (circuit), printed pages (page_of_) once those items are ported
+		makeRecipe(StampType.C9, 	new OreDictStack(GUNMETAL.plate()),		ModItems.casing.stack(EnumCasingType.SMALL, 4));
+		makeRecipe(StampType.C50, 	new OreDictStack(GUNMETAL.plate()),		ModItems.casing.stack(EnumCasingType.LARGE, 2));
+		makeRecipe(StampType.C9, 	new OreDictStack(WEAPONSTEEL.plate()),	ModItems.casing.stack(EnumCasingType.SMALL_STEEL, 4));
+		makeRecipe(StampType.C50, 	new OreDictStack(WEAPONSTEEL.plate()),	ModItems.casing.stack(EnumCasingType.LARGE_STEEL, 2));
+
+		for(NTMMaterial mat : Mats.orderedList) {
+			if(mat.autogen.contains(MaterialShapes.WIRE) && exists(MaterialShapes.INGOT.make(mat))) {
+				makeRecipe(StampType.WIRE, new OreDictStack(MaterialShapes.INGOT.make(mat)), ModItems.wire_fine.stack(mat, 8));
+			}
+		}
+
+		makeRecipe(StampType.CIRCUIT, new OreDictStack(SI.billet()),						ModItems.circuit.stack(EnumCircuitType.SILICON));
 
 		MainRegistry.logger.info("Press recipes: " + recipes.size() + " registered, " + skipped + " skipped (items not ported)");
 	}

@@ -18,6 +18,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
+		// the recolored autogen textures are written by MaterialTextureProvider in the same run
+		for(var set : ModItems.AUTOGEN) for(var mat : set.materials()) {
+			if(set.isGenerated(mat)) existingFileHelper.trackGenerated(modLoc(set.texture(mat)), TEXTURE);
+		}
 		ModItems.FLAT_MODELS.forEach(this::flat);
 		ModItems.LAYERED_MODELS.forEach(this::layered);
 		blueprints();

@@ -132,6 +132,7 @@ import com.hbm.inventory.recipes.anvil.AnvilRecipes.AnvilOutput;
 import com.hbm.inventory.recipes.anvil.AnvilRecipes.OverlayType;
 import com.hbm.inventory.recipes.anvil.AnvilSmithingRecipe;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.inventory.material.Mats;
 import com.hbm.items.ModItems;
 %s
 import net.minecraft.world.item.ItemStack;

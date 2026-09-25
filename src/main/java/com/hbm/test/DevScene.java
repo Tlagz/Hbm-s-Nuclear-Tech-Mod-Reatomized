@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.creativetabs.NtmTab;
+import com.hbm.inventory.material.Mats;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
@@ -239,6 +240,19 @@ public class DevScene {
 		player.getInventory().add(new ItemStack(net.minecraft.world.item.Items.FURNACE));
 		player.getInventory().add(new ItemStack(ModItems.plate_steel.get(), 8));
 		player.getInventory().add(new ItemStack(ModItems.ingot_copper.get(), 4));
+		// material autogen items in the main inventory, visible in the machine GUI screenshots
+		for(ItemStack stack : java.util.List.of(
+				ModItems.wire_fine.stack(Mats.MAT_COPPER, 8), ModItems.wire_fine.stack(Mats.MAT_STEEL, 8),
+				ModItems.wire_dense.stack(Mats.MAT_GOLD), ModItems.wire_dense.stack(Mats.MAT_NEODYMIUM),
+				ModItems.bolt.stack(Mats.MAT_STEEL, 16), ModItems.bolt.stack(Mats.MAT_DURA, 16),
+				ModItems.plate_cast.stack(Mats.MAT_STEEL), ModItems.plate_cast.stack(Mats.MAT_DESH),
+				ModItems.plate_welded.stack(Mats.MAT_TITANIUM), ModItems.shell.stack(Mats.MAT_STEEL),
+				ModItems.pipe.stack(Mats.MAT_COPPER), ModItems.pipe.stack(Mats.MAT_RUBBER),
+				ModItems.ingot_raw.stack(Mats.MAT_SLAG), ModItems.part_grip.stack(Mats.MAT_WOOD),
+				ModItems.part_barrel_light.stack(Mats.MAT_GUNMETAL), ModItems.part_mechanism.stack(Mats.MAT_WEAPONSTEEL),
+				ModItems.bedrock_ore_fragment.stack(Mats.MAT_URANIUM), ModItems.bedrock_ore_fragment.stack(Mats.MAT_BISMUTH))) {
+			player.getInventory().add(stack);
+		}
 	}
 
 	@EventBusSubscriber(modid = RefStrings.MODID, value = Dist.CLIENT)

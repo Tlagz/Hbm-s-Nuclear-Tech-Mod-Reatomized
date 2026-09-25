@@ -13,6 +13,7 @@ import com.hbm.inventory.recipes.loader.GenericRecipes;
 import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutput;
 import com.hbm.inventory.recipes.loader.GenericRecipes.ChanceOutputMulti;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.inventory.material.Mats;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemFluidContainerBase;
 import com.hbm.items.machine.ItemCircuit.EnumCircuitType;

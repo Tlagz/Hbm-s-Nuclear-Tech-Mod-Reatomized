@@ -1,5 +1,28 @@
 {
   "values": [
+    "#hbm:cast_plates/iron",
+    "#hbm:cast_plates/gold",
+    "#hbm:cast_plates/schrabidium",
+    "#hbm:cast_plates/schrabidate",
+    "#hbm:cast_plates/titanium",
+    "#hbm:cast_plates/copper",
+    "#hbm:cast_plates/tungsten",
+    "#hbm:cast_plates/aluminum",
+    "#hbm:cast_plates/lead",
+    "#hbm:cast_plates/zirconium",
+    "#hbm:cast_plates/osmiridium",
+    "#hbm:cast_plates/steel",
+    "#hbm:cast_plates/dura_steel",
+    "#hbm:cast_plates/workers_alloy",
+    "#hbm:cast_plates/starmetal",
+    "#hbm:cast_plates/ferrouranium",
+    "#hbm:cast_plates/tc_alloy",
+    "#hbm:cast_plates/cd_alloy",
+    "#hbm:cast_plates/bismuth_bronze",
+    "#hbm:cast_plates/arsenic_bronze",
+    "#hbm:cast_plates/cmb_steel",
+    "#hbm:cast_plates/weapon_steel",
+    "#hbm:cast_plates/saturnite",
     "#hbm:cast_plates/any_resistant_alloy",
     "#hbm:cast_plates/any_bismoid_bronze"
   ]

@@ -1,5 +1,18 @@
 {
   "values": [
+    "#hbm:grips/wood",
+    "#hbm:grips/bone",
+    "#hbm:grips/steel",
+    "#hbm:grips/dura_steel",
+    "#hbm:grips/workers_alloy",
+    "#hbm:grips/gun_metal",
+    "#hbm:grips/weapon_steel",
+    "#hbm:grips/saturnite",
+    "#hbm:grips/polymer",
+    "#hbm:grips/bakelite",
+    "#hbm:grips/rubber",
+    "#hbm:grips/polycarbonate",
+    "#hbm:grips/pvc",
     "#hbm:grips/any_plastic",
     "#hbm:grips/any_hard_plastic"
   ]
