@@ -2,12 +2,12 @@
   "type": "minecraft:smelting",
   "category": "misc",
   "cookingtime": 200,
-  "experience": 2.0,
+  "experience": 1.0,
   "ingredient": {
-    "item": "hbm:crystal_copper"
+    "item": "hbm:powder_copper"
   },
   "result": {
-    "count": 2,
+    "count": 1,
     "id": "hbm:ingot_copper"
   }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:vinyl_tile_small"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:vinyl_tile_large"
+  }
+}

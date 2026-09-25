@@ -211,6 +211,38 @@ BLOCK_CLASSES = {
     "BlockGenericStairs": None,            # special, see below
 }
 
+# BlockEnumMulti and its subclasses, one block per enum value (see ModBlocks.multi):
+#   mat: material of classes without a material argument, enum: enum of classes that fix it,
+#   factory: VariantFactory, tex: texture rule ({tex} base texture, {v} lowercase value), desc: translation key prefix,
+#   top: a [texture].top texture is used for top and bottom when it exists, glass: see-through model
+BLOCK_MULTI = {
+    "BlockEnumMulti": {},
+    "BlockEnumMultiCT": {},  # TODO connected textures
+    "BlockLightstone": {"top": True},
+    "BlockCM": {"tex": "{tex}_{v}"},
+    "BlockCMPort": {"tex": "{tex}_{v}"},  # TODO the proxy tile entity of custom machines
+    "BlockCMGlass": {"tex": "{tex}_{v}", "factory": "com.hbm.blocks.machine.BlockCMGlass::new", "glass": True},
+    "BlockConcreteColoredExt": {"enum": "EnumConcreteType", "factory": "com.hbm.blocks.generic.BlockConcreteColoredExt::new"},
+    "BlockMeteorOre": {"mat": "Mat.ROCK", "enum": "EnumMeteorType"},
+    "BlockResourceStone": {"mat": "Mat.ROCK", "enum": "EnumStoneType"},  # TODO asbestos gas when mined
+    "BlockCoke": {"mat": "Mat.IRON", "enum": "EnumCokeType", "factory": "com.hbm.blocks.generic.BlockCoke::new"},
+    "BlockNTMSand": {"enum": "EnumSandType", "factory": "com.hbm.blocks.generic.BlockNTMSand::new", "tex": "blocks/sand_{v}", "desc": "block.hbm.sand_"},
+}
+
+
+def block_enums():
+    """Enums the multi blocks can use: name -> constant names (BlockEnums, ItemEnums and the block classes' own)"""
+    enums = {}
+    for rel in ("blocks/BlockEnums.java", "items/ItemEnums.java", "blocks/generic/BlockConcreteColoredExt.java", "blocks/generic/BlockNTMSand.java"):
+        src = read(os.path.join(JAVA, rel))
+        for m in re.finditer(r"enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}", src):
+            body = re.sub(r"//[^\n]*", "", m.group(2)).split(";")[0]
+            enums[m.group(1)] = [c.strip().split("(")[0].strip() for c in body.split(",") if c.strip()]
+    return enums
+
+
+BLOCK_ENUMS = block_enums()
+
 MATERIALS = {
     "Material.rock": "Mat.ROCK", "Material.iron": "Mat.IRON", "Material.ground": "Mat.GROUND",
     "Material.sand": "Mat.SAND", "Material.wood": "Mat.WOOD", "Material.cloth": "Mat.CLOTH",
@@ -251,7 +283,7 @@ def gen_blocks():
             skipped.append((var, "unparsable"))
             continue
         cls, args, calls = chain
-        if cls not in BLOCK_CLASSES:
+        if cls not in BLOCK_CLASSES and cls not in BLOCK_MULTI:
             skipped.append((var, cls))
             continue
 
@@ -279,6 +311,47 @@ def gen_blocks():
                 break
         if not ok or name is None:
             if ok: skipped.append((var, "no name"))
+            continue
+
+        # one block per enum value
+        if cls in BLOCK_MULTI:
+            rule = BLOCK_MULTI[cls]
+            if "enum" in rule:
+                enum = rule["enum"]
+                mat = rule.get("mat") or (MATERIALS.get(args_list[0]) if args_list else None)
+                multi_name, multi_tex = True, True
+            else:
+                m = re.fullmatch(r"(Material\.\w+), (?:BlockEnums\.)?(\w+)\.class, (true|false), (true|false)", args)
+                if not m:
+                    skipped.append((var, cls + " " + args))
+                    continue
+                mat, enum = MATERIALS.get(m.group(1)), m.group(2)
+                multi_name, multi_tex = m.group(3) == "true", m.group(4) == "true"
+            if mat is None or enum not in BLOCK_ENUMS:
+                skipped.append((var, cls + " enum/material " + args))
+                continue
+            base = tex or "blocks/" + name.lower()
+            models, missing = [], None
+            for value in BLOCK_ENUMS[enum]:
+                v = value.lower()
+                side = rule["tex"].format(tex=base, v=v) if "tex" in rule else (f"{base}.{v}" if multi_tex else base)
+                end = None
+                if rule.get("top") and texture_exists(side + ".top"): end = side + ".top"
+                if cls == "BlockConcreteColoredExt" and value == "MACHINE_STRIPE": end = f"{base}.machine"
+                for t in (side, end):
+                    if t is not None and not texture_exists(t): missing = missing or t
+                if rule.get("glass"): models.append(f"BlockModel.glass({java_str(side)}, false)")
+                elif end: models.append(f"BlockModel.column({java_str(side)}, {java_str(end)})")
+                else: models.append(f"BlockModel.cube({java_str(side)})")
+            if missing:
+                missing_tex.append((var, missing))
+                continue
+            desc = java_str(rule["desc"]) if "desc" in rule else (java_str(f"block.hbm.{name.lower()}.") if multi_name else "null")
+            factory = rule.get("factory", "(p, d, v) -> new BlockEnumMulti(p, d)")
+            props = f"props({mat}, {hardness or '0.0F'}, {resistance or 'LEGACY_NONE'})"
+            if sound: props += f".sound({sound})"
+            if light: props += f".lightLevel(s -> (int) ({light} * 15))"
+            out.append(f'\tpublic static final BlockEnumMulti.Variants<{enum}> {var} = multi({java_str(name.lower())}, {enum}.class, {desc}, {factory}, () -> {props}, {tab or "null"},\n\t\t\t' + ", ".join(models) + ");")
             continue
 
         # stairs: made of another generated block

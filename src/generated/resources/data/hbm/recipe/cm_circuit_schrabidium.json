@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:ingots/steel"
+    },
+    "M": {
+      "item": "hbm:circuit_bismoid"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IMI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:cm_circuit_schrabidium"
+  }
+}

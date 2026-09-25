@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/pink"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/red"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "c:dyes/pink"
+    },
+    "2": {
+      "tag": "c:dyes/red"
+    },
+    "C": {
+      "item": "hbm:concrete_smooth"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "1 2",
+    "CCC"
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:concrete_colored_ext_pink"
+  }
+}

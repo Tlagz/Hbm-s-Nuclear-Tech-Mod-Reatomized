@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 10.0,
+  "ingredient": {
+    "item": "hbm:ore_meteor_rareearth"
+  },
+  "result": {
+    "count": 16,
+    "id": "hbm:chunk_ore_rare"
+  }
+}

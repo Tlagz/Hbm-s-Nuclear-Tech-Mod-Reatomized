@@ -42,14 +42,23 @@ public class DevScene {
 	static BlockPos shredderPos;
 	private static int serverTicks = 0;
 
-	/** Opens the furnace GUI for the screenshot, has to happen on the server */
+	/**
+	 * Server side of the timeline (teleports, opening GUIs). The server starts ticking before the client, so the actions
+	 * follow the client's tick counter instead of their own, every tick number runs exactly once.
+	 */
 	@SubscribeEvent
 	public static void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
 		if(!ENABLED || furnacePos == null) return;
-		serverTicks++;
+		while(serverTicks < Client.ticks) {
+			serverTicks++;
+			act(event.getServer(), serverTicks);
+		}
+	}
+
+	private static void act(net.minecraft.server.MinecraftServer server, int serverTicks) {
 		// second world screenshot: close up of the wood burner, holding its item
 		if(serverTicks == 160 && burnerPos != null) {
-			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.teleportTo(player.serverLevel(), 4.5, -59, -10.8, -20F, 25F);
 				player.getInventory().selected = 0;
 				player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetCarriedItemPacket(0));
@@ -57,20 +66,20 @@ public class DevScene {
 		}
 		// third world screenshot: the running assembly machine
 		if(serverTicks == 186 && assemblerPos != null) {
-			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
 			}
 		}
 		// the electric furnace is a plain block, its GUI closes beyond 8 blocks: stand next to it for its screenshot, then go back
 		if(serverTicks == 212 || serverTicks == 250) {
-			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				if(serverTicks == 212) player.teleportTo(player.serverLevel(), -6.5, -59, 4.2, 0F, 18F);
 				else player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
 			}
 		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
 		if(serverTicks == 310) {
-			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.openMenu(new net.minecraft.world.SimpleMenuProvider((id, inv, p) -> new com.hbm.inventory.container.ContainerAnvil(id, inv, 2),
 						net.minecraft.network.chat.Component.translatable("container.anvil", 2)), buf -> buf.writeInt(2));
@@ -78,7 +87,7 @@ public class DevScene {
 		}
 		BlockPos open = serverTicks == 215 ? furnacePos : serverTicks == 255 ? burnerPos : serverTicks == 285 ? barrelPos : serverTicks == 345 ? assemblerPos : serverTicks == 395 ? chemplantPos : serverTicks == 435 ? welderPos : serverTicks == 475 ? blastFurnacePos : serverTicks == 515 ? shredderPos : null;
 		if(open != null) {
-			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				if(player.level().getBlockEntity(open) instanceof net.minecraft.world.MenuProvider provider) {
 					player.openMenu(provider, buf -> buf.writeBlockPos(open));
@@ -332,7 +341,7 @@ public class DevScene {
 			}
 		}
 
-		private static int ticks = 0;
+		static volatile int ticks = 0;
 
 		@SubscribeEvent
 		public static void onClientTick(ClientTickEvent.Post event) {

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "hbm:powder_limestone"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:lightstone_unrefined"
+  }
+}

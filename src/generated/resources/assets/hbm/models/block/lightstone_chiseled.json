@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/lightstone.chiseled.top",
+    "side": "hbm:blocks/lightstone.chiseled"
+  }
+}

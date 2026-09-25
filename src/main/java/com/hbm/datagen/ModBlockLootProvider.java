@@ -67,6 +67,12 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		oreDrop(ModBlocks.ore_rare.get(), ModItems.chunk_ore.get(EnumChunkType.RARE).get(), 1, 1, true);
 		oreDrop(ModBlocks.ore_gneiss_rare.get(), ModItems.chunk_ore.get(EnumChunkType.RARE).get(), 1, 1, true);
 
+		// malachite stone drops 3-4 malachite chunks, more with fortune (BlockResourceStone.getDrops)
+		Block malachite = ModBlocks.stone_resource.get(com.hbm.blocks.BlockEnums.EnumStoneType.MALACHITE).get();
+		add(malachite, createSilkTouchDispatchTable(malachite, applyExplosionDecay(malachite, LootItem.lootTableItem(ModItems.chunk_ore.get(EnumChunkType.MALACHITE).get())
+				.apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 4))).apply(ApplyBonusCount.addUniformBonusCount(fortune(), 2)))));
+		handled.add(malachite);
+
 		// oil ore can't be silk touched and drops crude tar
 		add(ModBlocks.ore_oil.get(), createSingleItemTable(ModItems.oil_tar.get(EnumTarType.CRUDE).get()));
 		handled.add(ModBlocks.ore_oil.get());

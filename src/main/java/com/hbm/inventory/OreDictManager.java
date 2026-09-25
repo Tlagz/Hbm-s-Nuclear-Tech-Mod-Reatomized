@@ -15,6 +15,7 @@ import com.hbm.hazard.HazardEntry;
 import com.hbm.hazard.HazardRegistry;
 import com.hbm.hazard.HazardSystem;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.blocks.BlockEnums.*;
 import com.hbm.items.ModItems;
 
 import net.minecraft.core.registries.Registries;
@@ -404,23 +405,25 @@ public class OreDictManager {
 		EUPH.nugget(ModItems.nugget_euphemium).ingot(ModItems.ingot_euphemium).dust(ModItems.powder_euphemium).block(ModBlocks.block_euphemium);
 		DNT.nugget(ModItems.nugget_dineutronium).ingot(ModItems.ingot_dineutronium).dust(ModItems.powder_dineutronium).block(ModBlocks.block_dineutronium);
 		FIBER.ingot(ModItems.ingot_fiberglass).block(ModBlocks.block_fiberglass);
-		ASBESTOS.asbestos(1F).ingot(ModItems.ingot_asbestos).dust(ModItems.powder_asbestos).block(ModBlocks.block_asbestos).ore(ModBlocks.ore_asbestos, ModBlocks.ore_gneiss_asbestos);
+		ASBESTOS.asbestos(1F).ingot(ModItems.ingot_asbestos).dust(ModItems.powder_asbestos).block(ModBlocks.block_asbestos).ore(ModBlocks.ore_asbestos, ModBlocks.ore_gneiss_asbestos, ModBlocks.stone_resource.get(EnumStoneType.ASBESTOS));
 		OSMIRIDIUM.nugget(ModItems.nugget_osmiridium).ingot(ModItems.ingot_osmiridium);
-		S.dust(ModItems.sulfur).block(ModBlocks.block_sulfur).ore(ModBlocks.ore_sulfur, ModBlocks.ore_nether_sulfur).oreNether(ModBlocks.ore_nether_sulfur);
+		S.dust(ModItems.sulfur).block(ModBlocks.block_sulfur).ore(ModBlocks.ore_sulfur, ModBlocks.ore_nether_sulfur, ModBlocks.stone_resource.get(EnumStoneType.SULFUR)).oreNether(ModBlocks.ore_nether_sulfur);
 		KNO.dust(ModItems.niter).block(ModBlocks.block_niter).ore(ModBlocks.ore_niter);
 		F.dust(ModItems.fluorite).block(ModBlocks.block_fluorite).ore(ModBlocks.ore_fluorite);
 		LIGNITE.gem(ModItems.lignite).dust(ModItems.powder_lignite).ore(ModBlocks.ore_lignite);
-		COALCOKE.gem(ModItems.coke.get(EnumCokeType.COAL));
-		PETCOKE.gem(ModItems.coke.get(EnumCokeType.PETROLEUM));
-		LIGCOKE.gem(ModItems.coke.get(EnumCokeType.LIGNITE));
+		COALCOKE.gem(ModItems.coke.get(EnumCokeType.COAL)).block(ModBlocks.block_coke.get(EnumCokeType.COAL));
+		PETCOKE.gem(ModItems.coke.get(EnumCokeType.PETROLEUM)).block(ModBlocks.block_coke.get(EnumCokeType.PETROLEUM));
+		LIGCOKE.gem(ModItems.coke.get(EnumCokeType.LIGNITE)).block(ModBlocks.block_coke.get(EnumCokeType.LIGNITE));
 		CINNABAR.crystal(ModItems.cinnebar).gem(ModItems.cinnebar).ore(ModBlocks.ore_cinnebar);
 		BORAX.dust(ModItems.powder_borax);
 		CHLOROCALCITE.dust(ModItems.powder_chlorocalcite);
 		MOLYSITE.dust(ModItems.powder_molysite);
 		SODALITE.gem(ModItems.gem_sodalite);
 		VOLCANIC.gem(ModItems.gem_volcanic);
-		MALACHITE.ingot(ModItems.chunk_ore.get(EnumChunkType.MALACHITE));
-		LIMESTONE.dust(ModItems.powder_limestone);
+		HEMATITE.ore(ModBlocks.stone_resource.get(EnumStoneType.HEMATITE));
+		MALACHITE.ingot(ModItems.chunk_ore.get(EnumChunkType.MALACHITE)).ore(ModBlocks.stone_resource.get(EnumStoneType.MALACHITE));
+		LIMESTONE.dust(ModItems.powder_limestone).ore(ModBlocks.stone_resource.get(EnumStoneType.LIMESTONE));
+		BAUXITE.ore(ModBlocks.stone_resource.get(EnumStoneType.BAUXITE));
 		CRYOLITE.crystal(ModItems.chunk_ore.get(EnumChunkType.CRYOLITE));
 		LI.hydro(1F).ingot(ModItems.lithium).dustSmall(ModItems.powder_lithium_tiny).dust(ModItems.powder_lithium).ore(ModBlocks.ore_gneiss_lithium);
 		NA.hydro(1F).hazIngot().dust(ModItems.powder_sodium);
@@ -502,6 +505,8 @@ public class OreDictManager {
 
 		registerAutogen();
 		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
+		// all colored concrete (the original's metadata loop)
+		ANY_CONCRETE.any(ModBlocks.concrete_colored_ext.all());
 		// chemical dyes and crayons count as the dye of their color
 		for(com.hbm.items.machine.ItemChemicalDye.EnumChemDye dye : com.hbm.items.machine.ItemChemicalDye.EnumChemDye.values()) {
 			registerExtra("dye" + dye.dictName, ModItems.chemical_dye.get(dye));

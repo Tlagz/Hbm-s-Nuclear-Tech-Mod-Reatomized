@@ -11,6 +11,11 @@
     "hbm:sand_dirty",
     "hbm:sand_dirty_red",
     "hbm:tektite",
-    "hbm:ore_tektite_osmiridium"
+    "hbm:ore_tektite_osmiridium",
+    "hbm:sand_mix_boron",
+    "hbm:sand_mix_lead",
+    "hbm:sand_mix_uranium",
+    "hbm:sand_mix_polonium",
+    "hbm:sand_mix_quartz"
   ]
 }

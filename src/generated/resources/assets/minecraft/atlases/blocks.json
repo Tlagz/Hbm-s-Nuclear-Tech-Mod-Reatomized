@@ -154,6 +154,26 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_meteor.iron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_meteor.copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_meteor.aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_meteor.rareearth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/ore_meteor.cobalt"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/ore_gneiss_iron"
     },
     {
@@ -191,6 +211,30 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/ore_gneiss_gas"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.sulfur"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.asbestos"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.hematite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.malachite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.limestone"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/stone_resource.bauxite"
     },
     {
       "type": "minecraft:single",
@@ -382,6 +426,18 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/block_coke.coal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_coke.lignite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_coke.petroleum"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_boron"
     },
     {
@@ -562,6 +618,66 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.base"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.black"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.white"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.green"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.light_gray"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.blue"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.purple"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.cyan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.pink"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.lime"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.yellow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.light_blue"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.magenta"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/platemetal.orange"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/deco_asbestos"
     },
     {
@@ -611,6 +727,38 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/concrete"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.machine"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.machine_stripe"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.indigo"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.purple"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.pink"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.hazard"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.sand"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/concrete_colored_ext.bronze"
     },
     {
       "type": "minecraft:single",
@@ -686,11 +834,47 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.unrefined"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.tile"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.bricks"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.bricks_chiseled"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.bricks_chiseled.top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.chiseled"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/lightstone.chiseled.top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/cmb_brick"
     },
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/cmb_brick_reinforced"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/vinyl_tile.large"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/vinyl_tile.small"
     },
     {
       "type": "minecraft:single",
@@ -822,6 +1006,26 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_boron"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/sand_quartz"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/glass_boron"
     },
     {
@@ -863,6 +1067,102 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/struct_scaffold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_block_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_block_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_block_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_block_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_sheet_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_sheet_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_sheet_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_sheet_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_engine_standard"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_engine_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_engine_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_tank_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_tank_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_tank_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_tank_tcalloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_circuit_aluminium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_circuit_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_circuit_red_copper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_circuit_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_circuit_schrabidium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_port_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_port_alloy"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_port_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/cm_port_tcalloy"
     },
     {
       "type": "minecraft:single",

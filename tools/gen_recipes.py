@@ -164,7 +164,11 @@ def load_symbols():
 	sym = {'items': {}, 'blocks': set(), 'frames': set(), 'keys': set(), 'enums': {}, 'mc_items': set(), 'mc_tags': set()}
 	for m in re.finditer(r'DeferredItem<[^>]*>\s+(\w+)\s*=', items): sym['items'][m.group(1)] = 'item'
 	for m in re.finditer(r'ItemEnumMulti\.Variants<(\w+)>\s+(\w+)\s*=', items): sym['items'][m.group(2)] = 'variants:' + m.group(1)
-	for m in re.finditer(r'DeferredBlock<[^>]*>\s+(\w+)\s*=', read(os.path.join(PORT, 'blocks', 'ModBlocks.java'))): sym['blocks'].add(m.group(1))
+	blocks_src = read(os.path.join(PORT, 'blocks', 'ModBlocks.java'))
+	for m in re.finditer(r'DeferredBlock<[^>]*>\s+(\w+)\s*=', blocks_src): sym['blocks'].add(m.group(1))
+	# BlockEnumMulti: one block per enum value
+	sym['block_variants'] = {m.group(2): m.group(1) for m in re.finditer(r'BlockEnumMulti\.Variants<(\w+)>\s+(\w+)\s*=', blocks_src)}
+	sym['blocks'].update(sym['block_variants'])
 	odm = read(os.path.join(PORT, 'inventory', 'OreDictManager.java'))
 	for m in re.finditer(r'public static final Dict(?:Frame|Group) (\w+)\s*=', odm): sym['frames'].add(m.group(1))
 	for m in re.finditer(r'public static final String (\w+)\s*=', odm): sym['keys'].add(m.group(1))
@@ -174,7 +178,7 @@ def load_symbols():
 		sym['enums'][m.group(1)] = list(dict.fromkeys(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M)))
 	# enums declared in other item classes (e.g. ItemCircuit.EnumCircuitType), generated files import them
 	sym['enum_imports'] = {}
-	for dirpath, _, files in os.walk(os.path.join(PORT, 'items')):
+	for dirpath, _, files in [w for d in ('items', 'blocks') for w in os.walk(os.path.join(PORT, d))]:
 		for f in files:
 			if not f.endswith('.java') or f == 'ItemEnums.java': continue
 			src = read(os.path.join(dirpath, f))
@@ -226,6 +230,19 @@ def autogen_ref(name, kind, meta, sym):
 	if kind.split(':')[1] not in sym['mat_shapes'].get(mm.group(1), ()): raise Skip('autogen shape:' + name + '/' + mm.group(1))
 	return 'ModItems.%s.get(Mats.%s)' % (name, mm.group(1))
 
+def variant_ref(registry, name, enum, meta, sym):
+	"""ModItems/ModBlocks variant of an enum multi item or block by its metadata expression"""
+	constants = sym['enums'].get(enum, [])
+	# no metadata is meta 0 (1.7.10 matched plain items with damage 0), the enum's first constant
+	if meta is None or meta.strip().isdigit():
+		index = int(meta) if meta is not None else 0
+		if index < len(constants): return '%s.%s.get(%s.%s)' % (registry, name, enum, constants[index])
+		raise Skip('variants meta out of range:' + name)
+	mm = re.fullmatch(r'(?:ItemEnums\.|BlockEnums\.)?(?:\w+\.)*?(\w+)\.(\w+)(?:\.ordinal\(\))?', meta.strip())
+	if mm and mm.group(1) == enum and mm.group(2) in constants:
+		return '%s.%s.get(%s.%s)' % (registry, name, enum, mm.group(2))
+	raise Skip('variants without enum:' + name)
+
 def item_ref(e, role, sym, meta=None):
 	"""reference to an item or block (without count)"""
 	m = re.fullmatch(r'Item\.getItemFromBlock\s*\((.*)\)', e, re.S)
@@ -235,17 +252,7 @@ def item_ref(e, role, sym, meta=None):
 		kind = sym['items'].get(m.group(1))
 		if kind is None: raise Skip('item:' + m.group(1))
 		if kind.startswith('variants:'):
-			enum = kind.split(':')[1]
-			constants = sym['enums'].get(enum, [])
-			# no metadata is meta 0 (1.7.10 matched plain items with damage 0), the enum's first constant
-			if meta is None or meta.strip().isdigit():
-				index = int(meta) if meta is not None else 0
-				if index < len(constants): return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, constants[index]))
-				raise Skip('variants meta out of range:' + m.group(1))
-			mm = re.fullmatch(r'(?:ItemEnums\.)?(?:\w+\.)*?(\w+)\.(\w+)(?:\.ordinal\(\))?', meta.strip())
-			if mm and mm.group(1) == enum and mm.group(2) in constants:
-				return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, mm.group(2)))
-			raise Skip('variants without enum:' + m.group(1))
+			return ('variant', variant_ref('ModItems', m.group(1), kind.split(':')[1], meta, sym))
 		if kind.startswith('autogen:'):
 			return ('variant', autogen_ref(m.group(1), kind, meta, sym))
 		if meta is not None and meta != '0': raise Skip('item meta:' + m.group(1))
@@ -253,6 +260,10 @@ def item_ref(e, role, sym, meta=None):
 	m = re.fullmatch(r'(?:com\.hbm\.blocks\.)?ModBlocks\.(\w+)', e)
 	if m:
 		if m.group(1) not in sym['blocks']: raise Skip('block:' + m.group(1))
+		if m.group(1) in sym['block_variants']:
+			# a plain block as an ingredient matched any metadata, a stack without metadata is meta 0
+			if meta is None and role == 'ingredient': return ('tag', 'ModBlocks.%s.any()' % m.group(1))
+			return ('variant', variant_ref('ModBlocks', m.group(1), sym['block_variants'][m.group(1)], meta, sym))
 		if m.group(1) in BLOCK_META_VARIANTS:
 			if meta is None and role == 'ingredient' and m.group(1) in BLOCK_ANY_KEYS: return ('tag', BLOCK_ANY_KEYS[m.group(1)])
 			variants = BLOCK_META_VARIANTS[m.group(1)]
@@ -280,13 +291,18 @@ def translate(e, role, sym):
 		args = split_top(m.group(1))
 		count = args[1] if len(args) > 1 else '1'
 		if not re.fullmatch(r'\d+', count): raise Skip('count:' + count)
-		kind, ref = item_ref(args[0], role, sym, args[2] if len(args) > 2 else None)
+		kind, ref = item_ref(args[0], role, sym, args[2] if len(args) > 2 else '0')
 		if kind == 'tag': return ref
 		if kind == 'variant': return 'stack(%s, %s)' % (ref, count)
 		return 'stack(%s, %s)' % (ref, count)
 	m = re.fullmatch(r'(?:OreDictManager\.)?DictFrame\.fromOne\s*\((.*)\)', e, re.S)
 	if m:
 		args = split_top(m.group(1))
+		bm = re.fullmatch(r'ModBlocks\.(\w+)', args[0].strip())
+		if bm and bm.group(1) in sym['block_variants']:
+			count = args[2].strip() if len(args) > 2 else '1'
+			if not re.fullmatch(r'\d+', count): raise Skip('count:' + count)
+			return 'stack(%s, %s)' % (variant_ref('ModBlocks', bm.group(1), sym['block_variants'][bm.group(1)], args[1], sym), count)
 		im = re.fullmatch(r'ModItems\.(\w+)', args[0])
 		if not im: raise Skip('fromOne:' + args[0])
 		kind = sym['items'].get(im.group(1))

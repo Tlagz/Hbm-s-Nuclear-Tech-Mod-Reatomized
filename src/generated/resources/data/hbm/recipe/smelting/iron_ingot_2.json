@@ -2,9 +2,9 @@
   "type": "minecraft:smelting",
   "category": "misc",
   "cookingtime": 200,
-  "experience": 1.0,
+  "experience": 5.0,
   "ingredient": {
-    "item": "hbm:powder_iron"
+    "item": "hbm:ore_gneiss_iron"
   },
   "result": {
     "count": 1,

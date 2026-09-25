@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      {
+        "item": "hbm:lightstone_unrefined"
+      },
+      {
+        "item": "hbm:lightstone_tile"
+      },
+      {
+        "item": "hbm:lightstone_bricks"
+      },
+      {
+        "item": "hbm:lightstone_bricks_chiseled"
+      },
+      {
+        "item": "hbm:lightstone_chiseled"
+      }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:lightstone_chiseled"
+  }
+}

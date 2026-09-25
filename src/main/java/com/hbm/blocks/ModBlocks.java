@@ -27,6 +27,10 @@ import com.hbm.blocks.machine.MachineCapacitorBus;
 import com.hbm.blocks.machine.MachineElectricFurnace;
 import com.hbm.blocks.network.BlockCable;
 import com.hbm.creativetabs.NtmTab;
+import com.hbm.blocks.BlockEnums.*;
+import com.hbm.blocks.generic.BlockConcreteColoredExt.EnumConcreteType;
+import com.hbm.blocks.generic.BlockNTMSand.EnumSandType;
+import com.hbm.items.ItemEnums.EnumCokeType;
 import com.hbm.items.ModItems;
 import com.hbm.lib.RefStrings;
 
@@ -151,6 +155,8 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockOre> ore_nether_fire = generated("ore_nether_fire", BlockOre::new, props(Mat.ROCK, 0.4F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_nether_fire"));
 	public static final DeferredBlock<BlockOre> ore_nether_cobalt = generated("ore_nether_cobalt", BlockOre::new, props(Mat.ROCK, 0.4F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_nether_cobalt"));
 	public static final DeferredBlock<Block> ore_nether_schrabidium = generated("ore_nether_schrabidium", Block::new, props(Mat.ROCK, 15.0F, 600.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_nether_schrabidium"));
+	public static final BlockEnumMulti.Variants<EnumMeteorType> ore_meteor = multi("ore_meteor", EnumMeteorType.class, "block.hbm.ore_meteor.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.ROCK, 5.0F, 10.0F), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/ore_meteor.iron"), BlockModel.cube("blocks/ore_meteor.copper"), BlockModel.cube("blocks/ore_meteor.aluminium"), BlockModel.cube("blocks/ore_meteor.rareearth"), BlockModel.cube("blocks/ore_meteor.cobalt"));
 	public static final DeferredBlock<BlockOre> ore_gneiss_iron = generated("ore_gneiss_iron", BlockOre::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_iron"));
 	public static final DeferredBlock<BlockOre> ore_gneiss_gold = generated("ore_gneiss_gold", BlockOre::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_gold"));
 	public static final DeferredBlock<BlockOutgas> ore_gneiss_uranium = generated("ore_gneiss_uranium", p -> new BlockOutgas(p).setOutgas(true, 5, true), props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_uranium"));
@@ -161,6 +167,8 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockOre> ore_gneiss_schrabidium = generated("ore_gneiss_schrabidium", BlockOre::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_schrabidium"));
 	public static final DeferredBlock<BlockOre> ore_gneiss_rare = generated("ore_gneiss_rare", BlockOre::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_rare"));
 	public static final DeferredBlock<BlockOre> ore_gneiss_gas = generated("ore_gneiss_gas", BlockOre::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_gneiss_gas"));
+	public static final BlockEnumMulti.Variants<EnumStoneType> stone_resource = multi("stone_resource", EnumStoneType.class, "block.hbm.stone_resource.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.ROCK, 5.0F, 10.0F), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/stone_resource.sulfur"), BlockModel.cube("blocks/stone_resource.asbestos"), BlockModel.cube("blocks/stone_resource.hematite"), BlockModel.cube("blocks/stone_resource.malachite"), BlockModel.cube("blocks/stone_resource.limestone"), BlockModel.cube("blocks/stone_resource.bauxite"));
 	public static final DeferredBlock<Block> stone_gneiss = generated("stone_gneiss", Block::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/stone_gneiss_var"));
 	public static final DeferredBlock<Block> gneiss_brick = generated("gneiss_brick", Block::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/gneiss_brick"));
 	public static final DeferredBlock<Block> gneiss_tile = generated("gneiss_tile", Block::new, props(Mat.ROCK, 1.5F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/gneiss_tile"));
@@ -207,6 +215,8 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockFallingNT> block_scrap = generated("block_scrap", BlockFallingNT::new, props(Mat.SAND, 2.5F, 5.0F).sound(SoundType.GRAVEL), NtmTab.BLOCKS, BlockModel.cube("blocks/block_scrap"));
 	public static final DeferredBlock<BlockFallingNT> block_electrical_scrap = generated("block_electrical_scrap", BlockFallingNT::new, props(Mat.IRON, 2.5F, 5.0F).sound(SoundType.METAL), NtmTab.BLOCKS, BlockModel.cube("blocks/electrical_scrap"));
 	public static final DeferredBlock<Block> block_foam = generated("block_foam", Block::new, props(Mat.SNOW, 0.5F, 0.0F).sound(SoundType.SNOW), NtmTab.BLOCKS, BlockModel.cube("blocks/foam"));
+	public static final BlockEnumMulti.Variants<EnumCokeType> block_coke = multi("block_coke", EnumCokeType.class, "block.hbm.block_coke.", com.hbm.blocks.generic.BlockCoke::new, () -> props(Mat.IRON, 5.0F, 10.0F).sound(SoundType.METAL), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/block_coke.coal"), BlockModel.cube("blocks/block_coke.lignite"), BlockModel.cube("blocks/block_coke.petroleum"));
 	public static final DeferredBlock<Block> block_boron = generated("block_boron", Block::new, props(Mat.IRON, 5.0F, 10.0F).sound(SoundType.METAL), NtmTab.BLOCKS, BlockModel.cube("blocks/block_boron"), Gen.BEACON);
 	public static final DeferredBlock<RotatedPillarBlock> block_insulator = generated("block_insulator", RotatedPillarBlock::new, props(Mat.CLOTH, 5.0F, 10.0F).sound(SoundType.WOOL), NtmTab.BLOCKS, BlockModel.axis("blocks/block_insulator_side", "blocks/block_insulator_top"));
 	public static final DeferredBlock<RotatedPillarBlock> block_fiberglass = generated("block_fiberglass", RotatedPillarBlock::new, props(Mat.CLOTH, 5.0F, 15.0F).sound(SoundType.WOOL), NtmTab.BLOCKS, BlockModel.axis("blocks/block_fiberglass_side", "blocks/block_fiberglass_top"));
@@ -246,6 +256,8 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockOre> deco_rusty_steel = generated("deco_rusty_steel", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_rusty_steel"));
 	public static final DeferredBlock<BlockOre> deco_lead = generated("deco_lead", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_lead"));
 	public static final DeferredBlock<BlockOre> deco_beryllium = generated("deco_beryllium", p -> new BlockOre(p).noFortune(), props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_beryllium"));
+	public static final BlockEnumMulti.Variants<PlatemetalType> platemetal = multi("platemetal", PlatemetalType.class, "block.hbm.platemetal.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/platemetal.base"), BlockModel.cube("blocks/platemetal.black"), BlockModel.cube("blocks/platemetal.white"), BlockModel.cube("blocks/platemetal.red"), BlockModel.cube("blocks/platemetal.green"), BlockModel.cube("blocks/platemetal.light_gray"), BlockModel.cube("blocks/platemetal.blue"), BlockModel.cube("blocks/platemetal.purple"), BlockModel.cube("blocks/platemetal.cyan"), BlockModel.cube("blocks/platemetal.pink"), BlockModel.cube("blocks/platemetal.lime"), BlockModel.cube("blocks/platemetal.yellow"), BlockModel.cube("blocks/platemetal.light_blue"), BlockModel.cube("blocks/platemetal.magenta"), BlockModel.cube("blocks/platemetal.orange"));
 	public static final DeferredBlock<BlockOutgas> deco_asbestos = generated("deco_asbestos", p -> new BlockOutgas(p).setOutgas(true, 5, true).noFortune(), props(Mat.CLOTH, 5.0F, 10.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/deco_asbestos"));
 	public static final DeferredBlock<Block> deco_rbmk = generated("deco_rbmk", Block::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/rbmk/rbmk_top"));
 	public static final DeferredBlock<Block> deco_rbmk_smooth = generated("deco_rbmk_smooth", Block::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/rbmk/rbmk_blank_top"));
@@ -259,6 +271,8 @@ public class ModBlocks {
 	public static final DeferredBlock<Block> reinforced_stone = generated("reinforced_stone", Block::new, props(Mat.ROCK, 15.0F, 100.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/reinforced_stone"));
 	public static final DeferredBlock<BlockNoSpawn> reinforced_ducrete = generated("reinforced_ducrete", BlockNoSpawn::new, props(Mat.ROCK, 20.0F, 1000.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/reinforced_ducrete"));
 	public static final DeferredBlock<BlockNoSpawn> concrete_smooth = generated("concrete_smooth", BlockNoSpawn::new, props(Mat.ROCK, 15.0F, 140.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/concrete"));
+	public static final BlockEnumMulti.Variants<EnumConcreteType> concrete_colored_ext = multi("concrete_colored_ext", EnumConcreteType.class, "block.hbm.concrete_colored_ext.", com.hbm.blocks.generic.BlockConcreteColoredExt::new, () -> props(Mat.ROCK, 15.0F, 140.0F), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/concrete_colored_ext.machine"), BlockModel.column("blocks/concrete_colored_ext.machine_stripe", "blocks/concrete_colored_ext.machine"), BlockModel.cube("blocks/concrete_colored_ext.indigo"), BlockModel.cube("blocks/concrete_colored_ext.purple"), BlockModel.cube("blocks/concrete_colored_ext.pink"), BlockModel.cube("blocks/concrete_colored_ext.hazard"), BlockModel.cube("blocks/concrete_colored_ext.sand"), BlockModel.cube("blocks/concrete_colored_ext.bronze"));
 	public static final DeferredBlock<BlockNoSpawn> concrete = generated("concrete", BlockNoSpawn::new, props(Mat.ROCK, 15.0F, 140.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/concrete_tile"));
 	public static final DeferredBlock<BlockNoSpawn> concrete_asbestos = generated("concrete_asbestos", BlockNoSpawn::new, props(Mat.ROCK, 15.0F, 150.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/concrete_asbestos"));
 	public static final DeferredBlock<BlockNoSpawn> concrete_rebar = generated("concrete_rebar", BlockNoSpawn::new, props(Mat.ROCK, 50.0F, 240.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/concrete_rebar"));
@@ -276,6 +290,8 @@ public class ModBlocks {
 	public static final DeferredBlock<Block> brick_light = generated("brick_light", Block::new, props(Mat.ROCK, 5.0F, 20.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/brick_light"));
 	public static final DeferredBlock<BlockOutgas> brick_asbestos = generated("brick_asbestos", p -> new BlockOutgas(p).setOutgas(true, 5, true), props(Mat.ROCK, 5.0F, 1000.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/brick_asbestos"));
 	public static final DeferredBlock<Block> brick_fire = generated("brick_fire", Block::new, props(Mat.ROCK, 5.0F, 35.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/brick_fire"));
+	public static final BlockEnumMulti.Variants<LightstoneType> lightstone = multi("lightstone", LightstoneType.class, "block.hbm.lightstone.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.ROCK, 2F, 15.0F), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/lightstone.unrefined"), BlockModel.cube("blocks/lightstone.tile"), BlockModel.cube("blocks/lightstone.bricks"), BlockModel.column("blocks/lightstone.bricks_chiseled", "blocks/lightstone.bricks_chiseled.top"), BlockModel.column("blocks/lightstone.chiseled", "blocks/lightstone.chiseled.top"));
 	public static final DeferredBlock<StairBlock> concrete_smooth_stairs = stairs("concrete_smooth_stairs", concrete_smooth, NtmTab.BLOCKS, "blocks/concrete");
 	public static final DeferredBlock<StairBlock> concrete_stairs = stairs("concrete_stairs", concrete, NtmTab.BLOCKS, "blocks/concrete_tile");
 	public static final DeferredBlock<StairBlock> concrete_asbestos_stairs = stairs("concrete_asbestos_stairs", concrete_asbestos, NtmTab.BLOCKS, "blocks/concrete_asbestos");
@@ -295,6 +311,8 @@ public class ModBlocks {
 	public static final DeferredBlock<StairBlock> ducrete_stairs = stairs("ducrete_stairs", ducrete, NtmTab.BLOCKS, "blocks/ducrete_tile");
 	public static final DeferredBlock<Block> cmb_brick = generated("cmb_brick", Block::new, props(Mat.ROCK, 25.0F, 5000.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/cmb_brick"));
 	public static final DeferredBlock<Block> cmb_brick_reinforced = generated("cmb_brick_reinforced", Block::new, props(Mat.ROCK, 25.0F, 50000.0F), NtmTab.BLOCKS, BlockModel.cube("blocks/cmb_brick_reinforced"));
+	public static final BlockEnumMulti.Variants<TileType> vinyl_tile = multi("vinyl_tile", TileType.class, "block.hbm.vinyl_tile.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.ROCK, 10.0F, 60.0F).sound(SoundType.GLASS), NtmTab.BLOCKS,
+			BlockModel.cube("blocks/vinyl_tile.large"), BlockModel.cube("blocks/vinyl_tile.small"));
 	public static final DeferredBlock<BlockOutgas> tile_lab = generated("tile_lab", p -> new BlockOutgas(p).setOutgas(false, 5, true), props(Mat.ROCK, 1.0F, 20.0F).sound(SoundType.GLASS), NtmTab.BLOCKS, BlockModel.cube("blocks/tile_lab"));
 	public static final DeferredBlock<BlockOutgas> tile_lab_cracked = generated("tile_lab_cracked", p -> new BlockOutgas(p).setOutgas(false, 5, true), props(Mat.ROCK, 1.0F, 20.0F).sound(SoundType.GLASS), NtmTab.BLOCKS, BlockModel.cube("blocks/tile_lab_cracked"));
 	public static final DeferredBlock<BlockOutgas> tile_lab_broken = generated("tile_lab_broken", p -> new BlockOutgas(p).setOutgas(true, 5, true), props(Mat.ROCK, 1.0F, 20.0F).sound(SoundType.GLASS), NtmTab.BLOCKS, BlockModel.cube("blocks/tile_lab_broken"));
@@ -325,6 +343,8 @@ public class ModBlocks {
 	public static final DeferredBlock<BlockFallingNT> stone_cracked = generated("stone_cracked", BlockFallingNT::new, props(Mat.ROCK, 5.0F, LEGACY_NONE).sound(SoundType.STONE), NtmTab.BLOCKS, BlockModel.cube("blocks/stone_cracked"));
 	public static final DeferredBlock<Block> tektite = generated("tektite", Block::new, props(Mat.SAND, 0.5F, LEGACY_NONE).sound(SoundType.SAND), NtmTab.BLOCKS, BlockModel.cube("blocks/tektite"));
 	public static final DeferredBlock<Block> ore_tektite_osmiridium = generated("ore_tektite_osmiridium", Block::new, props(Mat.SAND, 0.5F, LEGACY_NONE).sound(SoundType.SAND), NtmTab.BLOCKS, BlockModel.cube("blocks/ore_tektite_osmiridium"));
+	public static final BlockEnumMulti.Variants<EnumSandType> sand_mix = multi("sand_mix", EnumSandType.class, "block.hbm.sand_", com.hbm.blocks.generic.BlockNTMSand::new, () -> props(Mat.SAND, 0.5F, LEGACY_NONE).sound(SoundType.SAND), NtmTab.MACHINE,
+			BlockModel.cube("blocks/sand_boron"), BlockModel.cube("blocks/sand_lead"), BlockModel.cube("blocks/sand_uranium"), BlockModel.cube("blocks/sand_polonium"), BlockModel.cube("blocks/sand_quartz"));
 	public static final DeferredBlock<BlockNTMGlass> glass_boron = generated("glass_boron", p -> new BlockNTMGlass(p.noOcclusion().isViewBlocking(BlockNTMGlass::never).isSuffocating(BlockNTMGlass::never).isValidSpawn(BlockNTMGlass::never), false), props(Mat.GLASS, 0.3F, LEGACY_NONE).sound(SoundType.GLASS), NtmTab.MACHINE, BlockModel.glass("blocks/glass_boron", false));
 	public static final DeferredBlock<BlockNTMGlass> glass_lead = generated("glass_lead", p -> new BlockNTMGlass(p.noOcclusion().isViewBlocking(BlockNTMGlass::never).isSuffocating(BlockNTMGlass::never).isValidSpawn(BlockNTMGlass::never), false), props(Mat.GLASS, 0.3F, LEGACY_NONE).sound(SoundType.GLASS), NtmTab.MACHINE, BlockModel.glass("blocks/glass_lead", false));
 	public static final DeferredBlock<BlockNTMGlass> glass_uranium = generated("glass_uranium", p -> new BlockNTMGlass(p.noOcclusion().isViewBlocking(BlockNTMGlass::never).isSuffocating(BlockNTMGlass::never).isValidSpawn(BlockNTMGlass::never), false), props(Mat.GLASS, 0.3F, LEGACY_NONE).sound(SoundType.GLASS).lightLevel(s -> (int) (5F/15F * 15)), NtmTab.MACHINE, BlockModel.glass("blocks/glass_uranium", true));
@@ -336,6 +356,18 @@ public class ModBlocks {
 	public static final DeferredBlock<Block> seal_frame = generated("seal_frame", Block::new, props(Mat.IRON, 10.0F, 100.0F), NtmTab.MACHINE, BlockModel.cube("blocks/seal_frame"));
 	public static final DeferredBlock<Block> struct_launcher = generated("struct_launcher", Block::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MISSILE, BlockModel.cube("blocks/struct_launcher"));
 	public static final DeferredBlock<Block> struct_scaffold = generated("struct_scaffold", Block::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MISSILE, BlockModel.cube("blocks/struct_scaffold"));
+	public static final BlockEnumMulti.Variants<EnumCMMaterials> cm_block = multi("cm_block", EnumCMMaterials.class, "block.hbm.cm_block.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.cube("blocks/cm_block_steel"), BlockModel.cube("blocks/cm_block_alloy"), BlockModel.cube("blocks/cm_block_desh"), BlockModel.cube("blocks/cm_block_tcalloy"));
+	public static final BlockEnumMulti.Variants<EnumCMMaterials> cm_sheet = multi("cm_sheet", EnumCMMaterials.class, "block.hbm.cm_sheet.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.cube("blocks/cm_sheet_steel"), BlockModel.cube("blocks/cm_sheet_alloy"), BlockModel.cube("blocks/cm_sheet_desh"), BlockModel.cube("blocks/cm_sheet_tcalloy"));
+	public static final BlockEnumMulti.Variants<EnumCMEngines> cm_engine = multi("cm_engine", EnumCMEngines.class, "block.hbm.cm_engine.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.cube("blocks/cm_engine_standard"), BlockModel.cube("blocks/cm_engine_desh"), BlockModel.cube("blocks/cm_engine_bismuth"));
+	public static final BlockEnumMulti.Variants<EnumCMMaterials> cm_tank = multi("cm_tank", EnumCMMaterials.class, "block.hbm.cm_tank.", com.hbm.blocks.machine.BlockCMGlass::new, () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.glass("blocks/cm_tank_steel", false), BlockModel.glass("blocks/cm_tank_alloy", false), BlockModel.glass("blocks/cm_tank_desh", false), BlockModel.glass("blocks/cm_tank_tcalloy", false));
+	public static final BlockEnumMulti.Variants<EnumCMCircuit> cm_circuit = multi("cm_circuit", EnumCMCircuit.class, "block.hbm.cm_circuit.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.cube("blocks/cm_circuit_aluminium"), BlockModel.cube("blocks/cm_circuit_copper"), BlockModel.cube("blocks/cm_circuit_red_copper"), BlockModel.cube("blocks/cm_circuit_gold"), BlockModel.cube("blocks/cm_circuit_schrabidium"));
+	public static final BlockEnumMulti.Variants<EnumCMMaterials> cm_port = multi("cm_port", EnumCMMaterials.class, "block.hbm.cm_port.", (p, d, v) -> new BlockEnumMulti(p, d), () -> props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE,
+			BlockModel.cube("blocks/cm_port_steel"), BlockModel.cube("blocks/cm_port_alloy"), BlockModel.cube("blocks/cm_port_desh"), BlockModel.cube("blocks/cm_port_tcalloy"));
 	public static final DeferredBlock<Block> fusion_heater = generated("fusion_heater", Block::new, props(Mat.IRON, 5.0F, 10.0F), null, BlockModel.column("blocks/fusion_heater_side", "blocks/fusion_heater_top"));
 	public static final DeferredBlock<Block> watz_element = generated("watz_element", Block::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, BlockModel.column("blocks/watz_element_side", "blocks/watz_element_top"));
 	public static final DeferredBlock<Block> watz_cooler = generated("watz_cooler", Block::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, BlockModel.column("blocks/watz_cooler_side", "blocks/watz_cooler_top"));
@@ -382,6 +414,22 @@ public class ModBlocks {
 		if(props.tool != null) TOOLS.put(block, props.tool);
 		for(Gen flag : flags) if(flag == Gen.BEACON) BEACON_BASES.add(block);
 		return block;
+	}
+
+	/**
+	 * BlockEnumMulti: one block per enum value named [name]_[value], one model per value in enum order. The translation
+	 * key is [descriptionPrefix][value] (the original's multi names, e.g. "block.hbm.lightstone."), block.hbm.[name] if null.
+	 */
+	private static <E extends Enum<E>> BlockEnumMulti.Variants<E> multi(String name, Class<E> theEnum, String descriptionPrefix, BlockEnumMulti.VariantFactory<E> factory,
+			java.util.function.Supplier<PropsWithTool> props, NtmTab tab, BlockModel... models) {
+		BlockEnumMulti.Variants<E> variants = new BlockEnumMulti.Variants<>(name, theEnum);
+		for(E value : theEnum.getEnumConstants()) {
+			String descriptionId = descriptionPrefix == null ? "block.hbm." + name : descriptionPrefix + value.name().toLowerCase(java.util.Locale.US);
+			DeferredBlock<Block> block = register(BlockEnumMulti.Variants.variantName(name, value), p -> factory.create(p, descriptionId, value), props.get(), tab);
+			MODELS.put(block, models[value.ordinal()]);
+			variants.put(value, block);
+		}
+		return variants;
 	}
 
 	/** Stairs made of another block, with its properties and texture (BlockGenericStairs in the original) */

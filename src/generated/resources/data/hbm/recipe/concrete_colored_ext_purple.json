@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/purple"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "c:dyes/purple"
+    },
+    "2": {
+      "tag": "c:dyes/purple"
+    },
+    "C": {
+      "item": "hbm:concrete_smooth"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "1 2",
+    "CCC"
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:concrete_colored_ext_purple"
+  }
+}

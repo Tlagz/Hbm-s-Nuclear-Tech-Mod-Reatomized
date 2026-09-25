@@ -2,12 +2,12 @@
   "type": "minecraft:smelting",
   "category": "misc",
   "cookingtime": 200,
-  "experience": 5.0,
+  "experience": 10.0,
   "ingredient": {
-    "item": "hbm:ore_gneiss_iron"
+    "item": "hbm:ore_meteor_iron"
   },
   "result": {
-    "count": 1,
+    "count": 16,
     "id": "minecraft:iron_ingot"
   }
 }

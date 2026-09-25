@@ -15,6 +15,7 @@ import com.hbm.hazard.HazardEntry;
 import com.hbm.hazard.HazardRegistry;
 import com.hbm.hazard.HazardSystem;
 import com.hbm.items.ItemEnums.*;
+import com.hbm.blocks.BlockEnums.*;
 import com.hbm.items.ModItems;
 
 import net.minecraft.core.registries.Registries;
@@ -58,6 +59,8 @@ public class OreDictManager {
 
 		registerAutogen();
 		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
+		// all colored concrete (the original's metadata loop)
+		ANY_CONCRETE.any(ModBlocks.concrete_colored_ext.all());
 		// chemical dyes and crayons count as the dye of their color
 		for(com.hbm.items.machine.ItemChemicalDye.EnumChemDye dye : com.hbm.items.machine.ItemChemicalDye.EnumChemDye.values()) {
 			registerExtra("dye" + dye.dictName, ModItems.chemical_dye.get(dye));

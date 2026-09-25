@@ -6,6 +6,15 @@
     "hbm:biomass_compressed": {
       "burn_time": 800
     },
+    "hbm:block_coke_coal": {
+      "burn_time": 32000
+    },
+    "hbm:block_coke_lignite": {
+      "burn_time": 32000
+    },
+    "hbm:block_coke_petroleum": {
+      "burn_time": 32000
+    },
     "hbm:block_scrap": {
       "burn_time": 400
     },

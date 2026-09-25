@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/yellow"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:dyes/black"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "tag": "c:dyes/yellow"
+    },
+    "2": {
+      "tag": "c:dyes/black"
+    },
+    "C": {
+      "item": "hbm:concrete_smooth"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "1 2",
+    "CCC"
+  ],
+  "result": {
+    "count": 6,
+    "id": "hbm:concrete_colored_ext_hazard"
+  }
+}

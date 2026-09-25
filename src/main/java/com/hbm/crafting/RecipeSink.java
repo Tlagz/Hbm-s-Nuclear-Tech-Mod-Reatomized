@@ -112,6 +112,7 @@ public class RecipeSink {
 			if(!stack.getComponentsPatch().isEmpty()) return DataComponentIngredient.of(false, stack);
 			return Ingredient.of(stack.getItem());
 		}
+		if(o instanceof Ingredient ingredient) return ingredient; // e.g. any variant of a multi block
 		if(o instanceof ItemLike like) return Ingredient.of(like);
 		if(o instanceof Supplier<?> supplier && supplier.get() instanceof ItemLike like) return Ingredient.of(like);
 		throw new IllegalArgumentException("Unknown recipe ingredient " + o);

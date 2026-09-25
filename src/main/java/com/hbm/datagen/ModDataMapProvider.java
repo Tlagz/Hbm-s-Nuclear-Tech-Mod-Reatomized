@@ -18,7 +18,7 @@ import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 /**
  * Data maps. Furnace fuels are the original's FuelHandler (an IFuelHandler, so they also worked in vanilla furnaces).
  *
- * TODO block_coke, book_guide once ported
+ * TODO book_guide once ported
  */
 public class ModDataMapProvider extends DataMapProvider {
 
@@ -49,6 +49,7 @@ public class ModDataMapProvider extends DataMapProvider {
 		fuel(fuels, ModItems.lignite.get(), 1200);
 		fuel(fuels, ModItems.powder_lignite.get(), 1200);
 		for(EnumCokeType coke : EnumCokeType.values()) fuel(fuels, ModItems.coke.get(coke).get(), single * 16);
+		for(EnumCokeType coke : EnumCokeType.values()) fuel(fuels, ModBlocks.block_coke.get(coke).get(), single * 160);
 		fuel(fuels, ModItems.coal_infernal.get(), 4800);
 		fuel(fuels, ModItems.coal_eternal.get(), single * 16);
 		fuel(fuels, ModItems.crystal_coal.get(), 6400);
