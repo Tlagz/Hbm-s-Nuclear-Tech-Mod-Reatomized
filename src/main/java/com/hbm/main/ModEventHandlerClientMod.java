@@ -98,6 +98,13 @@ public class ModEventHandlerClientMod {
 		for(var set : com.hbm.items.ModItems.AUTOGEN) for(var mat : set.materials()) {
 			if(set.isTinted(mat)) event.register((stack, tint) -> 0xFF000000 | mat.moltenColor, set.get(mat).get());
 		}
+		// ore byproducts tint the whole texture, chemical dyes and crayons only the overlay
+		for(var type : com.hbm.items.special.ItemByproduct.EnumByproduct.values()) {
+			event.register((stack, tint) -> 0xFF000000 | type.color, com.hbm.items.ModItems.ore_byproduct.get(type).get());
+		}
+		for(var dye : com.hbm.items.machine.ItemChemicalDye.EnumChemDye.values()) {
+			event.register((stack, tint) -> 0xFF000000 | (tint == 1 ? dye.color : 0xFFFFFF), com.hbm.items.ModItems.chemical_dye.get(dye).get(), com.hbm.items.ModItems.crayon.get(dye).get());
+		}
 		// the original's inventory pipe uses the color of NONE
 		event.register((stack, tint) -> 0xFF000000 | (tint == 0 ? com.hbm.inventory.fluid.Fluids.NONE.getColor() : 0xFFFFFF), com.hbm.blocks.ModBlocks.fluid_duct_neo.get());
 	}

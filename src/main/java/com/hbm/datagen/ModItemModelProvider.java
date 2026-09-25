@@ -52,7 +52,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 	/** Flat item model using the original's texture location, textures/items/[name].png */
 	private void flat(DeferredItem<?> item, String texture) {
 		String name = item.getId().getPath();
-		withExistingParent(name, mcLoc("item/generated")).texture("layer0", texture(texture));
+		withExistingParent(name, mcLoc(ModItems.HANDHELD.contains(item) ? "item/handheld" : "item/generated")).texture("layer0", texture(texture));
 	}
 
 	/** Flat model with one layer per texture, the original's render passes */

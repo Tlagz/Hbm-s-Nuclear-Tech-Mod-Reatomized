@@ -1,5 +1,7 @@
 {
   "values": [
-    "hbm:powder_cadmium"
+    "hbm:powder_cadmium",
+    "hbm:chemical_dye_orange",
+    "hbm:crayon_orange"
   ]
 }

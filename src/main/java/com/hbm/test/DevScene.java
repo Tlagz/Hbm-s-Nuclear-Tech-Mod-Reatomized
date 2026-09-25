@@ -61,6 +61,13 @@ public class DevScene {
 				player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
 			}
 		}
+		// the electric furnace is a plain block, its GUI closes beyond 8 blocks: stand next to it for its screenshot, then go back
+		if(serverTicks == 212 || serverTicks == 250) {
+			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
+				if(serverTicks == 212) player.teleportTo(player.serverLevel(), -6.5, -59, 4.2, 0F, 18F);
+				else player.teleportTo(player.serverLevel(), 0.5, -59, -11.8, 0F, 18F);
+			}
+		}
 		// steel anvil GUI (no block entity, the tier comes with the menu)
 		if(serverTicks == 310) {
 			for(ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
@@ -291,14 +298,23 @@ public class DevScene {
 				ModItems.plate_cast.stack(Mats.MAT_STEEL), ModItems.plate_cast.stack(Mats.MAT_DESH),
 				ModItems.plate_welded.stack(Mats.MAT_TITANIUM), ModItems.shell.stack(Mats.MAT_STEEL),
 				ModItems.pipe.stack(Mats.MAT_COPPER), ModItems.pipe.stack(Mats.MAT_RUBBER),
-				ModItems.ingot_raw.stack(Mats.MAT_SLAG), ModItems.part_grip.stack(Mats.MAT_WOOD),
+				ModItems.battery_sc.stack(com.hbm.items.machine.ItemBatterySC.EnumBatterySC.PU238), ModItems.part_grip.stack(Mats.MAT_WOOD),
 				ModItems.part_barrel_light.stack(Mats.MAT_GUNMETAL), ModItems.part_mechanism.stack(Mats.MAT_WEAPONSTEEL),
-				ModItems.bedrock_ore_fragment.stack(Mats.MAT_URANIUM), ModItems.bedrock_ore_fragment.stack(Mats.MAT_BISMUTH),
+				ModItems.bedrock_ore_fragment.stack(Mats.MAT_URANIUM), ModItems.pwr_fuel.stack(com.hbm.items.machine.ItemPWRFuel.EnumPWRFuel.MEU),
 				ModItems.battery_pack.stack(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.BATTERY_LITHIUM), ModItems.battery_pack.stack(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.CAPACITOR_GOLD),
 				ModItems.rod_dual.stack(com.hbm.items.machine.ItemBreedingRod.BreedingRodType.U238), ModItems.drive.stack(com.hbm.items.machine.ItemDrive.EnumDriveType.FLASH_EMPTY),
-				ModItems.pile_rod.stack(com.hbm.items.machine.ItemPileRodMK2.EnumPileRod.NU))) {
+				ModItems.pile_rod.stack(com.hbm.items.machine.ItemPileRodMK2.EnumPileRod.NU),
+				ModItems.chemical_dye.stack(com.hbm.items.machine.ItemChemicalDye.EnumChemDye.RED, 4), ModItems.crayon.stack(com.hbm.items.machine.ItemChemicalDye.EnumChemDye.LIME, 2),
+				ModItems.ore_byproduct.stack(com.hbm.items.special.ItemByproduct.EnumByproduct.B_COPPER, 9), wornElectrode())) {
 			player.getInventory().add(stack);
 		}
+	}
+
+	/** A desh electrode with a third of its uses left, shows the wear bar */
+	private static ItemStack wornElectrode() {
+		ItemStack electrode = ModItems.arc_electrode.stack(com.hbm.items.machine.ItemArcElectrode.EnumElectrodeType.DESH);
+		for(int i = 0; i < 330; i++) com.hbm.items.machine.ItemArcElectrode.damage(electrode);
+		return electrode;
 	}
 
 	@EventBusSubscriber(modid = RefStrings.MODID, value = Dist.CLIENT)

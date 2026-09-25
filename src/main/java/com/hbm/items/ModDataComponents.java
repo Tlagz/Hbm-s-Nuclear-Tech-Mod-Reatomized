@@ -41,6 +41,10 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<String>> BLUEPRINT_POOL = COMPONENTS.registerComponentType("blueprint_pool",
 			builder -> builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
+	/** Uses of an arc furnace electrode (the original's "durability" NBT, counting up) */
+	public static final Supplier<DataComponentType<Integer>> ELECTRODE_WEAR = COMPONENTS.registerComponentType("electrode_wear",
+			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+
 	/** Secondary fluid of the multi fluid identifier (the original's "fluid2" NBT) */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE_SECONDARY = COMPONENTS.registerComponentType("fluid_type_secondary",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));

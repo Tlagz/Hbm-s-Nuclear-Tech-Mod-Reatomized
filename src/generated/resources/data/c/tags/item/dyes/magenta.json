@@ -1,5 +1,7 @@
 {
   "values": [
-    "hbm:powder_ash_fullerene"
+    "hbm:powder_ash_fullerene",
+    "hbm:chemical_dye_magenta",
+    "hbm:crayon_magenta"
   ]
 }

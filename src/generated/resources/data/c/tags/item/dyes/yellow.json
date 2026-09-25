@@ -1,5 +1,7 @@
 {
   "values": [
-    "hbm:sulfur"
+    "hbm:sulfur",
+    "hbm:chemical_dye_yellow",
+    "hbm:crayon_yellow"
   ]
 }

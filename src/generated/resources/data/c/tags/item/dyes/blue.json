@@ -1,5 +1,7 @@
 {
   "values": [
-    "hbm:powder_lapis"
+    "hbm:powder_lapis",
+    "hbm:chemical_dye_blue",
+    "hbm:crayon_blue"
   ]
 }

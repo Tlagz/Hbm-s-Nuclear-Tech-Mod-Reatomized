@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/saturnite"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/niobium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:ingots/saturnite"
+    },
+    "T": {
+      "tag": "c:ingots/niobium"
+    }
+  },
+  "pattern": [
+    "C",
+    "T",
+    "C"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:arc_electrode_saturnite"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:billets/americium241"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:battery_sc_empty"
+    },
+    {
+      "tag": "hbm:billets/americium241"
+    },
+    {
+      "tag": "hbm:billets/americium241"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:battery_sc_am241"
+  }
+}

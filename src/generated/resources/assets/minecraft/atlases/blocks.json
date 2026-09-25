@@ -5466,6 +5466,150 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.meu"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.heu233"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.heu235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.men"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hen237"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.mox"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.mep"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hep239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hep241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.mea"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hea242"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hes326"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.hes327"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.bfb_am_mix"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel.bfb_pu241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel_hot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pwr_fuel_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.tc99"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.po210"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.au198"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.pb209"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/battery_sc.am241"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode.graphite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode.lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode.desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode.saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode_burnt.graphite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode_burnt.lanthanium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode_burnt.desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/arc_electrode_burnt.saturnite"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/byproduct"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {
@@ -5502,6 +5646,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/rag"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/canister_overlay"
     },
     {
@@ -5531,6 +5679,22 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/fluid_identifier_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chemical_dye"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/chemical_dye_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crayon"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/crayon_overlay"
     },
     {
       "type": "minecraft:single",

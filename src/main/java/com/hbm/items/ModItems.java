@@ -13,6 +13,11 @@ import com.hbm.items.machine.ItemCircuit.EnumCircuitType;
 import com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack;
 import com.hbm.items.machine.ItemBreedingRod.BreedingRodType;
 import com.hbm.items.machine.ItemDrive.EnumDriveType;
+import com.hbm.items.machine.ItemPWRFuel.EnumPWRFuel;
+import com.hbm.items.machine.ItemBatterySC.EnumBatterySC;
+import com.hbm.items.machine.ItemArcElectrode.EnumElectrodeType;
+import com.hbm.items.machine.ItemChemicalDye.EnumChemDye;
+import com.hbm.items.special.ItemByproduct.EnumByproduct;
 import com.hbm.items.machine.ItemPileRodMK2.EnumPileRod;
 import com.hbm.items.machine.ItemBattery;
 import com.hbm.items.machine.ItemBatteryCreative;
@@ -50,6 +55,8 @@ public class ModItems {
 	public static final Map<DeferredItem<?>, String> FLAT_MODELS = new LinkedHashMap<>();
 	/** Items with several tinted layers (layer0, layer1...), used by datagen, tints come from the item color handler */
 	public static final Map<DeferredItem<?>, String[]> LAYERED_MODELS = new LinkedHashMap<>();
+	/** Items held like tools (the original's setFull3D), item/handheld instead of item/generated */
+	public static final java.util.Set<DeferredItem<?>> HANDHELD = new java.util.HashSet<>();
 	/** Items drawn by an NTM item renderer (3D models), datagen gives them a builtin/entity model */
 	public static final java.util.Set<DeferredItem<?>> ITEM_RENDERED = new java.util.LinkedHashSet<>();
 
@@ -849,6 +856,24 @@ public class ModItems {
 	public static final ItemEnumMulti.Variants<BreedingRodType> rod_quad = multi("rod_quad", "rod_quad", BreedingRodType.class, true,
 			value -> "items/rod_quad." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), (p, descriptionId, value) -> new ItemEnumMulti(p.craftRemainder(rod_quad_empty.get()), descriptionId));
 	public static final ItemEnumMulti.Variants<EnumDriveType> drive = multi("drive", "drive", EnumDriveType.class, true, true, NtmTab.PARTS, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumPWRFuel> pwr_fuel = multi("pwr_fuel", "pwr_fuel", EnumPWRFuel.class, true,
+			value -> "items/pwr_fuel." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), com.hbm.items.machine.ItemPWRFuel::new);
+	public static final ItemEnumMulti.Variants<EnumPWRFuel> pwr_fuel_hot = multi("pwr_fuel_hot", "pwr_fuel_hot", EnumPWRFuel.class, true, false, NtmTab.CONTROL, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumPWRFuel> pwr_fuel_depleted = multi("pwr_fuel_depleted", "pwr_fuel_depleted", EnumPWRFuel.class, true, false, NtmTab.CONTROL, new Item.Properties());
+	public static final ItemEnumMulti.Variants<EnumBatterySC> battery_sc = multi("battery_sc", "battery_sc", EnumBatterySC.class, true,
+			value -> "items/battery_sc." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), com.hbm.items.machine.ItemBatterySC::new);
+	public static final ItemEnumMulti.Variants<EnumElectrodeType> arc_electrode = handheld(multi("arc_electrode", "arc_electrode", EnumElectrodeType.class, true,
+			value -> "items/arc_electrode." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), com.hbm.items.machine.ItemArcElectrode::new));
+	public static final ItemEnumMulti.Variants<EnumElectrodeType> arc_electrode_burnt = handheld(multi("arc_electrode_burnt", "arc_electrode_burnt", EnumElectrodeType.class, true, true, NtmTab.CONTROL, new Item.Properties()));
+	/** Ore byproducts, one gray texture tinted per type, hidden like the original */
+	public static final ItemEnumMulti.Variants<EnumByproduct> ore_byproduct = multi("ore_byproduct", "ore_byproduct", EnumByproduct.class, true, value -> "items/byproduct", null, new Item.Properties());
+	/** Chemical dyes and crayons, a base texture and an overlay tinted with the color */
+	public static final ItemEnumMulti.Variants<EnumChemDye> chemical_dye = layered(multi("chemical_dye", "chemical_dye", EnumChemDye.class, true, false, NtmTab.PARTS, new Item.Properties()),
+			"items/chemical_dye", "items/chemical_dye_overlay");
+	public static final ItemEnumMulti.Variants<EnumChemDye> crayon = layered(multi("crayon", "crayon", EnumChemDye.class, true, false, NtmTab.PARTS,
+			new Item.Properties().food(new net.minecraft.world.food.FoodProperties.Builder().nutrition(3).saturationModifier(0.6F).alwaysEdible().build())),
+			"items/crayon", "items/crayon_overlay");
+	public static final DeferredItem<com.hbm.items.special.ItemRag> rag = register("rag", com.hbm.items.special.ItemRag::new, new Item.Properties(), NtmTab.PARTS);
 
 	/** Shredder blades, desh blades don't wear */
 	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_steel = register("blades_steel", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(400), NtmTab.CONTROL);
@@ -871,6 +896,7 @@ public class ModItems {
 		FLAT_MODELS.put(blades_steel, "items/blades_steel");
 		FLAT_MODELS.put(blades_titanium, "items/blades_titanium");
 		FLAT_MODELS.put(blades_desh, "items/blades_desh");
+		FLAT_MODELS.put(rag, "items/rag");
 	}
 
 	/** Press stamp with a flat model, in the control tab like the original */
@@ -919,6 +945,21 @@ public class ModItems {
 	 */
 	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, boolean multiTexture, NtmTab tab, Item.Properties props) {
 		return multi(name, originalName, theEnum, multiName, value -> "items/" + name + (multiTexture ? "." + value.name().toLowerCase(java.util.Locale.US) : ""), tab, props);
+	}
+
+	/** Variants drawn with the same texture layers (the original's render passes), e.g. a base and a tinted overlay */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> layered(ItemEnumMulti.Variants<E> variants, String... layers) {
+		for(DeferredItem<? extends Item> item : variants.values()) {
+			FLAT_MODELS.remove(item);
+			LAYERED_MODELS.put(item, layers);
+		}
+		return variants;
+	}
+
+	/** Variants held like tools (setFull3D) */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> handheld(ItemEnumMulti.Variants<E> variants) {
+		HANDHELD.addAll(variants.values());
+		return variants;
 	}
 
 	/** ItemEnumMulti with custom texture names per variant (the original's overridden registerIcons) */

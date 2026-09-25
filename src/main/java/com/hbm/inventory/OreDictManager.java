@@ -502,6 +502,13 @@ public class OreDictManager {
 
 		registerAutogen();
 		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
+		// chemical dyes and crayons count as the dye of their color
+		for(com.hbm.items.machine.ItemChemicalDye.EnumChemDye dye : com.hbm.items.machine.ItemChemicalDye.EnumChemDye.values()) {
+			registerExtra("dye" + dye.dictName, ModItems.chemical_dye.get(dye));
+			registerExtra("dye" + dye.dictName, ModItems.crayon.get(dye));
+			registerExtra("dye", ModItems.chemical_dye.get(dye));
+			registerExtra("dye", ModItems.crayon.get(dye));
+		}
 		registerGroups();
 	}
 

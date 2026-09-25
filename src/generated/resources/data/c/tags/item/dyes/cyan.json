@@ -1,5 +1,7 @@
 {
   "values": [
-    "hbm:oil_tar_wax"
+    "hbm:oil_tar_wax",
+    "hbm:chemical_dye_cyan",
+    "hbm:crayon_cyan"
   ]
 }

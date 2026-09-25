@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:battery_sc_empty"
+    },
+    {
+      "item": "hbm:billet_nuclear_waste"
+    },
+    {
+      "item": "hbm:billet_nuclear_waste"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:battery_sc_waste"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:gems/pet_coke"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:any/tar"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:gems/pet_coke"
+    },
+    "T": {
+      "tag": "hbm:any/tar"
+    }
+  },
+  "pattern": [
+    "C",
+    "T",
+    "C"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:arc_electrode_graphite"
+  }
+}

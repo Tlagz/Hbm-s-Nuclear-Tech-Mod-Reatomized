@@ -1,6 +1,8 @@
 {
   "values": [
     "hbm:powder_titanium",
-    "hbm:powder_ash_wood"
+    "hbm:powder_ash_wood",
+    "hbm:chemical_dye_silver",
+    "hbm:crayon_silver"
   ]
 }

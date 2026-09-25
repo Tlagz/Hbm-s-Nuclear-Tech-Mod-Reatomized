@@ -171,7 +171,7 @@ def load_symbols():
 	enums = read(os.path.join(PORT, 'items', 'ItemEnums.java'))
 	for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', enums):
 		body = m.group(2).split(';')[0]
-		sym['enums'][m.group(1)] = set(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M))
+		sym['enums'][m.group(1)] = list(dict.fromkeys(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M)))
 	# enums declared in other item classes (e.g. ItemCircuit.EnumCircuitType), generated files import them
 	sym['enum_imports'] = {}
 	for dirpath, _, files in os.walk(os.path.join(PORT, 'items')):
@@ -182,7 +182,7 @@ def load_symbols():
 			for m in re.finditer(r'enum (\w+)\s*(?:implements [\w, ]+)?\{([^}]*)\}', src):
 				if m.group(1) in sym['enums']: continue
 				body = m.group(2).split(';')[0]
-				sym['enums'][m.group(1)] = set(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M))
+				sym['enums'][m.group(1)] = list(dict.fromkeys(re.findall(r'^\s*([A-Z0-9_]+)\s*(?:\(|,|$)', body, re.M)))
 				sym['enum_imports'][m.group(1)] = '%s.%s.%s' % (pkg, f[:-5], m.group(1))
 	# material autogen items (ModItems.wire_fine...) and the shapes each material has
 	for m in re.finditer(r'AutogenItems\s+(\w+)\s*=\s*autogen\("\w+",\s*"\w+",\s*MaterialShapes\.(\w+)', items): sym['items'][m.group(1)] = 'autogen:' + m.group(2)
@@ -236,10 +236,15 @@ def item_ref(e, role, sym, meta=None):
 		if kind is None: raise Skip('item:' + m.group(1))
 		if kind.startswith('variants:'):
 			enum = kind.split(':')[1]
-			if meta is not None:
-				mm = re.fullmatch(r'(?:ItemEnums\.)?(\w+)\.(\w+)\.ordinal\(\)', meta)
-				if mm and mm.group(1) == enum and mm.group(2) in sym['enums'].get(enum, ()):
-					return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, mm.group(2)))
+			constants = sym['enums'].get(enum, [])
+			# no metadata is meta 0 (1.7.10 matched plain items with damage 0), the enum's first constant
+			if meta is None or meta.strip().isdigit():
+				index = int(meta) if meta is not None else 0
+				if index < len(constants): return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, constants[index]))
+				raise Skip('variants meta out of range:' + m.group(1))
+			mm = re.fullmatch(r'(?:ItemEnums\.)?(?:\w+\.)*?(\w+)\.(\w+)(?:\.ordinal\(\))?', meta.strip())
+			if mm and mm.group(1) == enum and mm.group(2) in constants:
+				return ('variant', 'ModItems.%s.get(%s.%s)' % (m.group(1), enum, mm.group(2)))
 			raise Skip('variants without enum:' + m.group(1))
 		if kind.startswith('autogen:'):
 			return ('variant', autogen_ref(m.group(1), kind, meta, sym))

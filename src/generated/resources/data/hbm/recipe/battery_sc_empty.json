@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/any_plastic"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:fine_wires/gold"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "hbm:fine_wires/gold"
+    },
+    "L": {
+      "tag": "c:plates/lead"
+    },
+    "P": {
+      "tag": "c:ingots/any_plastic"
+    }
+  },
+  "pattern": [
+    "PGP",
+    "L L",
+    "PGP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:battery_sc_empty"
+  }
+}
