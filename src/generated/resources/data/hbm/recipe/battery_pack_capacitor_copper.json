@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/copper"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:plates/steel"
+    },
+    "P": {
+      "item": "hbm:plate_polymer"
+    },
+    "R": {
+      "tag": "c:storage_blocks/copper"
+    }
+  },
+  "pattern": [
+    "IRI",
+    "PRP",
+    "IRI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:battery_pack_capacitor_copper"
+  }
+}

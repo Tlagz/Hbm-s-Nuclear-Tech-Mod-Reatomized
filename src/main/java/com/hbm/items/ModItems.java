@@ -10,6 +10,10 @@ import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ItemGenericPart.EnumPartType;
 import com.hbm.items.machine.ItemCircuit.EnumCircuitType;
+import com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack;
+import com.hbm.items.machine.ItemBreedingRod.BreedingRodType;
+import com.hbm.items.machine.ItemDrive.EnumDriveType;
+import com.hbm.items.machine.ItemPileRodMK2.EnumPileRod;
 import com.hbm.items.machine.ItemBattery;
 import com.hbm.items.machine.ItemBatteryCreative;
 import com.hbm.items.machine.ItemCanister;
@@ -46,6 +50,8 @@ public class ModItems {
 	public static final Map<DeferredItem<?>, String> FLAT_MODELS = new LinkedHashMap<>();
 	/** Items with several tinted layers (layer0, layer1...), used by datagen, tints come from the item color handler */
 	public static final Map<DeferredItem<?>, String[]> LAYERED_MODELS = new LinkedHashMap<>();
+	/** Items drawn by an NTM item renderer (3D models), datagen gives them a builtin/entity model */
+	public static final java.util.Set<DeferredItem<?>> ITEM_RENDERED = new java.util.LinkedHashSet<>();
 
 	/// HAND-PORTED ///
 	public static final DeferredItem<ItemDosimeter> dosimeter = register("dosimeter", ItemDosimeter::new, new Item.Properties().stacksTo(1), NtmTab.CONSUMABLE);
@@ -831,6 +837,19 @@ public class ModItems {
 	public static final AutogenItems part_stock = autogen("part_stock", "part_stock", MaterialShapes.STOCK, Map.of());
 	public static final AutogenItems part_grip = autogen("part_grip", "part_grip", MaterialShapes.GRIP, Map.of());
 
+	/// ENUM ITEMS WITH THEIR OWN CLASSES ///
+	/** Battery socket packs, drawn with the socket's model (RenderBatterySocket.itemRenderer) */
+	public static final ItemEnumMulti.Variants<EnumBatteryPack> battery_pack = multi("battery_pack", "battery_pack", EnumBatteryPack.class, true,
+			value -> null, NtmTab.CONTROL, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.machine.ItemBatteryPack(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<EnumPileRod> pile_rod = multi("pile_rod", "pile_rod", EnumPileRod.class, true, true, NtmTab.CONTROL, new Item.Properties());
+	public static final ItemEnumMulti.Variants<BreedingRodType> rod = multi("rod", "rod", BreedingRodType.class, true,
+			value -> "items/rod." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), (p, descriptionId, value) -> new ItemEnumMulti(p.craftRemainder(rod_empty.get()), descriptionId));
+	public static final ItemEnumMulti.Variants<BreedingRodType> rod_dual = multi("rod_dual", "rod_dual", BreedingRodType.class, true,
+			value -> "items/rod_dual." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), (p, descriptionId, value) -> new ItemEnumMulti(p.craftRemainder(rod_dual_empty.get()), descriptionId));
+	public static final ItemEnumMulti.Variants<BreedingRodType> rod_quad = multi("rod_quad", "rod_quad", BreedingRodType.class, true,
+			value -> "items/rod_quad." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), (p, descriptionId, value) -> new ItemEnumMulti(p.craftRemainder(rod_quad_empty.get()), descriptionId));
+	public static final ItemEnumMulti.Variants<EnumDriveType> drive = multi("drive", "drive", EnumDriveType.class, true, true, NtmTab.PARTS, new Item.Properties());
+
 	/** Shredder blades, desh blades don't wear */
 	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_steel = register("blades_steel", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(400), NtmTab.CONTROL);
 	public static final DeferredItem<com.hbm.items.machine.ItemBlades> blades_titanium = register("blades_titanium", com.hbm.items.machine.ItemBlades::new, new Item.Properties().durability(500), NtmTab.CONTROL);
@@ -904,6 +923,17 @@ public class ModItems {
 
 	/** ItemEnumMulti with custom texture names per variant (the original's overridden registerIcons) */
 	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, Function<E, String> texture, NtmTab tab, Item.Properties props) {
+		return multi(name, originalName, theEnum, multiName, texture, tab, props, (p, descriptionId, value) -> new ItemEnumMulti(p, descriptionId));
+	}
+
+	/** Creates the item of one variant (for ItemEnumMulti subclasses of the original, e.g. batteries or rods with a container item) */
+	@FunctionalInterface
+	public interface VariantFactory<E> {
+		Item create(Item.Properties properties, String descriptionId, E value);
+	}
+
+	/** Variants made by a custom factory; a null texture means the item has its own renderer (ITEM_RENDERED) */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, Function<E, String> texture, NtmTab tab, Item.Properties props, VariantFactory<E> factory) {
 		ItemEnumMulti.Variants<E> variants = new ItemEnumMulti.Variants<>(name, theEnum);
 		E[] order = theEnum.getEnumConstants();
 		if(order[0] instanceof com.hbm.interfaces.IOrderedEnum ordered) {
@@ -913,9 +943,11 @@ public class ModItems {
 		for(E value : order) {
 			String lower = value.name().toLowerCase(java.util.Locale.US);
 			String descriptionId = "item.hbm." + originalName.toLowerCase() + (multiName ? "." + lower : "");
-			DeferredItem<ItemEnumMulti> item = register(ItemEnumMulti.Variants.variantName(name, value), p -> new ItemEnumMulti(p, descriptionId), props, tab);
+			DeferredItem<Item> item = register(ItemEnumMulti.Variants.variantName(name, value), p -> factory.create(p, descriptionId, value), props, tab);
 			variants.put(value, item);
-			FLAT_MODELS.put(item, texture.apply(value));
+			String tex = texture.apply(value);
+			if(tex != null) FLAT_MODELS.put(item, tex);
+			else ITEM_RENDERED.add(item);
 		}
 		return variants;
 	}

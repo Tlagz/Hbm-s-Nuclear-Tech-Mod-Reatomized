@@ -5166,6 +5166,290 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.ra226be"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.po210be"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.zr"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.nu"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.rgp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.thorium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pile_rod.thorium_fuel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.tritium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.co"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.thf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.np237"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.rgp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod.ac227"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.tritium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.co"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.thf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.np237"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.rgp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_dual.ac227"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.lithium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.tritium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.co"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.co60"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.th232"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.thf"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.u235"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.np237"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.u238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.pu238"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.pu239"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.rgp"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.uranium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.ra226"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/rod_quad.ac227"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.flash_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_empty"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.flash_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_broken"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.flash_flightsim"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.flash_particlesim"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_flightdata"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_flightdata_processed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_orbitdata"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.disk_orbitdata_processed"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/drive.klaus"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/dosimeter"
     },
     {

@@ -24,7 +24,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 		}
 		ModItems.FLAT_MODELS.forEach(this::flat);
 		ModItems.LAYERED_MODELS.forEach(this::layered);
+		ModItems.ITEM_RENDERED.forEach(this::rendered);
 		blueprints();
+	}
+
+	/** Items drawn by the NTM item renderer, display transforms like the tile rendered blocks' items */
+	private void rendered(DeferredItem<?> item) {
+		getBuilder(item.getId().getPath()).parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile("builtin/entity")).transforms()
+				.transform(net.minecraft.world.item.ItemDisplayContext.GROUND).translation(0, 3, 0).scale(0.25F).end()
+				.transform(net.minecraft.world.item.ItemDisplayContext.FIXED).scale(0.5F).end()
+				.transform(net.minecraft.world.item.ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).rotation(75, 45, 0).translation(0, 2.5F, 0).scale(0.375F).end()
+				.transform(net.minecraft.world.item.ItemDisplayContext.THIRD_PERSON_LEFT_HAND).rotation(75, 45, 0).translation(0, 2.5F, 0).scale(0.375F).end()
+				.transform(net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).rotation(0, 45, 0).scale(0.4F).end()
+				.transform(net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_LEFT_HAND).rotation(0, 225, 0).scale(0.4F).end();
 	}
 
 	/** Blueprint texture by pool type (ItemBlueprints.poolType): regular, discover, secret, 528 */

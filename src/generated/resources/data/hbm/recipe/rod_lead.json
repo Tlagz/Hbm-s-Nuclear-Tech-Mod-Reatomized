@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:nuggets/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:rod_empty"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    },
+    {
+      "tag": "c:nuggets/lead"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:rod_lead"
+  }
+}

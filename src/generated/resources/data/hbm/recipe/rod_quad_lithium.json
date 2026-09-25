@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/lithium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:rod_quad_empty"
+    },
+    {
+      "tag": "c:ingots/lithium"
+    },
+    {
+      "tag": "c:ingots/lithium"
+    },
+    {
+      "tag": "c:ingots/lithium"
+    },
+    {
+      "tag": "c:ingots/lithium"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:rod_quad_lithium"
+  }
+}

@@ -287,7 +287,10 @@ public class DevScene {
 				ModItems.pipe.stack(Mats.MAT_COPPER), ModItems.pipe.stack(Mats.MAT_RUBBER),
 				ModItems.ingot_raw.stack(Mats.MAT_SLAG), ModItems.part_grip.stack(Mats.MAT_WOOD),
 				ModItems.part_barrel_light.stack(Mats.MAT_GUNMETAL), ModItems.part_mechanism.stack(Mats.MAT_WEAPONSTEEL),
-				ModItems.bedrock_ore_fragment.stack(Mats.MAT_URANIUM), ModItems.bedrock_ore_fragment.stack(Mats.MAT_BISMUTH))) {
+				ModItems.bedrock_ore_fragment.stack(Mats.MAT_URANIUM), ModItems.bedrock_ore_fragment.stack(Mats.MAT_BISMUTH),
+				ModItems.battery_pack.stack(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.BATTERY_LITHIUM), ModItems.battery_pack.stack(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.CAPACITOR_GOLD),
+				ModItems.rod_dual.stack(com.hbm.items.machine.ItemBreedingRod.BreedingRodType.U238), ModItems.drive.stack(com.hbm.items.machine.ItemDrive.EnumDriveType.FLASH_EMPTY),
+				ModItems.pile_rod.stack(com.hbm.items.machine.ItemPileRodMK2.EnumPileRod.NU))) {
 			player.getInventory().add(stack);
 		}
 	}

@@ -79,6 +79,10 @@ public class ModEventHandlerClientMod {
 			}
 		};
 		for(var block : ModBlocks.TILE_RENDERED.keySet()) event.registerItem(extension, block.get().asItem());
+
+		var batteryRenderer = new com.hbm.render.item.ItemRenderBatteryPack();
+		for(var pack : com.hbm.items.ModItems.battery_pack.values()) NTMItemRenderer.RENDERERS.put(pack.get(), batteryRenderer);
+		for(var item : com.hbm.items.ModItems.ITEM_RENDERED) event.registerItem(extension, item.get());
 	}
 
 	/** Tinted layers of fluid containers, the original's getColorFromItemStack(stack, pass) */

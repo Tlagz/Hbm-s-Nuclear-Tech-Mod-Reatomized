@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:rod_quad_tritium"
+    },
+    {
+      "item": "hbm:cell_empty"
+    },
+    {
+      "item": "hbm:cell_empty"
+    },
+    {
+      "item": "hbm:cell_empty"
+    },
+    {
+      "item": "hbm:cell_empty"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "hbm:cell_tritium"
+  }
+}
