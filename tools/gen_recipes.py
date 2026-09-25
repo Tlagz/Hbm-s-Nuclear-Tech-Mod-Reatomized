@@ -89,6 +89,15 @@ META_VARIANTS = {
 	'quartz_block': ['QUARTZ_BLOCK', 'CHISELED_QUARTZ_BLOCK', 'QUARTZ_PILLAR'], 'skull': ['SKELETON_SKULL', 'WITHER_SKELETON_SKULL', 'ZOMBIE_HEAD', 'PLAYER_HEAD', 'CREEPER_HEAD'],
 }
 
+# mod blocks whose metadata variants are separate blocks: name -> blocks indexed by meta, and the dictionary key
+# that stands in for the plain block as an ingredient (1.7.10 matched a plain block with any metadata)
+BLOCK_META_VARIANTS = {
+	'steel_scaffold': ['steel_scaffold', 'steel_scaffold_red', 'steel_scaffold_white', 'steel_scaffold_yellow'],
+}
+BLOCK_ANY_KEYS = {
+	'steel_scaffold': '"steelScaffolds"',
+}
+
 def read(path):
 	with open(path, encoding='utf-8') as f: return f.read()
 
@@ -239,6 +248,12 @@ def item_ref(e, role, sym, meta=None):
 	m = re.fullmatch(r'(?:com\.hbm\.blocks\.)?ModBlocks\.(\w+)', e)
 	if m:
 		if m.group(1) not in sym['blocks']: raise Skip('block:' + m.group(1))
+		if m.group(1) in BLOCK_META_VARIANTS:
+			if meta is None and role == 'ingredient' and m.group(1) in BLOCK_ANY_KEYS: return ('tag', BLOCK_ANY_KEYS[m.group(1)])
+			variants = BLOCK_META_VARIANTS[m.group(1)]
+			if meta is None: meta = '0'
+			if not meta.isdigit() or int(meta) >= len(variants): raise Skip('block meta:' + m.group(1))
+			return ('item', 'ModBlocks.' + variants[int(meta)])
 		if meta is not None and meta != '0': raise Skip('block meta:' + m.group(1))
 		return ('item', 'ModBlocks.' + m.group(1))
 	m = re.fullmatch(r'(?:net\.minecraft\.init\.)?(Items|Blocks)\.(\w+)', e)

@@ -102,6 +102,13 @@ public class ModBlocks {
 	public static final DeferredBlock<NTMAnvil> anvil_dnt = anvil("anvil_dnt", NTMAnvil.TIER_PARTICLE, "blocks/anvil_dnt", "blocks/anvil_dnt");
 	public static final DeferredBlock<NTMAnvil> anvil_osmiridium = anvil("anvil_osmiridium", NTMAnvil.TIER_GERALD, "blocks/anvil_osmiridium", "blocks/anvil_osmiridium");
 	public static final DeferredBlock<NTMAnvil> anvil_murky = anvil("anvil_murky", 1916169, "blocks/anvil_steel", "blocks/anvil_murky");
+	/// SCAFFOLDS: the original's color metadata as separate blocks, block -> texture for datagen ///
+	public static final Map<DeferredBlock<com.hbm.blocks.generic.BlockScaffold>, String> SCAFFOLDS = new LinkedHashMap<>();
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold = scaffold("steel_scaffold", "scaffold_steel");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold_red = scaffold("steel_scaffold_red", "scaffold_red");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold_white = scaffold("steel_scaffold_white", "scaffold_white");
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockScaffold> steel_scaffold_yellow = scaffold("steel_scaffold_yellow", "scaffold_yellow");
+
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineShredder> machine_shredder = register("machine_shredder", com.hbm.blocks.machine.MachineShredder::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 
@@ -396,6 +403,12 @@ public class ModBlocks {
 		return block;
 	}
 
+
+	private static DeferredBlock<com.hbm.blocks.generic.BlockScaffold> scaffold(String name, String texture) {
+		DeferredBlock<com.hbm.blocks.generic.BlockScaffold> block = register(name, p -> new com.hbm.blocks.generic.BlockScaffold(p, "block.hbm.steel_scaffold"), props(Mat.IRON, 5.0F, 15.0F), NtmTab.BLOCKS);
+		SCAFFOLDS.put(block, texture);
+		return block;
+	}
 
 	private static DeferredBlock<NTMAnvil> anvil(String name, int tier, String side, String top) {
 		DeferredBlock<NTMAnvil> block = register(name, p -> new NTMAnvil(p, tier), props(Mat.IRON, 5.0F, 100.0F).sound(SoundType.ANVIL), NtmTab.MACHINE);

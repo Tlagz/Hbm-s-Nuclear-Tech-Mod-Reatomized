@@ -261,6 +261,12 @@ public class DevScene {
 			}
 		}
 
+		// steel scaffolds, one per orientation and color
+		{
+			var scaffolds = java.util.List.of(ModBlocks.steel_scaffold, ModBlocks.steel_scaffold_red, ModBlocks.steel_scaffold_white, ModBlocks.steel_scaffold_yellow);
+			for(int s = 0; s < 4; s++) level.setBlockAndUpdate(origin.offset(-10 + s, 1, 1), scaffolds.get(s).get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockScaffold.ORIENTATION, s));
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 

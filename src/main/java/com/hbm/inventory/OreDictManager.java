@@ -501,6 +501,7 @@ public class OreDictManager {
 		registerExtra("itemSilicon", ModItems.billet_silicon);
 
 		registerAutogen();
+		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
 		registerGroups();
 	}
 

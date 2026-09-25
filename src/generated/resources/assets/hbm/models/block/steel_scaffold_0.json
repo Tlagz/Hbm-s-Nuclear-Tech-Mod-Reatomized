@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:block/block",
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/blocks/scaffold.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "hbm:blocks/scaffold_steel",
+    "texture0": "hbm:blocks/scaffold_steel"
+  },
+  "transform": {
+    "origin": [
+      -0.5,
+      -0.5,
+      -0.5
+    ],
+    "rotation": [
+      0.0,
+      -0.70710677,
+      0.0,
+      0.70710677
+    ],
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  }
+}

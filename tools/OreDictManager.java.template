@@ -57,6 +57,7 @@ public class OreDictManager {
 		//@REGISTER@
 
 		registerAutogen();
+		for(Object scaffold : ModBlocks.SCAFFOLDS.keySet()) registerExtra("steelScaffolds", scaffold);
 		registerGroups();
 	}
 

@@ -41,6 +41,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		pipe(ModBlocks.fluid_duct_neo);
 		for(var barrel : ModBlocks.BARRELS) barrel(barrel);
 		ModBlocks.ANVILS.forEach(this::anvil);
+		ModBlocks.SCAFFOLDS.forEach(this::scaffold);
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -200,6 +201,34 @@ public class ModBlockStateProvider extends BlockStateProvider {
 			return ConfiguredModel.builder().modelFile(model).rotationY(dir.getAxis() == Direction.Axis.Z ? 90 : 0).build();
 		});
 		simpleBlockItem(block.get(), model);
+	}
+
+	/**
+	 * Scaffolds: the original's RenderScaffoldBlock turned scaffold.obj by a yaw and a pitch per orientation and moved
+	 * it into the block, exactly that transform is the model's root transform (ObjUtil: v' = Ry(rot) * Rz(-pitch) * v).
+	 * The OBJ loader moves the root transform's origin by +0.5 (blockCenterToCorner), the -0.5 origin cancels that so
+	 * the rotation happens around the model's own origin like in the original.
+	 */
+	private void scaffold(DeferredBlock<? extends Block> block, String textureName) {
+		String name = block.getId().getPath();
+		ResourceLocation texture = texture("blocks/" + textureName);
+		float[][] orientations = {
+				// rot, pitch, offset
+				{ (float) -Math.PI * 0.5F, 0, 0.5F, 0, 0.5F },
+				{ (float) -Math.PI * 0.5F, (float) Math.PI * 0.5F, 0.5F, 0.5F, 0 },
+				{ (float) -Math.PI, 0, 0.5F, 0, 0.5F },
+				{ (float) -Math.PI, (float) Math.PI * 0.5F, 1, 0.5F, 0.5F }
+		};
+		BlockModelBuilder[] models = new BlockModelBuilder[4];
+		for(int i = 0; i < 4; i++) {
+			float[] o = orientations[i];
+			models[i] = models().getBuilder(name + "_" + i).parent(models().getExistingFile(mcLoc("block/block")))
+					.texture("texture0", texture).texture("particle", texture).renderType("cutout")
+					.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/scaffold.obj")).flipV(true).automaticCulling(false).end();
+			models[i].rootTransforms().translation(o[2], o[3], o[4]).rotation(new org.joml.Quaternionf().rotateY(o[0]).rotateZ(-o[1])).origin(new org.joml.Vector3f(-0.5F, -0.5F, -0.5F));
+		}
+		getVariantBuilder(block.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(models[state.getValue(com.hbm.blocks.generic.BlockScaffold.ORIENTATION)]).build());
+		simpleBlockItem(block.get(), models[0]);
 	}
 
 	/** Barrels: the original's barrel.obj "Barrel" part with the barrel's texture, the model is centered on x/z */

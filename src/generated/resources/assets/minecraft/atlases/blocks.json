@@ -994,6 +994,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/scaffold_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/scaffold_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/scaffold_white"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/scaffold_yellow"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {

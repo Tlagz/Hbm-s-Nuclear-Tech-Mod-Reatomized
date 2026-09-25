@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "orientation=0": {
+      "model": "hbm:block/steel_scaffold_yellow_0"
+    },
+    "orientation=1": {
+      "model": "hbm:block/steel_scaffold_yellow_1"
+    },
+    "orientation=2": {
+      "model": "hbm:block/steel_scaffold_yellow_2"
+    },
+    "orientation=3": {
+      "model": "hbm:block/steel_scaffold_yellow_3"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:steel_scaffolds"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:pipes/steel"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:any/concrete"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "hbm:any/concrete"
+    },
+    "D": {
+      "tag": "hbm:pipes/steel"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "S": {
+      "tag": "hbm:steel_scaffolds"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "SDS",
+    "CCC"
+  ],
+  "result": {
+    "count": 8,
+    "id": "hbm:struct_launcher"
+  }
+}
