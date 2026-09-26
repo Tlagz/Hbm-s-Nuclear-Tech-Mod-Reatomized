@@ -92,6 +92,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				.texture("particle", texture("blocks/machine_shredder_side_alt"));
 		simpleBlock(ModBlocks.machine_shredder.get(), shredder);
 		simpleBlockItem(ModBlocks.machine_shredder.get(), shredder);
+
+		// the safe's door faces the player
+		ModelFile safe = models().orientable("safe", texture("blocks/safe_side"), texture("blocks/safe_front"), texture("blocks/safe_side"));
+		horizontalBlock(ModBlocks.safe.get(), safe);
+		simpleBlockItem(ModBlocks.safe.get(), safe);
 	}
 
 	/** Models of generated blocks, see ModBlocks.BlockModel */

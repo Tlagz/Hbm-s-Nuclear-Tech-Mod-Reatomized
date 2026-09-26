@@ -2,6 +2,38 @@
   "sources": [
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_iron_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_iron_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_steel_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_steel_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_desh_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_desh_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_tungsten_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crate_tungsten_top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/oil_pipe"
     },
     {
@@ -1635,6 +1667,14 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/machine_shredder_side_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/safe_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/safe_front"
     },
     {
       "type": "minecraft:single",

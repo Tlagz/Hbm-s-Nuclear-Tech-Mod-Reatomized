@@ -118,6 +118,14 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 			handled.add(capacitor.get());
 		}
 
+		// crates keep their contents and name (the original's CRATE_KEEP_CONTENTS), no explosion decay
+		for(var crate : ModBlocks.CRATES) {
+			add(crate.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+					.add(LootItem.lootTableItem(crate.get()).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+							.include(net.minecraft.core.component.DataComponents.CONTAINER).include(net.minecraft.core.component.DataComponents.CUSTOM_NAME)))));
+			handled.add(crate.get());
+		}
+
 		// molten meteor blocks turn into lava when broken and don't drop anything
 		add(ModBlocks.block_meteor_molten.get(), LootTable.lootTable());
 		handled.add(ModBlocks.block_meteor_molten.get());

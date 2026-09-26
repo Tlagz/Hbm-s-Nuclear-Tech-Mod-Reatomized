@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/crate_tungsten_top",
+    "side": "hbm:blocks/crate_tungsten_side"
+  }
+}

@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -234,6 +234,13 @@ public class DevScene {
 			turbine.tanks[2].setFill(turbine.tanks[2].getMaxFill());
 			turbine.tanks[3].setFill(Math.min(turbine.tanks[3].getFill(), 100_000));
 			turbine.setPower(Math.min(turbine.getPower(), 800_000));
+		}
+		if(serverTicks == 2240 || serverTicks == 2275) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2240) player.teleportTo(player.serverLevel(), 11.5, -60, -43.5, 180F, 30F);
+				else if(player.level().getBlockEntity(deshCratePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(deshCratePos));
+			}
 		}
 		if(serverTicks == 2165 || serverTicks == 2200) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -811,6 +818,16 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			for(int crateIdx = 0; crateIdx < ModBlocks.CRATES.size(); crateIdx++) {
+				BlockPos cratePos = origin.offset(9 + crateIdx, 0, -46);
+				level.setBlockAndUpdate(cratePos, ModBlocks.CRATES.get(crateIdx).get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockStorageCrate.FACING, net.minecraft.core.Direction.SOUTH));
+				if(crateIdx == 2) {
+					deshCratePos = cratePos;
+					if(level.getBlockEntity(cratePos) instanceof com.hbm.tileentity.machine.storage.TileEntityCrate crate) {
+						for(int slot = 0; slot < 104; slot += 3) crate.setItem(slot, new ItemStack(slot % 2 == 0 ? ModItems.ingot_steel.get() : ModItems.plate_iron.get(), 1 + slot % 64));
+					}
+				}
+			}
 			turbineGasPos = ModBlocks.machine_turbinegas.get().placeMultiblock(level, origin.offset(2, 0, -43), net.minecraft.core.Direction.NORTH);
 			gasCentPos = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -33), net.minecraft.core.Direction.NORTH);
 			gasCentPos2 = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -32), net.minecraft.core.Direction.NORTH);
@@ -1024,7 +1041,10 @@ public class DevScene {
 			if(ticks == 2198) Screenshot.grab(mc.gameDirectory, "devscene_world_turbinegas.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2230) Screenshot.grab(mc.gameDirectory, "devscene_gui_turbinegas.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2240) {
+			if(ticks == 2273) Screenshot.grab(mc.gameDirectory, "devscene_world_crates.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2305) Screenshot.grab(mc.gameDirectory, "devscene_gui_crate_desh.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2315) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

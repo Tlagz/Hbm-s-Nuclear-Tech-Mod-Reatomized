@@ -60,6 +60,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.ELECTROLYSER_METAL.get(), com.hbm.inventory.gui.GUIElectrolyserMetal::new);
 		event.register(ModMenus.GAS_CENT.get(), com.hbm.inventory.gui.GUIMachineGasCent::new);
 		event.register(ModMenus.TURBINE_GAS.get(), com.hbm.inventory.gui.GUIMachineTurbineGas::new);
+		event.register(ModMenus.CRATE.get(), com.hbm.inventory.gui.GUICrate::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
