@@ -91,7 +91,7 @@ public class DevScene {
 		if(serverTicks == 750 || serverTicks == 790) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
-				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 5.5, -57, 5.5, 0F, 28F);
+				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 5.5, -57, 5.5, 25F, 28F);
 				else if(cruciblePos != null && player.level().getBlockEntity(cruciblePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(cruciblePos));
 			}
 		}
@@ -379,6 +379,12 @@ public class DevScene {
 				crucible.wasteStack.add(new com.hbm.inventory.material.Mats.MaterialStack(Mats.MAT_COPPER, com.hbm.inventory.material.MaterialShapes.BLOCK.q(4)));
 				crucible.heat = com.hbm.tileentity.machine.TileEntityCrucible.maxHeat;
 			}
+			// a Stirling engine on another firebox and a heating oven next to the crucible
+			BlockPos fb2 = ModBlocks.heater_firebox.get().placeMultiblock(level, origin.offset(2, 1, 8), N);
+			if(fb2 != null && level.getBlockEntity(fb2) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox heater) heater.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			ModBlocks.machine_stirling_steel.get().placeMultiblock(level, origin.offset(2, 2, 8), N);
+			BlockPos ov = ModBlocks.heater_oven.get().placeMultiblock(level, origin.offset(-1, 1, 8), N);
+			if(ov != null && level.getBlockEntity(ov) instanceof com.hbm.tileentity.machine.TileEntityHeaterOven oven) oven.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
 			// a pillar for the camera to look into the crucible
 			level.setBlockAndUpdate(origin.offset(5, 1, 5), Blocks.STONE_BRICKS.defaultBlockState());
 			level.setBlockAndUpdate(origin.offset(5, 2, 5), Blocks.STONE_BRICKS.defaultBlockState());

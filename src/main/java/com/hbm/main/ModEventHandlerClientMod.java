@@ -59,6 +59,9 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_WELDER.get(), com.hbm.render.tileentity.RenderArcWelder::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
+		event.registerBlockEntityRenderer(ModTileEntities.STIRLING.get(), com.hbm.render.tileentity.RenderStirling::new);
+		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OVEN.get(), com.hbm.render.tileentity.RenderHeatingOven::new);
+		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -79,6 +82,10 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_welder.get().asItem(), com.hbm.render.tileentity.RenderArcWelder.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crucible.get().asItem(), com.hbm.render.tileentity.RenderCrucible.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oven.get().asItem(), com.hbm.render.tileentity.RenderHeatingOven.itemRenderer());
+		for(var stirling : java.util.List.of(ModBlocks.machine_stirling, ModBlocks.machine_stirling_steel, ModBlocks.machine_stirling_creative)) {
+			NTMItemRenderer.RENDERERS.put(stirling.get().asItem(), com.hbm.render.tileentity.RenderStirling.itemRenderer(stirling.get()));
+		}
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_blast_furnace.get().asItem(), com.hbm.render.tileentity.RenderBlastFurnace.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {

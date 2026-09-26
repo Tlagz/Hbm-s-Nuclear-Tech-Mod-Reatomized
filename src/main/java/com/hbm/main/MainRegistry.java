@@ -46,6 +46,7 @@ public class MainRegistry {
 		ModWorldGen.PLACEMENT_MODIFIERS.register(modEventBus);
 		ModWorldGen.FEATURES.register(modEventBus);
 		ModMenus.MENUS.register(modEventBus);
+		com.hbm.entity.ModEntities.ENTITIES.register(modEventBus);
 		ModDataComponents.COMPONENTS.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);

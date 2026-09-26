@@ -6078,6 +6078,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/gear_large"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/screwdriver"
     },
     {

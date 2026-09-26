@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_stirling_creative"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_stirling_creative"
+    }
+  }
+}

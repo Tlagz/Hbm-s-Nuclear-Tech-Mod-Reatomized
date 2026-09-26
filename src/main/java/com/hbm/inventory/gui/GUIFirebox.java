@@ -21,8 +21,8 @@ public class GUIFirebox extends GuiInfoContainer<ContainerFirebox> {
 	public GUIFirebox(ContainerFirebox menu, Inventory invPlayer, Component title) {
 		super(menu, invPlayer, title);
 		firebox = menu.tile;
-		// TODO the heater oven uses gui_heating_oven.png and white text
-		texture = RefStrings.loc("textures/gui/machine/gui_firebox.png");
+		// the heating oven shares the firebox's GUI with its own texture and a white title
+		texture = RefStrings.loc(firebox instanceof com.hbm.tileentity.machine.TileEntityHeaterOven ? "textures/gui/machine/gui_heating_oven.png" : "textures/gui/machine/gui_firebox.png");
 
 		this.imageWidth = 176;
 		this.imageHeight = 168;
@@ -55,7 +55,7 @@ public class GUIFirebox extends GuiInfoContainer<ContainerFirebox> {
 	@Override
 	protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
 		String name = this.title.getString();
-		graphics.drawString(font, name, this.imageWidth / 2 - font.width(name) / 2, 6, 4210752, false);
+		graphics.drawString(font, name, this.imageWidth / 2 - font.width(name) / 2, 6, firebox instanceof com.hbm.tileentity.machine.TileEntityHeaterOven ? 0xffffff : 4210752, false);
 		graphics.drawString(font, playerInventoryTitle, 8, inventoryLabelY, 4210752, false);
 	}
 

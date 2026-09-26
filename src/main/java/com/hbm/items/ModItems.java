@@ -875,6 +875,10 @@ public class ModItems {
 			"items/crayon", "items/crayon_overlay");
 	public static final DeferredItem<com.hbm.items.special.ItemRag> rag = register("rag", com.hbm.items.special.ItemRag::new, new Item.Properties(), NtmTab.PARTS);
 
+	/** Large gears for the Stirling engines (the original's item damage 1 was the steel one) */
+	public static final DeferredItem<Item> gear_large = simple("gear_large", NtmTab.PARTS, "items/gear_large", new Item.Properties());
+	public static final DeferredItem<Item> gear_large_steel = simple("gear_large_steel", NtmTab.PARTS, "items/gear_large", new Item.Properties());
+
 	/// FOUNDRY ///
 	/** Scraps of any material and amount (components), tinted with the material's color, see ModItemModelProvider */
 	public static final DeferredItem<com.hbm.items.machine.ItemScraps> scraps = register("scraps", com.hbm.items.machine.ItemScraps::new, new Item.Properties(), NtmTab.PARTS);

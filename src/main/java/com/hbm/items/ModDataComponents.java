@@ -53,6 +53,10 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<Boolean>> SCRAP_LIQUID = COMPONENTS.registerComponentType("scrap_liquid",
 			builder -> builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
 
+	/** A Stirling engine item without its gear (the original's item damage 1) */
+	public static final Supplier<DataComponentType<Boolean>> NO_COG = COMPONENTS.registerComponentType("no_cog",
+			builder -> builder.persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL));
+
 	/** Secondary fluid of the multi fluid identifier (the original's "fluid2" NBT) */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE_SECONDARY = COMPONENTS.registerComponentType("fluid_type_secondary",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));

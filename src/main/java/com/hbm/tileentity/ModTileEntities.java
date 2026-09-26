@@ -46,6 +46,10 @@ public class ModTileEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineChemicalPlant>> CHEMICAL_PLANT = TILES.register("machine_chemical_plant",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineChemicalPlant::new, ModBlocks.machine_chemical_plant.get()).build(null));
 
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterOven>> HEATER_OVEN = TILES.register("heater_oven",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterOven::new, ModBlocks.heater_oven.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityStirling>> STIRLING = TILES.register("machine_stirling",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityStirling::new, ModBlocks.machine_stirling.get(), ModBlocks.machine_stirling_steel.get(), ModBlocks.machine_stirling_creative.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityCrucible>> CRUCIBLE = TILES.register("machine_crucible",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityCrucible::new, ModBlocks.machine_crucible.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFoundryMold>> FOUNDRY_MOLD = TILES.register("foundry_mold",

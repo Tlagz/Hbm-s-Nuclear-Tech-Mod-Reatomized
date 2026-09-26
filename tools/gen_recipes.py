@@ -94,6 +94,11 @@ META_VARIANTS = {
 BLOCK_META_VARIANTS = {
 	'steel_scaffold': ['steel_scaffold', 'steel_scaffold_red', 'steel_scaffold_white', 'steel_scaffold_yellow'],
 }
+# mod items whose metadata variants are separate items: name -> items indexed by meta
+ITEM_META_VARIANTS = {
+	'gear_large': ['gear_large', 'gear_large_steel'],
+}
+
 BLOCK_ANY_KEYS = {
 	'steel_scaffold': '"steelScaffolds"',
 }
@@ -257,6 +262,11 @@ def item_ref(e, role, sym, meta=None):
 	m = re.fullmatch(r'Item\.getItemFromBlock\s*\((.*)\)', e, re.S)
 	if m: e = m.group(1).strip()
 	m = re.fullmatch(r'(?:com\.hbm\.items\.)?ModItems\.(\w+)', e)
+	if m and m.group(1) in ITEM_META_VARIANTS:
+		variants = ITEM_META_VARIANTS[m.group(1)]
+		index = int(meta) if meta is not None and meta.strip().isdigit() else 0 if meta is None else -1
+		if index < 0 or index >= len(variants) or variants[index] not in sym['items']: raise Skip('item meta:' + m.group(1))
+		return ('item', 'ModItems.' + variants[index])
 	if m and m.group(1) == 'mold':
 		# molds are one item per mold id (the original's item damage)
 		if meta is None or not meta.strip().isdigit(): raise Skip('mold without id')

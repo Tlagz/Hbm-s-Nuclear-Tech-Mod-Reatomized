@@ -213,7 +213,7 @@ public abstract class BlockDummyable extends Block implements EntityBlock {
 		if(!checkRequirement(world, core, base, dir)) {
 
 			if(!player.isCreative()) {
-				ItemStack refund = new ItemStack(this);
+				ItemStack refund = itemStack.copyWithCount(1);
 				if(!player.getInventory().add(refund)) player.drop(refund, false);
 			}
 
@@ -224,6 +224,12 @@ public abstract class BlockDummyable extends Block implements EntityBlock {
 			int meta = getMetaForCore(world, core, player, dir.get3DDataValue() + offset);
 			world.setBlock(core, this.defaultBlockState().setValue(META, meta), Block.UPDATE_ALL);
 			fillSpace(world, base, dir, o);
+			// the item's data goes to the core, e.g. a gearless Stirling engine (the original's IPersistentNBT)
+			BlockEntity coreTile = world.getBlockEntity(core);
+			if(coreTile != null) {
+				coreTile.applyComponentsFromItemStack(itemStack);
+				coreTile.setChanged();
+			}
 		}
 
 		super.setPlacedBy(world, pos, state, placer, itemStack);
