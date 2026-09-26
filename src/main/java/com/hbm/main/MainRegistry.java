@@ -76,6 +76,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.BlastFurnaceRecipesNT.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ShredderRecipes.registerDefaults();
 			com.hbm.inventory.recipes.CentrifugeRecipes.registerDefaults();
+			com.hbm.inventory.recipes.CrystallizerRecipes.registerDefaults();
 			logger.info("Generic recipes: " + com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.recipeOrderedList.size() + " assembly machine, "
 					+ com.hbm.inventory.recipes.ChemicalPlantRecipes.INSTANCE.recipeOrderedList.size() + " chemical plant");
 		});

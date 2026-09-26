@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_crystallizer"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_crystallizer"
+    }
+  }
+}

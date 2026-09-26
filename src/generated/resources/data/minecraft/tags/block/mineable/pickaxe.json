@@ -34,6 +34,7 @@
     "hbm:pump_electric",
     "hbm:machine_combustion_engine",
     "hbm:machine_centrifuge",
+    "hbm:machine_crystallizer",
     "hbm:furnace_steel",
     "hbm:machine_steam_engine",
     "hbm:machine_condenser",

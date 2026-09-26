@@ -47,7 +47,7 @@ public class DevScene {
 	static BlockPos industrialTurbinePos, chungusPos;
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
-	static BlockPos combustionPos, centrifugePos;
+	static BlockPos combustionPos, centrifugePos, crystallizerPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -164,6 +164,19 @@ public class DevScene {
 		if(centrifugePos != null && server.overworld().getBlockEntity(centrifugePos) instanceof com.hbm.tileentity.machine.TileEntityMachineCentrifuge centrifuge) {
 			centrifuge.setPower(com.hbm.tileentity.machine.TileEntityMachineCentrifuge.maxPower);
 			if(centrifuge.getItem(0).isEmpty()) centrifuge.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+		}
+		// the acidizer working on iron ore with peroxide
+		if(crystallizerPos != null && server.overworld().getBlockEntity(crystallizerPos) instanceof com.hbm.tileentity.machine.TileEntityMachineCrystallizer crystallizer) {
+			crystallizer.setPower(com.hbm.tileentity.machine.TileEntityMachineCrystallizer.maxPower);
+			crystallizer.tank.setFill(crystallizer.tank.getMaxFill());
+			if(crystallizer.getItem(0).isEmpty()) crystallizer.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+		}
+		if(serverTicks == 1310 || serverTicks == 1345) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1310) player.teleportTo(player.serverLevel(), -11.5, -60, 29.5, 180F, -25F);
+				else if(player.level().getBlockEntity(crystallizerPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(crystallizerPos));
+			}
 		}
 		if(serverTicks == 1235 || serverTicks == 1270) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -562,6 +575,9 @@ public class DevScene {
 		// centrifuge west of the combustion engine
 		centrifugePos = ModBlocks.machine_centrifuge.get().placeMultiblock(level, origin.offset(-11, 0, 31), net.minecraft.core.Direction.NORTH);
 
+		// ore acidizer north of the centrifuge
+		crystallizerPos = ModBlocks.machine_crystallizer.get().placeMultiblock(level, origin.offset(-12, 0, 23), net.minecraft.core.Direction.NORTH);
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -732,7 +748,10 @@ public class DevScene {
 			if(ticks == 1260) Screenshot.grab(mc.gameDirectory, "devscene_world_centrifuge.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1300) Screenshot.grab(mc.gameDirectory, "devscene_gui_centrifuge.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1310) {
+			if(ticks == 1335) Screenshot.grab(mc.gameDirectory, "devscene_world_crystallizer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1375) Screenshot.grab(mc.gameDirectory, "devscene_gui_crystallizer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1385) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

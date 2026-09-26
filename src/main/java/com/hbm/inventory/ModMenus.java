@@ -76,6 +76,8 @@ public class ModMenus {
 			tile("machine_combustion_engine", com.hbm.tileentity.machine.TileEntityMachineCombustionEngine.class, com.hbm.inventory.container.ContainerCombustionEngine::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerCentrifuge>> CENTRIFUGE =
 			tile("machine_centrifuge", com.hbm.tileentity.machine.TileEntityMachineCentrifuge.class, com.hbm.inventory.container.ContainerCentrifuge::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerCrystallizer>> CRYSTALLIZER =
+			tile("machine_crystallizer", com.hbm.tileentity.machine.TileEntityMachineCrystallizer.class, com.hbm.inventory.container.ContainerCrystallizer::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =
