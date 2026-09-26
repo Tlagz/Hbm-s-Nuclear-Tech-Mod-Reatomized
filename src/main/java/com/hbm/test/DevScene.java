@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -251,6 +251,22 @@ public class DevScene {
 				comp.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.WATER);
 				comp.tanks[0].setFill(comp.tanks[0].getMaxFill());
 				if(comp.tanks[1].getFill() > 12_000) comp.tanks[1].setFill(2_000);
+			}
+		}
+		// the mixer makes sulfuric acid
+		if(mixerPos != null && server.overworld().getBlockEntity(mixerPos) instanceof com.hbm.tileentity.machine.TileEntityMachineMixer mixer) {
+			mixer.setPower(com.hbm.tileentity.machine.TileEntityMachineMixer.maxPower);
+			mixer.tanks[2].setTankType(com.hbm.inventory.fluid.Fluids.SULFURIC_ACID);
+			mixer.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.PEROXIDE);
+			mixer.tanks[0].setFill(mixer.tanks[0].getMaxFill());
+			mixer.setItem(1, new ItemStack(ModItems.sulfur.get(), 16));
+			if(mixer.tanks[2].getFill() > 20_000) mixer.tanks[2].setFill(8_000);
+		}
+		if(serverTicks == 2615 || serverTicks == 2650) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2615) player.teleportTo(player.serverLevel(), -8.5, -59, -38.5, 180F, 20F);
+				else if(player.level().getBlockEntity(mixerPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(mixerPos));
 			}
 		}
 		if(serverTicks == 2540 || serverTicks == 2575) {
@@ -872,6 +888,7 @@ public class DevScene {
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
 			compressorPos = ModBlocks.machine_compressor.get().placeMultiblock(level, origin.offset(14, 0, -29), net.minecraft.core.Direction.NORTH);
 			compressorCompactPos = ModBlocks.machine_compressor_compact.get().placeMultiblock(level, origin.offset(13, 0, -24), net.minecraft.core.Direction.NORTH);
+			mixerPos = ModBlocks.machine_mixer.get().placeMultiblock(level, origin.offset(-9, 0, -41), net.minecraft.core.Direction.NORTH);
 			solderPos = ModBlocks.machine_soldering_station.get().placeMultiblock(level, origin.offset(-12, 0, -41), net.minecraft.core.Direction.NORTH);
 
 			// a REDD with a huge charge so the wheel spins at full speed
@@ -1135,7 +1152,10 @@ public class DevScene {
 			if(ticks == 2573) Screenshot.grab(mc.gameDirectory, "devscene_world_compressor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2605) Screenshot.grab(mc.gameDirectory, "devscene_gui_compressor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2615) {
+			if(ticks == 2648) Screenshot.grab(mc.gameDirectory, "devscene_world_mixer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2680) Screenshot.grab(mc.gameDirectory, "devscene_gui_mixer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2690) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

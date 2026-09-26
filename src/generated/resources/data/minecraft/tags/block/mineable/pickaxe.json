@@ -34,6 +34,7 @@
     "hbm:machine_soldering_station",
     "hbm:machine_compressor",
     "hbm:machine_compressor_compact",
+    "hbm:machine_mixer",
     "hbm:crate_iron",
     "hbm:crate_steel",
     "hbm:crate_desh",

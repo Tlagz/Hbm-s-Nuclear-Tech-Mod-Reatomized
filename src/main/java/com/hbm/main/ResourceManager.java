@@ -136,5 +136,7 @@ public class ResourceManager {
 	public static final HFRWavefrontObject compressor = new HFRWavefrontObject(RefStrings.loc("models/machines/compressor.obj"));
 	public static final ResourceLocation compressor_tex = RefStrings.loc("textures/models/machines/compressor.png");
 	public static final ResourceLocation compressor_compact_tex = RefStrings.loc("textures/models/machines/compressor_compact.png");
+	public static final HFRWavefrontObject mixer = new HFRWavefrontObject(RefStrings.loc("models/machines/mixer.obj"));
+	public static final ResourceLocation mixer_tex = RefStrings.loc("textures/models/machines/mixer.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }
