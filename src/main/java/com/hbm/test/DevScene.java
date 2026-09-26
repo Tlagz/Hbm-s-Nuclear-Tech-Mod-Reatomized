@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -267,6 +267,18 @@ public class DevScene {
 			if(furnace.getItem(0).isEmpty()) furnace.setItem(0, new ItemStack(net.minecraft.world.item.Items.RAW_IRON, 64));
 			if(furnace.getItem(1).isEmpty()) furnace.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 16));
 			if(furnace.getItem(3).getCount() > 60) furnace.setItem(3, ItemStack.EMPTY);
+		}
+		// the bricked furnace bakes clay
+		if(furnaceBrickPos != null && server.overworld().getBlockEntity(furnaceBrickPos) instanceof com.hbm.tileentity.machine.TileEntityFurnaceBrick brick) {
+			if(brick.getItem(0).isEmpty()) brick.setItem(0, new ItemStack(net.minecraft.world.item.Items.CLAY_BALL, 64));
+			if(brick.getItem(1).isEmpty()) brick.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 16));
+			if(brick.getItem(2).getCount() > 60) brick.setItem(2, ItemStack.EMPTY);
+		}
+		if(serverTicks == 2765) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), -3.5, -59, -38.5, 160F, 30F);
+			}
 		}
 		if(serverTicks == 2690 || serverTicks == 2725) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -901,6 +913,8 @@ public class DevScene {
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
 			compressorPos = ModBlocks.machine_compressor.get().placeMultiblock(level, origin.offset(14, 0, -29), net.minecraft.core.Direction.NORTH);
 			compressorCompactPos = ModBlocks.machine_compressor_compact.get().placeMultiblock(level, origin.offset(13, 0, -24), net.minecraft.core.Direction.NORTH);
+			furnaceBrickPos = origin.offset(-4, 0, -41);
+			level.setBlockAndUpdate(furnaceBrickPos, ModBlocks.machine_furnace_brick_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineBrickFurnace.FACING, net.minecraft.core.Direction.SOUTH));
 			furnaceIronPos = ModBlocks.furnace_iron.get().placeMultiblock(level, origin.offset(-5, 0, -41), net.minecraft.core.Direction.SOUTH);
 			mixerPos = ModBlocks.machine_mixer.get().placeMultiblock(level, origin.offset(-9, 0, -41), net.minecraft.core.Direction.NORTH);
 			solderPos = ModBlocks.machine_soldering_station.get().placeMultiblock(level, origin.offset(-12, 0, -41), net.minecraft.core.Direction.NORTH);
@@ -1172,7 +1186,9 @@ public class DevScene {
 			if(ticks == 2723) Screenshot.grab(mc.gameDirectory, "devscene_world_furnace_iron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2755) Screenshot.grab(mc.gameDirectory, "devscene_gui_furnace_iron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2765) {
+			if(ticks == 2785) Screenshot.grab(mc.gameDirectory, "devscene_world_furnace_brick.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2795) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

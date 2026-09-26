@@ -67,6 +67,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.COMPRESSOR.get(), com.hbm.inventory.gui.GUICompressor::new);
 		event.register(ModMenus.MIXER.get(), com.hbm.inventory.gui.GUIMixer::new);
 		event.register(ModMenus.FURNACE_IRON.get(), com.hbm.inventory.gui.GUIFurnaceIron::new);
+		event.register(ModMenus.FURNACE_BRICK.get(), com.hbm.inventory.gui.GUIFurnaceBrick::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}

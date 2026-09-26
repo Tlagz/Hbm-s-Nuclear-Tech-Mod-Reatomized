@@ -85,6 +85,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				texture("blocks/machine_electric_furnace_front_on"), texture("blocks/machine_electric_furnace_bottom"), texture("blocks/machine_electric_furnace_top"));
 		horizontalBlock(ModBlocks.machine_electric_furnace_off.get(), state -> state.getValue(MachineElectricFurnace.LIT) ? furnaceOn : furnaceOff);
 		simpleBlockItem(ModBlocks.machine_electric_furnace_off.get(), furnaceOff);
+		ModelFile brickOff = models().orientableWithBottom("machine_furnace_brick_off", texture("blocks/machine_furnace_brick_side"),
+				texture("blocks/machine_furnace_brick_front_off"), texture("blocks/machine_furnace_brick_bottom"), texture("blocks/machine_furnace_brick_top"));
+		ModelFile brickOn = models().orientableWithBottom("machine_furnace_brick_on", texture("blocks/machine_furnace_brick_side"),
+				texture("blocks/machine_furnace_brick_front_on"), texture("blocks/machine_furnace_brick_bottom"), texture("blocks/machine_furnace_brick_top"));
+		horizontalBlock(ModBlocks.machine_furnace_brick_off.get(), state -> state.getValue(com.hbm.blocks.machine.MachineBrickFurnace.LIT) ? brickOn : brickOff);
+		simpleBlockItem(ModBlocks.machine_furnace_brick_off.get(), brickOff);
 
 		// the shredder has its front texture on north and south, the side texture on east and west
 		ModelFile shredder = models().cube("machine_shredder", texture("blocks/machine_shredder_bottom_alt"), texture("blocks/machine_shredder_top_alt"),

@@ -1654,6 +1654,26 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_furnace_brick_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_furnace_brick_front_off"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_furnace_brick_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_furnace_brick_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_furnace_brick_front_on"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_shredder_bottom_alt"
     },
     {
