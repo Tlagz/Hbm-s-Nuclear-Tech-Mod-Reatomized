@@ -43,6 +43,7 @@ public class DevScene {
 	static BlockPos arcFurnacePos;
 	static BlockPos cruciblePos;
 	static BlockPos steamEnginePos, condenserPos;
+	static BlockPos towerSmallPos, towerLargePos, condenserPoweredPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -101,6 +102,20 @@ public class DevScene {
 				&& server.overworld().getBlockEntity(condenserPos) instanceof com.hbm.tileentity.machine.TileEntityCondenser condenser) {
 			engine.tanks[0].setFill(engine.tanks[0].getMaxFill());
 			condenser.tanks[1].setFill(0);
+		}
+		// the cooling towers and the powered condenser outside the floor, always condensing so they steam
+		for(BlockPos tower : new BlockPos[] {towerSmallPos, towerLargePos, condenserPoweredPos}) {
+			if(tower != null && server.overworld().getBlockEntity(tower) instanceof com.hbm.tileentity.machine.TileEntityCondenser c) {
+				c.tanks[0].setFill(c.tanks[0].getMaxFill() / 2);
+				c.tanks[1].setFill(0);
+				if(c instanceof com.hbm.tileentity.machine.TileEntityCondenserPowered powered) powered.setPower(powered.getMaxPower());
+			}
+		}
+		if(serverTicks == 870 || serverTicks == 910) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				if(serverTicks == 870) player.teleportTo(player.serverLevel(), 15.5, -59, -2.5, -103F, -20F);
+				else player.teleportTo(player.serverLevel(), 20.5, -60, 3.2, 0F, 15F);
+			}
 		}
 		if(serverTicks == 830) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -420,6 +435,16 @@ public class DevScene {
 			level.setBlockAndUpdate(origin.offset(-7, 2, 4), Blocks.STONE_BRICKS.defaultBlockState());
 		}
 
+		// cooling towers and the powered condenser east of the floor, on the natural ground
+		{
+			for(int x = 17; x <= 32; x++) for(int z = -13; z <= 12; z++) for(int y = 0; y <= 20; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			towerLargePos = ModBlocks.machine_tower_large.get().placeMultiblock(level, origin.offset(27, 0, -4), net.minecraft.core.Direction.NORTH);
+			towerSmallPos = ModBlocks.machine_tower_small.get().placeMultiblock(level, origin.offset(24, 0, -12), net.minecraft.core.Direction.NORTH);
+			condenserPoweredPos = ModBlocks.machine_condenser_powered.get().placeMultiblock(level, origin.offset(20, 0, 7), net.minecraft.core.Direction.NORTH);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -572,7 +597,10 @@ public class DevScene {
 
 			if(ticks == 860) Screenshot.grab(mc.gameDirectory, "devscene_world_steam_engine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 870) {
+			if(ticks == 900) Screenshot.grab(mc.gameDirectory, "devscene_world_cooling_towers.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 935) Screenshot.grab(mc.gameDirectory, "devscene_world_condenser_powered.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 945) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

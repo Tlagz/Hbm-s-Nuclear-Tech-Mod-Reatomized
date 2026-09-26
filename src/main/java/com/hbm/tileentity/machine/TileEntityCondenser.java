@@ -68,11 +68,8 @@ public class TileEntityCondenser extends TileEntityLoadedBase implements IFluidS
 				postConvert(convert);
 			}
 
-			for(Direction dir : Direction.values()) {
-				BlockPos target = worldPosition.relative(dir);
-				this.trySubscribe(tanks[0].getTankType(), level, target, dir);
-				this.tryProvide(tanks[1], level, target, dir);
-			}
+			this.subscribeToAllAround();
+			this.sendFluidToAll();
 
 			networkPackNT(150);
 		}
@@ -80,6 +77,15 @@ public class TileEntityCondenser extends TileEntityLoadedBase implements IFluidS
 
 	public boolean extraCondition(int convert) { return true; }
 	public void postConvert(int convert) { }
+
+	/** Spent steam comes in from all six sides, the bigger condensers have their own ports */
+	protected void subscribeToAllAround() {
+		for(Direction dir : Direction.values()) this.trySubscribe(tanks[0].getTankType(), level, worldPosition.relative(dir), dir);
+	}
+
+	protected void sendFluidToAll() {
+		for(Direction dir : Direction.values()) this.tryProvide(tanks[1], level, worldPosition.relative(dir), dir);
+	}
 
 	@Override
 	public void serialize(ByteBuf buf) {

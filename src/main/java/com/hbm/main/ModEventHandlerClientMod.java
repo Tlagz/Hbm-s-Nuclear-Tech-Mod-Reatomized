@@ -65,11 +65,22 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_ELECTRIC.get(), com.hbm.render.tileentity.RenderElectricHeater::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
+		event.registerBlockEntityRenderer(ModTileEntities.TOWER_SMALL.get(), com.hbm.render.tileentity.RenderCoolingTower.small());
+		event.registerBlockEntityRenderer(ModTileEntities.TOWER_LARGE.get(), com.hbm.render.tileentity.RenderCoolingTower.large());
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BLAST_FURNACE.get(), com.hbm.render.tileentity.RenderBlastFurnace::new);
+	}
+
+	@SubscribeEvent
+	public static void registerParticles(net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent event) {
+		event.registerSpriteSet(com.hbm.particle.ModParticles.BASE.get(), sprites -> {
+			com.hbm.particle.ParticleEffectsNT.baseSprites = sprites;
+			return (type, level, x, y, z, mx, my, mz) -> new com.hbm.particle.ParticleCoolingTower(level, x, y, z, sprites);
+		});
 	}
 
 	@SubscribeEvent
@@ -90,6 +101,9 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_electric.get().asItem(), com.hbm.render.tileentity.RenderElectricHeater.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_tower_small.get().asItem(), com.hbm.render.tileentity.RenderCoolingTower.itemRendererSmall());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_tower_large.get().asItem(), com.hbm.render.tileentity.RenderCoolingTower.itemRendererLarge());
 		for(var stirling : java.util.List.of(ModBlocks.machine_stirling, ModBlocks.machine_stirling_steel, ModBlocks.machine_stirling_creative)) {
 			NTMItemRenderer.RENDERERS.put(stirling.get().asItem(), com.hbm.render.tileentity.RenderStirling.itemRenderer(stirling.get()));
 		}

@@ -58,6 +58,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntitySteamEngine::new, ModBlocks.machine_steam_engine.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityCondenser>> CONDENSER = TILES.register("machine_condenser",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityCondenser::new, ModBlocks.machine_condenser.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityCondenserPowered>> CONDENSER_POWERED = TILES.register("machine_condenser_powered",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityCondenserPowered::new, ModBlocks.machine_condenser_powered.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityTowerSmall>> TOWER_SMALL = TILES.register("machine_tower_small",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityTowerSmall::new, ModBlocks.machine_tower_small.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityTowerLarge>> TOWER_LARGE = TILES.register("machine_tower_large",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityTowerLarge::new, ModBlocks.machine_tower_large.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityCrucible>> CRUCIBLE = TILES.register("machine_crucible",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityCrucible::new, ModBlocks.machine_crucible.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFoundryMold>> FOUNDRY_MOLD = TILES.register("foundry_mold",

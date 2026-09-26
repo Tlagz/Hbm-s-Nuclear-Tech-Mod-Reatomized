@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_tower_small"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_tower_small"
+    }
+  }
+}

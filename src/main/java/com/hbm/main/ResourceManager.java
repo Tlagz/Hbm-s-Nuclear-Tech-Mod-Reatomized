@@ -50,6 +50,12 @@ public class ResourceManager {
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));
 	public static final ResourceLocation steam_engine_tex = RefStrings.loc("textures/models/machines/steam_engine.png");
+	public static final HFRWavefrontObject tower_small = new HFRWavefrontObject(RefStrings.loc("models/machines/tower_small.obj"));
+	public static final ResourceLocation tower_small_tex = RefStrings.loc("textures/models/machines/tower_small.png");
+	public static final HFRWavefrontObject tower_large = new HFRWavefrontObject(RefStrings.loc("models/machines/tower_large.obj"));
+	public static final ResourceLocation tower_large_tex = RefStrings.loc("textures/models/machines/tower_large.png");
+	public static final HFRWavefrontObject condenser = new HFRWavefrontObject(RefStrings.loc("models/machines/condenser.obj"));
+	public static final ResourceLocation condenser_tex = RefStrings.loc("textures/models/machines/condenser.png");
 	public static final HFRWavefrontObject crucible_heat = new HFRWavefrontObject(RefStrings.loc("models/machines/crucible.obj"));
 	public static final ResourceLocation crucible_tex = RefStrings.loc("textures/models/machines/crucible_heat.png");
 	public static final HFRWavefrontObject arc_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_furnace.obj"));

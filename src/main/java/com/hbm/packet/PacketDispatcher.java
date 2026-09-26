@@ -23,6 +23,7 @@ public class PacketDispatcher {
 
 		registrar.playToClient(ExtPropPacket.TYPE, ExtPropPacket.STREAM_CODEC, ExtPropPacket::handle);
 		registrar.playToClient(BufPacket.TYPE, BufPacket.STREAM_CODEC, BufPacket::handle);
+		registrar.playToClient(com.hbm.packet.toclient.AuxParticlePacketNT.TYPE, com.hbm.packet.toclient.AuxParticlePacketNT.STREAM_CODEC, com.hbm.packet.toclient.AuxParticlePacketNT::handle);
 		registrar.playToServer(NBTControlPacket.TYPE, NBTControlPacket.STREAM_CODEC, NBTControlPacket::handle);
 		registrar.playToServer(NBTItemControlPacket.TYPE, NBTItemControlPacket.STREAM_CODEC, NBTItemControlPacket::handle);
 		registrar.playToServer(com.hbm.packet.toserver.AnvilCraftPacket.TYPE, com.hbm.packet.toserver.AnvilCraftPacket.STREAM_CODEC, com.hbm.packet.toserver.AnvilCraftPacket::handle);

@@ -48,6 +48,7 @@ public class MainRegistry {
 		ModMenus.MENUS.register(modEventBus);
 		com.hbm.entity.ModEntities.ENTITIES.register(modEventBus);
 		ModDataComponents.COMPONENTS.register(modEventBus);
+		com.hbm.particle.ModParticles.PARTICLES.register(modEventBus);
 
 		modEventBus.addListener(this::commonSetup);
 
