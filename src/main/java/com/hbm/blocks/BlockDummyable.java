@@ -28,7 +28,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
  * Multiblock machines: one core block with the tile entity, surrounded by dummy blocks of the same type.
@@ -40,7 +44,7 @@ import net.minecraft.world.phys.BlockHitResult;
  * </ul>
  * Everything is rendered by the core's tile entity renderer, the blocks themselves are invisible.
  *
- * TODO detailed hitboxes (bounding), placement preview, copy/paste settings, NBT structure transforms
+ * TODO placement preview, copy/paste settings, NBT structure transforms
  */
 public abstract class BlockDummyable extends Block implements EntityBlock {
 
@@ -71,6 +75,50 @@ public abstract class BlockDummyable extends Block implements EntityBlock {
 	public static Direction getRotation(BlockState state) {
 		int meta = getMeta(state);
 		return meta >= 12 ? Direction.from3DDataValue(meta - offset) : Direction.NORTH;
+	}
+
+	/// DETAILED HITBOXES ///
+
+	/**
+	 * The original's detailed hitboxes: boxes relative to the bottom center of the core, for a multiblock facing
+	 * north, turned with it. Every block of the multiblock uses the part of them inside its own space. Empty means
+	 * full blocks.
+	 */
+	public final java.util.List<AABB> bounding = new java.util.ArrayList<>();
+
+	/** The original's getAABBRotationOffset, rot is the facing turned clockwise */
+	public static AABB rotateBox(AABB aabb, Direction rot) {
+		return switch(rot) {
+		case EAST -> new AABB(-aabb.maxZ, aabb.minY, aabb.minX, -aabb.minZ, aabb.maxY, aabb.maxX);
+		case SOUTH -> new AABB(-aabb.maxX, aabb.minY, -aabb.maxZ, -aabb.minX, aabb.maxY, -aabb.minZ);
+		case WEST -> new AABB(aabb.minZ, aabb.minY, -aabb.maxX, aabb.maxZ, aabb.maxY, -aabb.minX);
+		default -> aabb;
+		};
+	}
+
+	private static final AABB UNIT = new AABB(0, 0, 0, 1, 1, 1);
+
+	protected VoxelShape detailedShape(BlockGetter world, BlockPos pos) {
+		BlockPos core = findCore(world, pos);
+		if(core == null) return Shapes.block();
+		Direction rot = getRotation(world.getBlockState(core)).getClockWise();
+
+		VoxelShape shape = Shapes.empty();
+		for(AABB box : bounding) {
+			AABB placed = rotateBox(box, rot).move(core.getX() + 0.5 - pos.getX(), core.getY() - pos.getY(), core.getZ() + 0.5 - pos.getZ());
+			if(placed.intersects(UNIT)) shape = Shapes.or(shape, Shapes.create(placed.intersect(UNIT)));
+		}
+		return shape;
+	}
+
+	@Override
+	protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return bounding.isEmpty() ? Shapes.block() : detailedShape(world, pos);
+	}
+
+	@Override
+	protected VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return bounding.isEmpty() ? Shapes.block() : detailedShape(world, pos);
 	}
 
 	/// TILE ENTITIES ///

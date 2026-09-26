@@ -22,6 +22,7 @@
     "hbm:machine_refinery",
     "hbm:machine_assembly_machine",
     "hbm:machine_chemical_plant",
+    "hbm:machine_crucible",
     "hbm:machine_arc_furnace",
     "hbm:machine_arc_welder",
     "hbm:machine_blast_furnace",

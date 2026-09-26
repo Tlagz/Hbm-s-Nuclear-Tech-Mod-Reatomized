@@ -41,6 +41,7 @@ public class DevScene {
 	static BlockPos blastFurnacePos;
 	static BlockPos shredderPos;
 	static BlockPos arcFurnacePos;
+	static BlockPos cruciblePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -86,6 +87,14 @@ public class DevScene {
 			}
 		}
 		// the arc furnace from the west and its GUI
+		// the crucible and its GUI
+		if(serverTicks == 750 || serverTicks == 790) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 5.5, -57, 5.5, 0F, 28F);
+				else if(cruciblePos != null && player.level().getBlockEntity(cruciblePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(cruciblePos));
+			}
+		}
 		// close-up of the foundry under the spout
 		if(serverTicks == 715) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -356,6 +365,25 @@ public class DevScene {
 			}
 		}
 
+		// crucible on a firebox next to the foundry, alloying steel, some copper already molten
+		{
+			var N = net.minecraft.core.Direction.NORTH;
+			BlockPos fb = ModBlocks.heater_firebox.get().placeMultiblock(level, origin.offset(5, 1, 8), N);
+			if(fb != null && level.getBlockEntity(fb) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox heater) heater.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			cruciblePos = ModBlocks.machine_crucible.get().placeMultiblock(level, origin.offset(5, 2, 8), N);
+			if(cruciblePos != null && level.getBlockEntity(cruciblePos) instanceof com.hbm.tileentity.machine.TileEntityCrucible crucible) {
+				crucible.recipe = "crucible.steel";
+				crucible.setItem(1, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT));
+				for(int slot = 2; slot <= 4; slot++) crucible.setItem(slot, new ItemStack(net.minecraft.world.item.Items.CHARCOAL));
+				crucible.setItem(5, new ItemStack(ModItems.powder_flux.get()));
+				crucible.wasteStack.add(new com.hbm.inventory.material.Mats.MaterialStack(Mats.MAT_COPPER, com.hbm.inventory.material.MaterialShapes.BLOCK.q(4)));
+				crucible.heat = com.hbm.tileentity.machine.TileEntityCrucible.maxHeat;
+			}
+			// a pillar for the camera to look into the crucible
+			level.setBlockAndUpdate(origin.offset(5, 1, 5), Blocks.STONE_BRICKS.defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(5, 2, 5), Blocks.STONE_BRICKS.defaultBlockState());
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -503,7 +531,10 @@ public class DevScene {
 
 			if(ticks == 740) Screenshot.grab(mc.gameDirectory, "devscene_world_foundry.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 750) {
+			if(ticks == 775) Screenshot.grab(mc.gameDirectory, "devscene_world_crucible.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 815) Screenshot.grab(mc.gameDirectory, "devscene_gui_crucible.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 830) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

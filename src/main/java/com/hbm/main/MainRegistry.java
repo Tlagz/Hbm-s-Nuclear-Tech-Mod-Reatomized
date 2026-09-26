@@ -70,6 +70,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ChemicalPlantRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ArcWelderRecipes.registerDefaults();
+			com.hbm.inventory.recipes.CrucibleRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.BlastFurnaceRecipesNT.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ShredderRecipes.registerDefaults();
 			logger.info("Generic recipes: " + com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.recipeOrderedList.size() + " assembly machine, "

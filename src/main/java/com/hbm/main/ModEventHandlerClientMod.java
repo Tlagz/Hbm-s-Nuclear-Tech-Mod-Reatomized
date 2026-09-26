@@ -40,6 +40,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
 		event.register(ModMenus.ARC_WELDER.get(), com.hbm.inventory.gui.GUIMachineArcWelder::new);
 		event.register(ModMenus.ARC_FURNACE.get(), com.hbm.inventory.gui.GUIMachineArcFurnaceLarge::new);
+		event.register(ModMenus.CRUCIBLE.get(), com.hbm.inventory.gui.GUICrucible::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -57,6 +58,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_WELDER.get(), com.hbm.render.tileentity.RenderArcWelder::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -76,6 +78,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_plant.get().asItem(), com.hbm.render.tileentity.RenderChemicalPlant.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_welder.get().asItem(), com.hbm.render.tileentity.RenderArcWelder.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crucible.get().asItem(), com.hbm.render.tileentity.RenderCrucible.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_blast_furnace.get().asItem(), com.hbm.render.tileentity.RenderBlastFurnace.itemRenderer());
 
 		IClientItemExtensions extension = new IClientItemExtensions() {
