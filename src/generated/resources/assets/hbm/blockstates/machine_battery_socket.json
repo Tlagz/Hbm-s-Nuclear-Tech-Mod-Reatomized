@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_battery_socket"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_battery_socket"
+    }
+  }
+}

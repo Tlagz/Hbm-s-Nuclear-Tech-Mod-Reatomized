@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -234,6 +234,13 @@ public class DevScene {
 			turbine.tanks[2].setFill(turbine.tanks[2].getMaxFill());
 			turbine.tanks[3].setFill(Math.min(turbine.tanks[3].getFill(), 100_000));
 			turbine.setPower(Math.min(turbine.getPower(), 800_000));
+		}
+		if(serverTicks == 2315 || serverTicks == 2350) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2315) player.teleportTo(player.serverLevel(), -8.5, -59, -41.5, 150F, 25F);
+				else if(player.level().getBlockEntity(socketPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(socketPos));
+			}
 		}
 		if(serverTicks == 2240 || serverTicks == 2275) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -818,6 +825,22 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			// battery sockets with a capacitor, a battery pack and a plain battery item
+			{
+				ItemStack[] packs = {
+						new ItemStack(ModItems.battery_pack.get(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.CAPACITOR_SPARK).get()),
+						new ItemStack(ModItems.battery_pack.get(com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack.BATTERY_QUANTUM).get()),
+						new ItemStack(ModItems.battery_potato.get())
+				};
+				for(int socketIdx = 0; socketIdx < packs.length; socketIdx++) {
+					BlockPos core = ModBlocks.machine_battery_socket.get().placeMultiblock(level, origin.offset(-13 + socketIdx * 3, 0, -45), net.minecraft.core.Direction.NORTH);
+					if(core != null && level.getBlockEntity(core) instanceof com.hbm.tileentity.machine.storage.TileEntityBatterySocket socket) {
+						((api.hbm.energymk2.IBatteryItem) packs[socketIdx].getItem()).setCharge(packs[socketIdx], ((api.hbm.energymk2.IBatteryItem) packs[socketIdx].getItem()).getMaxCharge(packs[socketIdx]) * (socketIdx + 1) / 4);
+						socket.setItem(0, packs[socketIdx]);
+						if(socketIdx == 1) socketPos = core;
+					}
+				}
+			}
 			for(int crateIdx = 0; crateIdx < ModBlocks.CRATES.size(); crateIdx++) {
 				BlockPos cratePos = origin.offset(9 + crateIdx, 0, -46);
 				level.setBlockAndUpdate(cratePos, ModBlocks.CRATES.get(crateIdx).get().defaultBlockState().setValue(com.hbm.blocks.generic.BlockStorageCrate.FACING, net.minecraft.core.Direction.SOUTH));
@@ -1044,7 +1067,10 @@ public class DevScene {
 			if(ticks == 2273) Screenshot.grab(mc.gameDirectory, "devscene_world_crates.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2305) Screenshot.grab(mc.gameDirectory, "devscene_gui_crate_desh.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2315) {
+			if(ticks == 2348) Screenshot.grab(mc.gameDirectory, "devscene_world_battery_socket.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2380) Screenshot.grab(mc.gameDirectory, "devscene_gui_battery_socket.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2390) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

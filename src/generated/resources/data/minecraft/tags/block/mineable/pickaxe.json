@@ -29,6 +29,7 @@
     "hbm:machine_electrolyser",
     "hbm:machine_gascent",
     "hbm:machine_turbinegas",
+    "hbm:machine_battery_socket",
     "hbm:crate_iron",
     "hbm:crate_steel",
     "hbm:crate_desh",
