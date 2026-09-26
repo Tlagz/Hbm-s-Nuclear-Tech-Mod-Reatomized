@@ -56,6 +56,8 @@ public class ModEventHandlerClientMod {
 		event.<com.hbm.inventory.container.ContainerSolidifier, com.hbm.inventory.gui.GUILiquefactor<com.hbm.inventory.container.ContainerSolidifier>>register(ModMenus.SOLIDIFIER.get(), com.hbm.inventory.gui.GUILiquefactor::solidifier);
 		event.register(ModMenus.COKER.get(), com.hbm.inventory.gui.GUIMachineCoker::new);
 		event.register(ModMenus.PYRO_OVEN.get(), com.hbm.inventory.gui.GUIPyroOven::new);
+		event.register(ModMenus.ELECTROLYSER_FLUID.get(), com.hbm.inventory.gui.GUIElectrolyserFluid::new);
+		event.register(ModMenus.ELECTROLYSER_METAL.get(), com.hbm.inventory.gui.GUIElectrolyserMetal::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -101,6 +103,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.SOLIDIFIER.get(), com.hbm.render.tileentity.RenderLiquefactor.solidifier());
 		event.registerBlockEntityRenderer(ModTileEntities.COKER.get(), com.hbm.render.tileentity.RenderCoker::new);
 		event.registerBlockEntityRenderer(ModTileEntities.PYRO_OVEN.get(), com.hbm.render.tileentity.RenderPyroOven::new);
+		event.registerBlockEntityRenderer(ModTileEntities.ELECTROLYSER.get(), com.hbm.render.tileentity.RenderElectrolyser::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -167,6 +170,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_solidifier.get().asItem(), com.hbm.render.tileentity.RenderLiquefactor.itemRenderer(com.hbm.main.ResourceManager.solidifier, com.hbm.main.ResourceManager.solidifier_tex));
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_coker.get().asItem(), com.hbm.render.tileentity.RenderCoker.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_pyrooven.get().asItem(), com.hbm.render.tileentity.RenderPyroOven.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_electrolyser.get().asItem(), com.hbm.render.tileentity.RenderElectrolyser.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

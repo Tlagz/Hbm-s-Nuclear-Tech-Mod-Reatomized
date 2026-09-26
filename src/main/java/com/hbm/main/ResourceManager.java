@@ -98,6 +98,8 @@ public class ResourceManager {
 	public static final ResourceLocation coker_tex = RefStrings.loc("textures/models/machines/coker.png");
 	public static final HFRWavefrontObject pyrooven = new HFRWavefrontObject(RefStrings.loc("models/machines/pyrooven.obj"));
 	public static final ResourceLocation pyrooven_tex = RefStrings.loc("textures/models/machines/pyrooven.png");
+	public static final HFRWavefrontObject electrolyser = new HFRWavefrontObject(RefStrings.loc("models/machines/electrolyser.obj"));
+	public static final ResourceLocation electrolyser_tex = RefStrings.loc("textures/models/machines/electrolyser.png");
 	public static final HFRWavefrontObject pipe_neo = new HFRWavefrontObject(RefStrings.loc("models/blocks/pipe_neo.obj"));
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");

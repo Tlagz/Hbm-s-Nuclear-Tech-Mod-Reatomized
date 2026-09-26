@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -202,6 +202,27 @@ public class DevScene {
 			pyro.tanks[0].setFill(pyro.tanks[0].getMaxFill());
 			pyro.tanks[1].setFill(Math.min(pyro.tanks[1].getFill(), 12_000));
 			if(pyro.getItem(1).getCount() < 8) pyro.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+		}
+		// the electrolyser splits water and dissolves iron crystals
+		if(electrolyserPos != null && server.overworld().getBlockEntity(electrolyserPos) instanceof com.hbm.tileentity.machine.TileEntityElectrolyser electrolyser) {
+			electrolyser.setPower(com.hbm.tileentity.machine.TileEntityElectrolyser.maxPower);
+			electrolyser.tanks[0].setFill(12_000);
+			electrolyser.tanks[1].setFill(Math.min(electrolyser.tanks[1].getFill(), 9_000));
+			electrolyser.tanks[2].setFill(Math.min(electrolyser.tanks[2].getFill(), 6_000));
+			electrolyser.tanks[3].setFill(10_000);
+			if(electrolyser.getItem(14).isEmpty()) electrolyser.setItem(14, new ItemStack(ModItems.crystal_iron.get(), 16));
+		}
+		if(serverTicks == 1980 || serverTicks == 2015 || serverTicks == 2050) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1980) {
+					player.teleportTo(player.serverLevel(), -10.5, -58, -20.5, 180F, -12F);
+				} else if(player.level().getBlockEntity(electrolyserPos) instanceof com.hbm.tileentity.machine.TileEntityElectrolyser electrolyser) {
+					player.teleportTo(player.serverLevel(), -14.5, -60, -32.5, 180F, 0F);
+					electrolyser.lastSelectedGUI = serverTicks == 2015 ? 0 : 1;
+					player.openMenu(electrolyser, buf -> buf.writeBlockPos(electrolyserPos));
+				}
+			}
 		}
 		if(serverTicks == 1870 || serverTicks == 1905 || serverTicks == 1940) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -753,6 +774,7 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			electrolyserPos = ModBlocks.machine_electrolyser.get().placeMultiblock(level, origin.offset(-11, 0, -37), net.minecraft.core.Direction.NORTH);
 			if(pyroPos != null && level.getBlockEntity(pyroPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven pyro) pyro.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.STEAM);
 		}
 
@@ -952,7 +974,11 @@ public class DevScene {
 			if(ticks == 1935) Screenshot.grab(mc.gameDirectory, "devscene_gui_coker.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1970) Screenshot.grab(mc.gameDirectory, "devscene_gui_pyrooven.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1980) {
+			if(ticks == 2013) Screenshot.grab(mc.gameDirectory, "devscene_world_electrolyser.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2045) Screenshot.grab(mc.gameDirectory, "devscene_gui_electrolyser_fluid.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2080) Screenshot.grab(mc.gameDirectory, "devscene_gui_electrolyser_metal.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2090) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

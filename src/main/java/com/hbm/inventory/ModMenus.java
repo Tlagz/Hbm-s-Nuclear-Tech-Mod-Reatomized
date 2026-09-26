@@ -96,6 +96,10 @@ public class ModMenus {
 			tile("machine_coker", com.hbm.tileentity.machine.oil.TileEntityMachineCoker.class, com.hbm.inventory.container.ContainerMachineCoker::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerPyroOven>> PYRO_OVEN =
 			tile("machine_pyrooven", com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven.class, com.hbm.inventory.container.ContainerPyroOven::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerElectrolyserFluid>> ELECTROLYSER_FLUID =
+			tile("machine_electrolyser_fluid", com.hbm.tileentity.machine.TileEntityElectrolyser.class, com.hbm.inventory.container.ContainerElectrolyserFluid::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerElectrolyserMetal>> ELECTROLYSER_METAL =
+			tile("machine_electrolyser_metal", com.hbm.tileentity.machine.TileEntityElectrolyser.class, com.hbm.inventory.container.ContainerElectrolyserMetal::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =
