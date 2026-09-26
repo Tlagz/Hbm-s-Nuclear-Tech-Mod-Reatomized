@@ -78,6 +78,11 @@ public class ResourceManager {
 	public static final ResourceLocation fraction_spacer_tex = RefStrings.loc("textures/models/machines/fraction_spacer.png");
 	public static final HFRWavefrontObject cracking_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/catalytic_cracker.obj"));
 	public static final ResourceLocation cracking_tower_tex = RefStrings.loc("textures/models/machines/catalytic_cracker.png");
+	public static final HFRWavefrontObject pumpjack = new HFRWavefrontObject(RefStrings.loc("models/machines/pumpjack.obj"));
+	public static final ResourceLocation pumpjack_tex = RefStrings.loc("textures/models/machines/pumpjack.png");
+	public static final HFRWavefrontObject fracking_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/fracking_tower.obj"));
+	public static final ResourceLocation fracking_tower_tex = RefStrings.loc("textures/models/machines/fracking_tower.png");
+	public static final HFRWavefrontObject pipe_neo = new HFRWavefrontObject(RefStrings.loc("models/blocks/pipe_neo.obj"));
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));

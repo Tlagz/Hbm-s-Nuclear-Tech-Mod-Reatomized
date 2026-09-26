@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:shells/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "H": {
+      "tag": "hbm:shells/steel"
+    }
+  },
+  "pattern": [
+    "BHB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:fraction_spacer"
+  }
+}

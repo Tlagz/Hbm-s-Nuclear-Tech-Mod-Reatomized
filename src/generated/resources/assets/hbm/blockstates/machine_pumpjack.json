@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_pumpjack"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_pumpjack"
+    }
+  }
+}

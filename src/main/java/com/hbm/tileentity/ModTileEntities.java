@@ -80,6 +80,10 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntitySpacer::new, ModBlocks.fraction_spacer.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticCracker>> CATALYTIC_CRACKER = TILES.register("machine_catalytic_cracker",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticCracker::new, ModBlocks.machine_catalytic_cracker.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachinePumpjack>> PUMPJACK = TILES.register("machine_pumpjack",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachinePumpjack::new, ModBlocks.machine_pumpjack.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower>> FRACKING_TOWER = TILES.register("machine_fracking_tower",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower::new, ModBlocks.machine_fracking_tower.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

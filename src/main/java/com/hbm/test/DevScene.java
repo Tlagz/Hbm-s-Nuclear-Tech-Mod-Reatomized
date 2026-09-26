@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -171,6 +171,23 @@ public class DevScene {
 			crystallizer.setPower(com.hbm.tileentity.machine.TileEntityMachineCrystallizer.maxPower);
 			crystallizer.tank.setFill(crystallizer.tank.getMaxFill());
 			if(crystallizer.getItem(0).isEmpty()) crystallizer.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+		}
+		// the pumpjack on a (refilled) oil deposit, both drills powered
+		if(pumpjackPos != null && server.overworld().getBlockEntity(pumpjackPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachinePumpjack jack) {
+			jack.power = jack.getMaxPower();
+			if(!server.overworld().getBlockState(pumpjackPos.below(2)).is(ModBlocks.ore_oil.get()) && !server.overworld().getBlockState(pumpjackPos.below(2)).is(ModBlocks.oil_pipe.get())) {
+				server.overworld().setBlockAndUpdate(pumpjackPos.below(2), ModBlocks.ore_oil.get().defaultBlockState());
+			}
+		}
+		if(frackingPos != null && server.overworld().getBlockEntity(frackingPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower frack) {
+			frack.power = frack.getMaxPower();
+			frack.tanks[2].setFill(frack.tanks[2].getMaxFill());
+		}
+		if(serverTicks == 1540 || serverTicks == 1575) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				if(serverTicks == 1540) player.teleportTo(player.serverLevel(), -13.5, -59, 12.5, 126F, 10F);
+				else player.teleportTo(player.serverLevel(), -13.5, -59, -9.5, 79F, -35F);
+			}
 		}
 		if(serverTicks == 1460 || serverTicks == 1500) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -633,6 +650,14 @@ public class DevScene {
 			}
 		}
 
+		// pumpjack and fracking tower west of the floor, next to the cracker
+		pumpjackPos = ModBlocks.machine_pumpjack.get().placeMultiblock(level, origin.offset(-18, 0, 7), net.minecraft.core.Direction.NORTH);
+		if(pumpjackPos != null) {
+			level.setBlockAndUpdate(pumpjackPos.below(), Blocks.STONE.defaultBlockState());
+			level.setBlockAndUpdate(pumpjackPos.below(2), ModBlocks.ore_oil.get().defaultBlockState());
+		}
+		frackingPos = ModBlocks.machine_fracking_tower.get().placeMultiblock(level, origin.offset(-26, 0, -7), net.minecraft.core.Direction.NORTH);
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -812,7 +837,10 @@ public class DevScene {
 			if(ticks == 1490) Screenshot.grab(mc.gameDirectory, "devscene_world_fraction_tower.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1530) Screenshot.grab(mc.gameDirectory, "devscene_world_cracker.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1540) {
+			if(ticks == 1565) Screenshot.grab(mc.gameDirectory, "devscene_world_pumpjack.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1600) Screenshot.grab(mc.gameDirectory, "devscene_world_fracking.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1610) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

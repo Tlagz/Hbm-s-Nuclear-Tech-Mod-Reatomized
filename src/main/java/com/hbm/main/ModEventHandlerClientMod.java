@@ -83,6 +83,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.FRACTION_TOWER.get(), com.hbm.render.tileentity.RenderOilTowers.FractionTower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SPACER.get(), com.hbm.render.tileentity.RenderOilTowers.Spacer::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CATALYTIC_CRACKER.get(), com.hbm.render.tileentity.RenderOilTowers.Cracker::new);
+		event.registerBlockEntityRenderer(ModTileEntities.PUMPJACK.get(), com.hbm.render.tileentity.RenderPumpjack::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FRACKING_TOWER.get(), com.hbm.render.tileentity.RenderFrackingTower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -135,6 +137,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_fraction_tower.get().asItem(), com.hbm.render.tileentity.RenderOilTowers.FractionTower.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.fraction_spacer.get().asItem(), com.hbm.render.tileentity.RenderOilTowers.Spacer.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_catalytic_cracker.get().asItem(), com.hbm.render.tileentity.RenderOilTowers.Cracker.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_pumpjack.get().asItem(), com.hbm.render.tileentity.RenderPumpjack.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_fracking_tower.get().asItem(), com.hbm.render.tileentity.RenderFrackingTower.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

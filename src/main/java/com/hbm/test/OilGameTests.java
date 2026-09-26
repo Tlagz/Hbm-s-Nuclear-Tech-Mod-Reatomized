@@ -89,4 +89,42 @@ public class OilGameTests {
 			helper.succeed();
 		});
 	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 200)
+	public static void pumpjackPumpsOil(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 3, 3));
+		helper.getLevel().setBlockAndUpdate(core.below(), Blocks.STONE.defaultBlockState());
+		helper.getLevel().setBlockAndUpdate(core.below(2), ModBlocks.ore_oil.get().defaultBlockState());
+		helper.getLevel().setBlockAndUpdate(core, ModBlocks.machine_pumpjack.get().defaultBlockState()
+				.setValue(BlockDummyable.META, Direction.NORTH.get3DDataValue() + BlockDummyable.offset));
+
+		com.hbm.tileentity.machine.oil.TileEntityMachinePumpjack jack = (com.hbm.tileentity.machine.oil.TileEntityMachinePumpjack) helper.getLevel().getBlockEntity(core);
+		jack.power = jack.getMaxPower();
+
+		helper.succeedWhen(() -> {
+			helper.assertTrue(helper.getLevel().getBlockState(core.below()).is(ModBlocks.oil_pipe.get()), "the stone should have been drilled into a pipe");
+			helper.assertTrue(jack.tanks[0].getFill() >= 750, "750mB oil per deposit, has " + jack.tanks[0].getFill());
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 200)
+	public static void frackingTowerNeedsSolution(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 3, 3));
+		helper.getLevel().setBlockAndUpdate(core.below(), Blocks.STONE.defaultBlockState());
+		helper.getLevel().setBlockAndUpdate(core.below(2), ModBlocks.ore_oil.get().defaultBlockState());
+		helper.getLevel().setBlockAndUpdate(core, ModBlocks.machine_fracking_tower.get().defaultBlockState()
+				.setValue(BlockDummyable.META, Direction.NORTH.get3DDataValue() + BlockDummyable.offset));
+
+		com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower tower = (com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower) helper.getLevel().getBlockEntity(core);
+		helper.onEachTick(() -> tower.power = tower.getMaxPower());
+
+		helper.runAfterDelay(60, () -> {
+			helper.assertTrue(tower.tanks[0].getFill() == 0 && tower.indicator == 3, "no fracking solution, no oil (indicator " + tower.indicator + ")");
+			tower.tanks[2].setFill(1_000);
+		});
+		helper.runAfterDelay(150, () -> {
+			helper.assertTrue(tower.tanks[0].getFill() >= 1_000 && tower.tanks[2].getFill() < 1_000, "with solution it pumps 1000mB per deposit, has " + tower.tanks[0].getFill());
+			helper.succeed();
+		});
+	}
 }

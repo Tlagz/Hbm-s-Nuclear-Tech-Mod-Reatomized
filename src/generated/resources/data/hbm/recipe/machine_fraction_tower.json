@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:welded_plates/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "hbm:steel_grate"
+    },
+    "H": {
+      "tag": "hbm:welded_plates/steel"
+    }
+  },
+  "pattern": [
+    "H",
+    "G",
+    "H"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:machine_fraction_tower"
+  }
+}
