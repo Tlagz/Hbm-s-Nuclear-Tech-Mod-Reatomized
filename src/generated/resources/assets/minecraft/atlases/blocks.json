@@ -1622,11 +1622,11 @@
     },
     {
       "type": "minecraft:single",
-      "resource": "hbm:blocks/machine_refinery"
+      "resource": "hbm:blocks/block_steel_machine"
     },
     {
       "type": "minecraft:single",
-      "resource": "hbm:blocks/block_steel_machine"
+      "resource": "hbm:blocks/machine_refinery"
     },
     {
       "type": "minecraft:single",

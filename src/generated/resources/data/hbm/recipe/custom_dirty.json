@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/copper"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:plates/copper"
+    },
+    "L": {
+      "tag": "c:plates/lead"
+    },
+    "W": {
+      "item": "hbm:nuclear_waste"
+    }
+  },
+  "pattern": [
+    " C ",
+    "WLW",
+    "WLW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:custom_dirty"
+  }
+}

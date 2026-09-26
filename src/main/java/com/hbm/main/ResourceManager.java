@@ -133,5 +133,8 @@ public class ResourceManager {
 	public static final ResourceLocation fusion_plasma_tex = RefStrings.loc("textures/models/fusion/plasma.png");
 	public static final HFRWavefrontObject soldering_station = new HFRWavefrontObject(RefStrings.loc("models/machines/soldering_station.obj"));
 	public static final ResourceLocation soldering_station_tex = RefStrings.loc("textures/models/machines/soldering_station.png");
+	public static final HFRWavefrontObject compressor = new HFRWavefrontObject(RefStrings.loc("models/machines/compressor.obj"));
+	public static final ResourceLocation compressor_tex = RefStrings.loc("textures/models/machines/compressor.png");
+	public static final ResourceLocation compressor_compact_tex = RefStrings.loc("textures/models/machines/compressor_compact.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }

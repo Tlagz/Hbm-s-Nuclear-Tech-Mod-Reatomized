@@ -64,6 +64,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.BATTERY_SOCKET.get(), com.hbm.inventory.gui.GUIBatterySocket::new);
 		event.register(ModMenus.BATTERY_REDD.get(), com.hbm.inventory.gui.GUIBatteryREDD::new);
 		event.register(ModMenus.SOLDERING_STATION.get(), com.hbm.inventory.gui.GUIMachineSolderingStation::new);
+		event.register(ModMenus.COMPRESSOR.get(), com.hbm.inventory.gui.GUICompressor::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -115,6 +116,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.BATTERY_SOCKET.get(), com.hbm.render.tileentity.RenderBatterySocket::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BATTERY_REDD.get(), com.hbm.render.tileentity.RenderBatteryREDD::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SOLDERING_STATION.get(), com.hbm.render.tileentity.RenderSolderingStation::new);
+		event.registerBlockEntityRenderer(ModTileEntities.COMPRESSOR.get(), com.hbm.render.tileentity.RenderCompressor.Tower::new);
+		event.registerBlockEntityRenderer(ModTileEntities.COMPRESSOR_COMPACT.get(), com.hbm.render.tileentity.RenderCompressor.Compact::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -187,6 +190,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_battery_socket.get().asItem(), com.hbm.render.tileentity.RenderBatterySocket.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_battery_redd.get().asItem(), com.hbm.render.tileentity.RenderBatteryREDD.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_soldering_station.get().asItem(), com.hbm.render.tileentity.RenderSolderingStation.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_compressor.get().asItem(), com.hbm.render.tileentity.RenderCompressor.towerItem());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_compressor_compact.get().asItem(), com.hbm.render.tileentity.RenderCompressor.compactItem());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

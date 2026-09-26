@@ -32,6 +32,8 @@
     "hbm:machine_battery_socket",
     "hbm:machine_battery_redd",
     "hbm:machine_soldering_station",
+    "hbm:machine_compressor",
+    "hbm:machine_compressor_compact",
     "hbm:crate_iron",
     "hbm:crate_steel",
     "hbm:crate_desh",

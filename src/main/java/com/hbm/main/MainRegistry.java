@@ -76,6 +76,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.ElectrolyserFluidRecipes.registerDefaults();
 			com.hbm.inventory.recipes.ElectrolyserMetalRecipes.registerDefaults();
 			com.hbm.inventory.recipes.SolderingRecipes.registerDefaults();
+			com.hbm.inventory.recipes.CompressorRecipes.registerDefaults();
 			com.hbm.inventory.recipes.GasCentrifugeRecipes.register();
 			com.hbm.tileentity.machine.TileEntityMachineTurbineGas.registerFuels();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();

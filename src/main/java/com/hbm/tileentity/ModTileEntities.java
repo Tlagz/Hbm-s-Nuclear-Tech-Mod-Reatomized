@@ -112,6 +112,10 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.storage.TileEntityBatteryREDD::new, ModBlocks.machine_battery_redd.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineSolderingStation>> SOLDERING_STATION = TILES.register("machine_soldering_station",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineSolderingStation::new, ModBlocks.machine_soldering_station.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineCompressor>> COMPRESSOR = TILES.register("machine_compressor",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineCompressor::new, ModBlocks.machine_compressor.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineCompressorCompact>> COMPRESSOR_COMPACT = TILES.register("machine_compressor_compact",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineCompressorCompact::new, ModBlocks.machine_compressor_compact.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.storage.TileEntityCrate>> CRATE = TILES.register("crate",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.storage.TileEntityCrate::new, ModBlocks.crate_iron.get(), ModBlocks.crate_steel.get(), ModBlocks.crate_desh.get(), ModBlocks.crate_tungsten.get(), ModBlocks.safe.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
