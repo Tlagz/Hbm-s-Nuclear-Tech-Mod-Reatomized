@@ -88,6 +88,10 @@ public class ModMenus {
 			tile("machine_catalytic_reformer", com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticReformer.class, (id, inv, tile) -> new com.hbm.inventory.container.ContainerOilProcessor(ModMenus.CATALYTIC_REFORMER.get(), id, inv, tile));
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerOilProcessor>> HYDROTREATER =
 			tile("machine_hydrotreater", com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater.class, (id, inv, tile) -> new com.hbm.inventory.container.ContainerOilProcessor(ModMenus.HYDROTREATER.get(), id, inv, tile));
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerLiquefactor>> LIQUEFACTOR =
+			tile("machine_liquefactor", com.hbm.tileentity.machine.oil.TileEntityMachineLiquefactor.class, com.hbm.inventory.container.ContainerLiquefactor::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerSolidifier>> SOLIDIFIER =
+			tile("machine_solidifier", com.hbm.tileentity.machine.oil.TileEntityMachineSolidifier.class, com.hbm.inventory.container.ContainerSolidifier::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =

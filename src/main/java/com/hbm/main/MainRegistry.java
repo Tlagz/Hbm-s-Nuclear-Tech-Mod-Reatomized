@@ -69,6 +69,8 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.FractionRecipes.registerDefaults();
 			com.hbm.inventory.recipes.CrackingRecipes.registerDefaults();
 			com.hbm.inventory.recipes.OilProcessingRecipes.registerDefaults();
+			com.hbm.inventory.recipes.LiquefactionRecipes.registerDefaults();
+			com.hbm.inventory.recipes.SolidificationRecipes.registerDefaults();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();

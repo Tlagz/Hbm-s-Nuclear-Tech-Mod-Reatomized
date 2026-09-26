@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_solidifier"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_solidifier"
+    }
+  }
+}

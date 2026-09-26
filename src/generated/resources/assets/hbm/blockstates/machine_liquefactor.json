@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_liquefactor"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_liquefactor"
+    }
+  }
+}

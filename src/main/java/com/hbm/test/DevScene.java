@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -189,6 +189,14 @@ public class DevScene {
 			flare.tank.setFill(flare.tank.getMaxFill());
 			flare.isOn = true;
 			flare.doesBurn = true;
+		}
+		if(serverTicks == 1760 || serverTicks == 1795 || serverTicks == 1830) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				BlockPos open = serverTicks == 1795 ? liquefactorPos : solidifierPos;
+				if(serverTicks == 1760) player.teleportTo(player.serverLevel(), 12.5, -58, -5.5, 180F, -14F);
+				else if(player.level().getBlockEntity(open) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(open));
+			}
 		}
 		if(serverTicks == 1685 || serverTicks == 1720) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -697,6 +705,19 @@ public class DevScene {
 				}
 			}
 			if(treaterPos != null && level.getBlockEntity(treaterPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater treater) treater.tanks[1].setFill(32_000);
+			liquefactorPos = ModBlocks.machine_liquefactor.get().placeMultiblock(level, origin.offset(10, 0, -16), net.minecraft.core.Direction.NORTH);
+			solidifierPos = ModBlocks.machine_solidifier.get().placeMultiblock(level, origin.offset(14, 0, -16), net.minecraft.core.Direction.NORTH);
+			if(liquefactorPos != null && level.getBlockEntity(liquefactorPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineLiquefactor liq) {
+				liq.setPower(com.hbm.tileentity.machine.oil.TileEntityMachineLiquefactor.maxPower);
+				liq.setItem(0, new ItemStack(net.minecraft.world.item.Items.ICE, 64));
+				liq.tank.setTankType(com.hbm.inventory.fluid.Fluids.WATER);
+				liq.tank.setFill(12_000);
+			}
+			if(solidifierPos != null && level.getBlockEntity(solidifierPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineSolidifier sol) {
+				sol.setPower(com.hbm.tileentity.machine.oil.TileEntityMachineSolidifier.maxPower);
+				sol.tank.setTankType(com.hbm.inventory.fluid.Fluids.DIESEL);
+				sol.tank.setFill(16_000);
+			}
 			if(vacuumPos != null && level.getBlockEntity(vacuumPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill distill) distill.setItem(10, ItemStack.EMPTY);
 		}
 
@@ -888,7 +909,11 @@ public class DevScene {
 			if(ticks == 1718) Screenshot.grab(mc.gameDirectory, "devscene_world_oil_processing.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1750) Screenshot.grab(mc.gameDirectory, "devscene_gui_vacuum_distill.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1760) {
+			if(ticks == 1793) Screenshot.grab(mc.gameDirectory, "devscene_world_liquefactor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1825) Screenshot.grab(mc.gameDirectory, "devscene_gui_liquefactor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1860) Screenshot.grab(mc.gameDirectory, "devscene_gui_solidifier.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1870) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

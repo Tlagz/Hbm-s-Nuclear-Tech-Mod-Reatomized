@@ -22,6 +22,8 @@
     "hbm:machine_vacuum_distill",
     "hbm:machine_catalytic_reformer",
     "hbm:machine_hydrotreater",
+    "hbm:machine_liquefactor",
+    "hbm:machine_solidifier",
     "hbm:oil_pipe",
     "hbm:heater_firebox",
     "hbm:machine_boiler",

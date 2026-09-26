@@ -90,6 +90,10 @@ public class ResourceManager {
 	public static final ResourceLocation catalytic_reformer_tex = RefStrings.loc("textures/models/machines/catalytic_reformer.png");
 	public static final HFRWavefrontObject hydrotreater = new HFRWavefrontObject(RefStrings.loc("models/machines/hydrotreater.obj"));
 	public static final ResourceLocation hydrotreater_tex = RefStrings.loc("textures/models/machines/hydrotreater.png");
+	public static final HFRWavefrontObject liquefactor = new HFRWavefrontObject(RefStrings.loc("models/machines/liquefactor.obj"));
+	public static final ResourceLocation liquefactor_tex = RefStrings.loc("textures/models/machines/liquefactor.png");
+	public static final HFRWavefrontObject solidifier = new HFRWavefrontObject(RefStrings.loc("models/machines/solidifier.obj"));
+	public static final ResourceLocation solidifier_tex = RefStrings.loc("textures/models/machines/solidifier.png");
 	public static final HFRWavefrontObject pipe_neo = new HFRWavefrontObject(RefStrings.loc("models/blocks/pipe_neo.obj"));
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
