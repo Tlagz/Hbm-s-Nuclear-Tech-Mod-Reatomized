@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_pyrooven"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_pyrooven"
+    }
+  }
+}

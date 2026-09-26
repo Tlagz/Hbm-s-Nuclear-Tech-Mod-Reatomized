@@ -92,6 +92,10 @@ public class ModMenus {
 			tile("machine_liquefactor", com.hbm.tileentity.machine.oil.TileEntityMachineLiquefactor.class, com.hbm.inventory.container.ContainerLiquefactor::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerSolidifier>> SOLIDIFIER =
 			tile("machine_solidifier", com.hbm.tileentity.machine.oil.TileEntityMachineSolidifier.class, com.hbm.inventory.container.ContainerSolidifier::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineCoker>> COKER =
+			tile("machine_coker", com.hbm.tileentity.machine.oil.TileEntityMachineCoker.class, com.hbm.inventory.container.ContainerMachineCoker::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerPyroOven>> PYRO_OVEN =
+			tile("machine_pyrooven", com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven.class, com.hbm.inventory.container.ContainerPyroOven::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =

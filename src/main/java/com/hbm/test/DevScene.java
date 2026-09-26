@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -189,6 +189,30 @@ public class DevScene {
 			flare.tank.setFill(flare.tank.getMaxFill());
 			flare.isOn = true;
 			flare.doesBurn = true;
+		}
+		// the coker is kept hot, the pyrolysis oven turns steam and coal into syngas
+		if(cokerPos != null && server.overworld().getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) {
+			coker.heat = com.hbm.tileentity.machine.oil.TileEntityMachineCoker.maxHeat;
+			coker.tanks[0].setFill(coker.tanks[0].getMaxFill());
+			coker.tanks[1].setFill(0);
+			coker.setItem(1, ItemStack.EMPTY);
+		}
+		if(pyroPos != null && server.overworld().getBlockEntity(pyroPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven pyro) {
+			pyro.setPower(com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven.maxPower);
+			pyro.tanks[0].setFill(pyro.tanks[0].getMaxFill());
+			pyro.tanks[1].setFill(Math.min(pyro.tanks[1].getFill(), 12_000));
+			if(pyro.getItem(1).getCount() < 8) pyro.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+		}
+		if(serverTicks == 1870 || serverTicks == 1905 || serverTicks == 1940) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				BlockPos open = serverTicks == 1905 ? cokerPos : pyroPos;
+				if(serverTicks == 1870) player.teleportTo(player.serverLevel(), 1.5, -58, -47.5, 0F, -22F);
+				else {
+					player.teleportTo(player.serverLevel(), 1.5, -60, -36.5, 0F, 0F);
+				}
+				if(serverTicks != 1870 && (player.level().getBlockEntity(open) instanceof net.minecraft.world.MenuProvider provider)) player.openMenu(provider, buf -> buf.writeBlockPos(open));
+			}
 		}
 		if(serverTicks == 1760 || serverTicks == 1795 || serverTicks == 1830) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -721,6 +745,17 @@ public class DevScene {
 			if(vacuumPos != null && level.getBlockEntity(vacuumPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill distill) distill.setItem(10, ItemStack.EMPTY);
 		}
 
+		// coker and pyrolysis oven further north
+		{
+			for(int x = -14; x <= 16; x++) for(int z = -48; z <= -23; z++) for(int y = 0; y <= 25; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
+			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
+			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			if(pyroPos != null && level.getBlockEntity(pyroPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven pyro) pyro.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.STEAM);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -913,7 +948,11 @@ public class DevScene {
 			if(ticks == 1825) Screenshot.grab(mc.gameDirectory, "devscene_gui_liquefactor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1860) Screenshot.grab(mc.gameDirectory, "devscene_gui_solidifier.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1870) {
+			if(ticks == 1903) Screenshot.grab(mc.gameDirectory, "devscene_world_coker.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1935) Screenshot.grab(mc.gameDirectory, "devscene_gui_coker.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1970) Screenshot.grab(mc.gameDirectory, "devscene_gui_pyrooven.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1980) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

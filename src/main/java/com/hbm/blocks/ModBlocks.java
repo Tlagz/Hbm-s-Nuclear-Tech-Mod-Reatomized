@@ -92,6 +92,8 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineOilProcessor.Hydrotreater> machine_hydrotreater = dummyable("machine_hydrotreater", com.hbm.blocks.machine.MachineOilProcessor.Hydrotreater::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineLiquefactor> machine_liquefactor = dummyable("machine_liquefactor", com.hbm.blocks.machine.MachineLiquefactor::liquefactor, props(Mat.IRON, 10.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineLiquefactor> machine_solidifier = dummyable("machine_solidifier", com.hbm.blocks.machine.MachineLiquefactor::solidifier, props(Mat.IRON, 10.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineCoker> machine_coker = dummyable("machine_coker", com.hbm.blocks.machine.MachineCoker::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachinePyroOven> machine_pyrooven = dummyable("machine_pyrooven", com.hbm.blocks.machine.MachinePyroOven::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	/** BlockNoDrop in the original, left behind by oil drills */
 	public static final DeferredBlock<Block> oil_pipe = generated("oil_pipe", Block::new, props(Mat.IRON, 5.0F, 10.0F), null, BlockModel.cube("blocks/oil_pipe"));
 	public static final DeferredBlock<HeaterFirebox> heater_firebox = dummyable("heater_firebox", HeaterFirebox::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");

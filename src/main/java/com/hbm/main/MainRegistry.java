@@ -71,6 +71,8 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.OilProcessingRecipes.registerDefaults();
 			com.hbm.inventory.recipes.LiquefactionRecipes.registerDefaults();
 			com.hbm.inventory.recipes.SolidificationRecipes.registerDefaults();
+			com.hbm.inventory.recipes.CokerRecipes.registerDefaults();
+			com.hbm.inventory.recipes.PyroOvenRecipes.registerDefaults();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();
