@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -234,6 +234,22 @@ public class DevScene {
 			turbine.tanks[2].setFill(turbine.tanks[2].getMaxFill());
 			turbine.tanks[3].setFill(Math.min(turbine.tanks[3].getFill(), 100_000));
 			turbine.setPower(Math.min(turbine.getPower(), 800_000));
+		}
+		// the soldering station keeps making analog circuits
+		if(solderPos != null && server.overworld().getBlockEntity(solderPos) instanceof com.hbm.tileentity.machine.TileEntityMachineSolderingStation solderer) {
+			solderer.setPower(solderer.getMaxPower());
+			solderer.setItem(0, new ItemStack(ModItems.circuit.get(com.hbm.items.machine.ItemCircuit.EnumCircuitType.VACUUM_TUBE).get(), 3));
+			solderer.setItem(1, new ItemStack(ModItems.circuit.get(com.hbm.items.machine.ItemCircuit.EnumCircuitType.CAPACITOR).get(), 2));
+			solderer.setItem(3, new ItemStack(ModItems.circuit.get(com.hbm.items.machine.ItemCircuit.EnumCircuitType.PCB).get(), 4));
+			solderer.setItem(5, new ItemStack(ModItems.wire_fine.get(com.hbm.inventory.material.Mats.MAT_LEAD).get(), 4));
+			if(solderer.getItem(6).getCount() > 32) solderer.setItem(6, ItemStack.EMPTY);
+		}
+		if(serverTicks == 2465 || serverTicks == 2500) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2465) player.teleportTo(player.serverLevel(), -11.5, -59, -38.5, 160F, 35F);
+				else if(player.level().getBlockEntity(solderPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(solderPos));
+			}
 		}
 		if(serverTicks == 2390 || serverTicks == 2425) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -835,6 +851,8 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			solderPos = ModBlocks.machine_soldering_station.get().placeMultiblock(level, origin.offset(-12, 0, -41), net.minecraft.core.Direction.NORTH);
+
 			// a REDD with a huge charge so the wheel spins at full speed
 			reddPos = ModBlocks.machine_battery_redd.get().placeMultiblock(level, origin.offset(12, 0, -39), net.minecraft.core.Direction.EAST);
 			if(reddPos != null && level.getBlockEntity(reddPos) instanceof com.hbm.tileentity.machine.storage.TileEntityBatteryREDD redd) {
@@ -1090,7 +1108,10 @@ public class DevScene {
 			if(ticks == 2423) Screenshot.grab(mc.gameDirectory, "devscene_world_redd.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2455) Screenshot.grab(mc.gameDirectory, "devscene_gui_redd.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2465) {
+			if(ticks == 2498) Screenshot.grab(mc.gameDirectory, "devscene_world_soldering.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2530) Screenshot.grab(mc.gameDirectory, "devscene_gui_soldering.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2540) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

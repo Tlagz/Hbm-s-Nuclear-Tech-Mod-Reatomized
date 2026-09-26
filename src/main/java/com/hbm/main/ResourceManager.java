@@ -131,5 +131,7 @@ public class ResourceManager {
 	public static final HFRWavefrontObject battery_redd = new HFRWavefrontObject(RefStrings.loc("models/machines/fensu2.obj"));
 	public static final ResourceLocation battery_redd_tex = RefStrings.loc("textures/models/machines/fensu2.png");
 	public static final ResourceLocation fusion_plasma_tex = RefStrings.loc("textures/models/fusion/plasma.png");
+	public static final HFRWavefrontObject soldering_station = new HFRWavefrontObject(RefStrings.loc("models/machines/soldering_station.obj"));
+	public static final ResourceLocation soldering_station_tex = RefStrings.loc("textures/models/machines/soldering_station.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }

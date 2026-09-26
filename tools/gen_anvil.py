@@ -53,7 +53,7 @@ def astack(e, sym):
 		if first.startswith('DictFrame.fromOne') or first.startswith('new ItemStack') or first.startswith('OreDictManager.DictFrame.fromOne'):
 			if len(args) > 1: raise Skip('ComparableStack(stack, ...)')
 			return 'new ComparableStack(%s)' % g.translate(first, 'ingredient', sym)
-		count = args[1].strip() if len(args) > 1 else '1'
+		count = unwrap_ternary(args[1].strip()) if len(args) > 1 else '1'
 		if not re.fullmatch(r'\d+', count): raise Skip('count:' + count)
 		kind, ref = g.item_ref(first, 'result', sym, enum_meta(args[2]) if len(args) > 2 else None)
 		if kind == 'tag': raise Skip('ComparableStack of a tag')

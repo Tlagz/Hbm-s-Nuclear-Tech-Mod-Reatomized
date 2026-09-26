@@ -222,6 +222,22 @@ def translate_arc_welder(args, sym, fluids):
 	out += [a.astack(x, sym) for x in rest]
 	return out
 
+def translate_soldering(args, sym, fluids):
+	"""new SolderingRecipe(output, duration, consumption[, fluid], toppings[], pcb[], solder[])"""
+	out = [g.translate(args[0], 'result', sym)]
+	for n in args[1:3]:
+		if not re.fullmatch(r'[\d_]+L?', n.strip()): raise Skip('number:' + n.strip())
+		out.append(n.strip())
+	rest = args[3:]
+	if len(rest) == 4:
+		out.append(fluid_stack(rest[0], fluids))
+		rest = rest[1:]
+	else:
+		out.append('null')
+	if len(rest) != 3: raise Skip('args')
+	out += [a.astack_list(x, sym) for x in rest]
+	return out
+
 # ---------------------------------------------------------------- map based recipe classes (Class.setRecipe(in, out))
 
 def translate_in_out(args, sym, fluids):
@@ -286,6 +302,7 @@ def generate_calls(name, sym, fluids):
 # recipe set class -> (recipe class, argument translation, imports)
 LIST_TARGETS = {
 	'ArcWelderRecipes': ('ArcWelderRecipe', translate_arc_welder, 'import com.hbm.inventory.recipes.ArcWelderRecipes.ArcWelderRecipe;'),
+	'SolderingRecipes': ('SolderingRecipe', translate_soldering, 'import com.hbm.inventory.RecipesCommon.AStack;\nimport com.hbm.inventory.recipes.SolderingRecipes.SolderingRecipe;'),
 }
 
 LIST_HEADER = '''package com.hbm.inventory.recipes.gen;
@@ -513,6 +530,7 @@ def generate():
 	fluids = load_fluids()
 	g.CONFIG_DEFAULTS['no528'] = True  # local copy of !GeneralConfig.enable528
 	g.CONFIG_DEFAULTS['GeneralConfig.enable528PressurizedRecipes'] = False
+	a.FLAGS['lbsm'] = False  # local copy of GeneralConfig.enableLBSM && enableLBSMSimpleCrafting
 	skipped = Counter()
 	for name in TARGETS: skipped.update(generate_set(name, sym, fluids))
 	for name in LIST_TARGETS: skipped.update(generate_list(name, sym, fluids))
