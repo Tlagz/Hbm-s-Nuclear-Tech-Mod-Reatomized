@@ -35,6 +35,7 @@
     "hbm:machine_compressor",
     "hbm:machine_compressor_compact",
     "hbm:machine_mixer",
+    "hbm:furnace_iron",
     "hbm:crate_iron",
     "hbm:crate_steel",
     "hbm:crate_desh",

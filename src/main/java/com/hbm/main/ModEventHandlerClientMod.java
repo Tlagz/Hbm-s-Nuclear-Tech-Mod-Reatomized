@@ -66,6 +66,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.SOLDERING_STATION.get(), com.hbm.inventory.gui.GUIMachineSolderingStation::new);
 		event.register(ModMenus.COMPRESSOR.get(), com.hbm.inventory.gui.GUICompressor::new);
 		event.register(ModMenus.MIXER.get(), com.hbm.inventory.gui.GUIMixer::new);
+		event.register(ModMenus.FURNACE_IRON.get(), com.hbm.inventory.gui.GUIFurnaceIron::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -120,6 +121,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.COMPRESSOR.get(), com.hbm.render.tileentity.RenderCompressor.Tower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.COMPRESSOR_COMPACT.get(), com.hbm.render.tileentity.RenderCompressor.Compact::new);
 		event.registerBlockEntityRenderer(ModTileEntities.MIXER.get(), com.hbm.render.tileentity.RenderMixer::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_IRON.get(), com.hbm.render.tileentity.RenderFurnaceIron::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -195,6 +197,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_compressor.get().asItem(), com.hbm.render.tileentity.RenderCompressor.towerItem());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_compressor_compact.get().asItem(), com.hbm.render.tileentity.RenderCompressor.compactItem());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_mixer.get().asItem(), com.hbm.render.tileentity.RenderMixer.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_iron.get().asItem(), com.hbm.render.tileentity.RenderFurnaceIron.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

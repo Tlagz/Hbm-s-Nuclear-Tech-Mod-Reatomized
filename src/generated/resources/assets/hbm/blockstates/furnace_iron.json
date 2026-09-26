@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=1": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=10": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=11": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=12": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=13": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=14": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=15": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=2": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=3": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=4": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=5": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=6": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=7": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=8": {
+      "model": "hbm:block/furnace_iron"
+    },
+    "meta=9": {
+      "model": "hbm:block/furnace_iron"
+    }
+  }
+}

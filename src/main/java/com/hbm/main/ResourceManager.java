@@ -138,5 +138,7 @@ public class ResourceManager {
 	public static final ResourceLocation compressor_compact_tex = RefStrings.loc("textures/models/machines/compressor_compact.png");
 	public static final HFRWavefrontObject mixer = new HFRWavefrontObject(RefStrings.loc("models/machines/mixer.obj"));
 	public static final ResourceLocation mixer_tex = RefStrings.loc("textures/models/machines/mixer.png");
+	public static final HFRWavefrontObject furnace_iron = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_iron.obj"));
+	public static final ResourceLocation furnace_iron_tex = RefStrings.loc("textures/models/machines/furnace_iron.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }
