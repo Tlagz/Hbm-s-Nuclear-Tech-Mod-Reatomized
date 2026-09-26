@@ -48,6 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
+	static BlockPos fluidTankPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -170,6 +171,13 @@ public class DevScene {
 			crystallizer.setPower(com.hbm.tileentity.machine.TileEntityMachineCrystallizer.maxPower);
 			crystallizer.tank.setFill(crystallizer.tank.getMaxFill());
 			if(crystallizer.getItem(0).isEmpty()) crystallizer.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+		}
+		if(serverTicks == 1385 || serverTicks == 1420) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1385) player.teleportTo(player.serverLevel(), 13.5, -59, 1.5, -100F, -12F);
+				else if(player.level().getBlockEntity(fluidTankPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(fluidTankPos));
+			}
 		}
 		if(serverTicks == 1310 || serverTicks == 1345) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -578,6 +586,25 @@ public class DevScene {
 		// ore acidizer north of the centrifuge
 		crystallizerPos = ModBlocks.machine_crystallizer.get().placeMultiblock(level, origin.offset(-12, 0, 23), net.minecraft.core.Direction.NORTH);
 
+		// fluid tank, orbus and BAT9000 east of the floor
+		{
+			fluidTankPos = ModBlocks.machine_fluidtank.get().placeMultiblock(level, origin.offset(19, 0, -3), net.minecraft.core.Direction.NORTH);
+			if(fluidTankPos != null && level.getBlockEntity(fluidTankPos) instanceof com.hbm.tileentity.machine.storage.TileEntityMachineFluidTank tank) {
+				tank.tank.setTankType(com.hbm.inventory.fluid.Fluids.DIESEL);
+				tank.tank.setFill(128_000);
+			}
+			BlockPos orbusPos = ModBlocks.machine_orbus.get().placeMultiblock(level, origin.offset(19, 0, 3), net.minecraft.core.Direction.NORTH);
+			if(orbusPos != null && level.getBlockEntity(orbusPos) instanceof com.hbm.tileentity.machine.storage.TileEntityMachineOrbus orbus) {
+				orbus.tank.setTankType(com.hbm.inventory.fluid.Fluids.HYDROGEN);
+				orbus.tank.setFill(300_000);
+			}
+			BlockPos batPos = ModBlocks.machine_bat9000.get().placeMultiblock(level, origin.offset(28, 0, 7), net.minecraft.core.Direction.NORTH);
+			if(batPos != null && level.getBlockEntity(batPos) instanceof com.hbm.tileentity.machine.storage.TileEntityMachineBAT9000 bat) {
+				bat.tank.setTankType(com.hbm.inventory.fluid.Fluids.KEROSENE);
+				bat.tank.setFill(1_200_000);
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -751,7 +778,10 @@ public class DevScene {
 			if(ticks == 1335) Screenshot.grab(mc.gameDirectory, "devscene_world_crystallizer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1375) Screenshot.grab(mc.gameDirectory, "devscene_gui_crystallizer.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1385) {
+			if(ticks == 1410) Screenshot.grab(mc.gameDirectory, "devscene_world_tanks.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1450) Screenshot.grab(mc.gameDirectory, "devscene_gui_fluid_tank.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1460) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

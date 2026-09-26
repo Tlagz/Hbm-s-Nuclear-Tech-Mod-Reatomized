@@ -68,6 +68,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineCentrifuge::new, ModBlocks.machine_centrifuge.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineCrystallizer>> CRYSTALLIZER = TILES.register("machine_crystallizer",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineCrystallizer::new, ModBlocks.machine_crystallizer.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.storage.TileEntityMachineFluidTank>> FLUID_TANK = TILES.register("machine_fluidtank",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.storage.TileEntityMachineFluidTank::new, ModBlocks.machine_fluidtank.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.storage.TileEntityMachineBAT9000>> BAT9000 = TILES.register("machine_bat9000",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.storage.TileEntityMachineBAT9000::new, ModBlocks.machine_bat9000.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.storage.TileEntityMachineOrbus>> ORBUS = TILES.register("machine_orbus",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.storage.TileEntityMachineOrbus::new, ModBlocks.machine_orbus.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

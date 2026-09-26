@@ -47,6 +47,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.COMBUSTION_ENGINE.get(), com.hbm.inventory.gui.GUICombustionEngine::new);
 		event.register(ModMenus.CENTRIFUGE.get(), com.hbm.inventory.gui.GUIMachineCentrifuge::new);
 		event.register(ModMenus.CRYSTALLIZER.get(), com.hbm.inventory.gui.GUICrystallizer::new);
+		event.register(ModMenus.FLUID_TANK.get(), com.hbm.inventory.gui.GUIMachineFluidTank::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -76,6 +77,9 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.COMBUSTION_ENGINE.get(), com.hbm.render.tileentity.RenderCombustionEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CENTRIFUGE.get(), com.hbm.render.tileentity.RenderCentrifuge::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CRYSTALLIZER.get(), com.hbm.render.tileentity.RenderCrystallizer::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FLUID_TANK.get(), com.hbm.render.tileentity.RenderFluidTank::new);
+		event.registerBlockEntityRenderer(ModTileEntities.BAT9000.get(), com.hbm.render.tileentity.RenderBigTanks.BAT9000::new);
+		event.registerBlockEntityRenderer(ModTileEntities.ORBUS.get(), com.hbm.render.tileentity.RenderBigTanks.Orbus::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -122,6 +126,9 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_combustion_engine.get().asItem(), com.hbm.render.tileentity.RenderCombustionEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_centrifuge.get().asItem(), com.hbm.render.tileentity.RenderCentrifuge.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crystallizer.get().asItem(), com.hbm.render.tileentity.RenderCrystallizer.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_fluidtank.get().asItem(), com.hbm.render.tileentity.RenderFluidTank.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_bat9000.get().asItem(), com.hbm.render.tileentity.RenderBigTanks.BAT9000.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_orbus.get().asItem(), com.hbm.render.tileentity.RenderBigTanks.Orbus.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

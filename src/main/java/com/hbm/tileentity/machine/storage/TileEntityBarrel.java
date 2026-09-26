@@ -65,6 +65,12 @@ public class TileEntityBarrel extends TileEntityMachineBase implements IFluidSta
 		tank = new FluidTank(Fluids.NONE, capacity);
 	}
 
+	/** Big tanks built on the barrel (BAT9000, Orbus) */
+	protected TileEntityBarrel(net.minecraft.world.level.block.entity.BlockEntityType<?> type, BlockPos pos, BlockState state, int capacity) {
+		super(type, pos, state, 6);
+		tank = new FluidTank(Fluids.NONE, capacity);
+	}
+
 	@Override
 	public String getName() {
 		return "container.barrel";

@@ -61,6 +61,17 @@ public class ResourceManager {
 	public static final ResourceLocation centrifuge_tex = RefStrings.loc("textures/models/machines/centrifuge.png");
 	public static final HFRWavefrontObject crystallizer = new HFRWavefrontObject(RefStrings.loc("models/machines/acidizer.obj"));
 	public static final ResourceLocation crystallizer_tex = RefStrings.loc("textures/models/machines/acidizer.png");
+	public static final HFRWavefrontObject fluidtank = new HFRWavefrontObject(RefStrings.loc("models/fluidtank.obj"));
+	public static final HFRWavefrontObject fluidtank_exploded = new HFRWavefrontObject(RefStrings.loc("models/fluidtank_exploded.obj"));
+	public static final ResourceLocation tank_tex = RefStrings.loc("textures/models/tank.png");
+	public static final ResourceLocation tank_inner_tex = RefStrings.loc("textures/models/tank/tank_inner.png");
+	public static final HFRWavefrontObject bat9000 = new HFRWavefrontObject(RefStrings.loc("models/machines/bat9000.obj"));
+	public static final ResourceLocation bat9000_tex = RefStrings.loc("textures/models/machines/bat9000.png");
+	public static final HFRWavefrontObject orbus = new HFRWavefrontObject(RefStrings.loc("models/machines/orbus.obj"));
+	public static final ResourceLocation orbus_tex = RefStrings.loc("textures/models/machines/orbus.png");
+	public static final HFRWavefrontObject sphere_uv = new HFRWavefrontObject(RefStrings.loc("models/sphere_uv.obj"));
+	/** Plain white, for untextured colored geometry (the original disabled GL_TEXTURE_2D) */
+	public static final ResourceLocation white_tex = RefStrings.loc("textures/misc/white.png");
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));
