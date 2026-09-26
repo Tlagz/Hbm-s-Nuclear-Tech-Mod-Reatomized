@@ -11,6 +11,8 @@ import api.hbm.fluidmk2.IFluidConnectorMK2;
 import api.hbm.fluidmk2.IFluidReceiverMK2;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -18,15 +20,16 @@ import net.minecraft.world.level.block.state.BlockState;
  * Tile entity of multiblock dummies that forwards energy, fluids and (through the capability) items to the core.
  * The flags are set by the block when it creates the proxy, based on the dummy's metadata.
  *
- * TODO heat source, crucible, redstone-over-radio and OpenComputers forwarding
+ * TODO crucible, redstone-over-radio and OpenComputers forwarding
  */
-public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnergyReceiverMK2, IFluidReceiverMK2 {
+public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnergyReceiverMK2, IFluidReceiverMK2, api.hbm.tile.IHeatSource {
 
 	private BlockEntity tile;
 	public boolean inventory;
 	public boolean power;
 	public boolean conductor;
 	public boolean fluid;
+	public boolean heat;
 
 	public TileEntityProxyCombo(BlockPos pos, BlockState state) {
 		super(ModTileEntities.PROXY_COMBO.get(), pos, state);
@@ -36,6 +39,28 @@ public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnerg
 	public TileEntityProxyCombo power() { this.power = true; return this; }
 	public TileEntityProxyCombo conductor() { this.conductor = true; return this; }
 	public TileEntityProxyCombo fluid() { this.fluid = true; return this; }
+	public TileEntityProxyCombo heatSource() { this.heat = true; return this; }
+
+	/** The flags have to be saved: on chunk load the tile is recreated by its type's factory, which doesn't know them */
+	@Override
+	protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+		super.loadAdditional(nbt, registries);
+		this.inventory = nbt.getBoolean("inv");
+		this.power = nbt.getBoolean("power");
+		this.conductor = nbt.getBoolean("conductor");
+		this.fluid = nbt.getBoolean("fluid");
+		this.heat = nbt.getBoolean("heat");
+	}
+
+	@Override
+	protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+		super.saveAdditional(nbt, registries);
+		nbt.putBoolean("inv", inventory);
+		nbt.putBoolean("power", power);
+		nbt.putBoolean("conductor", conductor);
+		nbt.putBoolean("fluid", fluid);
+		nbt.putBoolean("heat", heat);
+	}
 
 	/** The core tile entity, cached */
 	public BlockEntity getTile() {
@@ -96,6 +121,18 @@ public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnerg
 	@Override
 	public ConnectionPriority getPriority() {
 		return power && getTile() instanceof IEnergyReceiverMK2 rec ? rec.getPriority() : ConnectionPriority.NORMAL;
+	}
+
+	/// HEAT ///
+
+	@Override
+	public int getHeatStored() {
+		return heat && getTile() instanceof api.hbm.tile.IHeatSource source ? source.getHeatStored() : 0;
+	}
+
+	@Override
+	public void useUpHeat(int heat) {
+		if(this.heat && getTile() instanceof api.hbm.tile.IHeatSource source) source.useUpHeat(heat);
 	}
 
 	/// FLUIDS ///
