@@ -10,6 +10,7 @@ import com.hbm.creativetabs.NtmTab;
 import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ItemGenericPart.EnumPartType;
 import com.hbm.items.machine.ItemCircuit.EnumCircuitType;
+import com.hbm.items.machine.ItemPistons.EnumPistonType;
 import com.hbm.items.machine.ItemBatteryPack.EnumBatteryPack;
 import com.hbm.items.machine.ItemBreedingRod.BreedingRodType;
 import com.hbm.items.machine.ItemDrive.EnumDriveType;
@@ -864,6 +865,10 @@ public class ModItems {
 			value -> "items/battery_sc." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), com.hbm.items.machine.ItemBatterySC::new);
 	public static final ItemEnumMulti.Variants<EnumElectrodeType> arc_electrode = handheld(multi("arc_electrode", "arc_electrode", EnumElectrodeType.class, true,
 			value -> "items/arc_electrode." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(), com.hbm.items.machine.ItemArcElectrode::new));
+	/** The original's names are piston_set_<type> without the dot: its own description id and texture per variant */
+	public static final ItemEnumMulti.Variants<EnumPistonType> piston_set = multi("piston_set", "piston_set", EnumPistonType.class, false,
+			value -> "items/piston_set_" + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties().stacksTo(1),
+			(p, id, value) -> new com.hbm.items.machine.ItemPistons(p, "item.hbm.piston_set_" + value.name().toLowerCase(java.util.Locale.US), value));
 	public static final ItemEnumMulti.Variants<EnumElectrodeType> arc_electrode_burnt = handheld(multi("arc_electrode_burnt", "arc_electrode_burnt", EnumElectrodeType.class, true, true, NtmTab.CONTROL, new Item.Properties()));
 	/** Ore byproducts, one gray texture tinted per type, hidden like the original */
 	public static final ItemEnumMulti.Variants<EnumByproduct> ore_byproduct = multi("ore_byproduct", "ore_byproduct", EnumByproduct.class, true, value -> "items/byproduct", null, new Item.Properties());

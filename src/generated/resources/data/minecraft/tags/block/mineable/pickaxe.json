@@ -32,6 +32,7 @@
     "hbm:machine_industrial_boiler",
     "hbm:pump_steam",
     "hbm:pump_electric",
+    "hbm:machine_combustion_engine",
     "hbm:furnace_steel",
     "hbm:machine_steam_engine",
     "hbm:machine_condenser",

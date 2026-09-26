@@ -55,6 +55,8 @@ public class ResourceManager {
 	public static final HFRWavefrontObject pump = new HFRWavefrontObject(RefStrings.loc("models/machines/pump.obj"));
 	public static final ResourceLocation pump_steam_tex = RefStrings.loc("textures/models/machines/pump_steam.png");
 	public static final ResourceLocation pump_electric_tex = RefStrings.loc("textures/models/machines/pump_electric.png");
+	public static final HFRWavefrontObject combustion_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/combustion_engine.obj"));
+	public static final ResourceLocation combustion_engine_tex = RefStrings.loc("textures/models/machines/combustion_engine.png");
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));

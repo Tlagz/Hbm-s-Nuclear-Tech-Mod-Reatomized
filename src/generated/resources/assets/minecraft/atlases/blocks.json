@@ -6066,6 +6066,22 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/piston_set_steel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_set_dura"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_set_desh"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/piston_set_starmetal"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/arc_electrode_burnt.graphite"
     },
     {

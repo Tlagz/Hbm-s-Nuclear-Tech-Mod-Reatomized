@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_combustion_engine"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_combustion_engine"
+    }
+  }
+}
