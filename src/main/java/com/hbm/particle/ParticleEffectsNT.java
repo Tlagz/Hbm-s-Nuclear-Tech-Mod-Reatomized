@@ -20,6 +20,8 @@ public class ParticleEffectsNT {
 
 	/** Sprites of {@link ModParticles#BASE}, set when the particle providers are registered */
 	public static SpriteSet baseSprites;
+	/** Sprites of {@link ModParticles#GAS_FLAME} (vanilla smoke) */
+	public static SpriteSet gasFlameSprites;
 
 	public static void effectNT(CompoundTag data) {
 
@@ -54,6 +56,16 @@ public class ParticleEffectsNT {
 
 				mc.particleEngine.add(fx);
 			}
+		}
+
+		if("gasfire".equals(type) && gasFlameSprites != null) {
+			float scale = data.getFloat("scale");
+			mc.particleEngine.add(new ParticleGasFlame(world, x, y, z, data.getDouble("mX"), data.getDouble("mY"), data.getDouble("mZ"), scale > 0 ? scale : 6.5F, gasFlameSprites));
+		}
+
+		// TODO the other vanillaExt modes
+		if("vanillaExt".equals(type) && "smoke".equals(data.getString("mode"))) {
+			world.addParticle(net.minecraft.core.particles.ParticleTypes.SMOKE, x, y, z, data.getDouble("mX"), data.getDouble("mY"), data.getDouble("mZ"));
 		}
 	}
 }

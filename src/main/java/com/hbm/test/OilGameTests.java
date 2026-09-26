@@ -127,4 +127,41 @@ public class OilGameTests {
 			helper.succeed();
 		});
 	}
+
+	private static com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare flare(GameTestHelper helper) {
+		BlockPos core = helper.absolutePos(new BlockPos(3, 1, 3));
+		helper.getLevel().setBlockAndUpdate(core, ModBlocks.machine_flare.get().defaultBlockState()
+				.setValue(BlockDummyable.META, Direction.NORTH.get3DDataValue() + BlockDummyable.offset));
+		com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare flare = (com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare) helper.getLevel().getBlockEntity(core);
+		flare.tank.setTankType(com.hbm.inventory.fluid.Fluids.GAS);
+		flare.tank.setFill(10_000);
+		flare.isOn = true;
+		return flare;
+	}
+
+	@GameTest(template = "empty_8x4x8")
+	public static void flareBurnsGasForPower(GameTestHelper helper) {
+		com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare flare = flare(helper);
+		flare.doesBurn = true;
+		// 10mB/t, gases burn at a fifth of their heat energy (calculated at startup)
+		long perTick = com.hbm.inventory.fluid.Fluids.GAS.getTrait(com.hbm.inventory.fluid.trait.FT_Flammable.class).getHeatEnergy() * 10 / 1_000 / 5;
+
+		helper.runAfterDelay(10, () -> {
+			int burned = 10_000 - flare.tank.getFill();
+			helper.assertTrue(burned > 0 && burned % 10 == 0, "10mB per tick, burned " + burned);
+			helper.assertTrue(flare.power == Math.min(burned / 10 * perTick, com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare.maxPower), perTick + " HE per tick, has " + flare.power);
+			helper.succeed();
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8")
+	public static void flareVentsGas(GameTestHelper helper) {
+		com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare flare = flare(helper);
+
+		helper.runAfterDelay(10, () -> {
+			int vented = 10_000 - flare.tank.getFill();
+			helper.assertTrue(vented > 0 && vented % 50 == 0 && flare.power == 0, "50mB/t vented without power, vented " + vented + ", power " + flare.power);
+			helper.succeed();
+		});
+	}
 }

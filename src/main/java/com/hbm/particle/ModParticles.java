@@ -18,4 +18,6 @@ public class ModParticles {
 
 	/** The original's particleBase icon, a soft round puff (particle_base.png), used by the cooling tower steam */
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BASE = PARTICLES.register("base", () -> new SimpleParticleType(false));
+	/** The vanilla smoke sprites, for the gas flame (the original extended EntitySmokeFX) */
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GAS_FLAME = PARTICLES.register("gas_flame", () -> new SimpleParticleType(false));
 }

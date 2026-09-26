@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -182,6 +182,19 @@ public class DevScene {
 		if(frackingPos != null && server.overworld().getBlockEntity(frackingPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower frack) {
 			frack.power = frack.getMaxPower();
 			frack.tanks[2].setFill(frack.tanks[2].getMaxFill());
+		}
+		// the flare stack burning natural gas
+		if(flarePos != null && server.overworld().getBlockEntity(flarePos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare flare) {
+			flare.tank.setTankType(com.hbm.inventory.fluid.Fluids.GAS);
+			flare.tank.setFill(flare.tank.getMaxFill());
+			flare.isOn = true;
+			flare.doesBurn = true;
+		}
+		if(serverTicks == 1610 || serverTicks == 1645) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				if(serverTicks == 1610) player.teleportTo(player.serverLevel(), -13.5, -59, -3.5, 148F, -52F);
+				else if(player.level().getBlockEntity(flarePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(flarePos));
+			}
 		}
 		if(serverTicks == 1540 || serverTicks == 1575) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -658,6 +671,9 @@ public class DevScene {
 		}
 		frackingPos = ModBlocks.machine_fracking_tower.get().placeMultiblock(level, origin.offset(-26, 0, -7), net.minecraft.core.Direction.NORTH);
 
+		// flare stack between the cracker and the floor
+		flarePos = ModBlocks.machine_flare.get().placeMultiblock(level, origin.offset(-17, 0, -9), net.minecraft.core.Direction.NORTH);
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -840,7 +856,10 @@ public class DevScene {
 			if(ticks == 1565) Screenshot.grab(mc.gameDirectory, "devscene_world_pumpjack.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1600) Screenshot.grab(mc.gameDirectory, "devscene_world_fracking.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1610) {
+			if(ticks == 1640) Screenshot.grab(mc.gameDirectory, "devscene_world_flare.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1675) Screenshot.grab(mc.gameDirectory, "devscene_gui_flare.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1685) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

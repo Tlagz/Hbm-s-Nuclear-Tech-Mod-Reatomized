@@ -86,6 +86,7 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineOilWell> machine_well = dummyable("machine_well", MachineOilWell::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachinePumpjack> machine_pumpjack = dummyable("machine_pumpjack", com.hbm.blocks.machine.MachinePumpjack::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineFrackingTower> machine_fracking_tower = dummyable("machine_fracking_tower", com.hbm.blocks.machine.MachineFrackingTower::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineGasFlare> machine_flare = dummyable("machine_flare", com.hbm.blocks.machine.MachineGasFlare::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.MACHINE, "blocks/block_steel");
 	/** BlockNoDrop in the original, left behind by oil drills */
 	public static final DeferredBlock<Block> oil_pipe = generated("oil_pipe", Block::new, props(Mat.IRON, 5.0F, 10.0F), null, BlockModel.cube("blocks/oil_pipe"));
 	public static final DeferredBlock<HeaterFirebox> heater_firebox = dummyable("heater_firebox", HeaterFirebox::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");

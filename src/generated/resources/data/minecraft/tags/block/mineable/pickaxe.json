@@ -18,6 +18,7 @@
     "hbm:machine_well",
     "hbm:machine_pumpjack",
     "hbm:machine_fracking_tower",
+    "hbm:machine_flare",
     "hbm:oil_pipe",
     "hbm:heater_firebox",
     "hbm:machine_boiler",

@@ -82,6 +82,8 @@ public class ResourceManager {
 	public static final ResourceLocation pumpjack_tex = RefStrings.loc("textures/models/machines/pumpjack.png");
 	public static final HFRWavefrontObject fracking_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/fracking_tower.obj"));
 	public static final ResourceLocation fracking_tower_tex = RefStrings.loc("textures/models/machines/fracking_tower.png");
+	public static final HFRWavefrontObject oilflare = new HFRWavefrontObject(RefStrings.loc("models/machines/flare_stack.obj"));
+	public static final ResourceLocation oilflare_tex = RefStrings.loc("textures/models/machines/flare_stack.png");
 	public static final HFRWavefrontObject pipe_neo = new HFRWavefrontObject(RefStrings.loc("models/blocks/pipe_neo.obj"));
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
