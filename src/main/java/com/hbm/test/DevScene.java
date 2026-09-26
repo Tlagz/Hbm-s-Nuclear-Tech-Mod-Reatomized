@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -218,6 +218,28 @@ public class DevScene {
 				cent.setPower(com.hbm.tileentity.machine.TileEntityMachineGasCent.maxPower);
 				if(centPos == gasCentPos) cent.tank.setFill(cent.tank.getMaxFill());
 				for(int i = 0; i < 4; i++) if(cent.getItem(i).getCount() > 32) cent.setItem(i, ItemStack.EMPTY);
+			}
+		}
+		// the gas turbine running at full throttle
+		if(turbineGasPos != null && server.overworld().getBlockEntity(turbineGasPos) instanceof com.hbm.tileentity.machine.TileEntityMachineTurbineGas turbine) {
+			if(turbine.state == 0) {
+				turbine.state = 1;
+				turbine.rpm = 10;
+				turbine.temp = 300;
+				turbine.counter = 225;
+			}
+			turbine.powerSliderPos = 60;
+			turbine.tanks[0].setFill(turbine.tanks[0].getMaxFill());
+			turbine.tanks[1].setFill(turbine.tanks[1].getMaxFill());
+			turbine.tanks[2].setFill(turbine.tanks[2].getMaxFill());
+			turbine.tanks[3].setFill(Math.min(turbine.tanks[3].getFill(), 100_000));
+			turbine.setPower(Math.min(turbine.getPower(), 800_000));
+		}
+		if(serverTicks == 2165 || serverTicks == 2200) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2165) player.teleportTo(player.serverLevel(), 2.5, -58, -47.5, 0F, -12F);
+				else if(player.level().getBlockEntity(turbineGasPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(turbineGasPos));
 			}
 		}
 		if(serverTicks == 2090 || serverTicks == 2125) {
@@ -789,6 +811,7 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			turbineGasPos = ModBlocks.machine_turbinegas.get().placeMultiblock(level, origin.offset(2, 0, -43), net.minecraft.core.Direction.NORTH);
 			gasCentPos = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -33), net.minecraft.core.Direction.NORTH);
 			gasCentPos2 = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -32), net.minecraft.core.Direction.NORTH);
 			electrolyserPos = ModBlocks.machine_electrolyser.get().placeMultiblock(level, origin.offset(-11, 0, -37), net.minecraft.core.Direction.NORTH);
@@ -998,7 +1021,10 @@ public class DevScene {
 			if(ticks == 2123) Screenshot.grab(mc.gameDirectory, "devscene_world_gascent.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2155) Screenshot.grab(mc.gameDirectory, "devscene_gui_gascent.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2165) {
+			if(ticks == 2198) Screenshot.grab(mc.gameDirectory, "devscene_world_turbinegas.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2230) Screenshot.grab(mc.gameDirectory, "devscene_gui_turbinegas.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2240) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

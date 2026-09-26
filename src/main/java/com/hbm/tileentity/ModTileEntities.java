@@ -104,6 +104,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityElectrolyser::new, ModBlocks.machine_electrolyser.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineGasCent>> GAS_CENT = TILES.register("machine_gascent",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineGasCent::new, ModBlocks.machine_gascent.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineTurbineGas>> TURBINE_GAS = TILES.register("machine_turbinegas",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineTurbineGas::new, ModBlocks.machine_turbinegas.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

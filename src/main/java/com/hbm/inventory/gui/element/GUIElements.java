@@ -53,6 +53,71 @@ public class GUIElements {
 		RenderSystem.enableCull();
 	}
 
+	/**
+	 * A part of a 256x256 texture region revealed clockwise like a 270 degree gauge (progress 0-1), starting at the
+	 * bottom left corner. The original's GUIElements.drawSmoothTextureModalCircle.
+	 */
+	public static void drawSmoothTextureModalCircle(GuiGraphics graphics, net.minecraft.resources.ResourceLocation texture, int xDraw, int yDraw, float zDraw, int xStart, int yStart, int xDelta, int yDelta, double progress) {
+		float uv = 1F / 256F;
+
+		progress = Mth.clamp(progress, 0, 1);
+		float angle = (float) (-progress * 270.0);
+		double theta = Math.toRadians(angle - 135);
+		int addons = 0;
+		double xTarget = 0;
+		double yTarget = 0;
+
+		// how many fixed corners are passed before the moving point
+		if(angle >= -180 && angle < -90) {
+			addons = 1;
+		} else if(angle >= -270 && angle < -180) {
+			addons = 2;
+		}
+
+		// the moving point on the square's edge
+		if(angle >= -90) {
+			xTarget = -1;
+			yTarget = -Math.tan(theta);
+		} else if(angle > -180 && angle < -90 && angle != -135) {
+			xTarget = Math.tan(Math.PI / 2 - theta);
+			yTarget = 1;
+		} else if(angle <= -180) {
+			xTarget = 1;
+			yTarget = Math.tan(theta);
+		} else if(angle == -135) {
+			xTarget = 0;
+			yTarget = 1;
+		}
+
+		double xMid = (double) xDelta / 2;
+		double yMid = (double) yDelta / 2;
+		xTarget *= xMid;
+		yTarget *= yMid;
+
+		// a fan of triangles around the middle: bottom left, [top left], [top right], moving point
+		List<double[]> points = new java.util.ArrayList<>();
+		points.add(new double[] {0, yDelta});
+		if(addons >= 1) points.add(new double[] {0, 0});
+		if(addons == 2) points.add(new double[] {xDelta, 0});
+		points.add(new double[] {xTarget + xMid, -yTarget + yMid});
+
+		Matrix4f matrix = graphics.pose().last().pose();
+		BufferBuilder buffer = Tesselator.getInstance().begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_TEX);
+		for(int i = 0; i < points.size() - 1; i++) {
+			double[] a = points.get(i);
+			double[] b = points.get(i + 1);
+			buffer.addVertex(matrix, (float) (xDraw + a[0]), (float) (yDraw + a[1]), zDraw).setUv((float) (xStart + a[0]) * uv, (float) (yStart + a[1]) * uv);
+			buffer.addVertex(matrix, (float) (xDraw + xMid), (float) (yDraw + yMid), zDraw).setUv((float) (xStart + xMid) * uv, (float) (yStart + yMid) * uv);
+			buffer.addVertex(matrix, (float) (xDraw + b[0]), (float) (yDraw + b[1]), zDraw).setUv((float) (xStart + b[0]) * uv, (float) (yStart + b[1]) * uv);
+		}
+
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShaderTexture(0, texture);
+		RenderSystem.disableCull();
+		BufferUploader.drawWithShader(buffer.buildOrThrow());
+		RenderSystem.enableCull();
+	}
+
 	public static final int STANDARD_COLOR_BACKGROUND = -0xFEFFFF0;
 	public static final int STANDARD_COLOR_LINE0 = 0x505000FF;
 	public static final int STANDARD_COLOR_LINE1 = (STANDARD_COLOR_LINE0 & 0xFEFEFE) >> 1 | STANDARD_COLOR_LINE0 & -0xFEFEFE;
