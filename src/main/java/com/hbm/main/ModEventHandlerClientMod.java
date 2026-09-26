@@ -45,6 +45,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.OILBURNER.get(), com.hbm.inventory.gui.GUIOilburner::new);
 		event.register(ModMenus.HEATER_HEATEX.get(), com.hbm.inventory.gui.GUIHeaterHeatex::new);
 		event.register(ModMenus.COMBUSTION_ENGINE.get(), com.hbm.inventory.gui.GUICombustionEngine::new);
+		event.register(ModMenus.CENTRIFUGE.get(), com.hbm.inventory.gui.GUIMachineCentrifuge::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -72,6 +73,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.PUMP_STEAM.get(), com.hbm.render.tileentity.RenderPump::new);
 		event.registerBlockEntityRenderer(ModTileEntities.PUMP_ELECTRIC.get(), com.hbm.render.tileentity.RenderPump::new);
 		event.registerBlockEntityRenderer(ModTileEntities.COMBUSTION_ENGINE.get(), com.hbm.render.tileentity.RenderCombustionEngine::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CENTRIFUGE.get(), com.hbm.render.tileentity.RenderCentrifuge::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -116,6 +118,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.pump_steam.get().asItem(), com.hbm.render.tileentity.RenderPump.itemRenderer(0));
 		NTMItemRenderer.RENDERERS.put(ModBlocks.pump_electric.get().asItem(), com.hbm.render.tileentity.RenderPump.itemRenderer(1));
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_combustion_engine.get().asItem(), com.hbm.render.tileentity.RenderCombustionEngine.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_centrifuge.get().asItem(), com.hbm.render.tileentity.RenderCentrifuge.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

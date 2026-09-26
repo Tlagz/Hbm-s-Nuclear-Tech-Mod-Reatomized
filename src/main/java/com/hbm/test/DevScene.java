@@ -47,7 +47,7 @@ public class DevScene {
 	static BlockPos industrialTurbinePos, chungusPos;
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
-	static BlockPos combustionPos;
+	static BlockPos combustionPos, centrifugePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -159,6 +159,18 @@ public class DevScene {
 			engine.isOn = true;
 			engine.setting = 20;
 			engine.setPower(0);
+		}
+		// the centrifuge working on iron ore
+		if(centrifugePos != null && server.overworld().getBlockEntity(centrifugePos) instanceof com.hbm.tileentity.machine.TileEntityMachineCentrifuge centrifuge) {
+			centrifuge.setPower(com.hbm.tileentity.machine.TileEntityMachineCentrifuge.maxPower);
+			if(centrifuge.getItem(0).isEmpty()) centrifuge.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+		}
+		if(serverTicks == 1235 || serverTicks == 1270) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1235) player.teleportTo(player.serverLevel(), -11.5, -60, 34.2, 180F, -15F);
+				else if(player.level().getBlockEntity(centrifugePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(centrifugePos));
+			}
 		}
 		if(serverTicks == 1160 || serverTicks == 1195) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -547,6 +559,9 @@ public class DevScene {
 		// combustion engine on the grass south-west of the heaters
 		combustionPos = ModBlocks.machine_combustion_engine.get().placeMultiblock(level, origin.offset(-8, 0, 28), net.minecraft.core.Direction.NORTH);
 
+		// centrifuge west of the combustion engine
+		centrifugePos = ModBlocks.machine_centrifuge.get().placeMultiblock(level, origin.offset(-11, 0, 31), net.minecraft.core.Direction.NORTH);
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -714,7 +729,10 @@ public class DevScene {
 			if(ticks == 1185) Screenshot.grab(mc.gameDirectory, "devscene_world_combustion_engine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1225) Screenshot.grab(mc.gameDirectory, "devscene_gui_combustion_engine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1235) {
+			if(ticks == 1260) Screenshot.grab(mc.gameDirectory, "devscene_world_centrifuge.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1300) Screenshot.grab(mc.gameDirectory, "devscene_gui_centrifuge.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1310) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
