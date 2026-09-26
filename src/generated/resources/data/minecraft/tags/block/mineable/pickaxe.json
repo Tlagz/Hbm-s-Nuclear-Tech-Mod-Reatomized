@@ -37,6 +37,7 @@
     "hbm:machine_mixer",
     "hbm:furnace_iron",
     "hbm:machine_furnace_brick_off",
+    "hbm:furnace_combination",
     "hbm:crate_iron",
     "hbm:crate_steel",
     "hbm:crate_desh",

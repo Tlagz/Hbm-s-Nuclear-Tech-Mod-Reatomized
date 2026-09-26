@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -273,6 +273,20 @@ public class DevScene {
 			if(brick.getItem(0).isEmpty()) brick.setItem(0, new ItemStack(net.minecraft.world.item.Items.CLAY_BALL, 64));
 			if(brick.getItem(1).isEmpty()) brick.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 16));
 			if(brick.getItem(2).getCount() > 60) brick.setItem(2, ItemStack.EMPTY);
+		}
+		// the combination furnace on a firebox cokes coal
+		if(comboPos != null && server.overworld().getBlockEntity(comboPos) instanceof com.hbm.tileentity.machine.TileEntityFurnaceCombination combo) {
+			combo.heat = com.hbm.tileentity.machine.TileEntityFurnaceCombination.maxHeat;
+			if(combo.getItem(0).isEmpty()) combo.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			if(combo.getItem(1).getCount() > 60) combo.setItem(1, ItemStack.EMPTY);
+			if(combo.tank.getFill() > 20_000) combo.tank.setFill(4_000);
+		}
+		if(serverTicks == 2795 || serverTicks == 2830) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2795) player.teleportTo(player.serverLevel(), 1.5, -59, -31.5, 180F, 5F);
+				else if(player.level().getBlockEntity(comboPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(comboPos));
+			}
 		}
 		if(serverTicks == 2765) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -913,6 +927,14 @@ public class DevScene {
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
 			compressorPos = ModBlocks.machine_compressor.get().placeMultiblock(level, origin.offset(14, 0, -29), net.minecraft.core.Direction.NORTH);
 			compressorCompactPos = ModBlocks.machine_compressor_compact.get().placeMultiblock(level, origin.offset(13, 0, -24), net.minecraft.core.Direction.NORTH);
+			{
+				BlockPos fireboxCore = ModBlocks.heater_firebox.get().placeMultiblock(level, origin.offset(1, 0, -37), net.minecraft.core.Direction.NORTH);
+				if(fireboxCore != null) {
+					if(level.getBlockEntity(fireboxCore) instanceof net.minecraft.world.Container fireInv) fireInv.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+					// the combination furnace's core is 1 block south of the block it's placed at
+					comboPos = ModBlocks.furnace_combination.get().placeMultiblock(level, fireboxCore.above().north(), net.minecraft.core.Direction.NORTH);
+				}
+			}
 			furnaceBrickPos = origin.offset(-4, 0, -41);
 			level.setBlockAndUpdate(furnaceBrickPos, ModBlocks.machine_furnace_brick_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineBrickFurnace.FACING, net.minecraft.core.Direction.SOUTH));
 			furnaceIronPos = ModBlocks.furnace_iron.get().placeMultiblock(level, origin.offset(-5, 0, -41), net.minecraft.core.Direction.SOUTH);
@@ -1188,7 +1210,10 @@ public class DevScene {
 
 			if(ticks == 2785) Screenshot.grab(mc.gameDirectory, "devscene_world_furnace_brick.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2795) {
+			if(ticks == 2828) Screenshot.grab(mc.gameDirectory, "devscene_world_combination.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2860) Screenshot.grab(mc.gameDirectory, "devscene_gui_combination.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2870) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

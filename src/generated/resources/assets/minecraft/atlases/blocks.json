@@ -1626,6 +1626,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/brick_light_alt"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_refinery"
     },
     {
