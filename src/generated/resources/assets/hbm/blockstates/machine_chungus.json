@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_chungus"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_chungus"
+    }
+  }
+}

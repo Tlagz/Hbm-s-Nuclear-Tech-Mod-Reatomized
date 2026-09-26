@@ -56,6 +56,10 @@ public class ResourceManager {
 	public static final ResourceLocation tower_large_tex = RefStrings.loc("textures/models/machines/tower_large.png");
 	public static final HFRWavefrontObject condenser = new HFRWavefrontObject(RefStrings.loc("models/machines/condenser.obj"));
 	public static final ResourceLocation condenser_tex = RefStrings.loc("textures/models/machines/condenser.png");
+	public static final HFRWavefrontObject industrial_turbine = new HFRWavefrontObject(RefStrings.loc("models/machines/industrial_turbine.obj"));
+	public static final ResourceLocation industrial_turbine_tex = RefStrings.loc("textures/models/machines/industrial_turbine.png");
+	public static final HFRWavefrontObject chungus = new HFRWavefrontObject(RefStrings.loc("models/machines/chungus.obj"));
+	public static final ResourceLocation chungus_tex = RefStrings.loc("textures/models/machines/chungus.png");
 	public static final HFRWavefrontObject crucible_heat = new HFRWavefrontObject(RefStrings.loc("models/machines/crucible.obj"));
 	public static final ResourceLocation crucible_tex = RefStrings.loc("textures/models/machines/crucible_heat.png");
 	public static final HFRWavefrontObject arc_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_furnace.obj"));

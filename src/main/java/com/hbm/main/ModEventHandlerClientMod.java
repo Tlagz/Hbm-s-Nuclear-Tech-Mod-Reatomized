@@ -68,6 +68,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
 		event.registerBlockEntityRenderer(ModTileEntities.TOWER_SMALL.get(), com.hbm.render.tileentity.RenderCoolingTower.small());
 		event.registerBlockEntityRenderer(ModTileEntities.TOWER_LARGE.get(), com.hbm.render.tileentity.RenderCoolingTower.large());
+		event.registerBlockEntityRenderer(ModTileEntities.INDUSTRIAL_TURBINE.get(), com.hbm.render.tileentity.RenderIndustrialTurbine::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CHUNGUS.get(), com.hbm.render.tileentity.RenderChungus::new);
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -104,6 +106,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_tower_small.get().asItem(), com.hbm.render.tileentity.RenderCoolingTower.itemRendererSmall());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_tower_large.get().asItem(), com.hbm.render.tileentity.RenderCoolingTower.itemRendererLarge());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_industrial_turbine.get().asItem(), com.hbm.render.tileentity.RenderIndustrialTurbine.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chungus.get().asItem(), com.hbm.render.tileentity.RenderChungus.itemRenderer());
 		for(var stirling : java.util.List.of(ModBlocks.machine_stirling, ModBlocks.machine_stirling_steel, ModBlocks.machine_stirling_creative)) {
 			NTMItemRenderer.RENDERERS.put(stirling.get().asItem(), com.hbm.render.tileentity.RenderStirling.itemRenderer(stirling.get()));
 		}

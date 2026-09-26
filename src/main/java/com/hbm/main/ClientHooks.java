@@ -36,4 +36,10 @@ public class ClientHooks {
 	public static com.hbm.sound.AudioWrapper createAudio(String sound) {
 		return new com.hbm.sound.AudioWrapperClient(net.minecraft.resources.ResourceLocation.parse(sound.toLowerCase(java.util.Locale.US)));
 	}
+
+	/** The original's MainRegistry.proxy.me().getDistance(x, y, z), infinite without a player */
+	public static double distanceToPlayer(double x, double y, double z) {
+		net.minecraft.world.entity.player.Player player = net.minecraft.client.Minecraft.getInstance().player;
+		return player == null ? Double.MAX_VALUE : Math.sqrt(player.distanceToSqr(x, y, z));
+	}
 }

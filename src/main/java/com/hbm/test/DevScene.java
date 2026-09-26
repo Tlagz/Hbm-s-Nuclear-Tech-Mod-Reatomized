@@ -44,6 +44,7 @@ public class DevScene {
 	static BlockPos cruciblePos;
 	static BlockPos steamEnginePos, condenserPos;
 	static BlockPos towerSmallPos, towerLargePos, condenserPoweredPos;
+	static BlockPos industrialTurbinePos, chungusPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -109,6 +110,19 @@ public class DevScene {
 				c.tanks[0].setFill(c.tanks[0].getMaxFill() / 2);
 				c.tanks[1].setFill(0);
 				if(c instanceof com.hbm.tileentity.machine.TileEntityCondenserPowered powered) powered.setPower(powered.getMaxPower());
+			}
+		}
+		// the turbines south of the floor, full of steam
+		for(BlockPos turbinePos : new BlockPos[] {industrialTurbinePos, chungusPos}) {
+			if(turbinePos != null && server.overworld().getBlockEntity(turbinePos) instanceof com.hbm.tileentity.machine.TileEntityTurbineBase turbine) {
+				turbine.tanks[0].setFill(turbine.tanks[0].getMaxFill() / 2);
+				turbine.tanks[1].setFill(0);
+			}
+		}
+		if(serverTicks == 945 || serverTicks == 985) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				if(serverTicks == 945) player.teleportTo(player.serverLevel(), 9.5, -60, 21.5, 90F, 8F);
+				else player.teleportTo(player.serverLevel(), -5.5, -60, 15.2, 0F, 18F);
 			}
 		}
 		if(serverTicks == 870 || serverTicks == 910) {
@@ -445,6 +459,15 @@ public class DevScene {
 			condenserPoweredPos = ModBlocks.machine_condenser_powered.get().placeMultiblock(level, origin.offset(20, 0, 7), net.minecraft.core.Direction.NORTH);
 		}
 
+		// the leviathan and the industrial turbine south of the floor
+		{
+			for(int x = -12; x <= 12; x++) for(int z = 14; z <= 32; z++) for(int y = 0; y <= 8; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			chungusPos = ModBlocks.machine_chungus.get().placeMultiblock(level, origin.offset(0, 0, 29), net.minecraft.core.Direction.SOUTH);
+			industrialTurbinePos = ModBlocks.machine_industrial_turbine.get().placeMultiblock(level, origin.offset(-3, 0, 20), net.minecraft.core.Direction.EAST);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -600,7 +623,10 @@ public class DevScene {
 			if(ticks == 900) Screenshot.grab(mc.gameDirectory, "devscene_world_cooling_towers.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 935) Screenshot.grab(mc.gameDirectory, "devscene_world_condenser_powered.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 945) {
+			if(ticks == 975) Screenshot.grab(mc.gameDirectory, "devscene_world_leviathan.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1010) Screenshot.grab(mc.gameDirectory, "devscene_world_industrial_turbine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1020) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

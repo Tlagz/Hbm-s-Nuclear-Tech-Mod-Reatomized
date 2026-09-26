@@ -33,6 +33,8 @@
     "hbm:machine_condenser_powered",
     "hbm:machine_tower_small",
     "hbm:machine_tower_large",
+    "hbm:machine_industrial_turbine",
+    "hbm:machine_chungus",
     "hbm:machine_crucible",
     "hbm:machine_arc_furnace",
     "hbm:machine_arc_welder",
