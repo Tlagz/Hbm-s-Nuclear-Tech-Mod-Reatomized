@@ -27,6 +27,7 @@
     "hbm:machine_coker",
     "hbm:machine_pyrooven",
     "hbm:machine_electrolyser",
+    "hbm:machine_gascent",
     "hbm:oil_pipe",
     "hbm:heater_firebox",
     "hbm:machine_boiler",

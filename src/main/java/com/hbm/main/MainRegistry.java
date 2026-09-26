@@ -75,6 +75,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.PyroOvenRecipes.registerDefaults();
 			com.hbm.inventory.recipes.ElectrolyserFluidRecipes.registerDefaults();
 			com.hbm.inventory.recipes.ElectrolyserMetalRecipes.registerDefaults();
+			com.hbm.inventory.recipes.GasCentrifugeRecipes.register();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();

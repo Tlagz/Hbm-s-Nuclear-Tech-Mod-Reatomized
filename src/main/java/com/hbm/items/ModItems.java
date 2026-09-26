@@ -777,6 +777,10 @@ public class ModItems {
 	public static final DeferredItem<ItemStamp> stamp_desh_9 = stamp("stamp_desh_9", 0, StampType.C9, "items/stamp_9_desh");
 	public static final DeferredItem<ItemStamp> stamp_desh_50 = stamp("stamp_desh_50", 0, StampType.C50, "items/stamp_50_desh");
 
+	/// NUCLEAR WASTE (TODO the original's ItemNuclearWaste item entity that never despawns) ///
+	public static final DeferredItem<Item> nuclear_waste = simple("nuclear_waste", NtmTab.PARTS, "items/nuclear_waste", new Item.Properties());
+	public static final DeferredItem<Item> nuclear_waste_tiny = simple("nuclear_waste_tiny", NtmTab.PARTS, "items/nuclear_waste_tiny", new Item.Properties());
+
 	/// MACHINE UPGRADES (TODO ejector/stack/muffler upgrades, ItemMachineUpgrade subclasses) ///
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_1 = upgrade("upgrade_speed_1", UpgradeType.SPEED, 1, 1);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_speed_2 = upgrade("upgrade_speed_2", UpgradeType.SPEED, 2, 1);

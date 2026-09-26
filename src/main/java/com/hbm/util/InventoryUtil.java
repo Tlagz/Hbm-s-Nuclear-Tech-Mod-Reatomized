@@ -90,4 +90,46 @@ public class InventoryUtil {
 		}
 		return amount;
 	}
+
+	/**
+	 * Adds the stack to the slots start..end (inclusive), first onto matching stacks, then into empty slots.
+	 * The passed stack is shrunk, returns what didn't fit (empty if everything fit).
+	 */
+	public static ItemStack tryAddItemToInventory(List<ItemStack> inv, int start, int end, ItemStack stack) {
+		if(stack.isEmpty()) return ItemStack.EMPTY;
+
+		for(int i = start; i <= end && !stack.isEmpty(); i++) {
+			ItemStack slot = inv.get(i);
+			if(!slot.isEmpty() && ItemStack.isSameItemSameComponents(slot, stack)) {
+				int transfer = Math.min(stack.getCount(), slot.getMaxStackSize() - slot.getCount());
+				if(transfer > 0) {
+					slot.grow(transfer);
+					stack.shrink(transfer);
+				}
+			}
+		}
+
+		for(int i = start; i <= end && !stack.isEmpty(); i++) {
+			if(inv.get(i).isEmpty()) {
+				int transfer = Math.min(stack.getCount(), stack.getMaxStackSize());
+				inv.set(i, stack.copyWithCount(transfer));
+				stack.shrink(transfer);
+			}
+		}
+
+		return stack.isEmpty() ? ItemStack.EMPTY : stack;
+	}
+
+	/** Whether all the items would fit into the slots start..end (inclusive), tested on a copy */
+	public static boolean doesArrayHaveSpace(List<ItemStack> inv, int start, int end, ItemStack[] items) {
+		List<ItemStack> copy = new java.util.ArrayList<>();
+		for(ItemStack stack : inv) copy.add(stack.copy());
+
+		for(ItemStack item : items) {
+			if(item == null || item.isEmpty()) continue;
+			if(!tryAddItemToInventory(copy, start, end, item.copy()).isEmpty()) return false;
+		}
+
+		return true;
+	}
 }

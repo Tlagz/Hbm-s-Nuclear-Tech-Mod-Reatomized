@@ -100,6 +100,8 @@ public class ModMenus {
 			tile("machine_electrolyser_fluid", com.hbm.tileentity.machine.TileEntityElectrolyser.class, com.hbm.inventory.container.ContainerElectrolyserFluid::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerElectrolyserMetal>> ELECTROLYSER_METAL =
 			tile("machine_electrolyser_metal", com.hbm.tileentity.machine.TileEntityElectrolyser.class, com.hbm.inventory.container.ContainerElectrolyserMetal::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineGasCent>> GAS_CENT =
+			tile("machine_gascent", com.hbm.tileentity.machine.TileEntityMachineGasCent.class, com.hbm.inventory.container.ContainerMachineGasCent::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =

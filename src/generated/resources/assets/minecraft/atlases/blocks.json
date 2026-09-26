@@ -4638,6 +4638,14 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_tiny"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/upgrade_speed_1"
     },
     {

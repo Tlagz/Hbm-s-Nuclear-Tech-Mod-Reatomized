@@ -178,7 +178,9 @@ public class HazardRegistry {
 		HazardSystem.register(ModItems.solid_fuel_presto_triplet_bf, makeData(RADIATION, 6000));
 		HazardSystem.register(ModItems.scrap_nuclear, makeData(RADIATION, 1F));
 		HazardSystem.register(ModBlocks.block_trinitite, makeData(RADIATION, trn * block));
+		HazardSystem.register(ModItems.nuclear_waste, makeData(RADIATION, wst * ingot));
 		HazardSystem.register(ModItems.billet_nuclear_waste, makeData(RADIATION, wst * billet));
+		HazardSystem.register(ModItems.nuclear_waste_tiny, makeData(RADIATION, wst * nugget));
 		HazardSystem.register(ModBlocks.ancient_scrap, makeData(RADIATION, 150F));
 		HazardSystem.register(ModBlocks.block_corium, makeData(RADIATION, 150F));
 		HazardSystem.register(ModBlocks.block_corium_cobble, makeData(RADIATION, 150F));

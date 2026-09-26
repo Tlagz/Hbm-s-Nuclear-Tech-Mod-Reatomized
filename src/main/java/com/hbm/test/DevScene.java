@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2;
 	private static int serverTicks = 0;
 
 	/**
@@ -211,6 +211,21 @@ public class DevScene {
 			electrolyser.tanks[2].setFill(Math.min(electrolyser.tanks[2].getFill(), 6_000));
 			electrolyser.tanks[3].setFill(10_000);
 			if(electrolyser.getItem(14).isEmpty()) electrolyser.setItem(14, new ItemStack(ModItems.crystal_iron.get(), 16));
+		}
+		// a two centrifuge cascade enriching UF6
+		for(BlockPos centPos : new BlockPos[] {gasCentPos, gasCentPos2}) {
+			if(centPos != null && server.overworld().getBlockEntity(centPos) instanceof com.hbm.tileentity.machine.TileEntityMachineGasCent cent) {
+				cent.setPower(com.hbm.tileentity.machine.TileEntityMachineGasCent.maxPower);
+				if(centPos == gasCentPos) cent.tank.setFill(cent.tank.getMaxFill());
+				for(int i = 0; i < 4; i++) if(cent.getItem(i).getCount() > 32) cent.setItem(i, ItemStack.EMPTY);
+			}
+		}
+		if(serverTicks == 2090 || serverTicks == 2125) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2090) player.teleportTo(player.serverLevel(), 13.5, -59, -27.5, 160F, -22F);
+				else if(player.level().getBlockEntity(gasCentPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(gasCentPos));
+			}
 		}
 		if(serverTicks == 1980 || serverTicks == 2015 || serverTicks == 2050) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -774,6 +789,8 @@ public class DevScene {
 			cokerPos = ModBlocks.machine_coker.get().placeMultiblock(level, origin.offset(6, 0, -29), net.minecraft.core.Direction.NORTH);
 			pyroPos = ModBlocks.machine_pyrooven.get().placeMultiblock(level, origin.offset(-4, 0, -30), net.minecraft.core.Direction.NORTH);
 			if(cokerPos != null && level.getBlockEntity(cokerPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCoker coker) coker.tanks[0].setFill(16_000);
+			gasCentPos = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -33), net.minecraft.core.Direction.NORTH);
+			gasCentPos2 = ModBlocks.machine_gascent.get().placeMultiblock(level, origin.offset(12, 0, -32), net.minecraft.core.Direction.NORTH);
 			electrolyserPos = ModBlocks.machine_electrolyser.get().placeMultiblock(level, origin.offset(-11, 0, -37), net.minecraft.core.Direction.NORTH);
 			if(pyroPos != null && level.getBlockEntity(pyroPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachinePyroOven pyro) pyro.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.STEAM);
 		}
@@ -978,7 +995,10 @@ public class DevScene {
 			if(ticks == 2045) Screenshot.grab(mc.gameDirectory, "devscene_gui_electrolyser_fluid.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2080) Screenshot.grab(mc.gameDirectory, "devscene_gui_electrolyser_metal.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2090) {
+			if(ticks == 2123) Screenshot.grab(mc.gameDirectory, "devscene_world_gascent.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2155) Screenshot.grab(mc.gameDirectory, "devscene_gui_gascent.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2165) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
