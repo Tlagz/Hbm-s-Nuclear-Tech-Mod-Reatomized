@@ -66,6 +66,8 @@ public class MainRegistry {
 			// after the fluids (custom ones included) and all items exist
 			com.hbm.inventory.FluidContainerRegistry.register();
 			com.hbm.inventory.recipes.RefineryRecipes.registerDefaults();
+			com.hbm.inventory.recipes.FractionRecipes.registerDefaults();
+			com.hbm.inventory.recipes.CrackingRecipes.registerDefaults();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();

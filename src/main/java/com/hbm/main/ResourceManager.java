@@ -72,6 +72,12 @@ public class ResourceManager {
 	public static final HFRWavefrontObject sphere_uv = new HFRWavefrontObject(RefStrings.loc("models/sphere_uv.obj"));
 	/** Plain white, for untextured colored geometry (the original disabled GL_TEXTURE_2D) */
 	public static final ResourceLocation white_tex = RefStrings.loc("textures/misc/white.png");
+	public static final HFRWavefrontObject fraction_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/fraction_tower.obj"));
+	public static final ResourceLocation fraction_tower_tex = RefStrings.loc("textures/models/machines/fraction_tower.png");
+	public static final HFRWavefrontObject fraction_spacer = new HFRWavefrontObject(RefStrings.loc("models/machines/fraction_spacer.obj"));
+	public static final ResourceLocation fraction_spacer_tex = RefStrings.loc("textures/models/machines/fraction_spacer.png");
+	public static final HFRWavefrontObject cracking_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/catalytic_cracker.obj"));
+	public static final ResourceLocation cracking_tower_tex = RefStrings.loc("textures/models/machines/catalytic_cracker.png");
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));

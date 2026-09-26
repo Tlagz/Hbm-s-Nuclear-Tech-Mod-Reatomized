@@ -172,6 +172,13 @@ public class DevScene {
 			crystallizer.tank.setFill(crystallizer.tank.getMaxFill());
 			if(crystallizer.getItem(0).isEmpty()) crystallizer.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
 		}
+		if(serverTicks == 1460 || serverTicks == 1500) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1460) player.teleportTo(player.serverLevel(), 14.5, -59, -8.5, -90F, -30F);
+				else player.teleportTo(player.serverLevel(), -13.5, -59, 0.5, 90F, -25F);
+			}
+		}
 		if(serverTicks == 1385 || serverTicks == 1420) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
@@ -605,6 +612,27 @@ public class DevScene {
 			}
 		}
 
+		// fractioning towers (two segments and a separator) east of the floor, the catalytic cracker west of it
+		{
+			BlockPos frac = ModBlocks.machine_fraction_tower.get().placeMultiblock(level, origin.offset(19, 0, -9), net.minecraft.core.Direction.NORTH);
+			ModBlocks.machine_fraction_tower.get().placeMultiblock(level, origin.offset(19, 3, -9), net.minecraft.core.Direction.NORTH);
+			ModBlocks.fraction_spacer.get().placeMultiblock(level, origin.offset(19, 6, -9), net.minecraft.core.Direction.NORTH);
+			if(frac != null && level.getBlockEntity(frac) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineFractionTower tower) {
+				tower.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.HEAVYOIL);
+				tower.tanks[0].setFill(4_000);
+			}
+
+			for(int x = -30; x <= -15; x++) for(int z = -10; z <= 10; z++) for(int y = 0; y <= 16; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			BlockPos cracker = ModBlocks.machine_catalytic_cracker.get().placeMultiblock(level, origin.offset(-22, 0, -3), net.minecraft.core.Direction.NORTH);
+			if(cracker != null && level.getBlockEntity(cracker) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticCracker cat) {
+				cat.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.OIL);
+				cat.tanks[0].setFill(4_000);
+				cat.tanks[1].setFill(8_000);
+			}
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -781,7 +809,10 @@ public class DevScene {
 			if(ticks == 1410) Screenshot.grab(mc.gameDirectory, "devscene_world_tanks.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1450) Screenshot.grab(mc.gameDirectory, "devscene_gui_fluid_tank.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1460) {
+			if(ticks == 1490) Screenshot.grab(mc.gameDirectory, "devscene_world_fraction_tower.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1530) Screenshot.grab(mc.gameDirectory, "devscene_world_cracker.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1540) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
