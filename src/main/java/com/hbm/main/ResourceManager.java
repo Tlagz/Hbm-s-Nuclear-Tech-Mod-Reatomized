@@ -46,6 +46,12 @@ public class ResourceManager {
 	public static final ResourceLocation heater_oven_tex = RefStrings.loc("textures/models/machines/heating_oven.png");
 	public static final HFRWavefrontObject heater_electric = new HFRWavefrontObject(RefStrings.loc("models/machines/electric_heater.obj")).noSmooth();
 	public static final ResourceLocation heater_electric_tex = RefStrings.loc("textures/models/machines/electric_heater.png");
+	public static final HFRWavefrontObject heater_oilburner = new HFRWavefrontObject(RefStrings.loc("models/machines/oilburner.obj"));
+	public static final ResourceLocation heater_oilburner_tex = RefStrings.loc("textures/models/machines/oilburner.png");
+	public static final HFRWavefrontObject heater_heatex = new HFRWavefrontObject(RefStrings.loc("models/machines/heatex.obj"));
+	public static final ResourceLocation heater_heatex_tex = RefStrings.loc("textures/models/machines/heater_heatex.png");
+	public static final HFRWavefrontObject boiler_industrial = new HFRWavefrontObject(RefStrings.loc("models/machines/industrial_boiler.obj"));
+	public static final ResourceLocation boiler_industrial_tex = RefStrings.loc("textures/models/machines/industrial_boiler.png");
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
 	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));

@@ -9,6 +9,7 @@ import com.hbm.tileentity.machine.TileEntityStirling;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.phys.AABB;
@@ -96,5 +97,59 @@ public class HeatGameTests {
 
 		firebox.heatEnergy = 10_000;
 		helper.succeedWhen(() -> helper.assertTrue(oven.heatEnergy > 0 && firebox.heatEnergy < 10_000, "the oven pulls the firebox's heat, has " + oven.heatEnergy));
+	}
+
+	/** The boiler takes the burner's heat through the heat source proxy on top of the 2 block tall burner */
+	@GameTest(template = "empty_8x12x8", timeoutTicks = 200)
+	public static void oilburnerHeatsBoilerThroughProxy(GameTestHelper helper) {
+		BlockPos burnerCore = ModBlocks.heater_oilburner.get().placeMultiblock(helper.getLevel(), center(helper, 1), Direction.NORTH);
+		com.hbm.tileentity.machine.TileEntityHeaterOilburner burner = (com.hbm.tileentity.machine.TileEntityHeaterOilburner) helper.getLevel().getBlockEntity(burnerCore);
+		BlockPos boilerCore = ModBlocks.machine_boiler.get().placeMultiblock(helper.getLevel(), center(helper, 3), Direction.NORTH);
+		helper.assertTrue(boilerCore != null && boilerCore.equals(burnerCore.above(2)), "the boiler sits on the burner");
+		com.hbm.tileentity.machine.TileEntityHeatBoiler boiler = (com.hbm.tileentity.machine.TileEntityHeatBoiler) helper.getLevel().getBlockEntity(boilerCore);
+
+		burner.isOn = true;
+		for(int i = 0; i < 9; i++) burner.toggleSetting();
+		helper.assertTrue(burner.setting == 10, "ten screwdriver turns from 1 wrap around at 10, is " + burner.setting);
+
+		helper.onEachTick(() -> burner.tank.setFill(burner.tank.getMaxFill()));
+		helper.succeedWhen(() -> {
+			helper.assertTrue(boiler.heat > 10_000, "the boiler should heat up from the burner below, has " + boiler.heat + ", burner " + burner.heatEnergy);
+		});
+	}
+
+	@GameTest(template = "empty_8x4x8")
+	public static void heatexCoolsHotCoolant(GameTestHelper helper) {
+		BlockPos core = ModBlocks.heater_heatex.get().placeMultiblock(helper.getLevel(), center(helper, 1), Direction.NORTH);
+		com.hbm.tileentity.machine.TileEntityHeaterHeatex heatex = (com.hbm.tileentity.machine.TileEntityHeaterHeatex) helper.getLevel().getBlockEntity(core);
+
+		// 100mB per cycle: 1mB hot coolant is 300 TU
+		CompoundTag control = new CompoundTag();
+		control.putInt("toCool", 100);
+		heatex.receiveControl(control);
+
+		helper.onEachTick(() -> {
+			heatex.tanks[0].setFill(10_000);
+			heatex.tanks[1].setFill(0);
+		});
+		helper.runAfterDelay(20, () -> {
+			helper.assertTrue(heatex.tanks[1].getTankType() == com.hbm.inventory.fluid.Fluids.COOLANT, "hot coolant cools into coolant");
+			helper.assertTrue(heatex.heatEnergy > 20 * 100 * 300 * 0.9 && heatex.heatEnergy <= 21 * 100 * 300, "about 30,000 TU per tick, has " + heatex.heatEnergy);
+			helper.succeed();
+		});
+	}
+
+	@GameTest(template = "empty_8x12x8", timeoutTicks = 200)
+	public static void industrialBoilerMakesSteam(GameTestHelper helper) {
+		TileEntityHeaterFirebox firebox = firebox(helper);
+		BlockPos core = ModBlocks.machine_industrial_boiler.get().placeMultiblock(helper.getLevel(), center(helper, 2), Direction.NORTH);
+		com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial boiler = (com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial) helper.getLevel().getBlockEntity(core);
+
+		boiler.tanks[0].setFill(64_000);
+		helper.onEachTick(() -> firebox.heatEnergy = 100_000);
+		helper.succeedWhen(() -> {
+			helper.assertTrue(boiler.tanks[1].getTankType() == com.hbm.inventory.fluid.Fluids.STEAM && boiler.tanks[1].getMaxFill() == 6_400_000, "64,000mB water tank makes room for 6.4M steam");
+			helper.assertTrue(boiler.tanks[1].getFill() > 0 && boiler.isOn, "the boiler should be boiling, has " + boiler.tanks[1].getFill() + "mB steam, " + boiler.heat + " TU");
+		});
 	}
 }

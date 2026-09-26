@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=1": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=10": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=11": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=12": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=13": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=14": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=15": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=2": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=3": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=4": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=5": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=6": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=7": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=8": {
+      "model": "hbm:block/heater_oilburner"
+    },
+    "meta=9": {
+      "model": "hbm:block/heater_oilburner"
+    }
+  }
+}

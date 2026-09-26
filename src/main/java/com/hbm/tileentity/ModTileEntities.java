@@ -52,6 +52,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityStirling::new, ModBlocks.machine_stirling.get(), ModBlocks.machine_stirling_steel.get(), ModBlocks.machine_stirling_creative.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterElectric>> HEATER_ELECTRIC = TILES.register("heater_electric",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterElectric::new, ModBlocks.heater_electric.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterOilburner>> HEATER_OILBURNER = TILES.register("heater_oilburner",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterOilburner::new, ModBlocks.heater_oilburner.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterHeatex>> HEATER_HEATEX = TILES.register("heater_heatex",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterHeatex::new, ModBlocks.heater_heatex.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial>> BOILER_INDUSTRIAL = TILES.register("machine_industrial_boiler",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial::new, ModBlocks.machine_industrial_boiler.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

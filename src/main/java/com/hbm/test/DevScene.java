@@ -45,6 +45,7 @@ public class DevScene {
 	static BlockPos steamEnginePos, condenserPos;
 	static BlockPos towerSmallPos, towerLargePos, condenserPoweredPos;
 	static BlockPos industrialTurbinePos, chungusPos;
+	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -117,6 +118,33 @@ public class DevScene {
 			if(turbinePos != null && server.overworld().getBlockEntity(turbinePos) instanceof com.hbm.tileentity.machine.TileEntityTurbineBase turbine) {
 				turbine.tanks[0].setFill(turbine.tanks[0].getMaxFill() / 2);
 				turbine.tanks[1].setFill(0);
+			}
+		}
+		// the fluid burner under a boiler, the heat exchanger and the industrial boiler on a firebox
+		if(oilburnerPos != null && server.overworld().getBlockEntity(oilburnerPos) instanceof com.hbm.tileentity.machine.TileEntityHeaterOilburner burner) {
+			burner.isOn = true;
+			burner.setting = 5;
+			burner.tank.setFill(burner.tank.getMaxFill());
+		}
+		if(heatexPos != null && server.overworld().getBlockEntity(heatexPos) instanceof com.hbm.tileentity.machine.TileEntityHeaterHeatex heatex) {
+			heatex.tanks[0].setFill(heatex.tanks[0].getMaxFill() / 2);
+			heatex.tanks[1].setFill(0);
+		}
+		if(boilerOnBurnerPos != null && server.overworld().getBlockEntity(boilerOnBurnerPos) instanceof com.hbm.tileentity.machine.TileEntityHeatBoiler boiler) {
+			boiler.tanks[0].setFill(boiler.tanks[0].getMaxFill());
+			boiler.tanks[1].setFill(0);
+		}
+		if(industrialBoilerPos != null && server.overworld().getBlockEntity(industrialBoilerPos) instanceof com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial boiler) {
+			boiler.tanks[0].setFill(boiler.tanks[0].getMaxFill());
+			boiler.tanks[1].setFill(0);
+			if(server.overworld().getBlockEntity(fireboxPos) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox firebox) firebox.heatEnergy = 100_000;
+		}
+		if(serverTicks == 1020 || serverTicks == 1055 || serverTicks == 1090) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1020) player.teleportTo(player.serverLevel(), 8.5, -60, 13.2, 0F, 12F);
+				BlockPos gui = serverTicks == 1055 ? oilburnerPos : serverTicks == 1090 ? heatexPos : null;
+				if(gui != null && player.level().getBlockEntity(gui) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(gui));
 			}
 		}
 		if(serverTicks == 945 || serverTicks == 985) {
@@ -468,6 +496,15 @@ public class DevScene {
 			industrialTurbinePos = ModBlocks.machine_industrial_turbine.get().placeMultiblock(level, origin.offset(-3, 0, 20), net.minecraft.core.Direction.EAST);
 		}
 
+		// heaters south of the floor, east of the turbines
+		{
+			oilburnerPos = ModBlocks.heater_oilburner.get().placeMultiblock(level, origin.offset(6, 0, 16), net.minecraft.core.Direction.NORTH);
+			boilerOnBurnerPos = ModBlocks.machine_boiler.get().placeMultiblock(level, origin.offset(6, 2, 16), net.minecraft.core.Direction.NORTH);
+			heatexPos = ModBlocks.heater_heatex.get().placeMultiblock(level, origin.offset(10, 0, 16), net.minecraft.core.Direction.NORTH);
+			fireboxPos = ModBlocks.heater_firebox.get().placeMultiblock(level, origin.offset(8, 0, 23), net.minecraft.core.Direction.NORTH);
+			industrialBoilerPos = ModBlocks.machine_industrial_boiler.get().placeMultiblock(level, origin.offset(8, 1, 23), net.minecraft.core.Direction.NORTH);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -626,7 +663,11 @@ public class DevScene {
 			if(ticks == 975) Screenshot.grab(mc.gameDirectory, "devscene_world_leviathan.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1010) Screenshot.grab(mc.gameDirectory, "devscene_world_industrial_turbine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1020) {
+			if(ticks == 1045) Screenshot.grab(mc.gameDirectory, "devscene_world_heaters.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1080) Screenshot.grab(mc.gameDirectory, "devscene_gui_oilburner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1115) Screenshot.grab(mc.gameDirectory, "devscene_gui_heatex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1125) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
