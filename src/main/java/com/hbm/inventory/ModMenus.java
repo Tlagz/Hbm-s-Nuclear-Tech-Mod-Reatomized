@@ -108,6 +108,8 @@ public class ModMenus {
 			tile("crate", com.hbm.tileentity.machine.storage.TileEntityCrate.class, com.hbm.inventory.container.ContainerCrate::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerBatterySocket>> BATTERY_SOCKET =
 			tile("machine_battery_socket", com.hbm.tileentity.machine.storage.TileEntityBatterySocket.class, com.hbm.inventory.container.ContainerBatterySocket::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerBatteryREDD>> BATTERY_REDD =
+			tile("machine_battery_redd", com.hbm.tileentity.machine.storage.TileEntityBatteryREDD.class, com.hbm.inventory.container.ContainerBatteryREDD::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =

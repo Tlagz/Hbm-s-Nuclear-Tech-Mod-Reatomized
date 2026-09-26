@@ -128,5 +128,8 @@ public class ResourceManager {
 	public static final HFRWavefrontObject battery_socket = new HFRWavefrontObject(RefStrings.loc("models/machines/battery.obj"));
 	public static final ResourceLocation battery_socket_tex = RefStrings.loc("textures/models/machines/battery_socket.png");
 	public static final ResourceLocation battery_sc_tex = RefStrings.loc("textures/models/machines/battery_sc.png");
+	public static final HFRWavefrontObject battery_redd = new HFRWavefrontObject(RefStrings.loc("models/machines/fensu2.obj"));
+	public static final ResourceLocation battery_redd_tex = RefStrings.loc("textures/models/machines/fensu2.png");
+	public static final ResourceLocation fusion_plasma_tex = RefStrings.loc("textures/models/fusion/plasma.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }
