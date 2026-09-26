@@ -49,6 +49,9 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.CRYSTALLIZER.get(), com.hbm.inventory.gui.GUICrystallizer::new);
 		event.register(ModMenus.FLUID_TANK.get(), com.hbm.inventory.gui.GUIMachineFluidTank::new);
 		event.register(ModMenus.GAS_FLARE.get(), com.hbm.inventory.gui.GUIMachineGasFlare::new);
+		event.register(ModMenus.VACUUM_DISTILL.get(), com.hbm.inventory.gui.GUIOilProcessor::vacuumDistill);
+		event.register(ModMenus.CATALYTIC_REFORMER.get(), com.hbm.inventory.gui.GUIOilProcessor::catalyticReformer);
+		event.register(ModMenus.HYDROTREATER.get(), com.hbm.inventory.gui.GUIOilProcessor::hydrotreater);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -87,6 +90,9 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.PUMPJACK.get(), com.hbm.render.tileentity.RenderPumpjack::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FRACKING_TOWER.get(), com.hbm.render.tileentity.RenderFrackingTower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.GAS_FLARE.get(), com.hbm.render.tileentity.RenderGasFlare::new);
+		event.registerBlockEntityRenderer(ModTileEntities.VACUUM_DISTILL.get(), com.hbm.render.tileentity.RenderOilProcessors.vacuumDistill());
+		event.registerBlockEntityRenderer(ModTileEntities.CATALYTIC_REFORMER.get(), com.hbm.render.tileentity.RenderOilProcessors.catalyticReformer());
+		event.registerBlockEntityRenderer(ModTileEntities.HYDROTREATER.get(), com.hbm.render.tileentity.RenderOilProcessors.hydrotreater());
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -146,6 +152,9 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_pumpjack.get().asItem(), com.hbm.render.tileentity.RenderPumpjack.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_fracking_tower.get().asItem(), com.hbm.render.tileentity.RenderFrackingTower.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_flare.get().asItem(), com.hbm.render.tileentity.RenderGasFlare.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_vacuum_distill.get().asItem(), com.hbm.render.tileentity.RenderOilProcessors.itemRenderer(com.hbm.main.ResourceManager.vacuum_distill, com.hbm.main.ResourceManager.vacuum_distill_tex, 4, 3F));
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_catalytic_reformer.get().asItem(), com.hbm.render.tileentity.RenderOilProcessors.itemRenderer(com.hbm.main.ResourceManager.catalytic_reformer, com.hbm.main.ResourceManager.catalytic_reformer_tex, 3, 3.5F));
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_hydrotreater.get().asItem(), com.hbm.render.tileentity.RenderOilProcessors.itemRenderer(com.hbm.main.ResourceManager.hydrotreater, com.hbm.main.ResourceManager.hydrotreater_tex, 4, 4F));
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());

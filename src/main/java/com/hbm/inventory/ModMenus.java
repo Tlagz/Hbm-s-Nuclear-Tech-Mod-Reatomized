@@ -82,6 +82,12 @@ public class ModMenus {
 			tile("machine_fluidtank", com.hbm.tileentity.machine.storage.TileEntityMachineFluidTank.class, com.hbm.inventory.container.ContainerMachineFluidTank::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineGasFlare>> GAS_FLARE =
 			tile("machine_flare", com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare.class, com.hbm.inventory.container.ContainerMachineGasFlare::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerOilProcessor>> VACUUM_DISTILL =
+			tile("machine_vacuum_distill", com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill.class, (id, inv, tile) -> new com.hbm.inventory.container.ContainerOilProcessor(ModMenus.VACUUM_DISTILL.get(), id, inv, tile));
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerOilProcessor>> CATALYTIC_REFORMER =
+			tile("machine_catalytic_reformer", com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticReformer.class, (id, inv, tile) -> new com.hbm.inventory.container.ContainerOilProcessor(ModMenus.CATALYTIC_REFORMER.get(), id, inv, tile));
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerOilProcessor>> HYDROTREATER =
+			tile("machine_hydrotreater", com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater.class, (id, inv, tile) -> new com.hbm.inventory.container.ContainerOilProcessor(ModMenus.HYDROTREATER.get(), id, inv, tile));
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcFurnaceLarge>> ARC_FURNACE =
 			tile("machine_arc_furnace", com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge.class, com.hbm.inventory.container.ContainerMachineArcFurnaceLarge::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineArcWelder>> ARC_WELDER =

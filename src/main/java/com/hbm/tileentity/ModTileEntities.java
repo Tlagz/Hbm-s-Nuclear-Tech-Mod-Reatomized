@@ -86,6 +86,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineFrackingTower::new, ModBlocks.machine_fracking_tower.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare>> GAS_FLARE = TILES.register("machine_flare",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineGasFlare::new, ModBlocks.machine_flare.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill>> VACUUM_DISTILL = TILES.register("machine_vacuum_distill",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill::new, ModBlocks.machine_vacuum_distill.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticReformer>> CATALYTIC_REFORMER = TILES.register("machine_catalytic_reformer",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineCatalyticReformer::new, ModBlocks.machine_catalytic_reformer.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater>> HYDROTREATER = TILES.register("machine_hydrotreater",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater::new, ModBlocks.machine_hydrotreater.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

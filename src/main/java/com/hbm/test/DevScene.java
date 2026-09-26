@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -189,6 +189,13 @@ public class DevScene {
 			flare.tank.setFill(flare.tank.getMaxFill());
 			flare.isOn = true;
 			flare.doesBurn = true;
+		}
+		if(serverTicks == 1685 || serverTicks == 1720) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 1685) player.teleportTo(player.serverLevel(), -2.5, -59, -10.5, 180F, -18F);
+				else if(player.level().getBlockEntity(vacuumPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(vacuumPos));
+			}
 		}
 		if(serverTicks == 1610 || serverTicks == 1645) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -674,6 +681,25 @@ public class DevScene {
 		// flare stack between the cracker and the floor
 		flarePos = ModBlocks.machine_flare.get().placeMultiblock(level, origin.offset(-17, 0, -9), net.minecraft.core.Direction.NORTH);
 
+		// vacuum distiller, catalytic reformer and hydrotreater north of the floor
+		{
+			for(int x = -14; x <= 16; x++) for(int z = -22; z <= -13; z++) for(int y = 0; y <= 12; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			vacuumPos = ModBlocks.machine_vacuum_distill.get().placeMultiblock(level, origin.offset(-8, 0, -16), net.minecraft.core.Direction.NORTH);
+			BlockPos reformerPos = ModBlocks.machine_catalytic_reformer.get().placeMultiblock(level, origin.offset(-2, 0, -16), net.minecraft.core.Direction.NORTH);
+			BlockPos treaterPos = ModBlocks.machine_hydrotreater.get().placeMultiblock(level, origin.offset(4, 0, -16), net.minecraft.core.Direction.NORTH);
+			for(BlockPos machine : new BlockPos[] {vacuumPos, reformerPos, treaterPos}) {
+				if(machine != null && level.getBlockEntity(machine) instanceof com.hbm.tileentity.machine.oil.TileEntityOilProcessorBase proc) {
+					proc.setPower(com.hbm.tileentity.machine.oil.TileEntityOilProcessorBase.maxPower);
+					proc.tanks[0].setFill(proc.tanks[0].getMaxFill());
+					if(proc.getContainerSize() > 10) proc.setItem(10, new ItemStack(ModItems.catalytic_converter.get()));
+				}
+			}
+			if(treaterPos != null && level.getBlockEntity(treaterPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineHydrotreater treater) treater.tanks[1].setFill(32_000);
+			if(vacuumPos != null && level.getBlockEntity(vacuumPos) instanceof com.hbm.tileentity.machine.oil.TileEntityMachineVacuumDistill distill) distill.setItem(10, ItemStack.EMPTY);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -859,7 +885,10 @@ public class DevScene {
 			if(ticks == 1640) Screenshot.grab(mc.gameDirectory, "devscene_world_flare.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1675) Screenshot.grab(mc.gameDirectory, "devscene_gui_flare.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1685) {
+			if(ticks == 1718) Screenshot.grab(mc.gameDirectory, "devscene_world_oil_processing.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 1750) Screenshot.grab(mc.gameDirectory, "devscene_gui_vacuum_distill.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1760) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

@@ -84,6 +84,12 @@ public class ResourceManager {
 	public static final ResourceLocation fracking_tower_tex = RefStrings.loc("textures/models/machines/fracking_tower.png");
 	public static final HFRWavefrontObject oilflare = new HFRWavefrontObject(RefStrings.loc("models/machines/flare_stack.obj"));
 	public static final ResourceLocation oilflare_tex = RefStrings.loc("textures/models/machines/flare_stack.png");
+	public static final HFRWavefrontObject vacuum_distill = new HFRWavefrontObject(RefStrings.loc("models/machines/vacuum_distill.obj"));
+	public static final ResourceLocation vacuum_distill_tex = RefStrings.loc("textures/models/machines/vacuum_distill.png");
+	public static final HFRWavefrontObject catalytic_reformer = new HFRWavefrontObject(RefStrings.loc("models/machines/catalytic_reformer.obj"));
+	public static final ResourceLocation catalytic_reformer_tex = RefStrings.loc("textures/models/machines/catalytic_reformer.png");
+	public static final HFRWavefrontObject hydrotreater = new HFRWavefrontObject(RefStrings.loc("models/machines/hydrotreater.obj"));
+	public static final ResourceLocation hydrotreater_tex = RefStrings.loc("textures/models/machines/hydrotreater.png");
 	public static final HFRWavefrontObject pipe_neo = new HFRWavefrontObject(RefStrings.loc("models/blocks/pipe_neo.obj"));
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
