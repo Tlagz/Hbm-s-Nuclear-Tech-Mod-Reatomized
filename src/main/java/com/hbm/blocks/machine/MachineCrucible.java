@@ -24,12 +24,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.common.ItemAbilities;
+import com.hbm.blocks.ITooltipProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
 
 /**
  * Crucible, 3x3 and 2 high on top of a heater. Items dropped into it fall in (detailed hitboxes: a floor and four
  * walls), molten material can be poured in from above. A shovel empties it as scraps.
  */
-public class MachineCrucible extends BlockDummyable implements ICrucibleAcceptor {
+public class MachineCrucible extends BlockDummyable implements ICrucibleAcceptor, ITooltipProvider {
 
 	public MachineCrucible(Properties properties) {
 		super(properties);
@@ -119,4 +123,9 @@ public class MachineCrucible extends BlockDummyable implements ICrucibleAcceptor
 
 	@Override public boolean canAcceptPartialFlow(Level world, BlockPos pos, Direction side, MaterialStack stack) { return false; }
 	@Override public MaterialStack flow(Level world, BlockPos pos, Direction side, MaterialStack stack) { return null; }
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
+	}
 }

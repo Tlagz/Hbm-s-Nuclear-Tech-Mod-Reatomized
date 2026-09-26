@@ -11,9 +11,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import com.hbm.blocks.ITooltipProvider;
+import java.util.List;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
-/** Firebox, 3x3x1, heats the machine standing on it. TODO standard tooltip (ITooltipProvider.addStandardInfo) */
-public class HeaterFirebox extends BlockDummyable {
+/** Firebox, 3x3x1, heats the machine standing on it. */
+public class HeaterFirebox extends BlockDummyable implements ITooltipProvider {
 
 	public HeaterFirebox(Properties properties) {
 		super(properties);
@@ -38,5 +44,10 @@ public class HeaterFirebox extends BlockDummyable {
 	@Override
 	public int getOffset() {
 		return 1;
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }

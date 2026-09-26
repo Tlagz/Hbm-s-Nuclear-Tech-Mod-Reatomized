@@ -42,6 +42,7 @@ public class DevScene {
 	static BlockPos shredderPos;
 	static BlockPos arcFurnacePos;
 	static BlockPos cruciblePos;
+	static BlockPos steamEnginePos, condenserPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -93,6 +94,18 @@ public class DevScene {
 				player.closeContainer();
 				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 4.5, -57, 3.5, 22F, 24F);
 				else if(cruciblePos != null && player.level().getBlockEntity(cruciblePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(cruciblePos));
+			}
+		}
+		// steam engine fed with steam, its spent steam going into a condenser whose water is taken away
+		if(steamEnginePos != null && server.overworld().getBlockEntity(steamEnginePos) instanceof com.hbm.tileentity.machine.TileEntitySteamEngine engine
+				&& server.overworld().getBlockEntity(condenserPos) instanceof com.hbm.tileentity.machine.TileEntityCondenser condenser) {
+			engine.tanks[0].setFill(engine.tanks[0].getMaxFill());
+			condenser.tanks[1].setFill(0);
+		}
+		if(serverTicks == 830) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), -6.5, -57, 4.5, 48F, 25F);
 			}
 		}
 		// close-up of the foundry under the spout
@@ -396,6 +409,17 @@ public class DevScene {
 			level.setBlockAndUpdate(origin.offset(4, 2, 3), Blocks.STONE_BRICKS.defaultBlockState());
 		}
 
+		// steam engine along the x axis facing west, the condenser on its port side
+		{
+			steamEnginePos = ModBlocks.machine_steam_engine.get().placeMultiblock(level, origin.offset(-14, 1, 8), net.minecraft.core.Direction.WEST);
+			condenserPos = origin.offset(-13, 2, 6);
+			level.setBlockAndUpdate(condenserPos.below(), ModBlocks.block_steel.get().defaultBlockState());
+			level.setBlockAndUpdate(condenserPos, ModBlocks.machine_condenser.get().defaultBlockState());
+			// a pillar for the camera
+			level.setBlockAndUpdate(origin.offset(-7, 1, 4), Blocks.STONE_BRICKS.defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(-7, 2, 4), Blocks.STONE_BRICKS.defaultBlockState());
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -546,7 +570,9 @@ public class DevScene {
 			if(ticks == 775) Screenshot.grab(mc.gameDirectory, "devscene_world_crucible.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 815) Screenshot.grab(mc.gameDirectory, "devscene_gui_crucible.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 830) {
+			if(ticks == 860) Screenshot.grab(mc.gameDirectory, "devscene_world_steam_engine.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 870) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

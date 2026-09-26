@@ -10,12 +10,18 @@ import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import com.hbm.blocks.ITooltipProvider;
+import java.util.List;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
 /**
  * Carries the output of capacitors. A straight chain of buses behind a capacitor provides its power at the end
  * the buses point to. Oriented like a piston (towards the player when placed).
  */
-public class MachineCapacitorBus extends Block implements IEnergyConnectorBlock {
+public class MachineCapacitorBus extends Block implements IEnergyConnectorBlock, ITooltipProvider {
 
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
@@ -37,5 +43,10 @@ public class MachineCapacitorBus extends Block implements IEnergyConnectorBlock 
 	@Override
 	public boolean canConnect(BlockGetter world, BlockPos pos, Direction dir) {
 		return dir == world.getBlockState(pos).getValue(FACING);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }

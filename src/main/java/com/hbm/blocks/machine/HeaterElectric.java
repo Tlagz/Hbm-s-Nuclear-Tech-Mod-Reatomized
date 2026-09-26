@@ -19,9 +19,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import com.hbm.blocks.ITooltipProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
 /** Electric heater, 3x4 and flat; power goes into the block it was placed from, the screwdriver changes the setting */
-public class HeaterElectric extends BlockDummyable implements ILookOverlay, IToolable {
+public class HeaterElectric extends BlockDummyable implements ILookOverlay, IToolable, ITooltipProvider {
 
 	public HeaterElectric(Properties properties) {
 		super(properties);
@@ -78,5 +83,10 @@ public class HeaterElectric extends BlockDummyable implements ILookOverlay, IToo
 		heater.toggleSetting();
 		heater.setChanged();
 		return true;
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }

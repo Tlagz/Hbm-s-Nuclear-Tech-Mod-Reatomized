@@ -6,6 +6,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/condenser"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/structure_anchor"
     },
     {

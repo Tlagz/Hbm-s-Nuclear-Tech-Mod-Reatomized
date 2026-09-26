@@ -48,6 +48,8 @@ public class ResourceManager {
 	public static final ResourceLocation heater_electric_tex = RefStrings.loc("textures/models/machines/electric_heater.png");
 	public static final HFRWavefrontObject furnace_steel = new HFRWavefrontObject(RefStrings.loc("models/machines/furnace_steel.obj"));
 	public static final ResourceLocation furnace_steel_tex = RefStrings.loc("textures/models/machines/furnace_steel.png");
+	public static final HFRWavefrontObject steam_engine = new HFRWavefrontObject(RefStrings.loc("models/machines/steam_engine.obj"));
+	public static final ResourceLocation steam_engine_tex = RefStrings.loc("textures/models/machines/steam_engine.png");
 	public static final HFRWavefrontObject crucible_heat = new HFRWavefrontObject(RefStrings.loc("models/machines/crucible.obj"));
 	public static final ResourceLocation crucible_tex = RefStrings.loc("textures/models/machines/crucible_heat.png");
 	public static final HFRWavefrontObject arc_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_furnace.obj"));

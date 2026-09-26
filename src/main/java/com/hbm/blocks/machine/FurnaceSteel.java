@@ -11,9 +11,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import com.hbm.blocks.ITooltipProvider;
+import java.util.List;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 
 /** Steel furnace, 3x3 and 2 high, sits on a heater */
-public class FurnaceSteel extends BlockDummyable {
+public class FurnaceSteel extends BlockDummyable implements ITooltipProvider {
 
 	public FurnaceSteel(Properties properties) {
 		super(properties);
@@ -38,5 +44,10 @@ public class FurnaceSteel extends BlockDummyable {
 	@Override
 	public int getOffset() {
 		return 1;
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }

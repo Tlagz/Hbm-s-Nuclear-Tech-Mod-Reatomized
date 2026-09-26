@@ -28,6 +28,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import com.hbm.blocks.ITooltipProvider;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
 
 /**
  * Boiler, 3x3 base, 4 tall, standing on a heater. Set the input fluid with a fluid identifier, looking at it
@@ -35,7 +38,7 @@ import net.minecraft.world.phys.BlockHitResult;
  *
  * TODO the burst boiler item (damage 1), standard tooltip
  */
-public class MachineHeatBoiler extends BlockDummyable implements ILookOverlay {
+public class MachineHeatBoiler extends BlockDummyable implements ILookOverlay, ITooltipProvider {
 
 	public MachineHeatBoiler(Properties properties) {
 		super(properties);
@@ -115,5 +118,10 @@ public class MachineHeatBoiler extends BlockDummyable implements ILookOverlay {
 		text.add(ChatFormatting.RED + "<- " + ChatFormatting.RESET + boiler.tanks[1].getTankType().getLocalizedName() + ": " + String.format(Locale.US, "%,d", boiler.tanks[1].getFill()) + " / " + String.format(Locale.US, "%,d", boiler.tanks[1].getMaxFill()) + "mB");
 
 		ILookOverlay.printGeneric(graphics, I18nUtil.resolveKey(getDescriptionId()), 0xffff00, 0x404000, text);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }

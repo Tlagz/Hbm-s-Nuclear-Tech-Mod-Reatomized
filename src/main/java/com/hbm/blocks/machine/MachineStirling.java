@@ -24,13 +24,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import com.hbm.blocks.ITooltipProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
 
 /**
  * Stirling engine on top of a heater, power comes out of the four sides. The type decides the gear and the heat it
  * takes before overspeeding: normal (iron gear), steel (steel gear), creative (never breaks). A lost gear is put back
  * by using the matching large gear on it.
  */
-public class MachineStirling extends BlockDummyable implements ILookOverlay {
+public class MachineStirling extends BlockDummyable implements ILookOverlay, ITooltipProvider {
 
 	/** 0 normal, 1 steel, 2 creative */
 	public final int type;
@@ -120,5 +124,10 @@ public class MachineStirling extends BlockDummyable implements ILookOverlay {
 		}
 
 		ILookOverlay.printGeneric(graphics, I18nUtil.resolveKey(getDescriptionId()), 0xffff00, 0x404000, text);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
+		this.addStandardInfo(list);
 	}
 }
