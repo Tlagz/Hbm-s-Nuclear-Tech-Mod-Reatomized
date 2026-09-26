@@ -46,6 +46,7 @@ public class DevScene {
 	static BlockPos towerSmallPos, towerLargePos, condenserPoweredPos;
 	static BlockPos industrialTurbinePos, chungusPos;
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
+	static BlockPos pumpSteamPos, pumpElectricPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -138,6 +139,22 @@ public class DevScene {
 			boiler.tanks[0].setFill(boiler.tanks[0].getMaxFill());
 			boiler.tanks[1].setFill(0);
 			if(server.overworld().getBlockEntity(fireboxPos) instanceof com.hbm.tileentity.machine.TileEntityHeaterFirebox firebox) firebox.heatEnergy = 100_000;
+		}
+		// the water pumps on the natural ground, steam and power fed, water taken away
+		if(pumpSteamPos != null && server.overworld().getBlockEntity(pumpSteamPos) instanceof com.hbm.tileentity.machine.TileEntityMachinePumpSteam pump) {
+			pump.steam.setFill(pump.steam.getMaxFill());
+			pump.lps.setFill(0);
+			pump.water.setFill(0);
+		}
+		if(pumpElectricPos != null && server.overworld().getBlockEntity(pumpElectricPos) instanceof com.hbm.tileentity.machine.TileEntityMachinePumpElectric pump) {
+			pump.setPower(pump.getMaxPower());
+			pump.water.setFill(0);
+		}
+		if(serverTicks == 1125) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 8.0, -60, 36.5, 180F, -8F);
+			}
 		}
 		if(serverTicks == 1020 || serverTicks == 1055 || serverTicks == 1090) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -505,6 +522,12 @@ public class DevScene {
 			industrialBoilerPos = ModBlocks.machine_industrial_boiler.get().placeMultiblock(level, origin.offset(8, 1, 23), net.minecraft.core.Direction.NORTH);
 		}
 
+		// water pumps on the grass south of the heaters
+		{
+			pumpSteamPos = ModBlocks.pump_steam.get().placeMultiblock(level, origin.offset(5, 0, 28), net.minecraft.core.Direction.NORTH);
+			pumpElectricPos = ModBlocks.pump_electric.get().placeMultiblock(level, origin.offset(11, 0, 28), net.minecraft.core.Direction.NORTH);
+		}
+
 		// oil derrick
 		ModBlocks.machine_well.get().placeMultiblock(level, origin.offset(4, 1, 3), net.minecraft.core.Direction.NORTH);
 
@@ -667,7 +690,9 @@ public class DevScene {
 			if(ticks == 1080) Screenshot.grab(mc.gameDirectory, "devscene_gui_oilburner.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 1115) Screenshot.grab(mc.gameDirectory, "devscene_gui_heatex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 1125) {
+			if(ticks == 1150) Screenshot.grab(mc.gameDirectory, "devscene_world_pumps.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 1160) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

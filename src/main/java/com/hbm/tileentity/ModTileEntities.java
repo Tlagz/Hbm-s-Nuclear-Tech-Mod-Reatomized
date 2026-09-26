@@ -58,6 +58,10 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterHeatex::new, ModBlocks.heater_heatex.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial>> BOILER_INDUSTRIAL = TILES.register("machine_industrial_boiler",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeatBoilerIndustrial::new, ModBlocks.machine_industrial_boiler.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachinePumpSteam>> PUMP_STEAM = TILES.register("pump_steam",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachinePumpSteam::new, ModBlocks.pump_steam.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachinePumpElectric>> PUMP_ELECTRIC = TILES.register("pump_electric",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachinePumpElectric::new, ModBlocks.pump_electric.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceSteel>> FURNACE_STEEL = TILES.register("furnace_steel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceSteel::new, ModBlocks.furnace_steel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySteamEngine>> STEAM_ENGINE = TILES.register("machine_steam_engine",

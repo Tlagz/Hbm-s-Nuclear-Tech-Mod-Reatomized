@@ -68,6 +68,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OILBURNER.get(), com.hbm.render.tileentity.RenderOilburner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_HEATEX.get(), com.hbm.render.tileentity.RenderHeaterHeatex::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER_INDUSTRIAL.get(), com.hbm.render.tileentity.RenderIndustrialBoiler::new);
+		event.registerBlockEntityRenderer(ModTileEntities.PUMP_STEAM.get(), com.hbm.render.tileentity.RenderPump::new);
+		event.registerBlockEntityRenderer(ModTileEntities.PUMP_ELECTRIC.get(), com.hbm.render.tileentity.RenderPump::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STEAM_ENGINE.get(), com.hbm.render.tileentity.RenderSteamEngine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CONDENSER_POWERED.get(), com.hbm.render.tileentity.RenderCondenser::new);
@@ -109,6 +111,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oilburner.get().asItem(), com.hbm.render.tileentity.RenderOilburner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_heatex.get().asItem(), com.hbm.render.tileentity.RenderHeaterHeatex.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_industrial_boiler.get().asItem(), com.hbm.render.tileentity.RenderIndustrialBoiler.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.pump_steam.get().asItem(), com.hbm.render.tileentity.RenderPump.itemRenderer(0));
+		NTMItemRenderer.RENDERERS.put(ModBlocks.pump_electric.get().asItem(), com.hbm.render.tileentity.RenderPump.itemRenderer(1));
 		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_steam_engine.get().asItem(), com.hbm.render.tileentity.RenderSteamEngine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_condenser_powered.get().asItem(), com.hbm.render.tileentity.RenderCondenser.itemRenderer());
