@@ -41,6 +41,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.ARC_WELDER.get(), com.hbm.inventory.gui.GUIMachineArcWelder::new);
 		event.register(ModMenus.ARC_FURNACE.get(), com.hbm.inventory.gui.GUIMachineArcFurnaceLarge::new);
 		event.register(ModMenus.CRUCIBLE.get(), com.hbm.inventory.gui.GUICrucible::new);
+		event.register(ModMenus.FURNACE_STEEL.get(), com.hbm.inventory.gui.GUIFurnaceSteel::new);
 		event.register(ModMenus.BLAST_FURNACE.get(), com.hbm.inventory.gui.GUIBlastFurnace::new);
 		event.register(ModMenus.SHREDDER.get(), com.hbm.inventory.gui.GUIMachineShredder::new);
 	}
@@ -61,6 +62,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STIRLING.get(), com.hbm.render.tileentity.RenderStirling::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OVEN.get(), com.hbm.render.tileentity.RenderHeatingOven::new);
+		event.registerBlockEntityRenderer(ModTileEntities.HEATER_ELECTRIC.get(), com.hbm.render.tileentity.RenderElectricHeater::new);
+		event.registerBlockEntityRenderer(ModTileEntities.FURNACE_STEEL.get(), com.hbm.render.tileentity.RenderFurnaceSteel::new);
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -83,6 +86,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crucible.get().asItem(), com.hbm.render.tileentity.RenderCrucible.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oven.get().asItem(), com.hbm.render.tileentity.RenderHeatingOven.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_electric.get().asItem(), com.hbm.render.tileentity.RenderElectricHeater.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.furnace_steel.get().asItem(), com.hbm.render.tileentity.RenderFurnaceSteel.itemRenderer());
 		for(var stirling : java.util.List.of(ModBlocks.machine_stirling, ModBlocks.machine_stirling_steel, ModBlocks.machine_stirling_creative)) {
 			NTMItemRenderer.RENDERERS.put(stirling.get().asItem(), com.hbm.render.tileentity.RenderStirling.itemRenderer(stirling.get()));
 		}

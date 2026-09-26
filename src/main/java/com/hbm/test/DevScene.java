@@ -91,7 +91,7 @@ public class DevScene {
 		if(serverTicks == 750 || serverTicks == 790) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
-				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 5.5, -57, 5.5, 25F, 28F);
+				if(serverTicks == 750) player.teleportTo(player.serverLevel(), 4.5, -57, 3.5, 22F, 24F);
 				else if(cruciblePos != null && player.level().getBlockEntity(cruciblePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(cruciblePos));
 			}
 		}
@@ -385,9 +385,15 @@ public class DevScene {
 			ModBlocks.machine_stirling_steel.get().placeMultiblock(level, origin.offset(2, 2, 8), N);
 			BlockPos ov = ModBlocks.heater_oven.get().placeMultiblock(level, origin.offset(-1, 1, 8), N);
 			if(ov != null && level.getBlockEntity(ov) instanceof com.hbm.tileentity.machine.TileEntityHeaterOven oven) oven.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			// steel furnace on the oven, smelting ore
+			BlockPos fs = ModBlocks.furnace_steel.get().placeMultiblock(level, origin.offset(-1, 2, 8), N);
+			if(fs != null && level.getBlockEntity(fs) instanceof com.hbm.tileentity.machine.TileEntityFurnaceSteel furnace) {
+				furnace.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_ORE, 16));
+				furnace.setItem(1, new ItemStack(net.minecraft.world.item.Items.OAK_LOG, 16));
+			}
 			// a pillar for the camera to look into the crucible
-			level.setBlockAndUpdate(origin.offset(5, 1, 5), Blocks.STONE_BRICKS.defaultBlockState());
-			level.setBlockAndUpdate(origin.offset(5, 2, 5), Blocks.STONE_BRICKS.defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(4, 1, 3), Blocks.STONE_BRICKS.defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(4, 2, 3), Blocks.STONE_BRICKS.defaultBlockState());
 		}
 
 		// oil derrick

@@ -26,6 +26,8 @@
     "hbm:machine_stirling",
     "hbm:machine_stirling_steel",
     "hbm:machine_stirling_creative",
+    "hbm:heater_electric",
+    "hbm:furnace_steel",
     "hbm:machine_crucible",
     "hbm:machine_arc_furnace",
     "hbm:machine_arc_welder",

@@ -62,6 +62,32 @@ public class HeatGameTests {
 		});
 	}
 
+	@GameTest(template = "empty_8x4x8")
+	public static void electricHeaterMakesHeat(GameTestHelper helper) {
+		BlockPos core = ModBlocks.heater_electric.get().placeMultiblock(helper.getLevel(), center(helper, 1).south(), Direction.NORTH);
+		helper.assertTrue(core != null, "the heater should fit");
+		com.hbm.tileentity.machine.TileEntityHeaterElectric heater = (com.hbm.tileentity.machine.TileEntityHeaterElectric) helper.getLevel().getBlockEntity(core);
+
+		for(int i = 0; i < 3; i++) heater.toggleSetting();
+		helper.assertTrue(heater.getHeatGen() == 300 && heater.getConsumption() == (long) (Math.pow(3, 1.4D) * 200D), "setting 3: 300 TU/t for " + heater.getConsumption() + " HE/t");
+
+		helper.onEachTick(() -> heater.setPower(heater.getMaxPower()));
+		helper.succeedWhen(() -> helper.assertTrue(heater.isOn && heater.getHeatStored() > 1000, "the heater should heat up while powered, has " + heater.getHeatStored()));
+	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 400)
+	public static void steelFurnaceSmeltsWithHeat(GameTestHelper helper) {
+		TileEntityHeaterFirebox firebox = firebox(helper);
+		BlockPos core = ModBlocks.furnace_steel.get().placeMultiblock(helper.getLevel(), center(helper, 2), Direction.NORTH);
+		com.hbm.tileentity.machine.TileEntityFurnaceSteel furnace = (com.hbm.tileentity.machine.TileEntityFurnaceSteel) helper.getLevel().getBlockEntity(core);
+
+		furnace.setItem(0, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_ORE, 4));
+		helper.onEachTick(() -> firebox.heatEnergy = 100_000);
+		helper.succeedWhen(() -> {
+			helper.assertTrue(furnace.getItem(3).is(net.minecraft.world.item.Items.IRON_INGOT) && furnace.getItem(3).getCount() >= 5, "4 iron ore and the 25% ore bonus should give 5 ingots, got " + furnace.getItem(3));
+		});
+	}
+
 	@GameTest(template = "empty_8x4x8", timeoutTicks = 100)
 	public static void ovenTakesHeatFromBelow(GameTestHelper helper) {
 		TileEntityHeaterFirebox firebox = firebox(helper);
