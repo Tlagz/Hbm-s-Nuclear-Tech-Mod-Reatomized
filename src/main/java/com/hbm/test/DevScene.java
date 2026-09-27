@@ -1154,6 +1154,7 @@ public class DevScene {
 			for(int x = 3; x <= 7; x++) for(int z = -66; z <= -63; z++) for(int y = 0; y <= 3; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			intakePos = ModBlocks.machine_intake.get().placeMultiblock(level, origin.offset(4, 0, -64), net.minecraft.core.Direction.NORTH);
 			drainPos = ModBlocks.machine_drain.get().placeMultiblock(level, origin.offset(6, 0, -64), net.minecraft.core.Direction.SOUTH);
+			level.setBlockAndUpdate(origin.offset(3, 0, -63), ModBlocks.machine_funnel.get().defaultBlockState());
 			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
 			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
 			exposurePos = ModBlocks.machine_exposure_chamber.get().placeMultiblock(level, origin.offset(10, 0, -73), net.minecraft.core.Direction.NORTH);

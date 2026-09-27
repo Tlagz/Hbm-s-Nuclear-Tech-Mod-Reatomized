@@ -1718,6 +1718,18 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_funnel_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_funnel_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_funnel_side"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/difurnace_side_alt"
     },
     {

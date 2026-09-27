@@ -140,6 +140,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityRtgFurnace::new, ModBlocks.machine_rtg_furnace_off.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineTurbine>> TURBINE = TILES.register("machine_turbine",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineTurbine::new, ModBlocks.machine_turbine.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineFunnel>> FUNNEL = TILES.register("machine_funnel",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineFunnel::new, ModBlocks.machine_funnel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRTG>> RTG = TILES.register("machine_rtg_grey",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineRTG::new, ModBlocks.machine_rtg_grey.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityCharger>> CHARGER = TILES.register("charger",

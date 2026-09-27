@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:block/block",
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/blocks/funnel_block.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "hbm:blocks/machine_funnel_bottom",
+    "particle": "hbm:blocks/machine_funnel_side",
+    "side": "hbm:blocks/machine_funnel_side",
+    "top": "hbm:blocks/machine_funnel_top"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  }
+}

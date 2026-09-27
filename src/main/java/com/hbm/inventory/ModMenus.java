@@ -136,6 +136,8 @@ public class ModMenus {
 			tile("machine_ashpit", com.hbm.tileentity.machine.TileEntityAshpit.class, com.hbm.inventory.container.ContainerAshpit::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineTurbine>> TURBINE =
 			tile("machine_turbine", com.hbm.tileentity.machine.TileEntityMachineTurbine.class, com.hbm.inventory.container.ContainerMachineTurbine::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerFunnel>> FUNNEL =
+			tile("machine_funnel", com.hbm.tileentity.machine.TileEntityMachineFunnel.class, com.hbm.inventory.container.ContainerFunnel::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineRTG>> RTG =
 			tile("machine_rtg_grey", com.hbm.tileentity.machine.TileEntityMachineRTG.class, com.hbm.inventory.container.ContainerMachineRTG::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerRadiolysis>> RADIOLYSIS =

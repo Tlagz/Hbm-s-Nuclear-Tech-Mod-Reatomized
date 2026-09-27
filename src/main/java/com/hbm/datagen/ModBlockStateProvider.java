@@ -107,6 +107,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		horizontalBlock(ModBlocks.machine_rtg_furnace_off.get(), state -> state.getValue(com.hbm.blocks.machine.MachineRtgFurnace.LIT) ? rtgFurnaceOn : rtgFurnaceOff);
 		simpleBlockItem(ModBlocks.machine_rtg_furnace_off.get(), rtgFurnaceOff);
 
+		// the funnel is the original's funnel.obj, split into one material per part
+		BlockModelBuilder funnel = models().getBuilder("machine_funnel").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture("blocks/machine_funnel_top")).texture("bottom", texture("blocks/machine_funnel_bottom")).texture("side", texture("blocks/machine_funnel_side"))
+				.texture("particle", texture("blocks/machine_funnel_side")).renderType("cutout")
+				.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/funnel_block.obj")).flipV(true).automaticCulling(false).end();
+		funnel.rootTransforms().translation(0.5F, 0F, 0.5F);
+		simpleBlock(ModBlocks.machine_funnel.get(), funnel);
+		simpleBlockItem(ModBlocks.machine_funnel.get(), funnel);
+
 		// alloy furnace: LIT instead of the original's on/off blocks, EXTENDED (extension on top) uses the tall textures
 		ModelFile[][] diFurnace = new ModelFile[2][2];
 		for(int lit = 0; lit < 2; lit++) for(int ext = 0; ext < 2; ext++) {

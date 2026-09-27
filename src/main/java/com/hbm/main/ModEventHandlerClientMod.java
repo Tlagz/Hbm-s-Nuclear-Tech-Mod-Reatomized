@@ -81,6 +81,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.RTG_FURNACE.get(), com.hbm.inventory.gui.GUIRtgFurnace::new);
 		event.register(ModMenus.ASHPIT.get(), com.hbm.inventory.gui.GUIAshpit::new);
 		event.register(ModMenus.TURBINE.get(), com.hbm.inventory.gui.GUIMachineTurbine::new);
+		event.register(ModMenus.FUNNEL.get(), com.hbm.inventory.gui.GUIFunnel::new);
 		event.register(ModMenus.DI_FURNACE.get(), com.hbm.inventory.gui.GUIDiFurnace::new);
 		event.register(ModMenus.FURNACE_COMBINATION.get(), com.hbm.inventory.gui.GUIFurnaceCombo::new);
 		event.register(ModMenus.ROTARY_FURNACE.get(), com.hbm.inventory.gui.GUIMachineRotaryFurnace::new);
