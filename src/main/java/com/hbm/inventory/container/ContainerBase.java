@@ -36,18 +36,27 @@ public abstract class ContainerBase<T extends TileEntityMachineBase> extends Abs
 
 	/** Several tile slots at a time (SlotNonRetarded), row by row */
 	protected void addSlots(net.minecraft.world.Container inv, int from, int x, int y, int rows, int cols) {
+		addSlots(inv, from, x, y, rows, cols, 18);
+	}
+
+	/** Same with a custom slot spacing, for GUIs with tightly packed slots */
+	protected void addSlots(net.minecraft.world.Container inv, int from, int x, int y, int rows, int cols, int slotSize) {
 		for(int row = 0; row < rows; row++) {
 			for(int col = 0; col < cols; col++) {
-				this.addSlot(new SlotNonRetarded(inv, col + row * cols + from, x + col * 18, y + row * 18));
+				this.addSlot(new SlotNonRetarded(inv, col + row * cols + from, x + col * slotSize, y + row * slotSize));
 			}
 		}
 	}
 
 	/** Several take-only slots (outputs, emptied containers) at a time, row by row */
 	protected void addTakeOnlySlots(net.minecraft.world.Container inv, int from, int x, int y, int rows, int cols) {
+		addTakeOnlySlots(inv, from, x, y, rows, cols, 18);
+	}
+
+	protected void addTakeOnlySlots(net.minecraft.world.Container inv, int from, int x, int y, int rows, int cols, int slotSize) {
 		for(int row = 0; row < rows; row++) {
 			for(int col = 0; col < cols; col++) {
-				this.addSlot(new SlotTakeOnly(inv, col + row * cols + from, x + col * 18, y + row * 18));
+				this.addSlot(new SlotTakeOnly(inv, col + row * cols + from, x + col * slotSize, y + row * slotSize));
 			}
 		}
 	}

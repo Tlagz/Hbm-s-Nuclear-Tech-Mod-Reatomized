@@ -54,6 +54,7 @@
     "hbm:machine_catalytic_cracker",
     "hbm:machine_assembly_machine",
     "hbm:machine_chemical_plant",
+    "hbm:machine_chemical_factory",
     "hbm:heater_oven",
     "hbm:machine_stirling",
     "hbm:machine_stirling_steel",

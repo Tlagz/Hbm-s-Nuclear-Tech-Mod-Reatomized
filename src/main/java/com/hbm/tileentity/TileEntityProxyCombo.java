@@ -70,6 +70,16 @@ public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnerg
 		return tile;
 	}
 
+	/** What energy, fluid and heat calls go to: the core, or the delegate the core hands out for this very dummy */
+	public Object getCoreObject() {
+		BlockEntity core = getTile();
+		if(core instanceof IProxyDelegateProvider provider) {
+			Object delegate = provider.getDelegateForPosition(worldPosition);
+			if(delegate != null) return delegate;
+		}
+		return core;
+	}
+
 	private BlockEntity findCoreTile() {
 		if(level == null || !(getBlockState().getBlock() instanceof BlockDummyable dummy)) return null;
 		BlockPos core = dummy.findCore(level, worldPosition);
@@ -80,86 +90,86 @@ public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnerg
 
 	@Override
 	public void setPower(long i) {
-		if(power && getTile() instanceof IEnergyReceiverMK2 rec) rec.setPower(i);
+		if(power && getCoreObject() instanceof IEnergyReceiverMK2 rec) rec.setPower(i);
 	}
 
 	@Override
 	public long getPower() {
-		return power && getTile() instanceof IEnergyReceiverMK2 rec ? rec.getPower() : 0;
+		return power && getCoreObject() instanceof IEnergyReceiverMK2 rec ? rec.getPower() : 0;
 	}
 
 	@Override
 	public long getMaxPower() {
-		return power && getTile() instanceof IEnergyReceiverMK2 rec ? rec.getMaxPower() : 0;
+		return power && getCoreObject() instanceof IEnergyReceiverMK2 rec ? rec.getMaxPower() : 0;
 	}
 
 	@Override
 	public long transferPower(long amount) {
-		if(power && getTile() instanceof IEnergyReceiverMK2 rec) return rec.transferPower(amount);
+		if(power && getCoreObject() instanceof IEnergyReceiverMK2 rec) return rec.transferPower(amount);
 		return amount;
 	}
 
 	@Override
 	public long getReceiverSpeed() {
-		return power && getTile() instanceof IEnergyReceiverMK2 rec ? rec.getReceiverSpeed() : 0;
+		return power && getCoreObject() instanceof IEnergyReceiverMK2 rec ? rec.getReceiverSpeed() : 0;
 	}
 
 	@Override
 	public boolean canConnect(Direction dir) {
-		if(power && getTile() instanceof IEnergyConnectorMK2 con) return con.canConnect(dir);
-		if(conductor && getTile() instanceof IEnergyConductorMK2 con) return con.canConnect(dir);
+		if(power && getCoreObject() instanceof IEnergyConnectorMK2 con) return con.canConnect(dir);
+		if(conductor && getCoreObject() instanceof IEnergyConductorMK2 con) return con.canConnect(dir);
 		return false;
 	}
 
 	@Override
 	public boolean allowDirectProvision() {
 		if(!power) return false;
-		if(getTile() instanceof IEnergyReceiverMK2 rec) return rec.allowDirectProvision();
+		if(getCoreObject() instanceof IEnergyReceiverMK2 rec) return rec.allowDirectProvision();
 		return true;
 	}
 
 	@Override
 	public ConnectionPriority getPriority() {
-		return power && getTile() instanceof IEnergyReceiverMK2 rec ? rec.getPriority() : ConnectionPriority.NORMAL;
+		return power && getCoreObject() instanceof IEnergyReceiverMK2 rec ? rec.getPriority() : ConnectionPriority.NORMAL;
 	}
 
 	/// HEAT ///
 
 	@Override
 	public int getHeatStored() {
-		return heat && getTile() instanceof api.hbm.tile.IHeatSource source ? source.getHeatStored() : 0;
+		return heat && getCoreObject() instanceof api.hbm.tile.IHeatSource source ? source.getHeatStored() : 0;
 	}
 
 	@Override
 	public void useUpHeat(int heat) {
-		if(this.heat && getTile() instanceof api.hbm.tile.IHeatSource source) source.useUpHeat(heat);
+		if(this.heat && getCoreObject() instanceof api.hbm.tile.IHeatSource source) source.useUpHeat(heat);
 	}
 
 	/// FLUIDS ///
 
 	@Override
 	public long transferFluid(FluidType type, int pressure, long amount) {
-		if(fluid && getTile() instanceof IFluidReceiverMK2 rec) return rec.transferFluid(type, pressure, amount);
+		if(fluid && getCoreObject() instanceof IFluidReceiverMK2 rec) return rec.transferFluid(type, pressure, amount);
 		return amount;
 	}
 
 	@Override
 	public long getDemand(FluidType type, int pressure) {
-		return fluid && getTile() instanceof IFluidReceiverMK2 rec ? rec.getDemand(type, pressure) : 0;
+		return fluid && getCoreObject() instanceof IFluidReceiverMK2 rec ? rec.getDemand(type, pressure) : 0;
 	}
 
 	@Override
 	public boolean canConnect(FluidType type, Direction dir) {
-		return fluid && getTile() instanceof IFluidConnectorMK2 con && con.canConnect(type, dir);
+		return fluid && getCoreObject() instanceof IFluidConnectorMK2 con && con.canConnect(type, dir);
 	}
 
 	@Override
 	public FluidTank[] getAllTanks() {
-		return fluid && getTile() instanceof IFluidReceiverMK2 rec ? rec.getAllTanks() : new FluidTank[0];
+		return fluid && getCoreObject() instanceof IFluidReceiverMK2 rec ? rec.getAllTanks() : new FluidTank[0];
 	}
 
 	@Override
 	public int[] getReceivingPressureRange(FluidType type) {
-		return fluid && getTile() instanceof IFluidReceiverMK2 rec ? rec.getReceivingPressureRange(type) : DEFAULT_PRESSURE_RANGE;
+		return fluid && getCoreObject() instanceof IFluidReceiverMK2 rec ? rec.getReceivingPressureRange(type) : DEFAULT_PRESSURE_RANGE;
 	}
 }

@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -295,6 +295,28 @@ public class DevScene {
 			strand.steam.setFill(0);
 			if(strand.amount < com.hbm.inventory.material.MaterialShapes.INGOT.q(4)) strand.standardAdd(server.overworld(), new com.hbm.inventory.material.Mats.MaterialStack(com.hbm.inventory.material.Mats.MAT_STEEL, com.hbm.inventory.material.MaterialShapes.INGOT.q(2)));
 			for(int i = 1; i < 7; i++) if(strand.getItem(i).getCount() > 48) strand.setItem(i, ItemStack.EMPTY);
+		}
+		// the chemical factory makes sulfuric acid in all four fields
+		if(chemFactoryPos != null && server.overworld().getBlockEntity(chemFactoryPos) instanceof com.hbm.tileentity.machine.TileEntityMachineChemicalFactory chemfac) {
+			chemfac.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+			chemfac.water.setFill(chemfac.water.getMaxFill());
+			chemfac.lps.setFill(0);
+			for(int i = 0; i < 4; i++) {
+				if(chemfac.chemplantModule[i].getRecipe() == null) chemfac.chemplantModule[i].setRecipe("chem.sulfuricacid", false);
+				chemfac.inputTanks[i * 3].setTankType(com.hbm.inventory.fluid.Fluids.PEROXIDE);
+				chemfac.inputTanks[i * 3].setFill(8_000 + i * 4_000);
+				chemfac.inputTanks[i * 3 + 1].setTankType(com.hbm.inventory.fluid.Fluids.WATER);
+				chemfac.inputTanks[i * 3 + 1].setFill(20_000);
+				if(chemfac.getItem(5 + i * 7).getCount() < 8) chemfac.setItem(5 + i * 7, new ItemStack(ModItems.sulfur.get(), 16));
+				if(chemfac.outputTanks[i * 3].getFill() > 16_000) chemfac.outputTanks[i * 3].setFill(6_000);
+			}
+		}
+		if(serverTicks == 3015 || serverTicks == 3050) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3015) player.teleportTo(player.serverLevel(), 10.5, -57, -46.5, 180F, 20F);
+				else if(player.level().getBlockEntity(chemFactoryPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(chemFactoryPos));
+			}
 		}
 		if(serverTicks == 2945 || serverTicks == 2980) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -970,6 +992,7 @@ public class DevScene {
 			}
 			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
+			chemFactoryPos = ModBlocks.machine_chemical_factory.get().placeMultiblock(level, origin.offset(10, 0, -56), net.minecraft.core.Direction.NORTH);
 			rotaryPos = ModBlocks.machine_rotary_furnace.get().placeMultiblock(level, origin.offset(-1, 0, -48), net.minecraft.core.Direction.NORTH);
 			furnaceBrickPos = origin.offset(-4, 0, -41);
 			level.setBlockAndUpdate(furnaceBrickPos, ModBlocks.machine_furnace_brick_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineBrickFurnace.FACING, net.minecraft.core.Direction.SOUTH));
@@ -1255,7 +1278,10 @@ public class DevScene {
 			if(ticks == 2978) Screenshot.grab(mc.gameDirectory, "devscene_world_strand.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3010) Screenshot.grab(mc.gameDirectory, "devscene_gui_strand.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3020) {
+			if(ticks == 3048) Screenshot.grab(mc.gameDirectory, "devscene_world_chemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3080) Screenshot.grab(mc.gameDirectory, "devscene_gui_chemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3090) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
