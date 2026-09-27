@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -280,6 +280,21 @@ public class DevScene {
 			if(combo.getItem(0).isEmpty()) combo.setItem(0, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
 			if(combo.getItem(1).getCount() > 60) combo.setItem(1, ItemStack.EMPTY);
 			if(combo.tank.getFill() > 20_000) combo.tank.setFill(4_000);
+		}
+		// the rotary furnace makes steel
+		if(rotaryPos != null && server.overworld().getBlockEntity(rotaryPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRotaryFurnace rotary) {
+			rotary.tanks[1].setFill(rotary.tanks[1].getMaxFill());
+			rotary.tanks[2].setFill(0);
+			if(rotary.getItem(0).isEmpty()) rotary.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 64));
+			if(rotary.getItem(1).isEmpty()) rotary.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
+			if(rotary.getItem(4).isEmpty()) rotary.setItem(4, new ItemStack(ModItems.solid_fuel.get(), 64));
+		}
+		if(serverTicks == 2870 || serverTicks == 2905) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2870) player.teleportTo(player.serverLevel(), -0.5, -57, -41.5, 180F, 15F);
+				else if(player.level().getBlockEntity(rotaryPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(rotaryPos));
+			}
 		}
 		if(serverTicks == 2795 || serverTicks == 2830) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -935,6 +950,7 @@ public class DevScene {
 					comboPos = ModBlocks.furnace_combination.get().placeMultiblock(level, fireboxCore.above().north(), net.minecraft.core.Direction.NORTH);
 				}
 			}
+			rotaryPos = ModBlocks.machine_rotary_furnace.get().placeMultiblock(level, origin.offset(-1, 0, -48), net.minecraft.core.Direction.NORTH);
 			furnaceBrickPos = origin.offset(-4, 0, -41);
 			level.setBlockAndUpdate(furnaceBrickPos, ModBlocks.machine_furnace_brick_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineBrickFurnace.FACING, net.minecraft.core.Direction.SOUTH));
 			furnaceIronPos = ModBlocks.furnace_iron.get().placeMultiblock(level, origin.offset(-5, 0, -41), net.minecraft.core.Direction.SOUTH);
@@ -1213,7 +1229,10 @@ public class DevScene {
 			if(ticks == 2828) Screenshot.grab(mc.gameDirectory, "devscene_world_combination.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2860) Screenshot.grab(mc.gameDirectory, "devscene_gui_combination.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2870) {
+			if(ticks == 2903) Screenshot.grab(mc.gameDirectory, "devscene_world_rotary.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 2935) Screenshot.grab(mc.gameDirectory, "devscene_gui_rotary.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 2945) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

@@ -80,6 +80,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.MixerRecipes.registerDefaults();
 			com.hbm.tileentity.machine.TileEntityFurnaceBrick.registerSpeeds();
 			com.hbm.inventory.recipes.CombinationRecipes.registerDefaults();
+			com.hbm.inventory.recipes.RotaryFurnaceRecipes.registerDefaults();
 			com.hbm.inventory.recipes.GasCentrifugeRecipes.register();
 			com.hbm.tileentity.machine.TileEntityMachineTurbineGas.registerFuels();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();

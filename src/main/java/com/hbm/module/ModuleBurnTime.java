@@ -32,6 +32,9 @@ public class ModuleBurnTime {
 	private double[] modTime = new double[8];
 	private double[] modHeat = new double[8];
 
+	/** The heat multipliers per fuel category, for getMod (the rotary furnace uses them as a speed bonus) */
+	public double[] getModHeat() { return modHeat; }
+
 	public ModuleBurnTime() {
 		for(int i = 0; i < modTime.length; i++) {
 			modTime[i] = 1.0D;

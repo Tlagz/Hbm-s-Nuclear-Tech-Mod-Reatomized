@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_rotary_furnace"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_rotary_furnace"
+    }
+  }
+}
