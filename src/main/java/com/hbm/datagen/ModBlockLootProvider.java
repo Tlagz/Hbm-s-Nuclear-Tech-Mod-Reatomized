@@ -129,6 +129,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		// molten meteor blocks turn into lava when broken and don't drop anything
 		add(ModBlocks.block_meteor_molten.get(), LootTable.lootTable());
 		handled.add(ModBlocks.block_meteor_molten.get());
+		add(ModBlocks.barricade.get(), LootTable.lootTable());
+		handled.add(ModBlocks.barricade.get());
 
 		// multiblocks drop through BlockDummyable.playerWillDestroy, the drill pipe drops nothing (BlockNoDrop)
 		for(var dummyable : ModBlocks.DUMMYABLES) {

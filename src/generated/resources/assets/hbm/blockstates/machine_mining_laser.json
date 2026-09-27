@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_mining_laser"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_mining_laser"
+    }
+  }
+}

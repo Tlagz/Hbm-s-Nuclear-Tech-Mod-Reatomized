@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -422,6 +422,17 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
+			}
+		}
+		// the mining laser runs on creative power
+		if(miningLaserPos != null && server.overworld().getBlockEntity(miningLaserPos) instanceof com.hbm.tileentity.machine.TileEntityMachineMiningLaser laser) {
+			laser.setPower(com.hbm.tileentity.machine.TileEntityMachineMiningLaser.maxPower);
+			laser.isOn = true;
+		}
+		if(serverTicks == 4310) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 58.5, -58, -55.5, 180F, 10F);
 			}
 		}
 		// the turbofan gets kerosene
@@ -1250,6 +1261,10 @@ public class DevScene {
 			for(int x = 44; x <= 62; x++) for(int z = -78; z <= -60; z++) for(int y = 0; y <= 8; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			turbofanPos = ModBlocks.machine_turbofan.get().placeMultiblock(level, origin.offset(53, 0, -70), net.minecraft.core.Direction.NORTH);
 			if(turbofanPos != null && level.getBlockEntity(turbofanPos) instanceof com.hbm.tileentity.machine.TileEntityMachineTurbofan fan) fan.setItem(2, new ItemStack(ModItems.upgrade_afterburn_3.get()));
+			// a mining laser hanging from a small concrete roof on four pillars
+			for(int x = 56; x <= 60; x++) for(int z = -66; z <= -62; z++) level.setBlockAndUpdate(origin.offset(x, 6, z), Blocks.SMOOTH_STONE.defaultBlockState());
+			for(int[] pillar : new int[][] {{56, -66}, {60, -66}, {56, -62}, {60, -62}}) for(int y = 0; y <= 5; y++) level.setBlockAndUpdate(origin.offset(pillar[0], y, pillar[1]), Blocks.STONE_BRICKS.defaultBlockState());
+			miningLaserPos = ModBlocks.machine_mining_laser.get().placeMultiblock(level, origin.offset(58, 5, -64), net.minecraft.core.Direction.NORTH);
 			radgenPos = ModBlocks.machine_radgen.get().placeMultiblock(level, origin.offset(22, 0, -63), net.minecraft.core.Direction.EAST);
 			if(radgenPos != null && level.getBlockEntity(radgenPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRadGen radgen) {
 				radgen.setItem(0, new ItemStack(ModItems.scrap_nuclear.get(), 16));
@@ -1641,7 +1656,9 @@ public class DevScene {
 
 			if(ticks == 4300) Screenshot.grab(mc.gameDirectory, "devscene_world_turbofan.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4310) {
+			if(ticks == 4350) Screenshot.grab(mc.gameDirectory, "devscene_world_mining_laser.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4360) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

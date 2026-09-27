@@ -75,6 +75,10 @@ public class ResourceManager {
 	public static final ResourceLocation turbofan_tex = RefStrings.loc("textures/models/machines/turbofan.png");
 	public static final ResourceLocation turbofan_back_tex = RefStrings.loc("textures/models/machines/turbofan_back.png");
 	public static final ResourceLocation turbofan_afterburner_tex = RefStrings.loc("textures/models/machines/turbofan_afterburner.png");
+	public static final HFRWavefrontObject mining_laser = new HFRWavefrontObject(RefStrings.loc("models/machines/mining_laser.obj"));
+	public static final ResourceLocation mining_laser_base_tex = RefStrings.loc("textures/models/machines/mining_laser_base.png");
+	public static final ResourceLocation mining_laser_pivot_tex = RefStrings.loc("textures/models/machines/mining_laser_pivot.png");
+	public static final ResourceLocation mining_laser_laser_tex = RefStrings.loc("textures/models/machines/mining_laser_laser.png");
 	public static final HFRWavefrontObject chimney_brick = new HFRWavefrontObject(RefStrings.loc("models/machines/chimney_brick.obj"));
 	public static final HFRWavefrontObject chimney_industrial = new HFRWavefrontObject(RefStrings.loc("models/machines/chimney_industrial.obj"));
 	public static final ResourceLocation chimney_brick_tex = RefStrings.loc("textures/models/machines/chimney_brick.png");

@@ -1,5 +1,6 @@
 {
   "values": [
+    "hbm:barricade",
     "hbm:ore_oil_sand",
     "hbm:block_scrap",
     "hbm:block_foam",
