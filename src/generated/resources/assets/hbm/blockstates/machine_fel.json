@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_fel"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_fel"
+    }
+  }
+}

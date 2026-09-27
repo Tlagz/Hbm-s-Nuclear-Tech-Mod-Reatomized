@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -370,6 +370,25 @@ public class DevScene {
 			if(chamber.getItem(3).getCount() < 2) chamber.setItem(3, new ItemStack(ModItems.ingot_u238.get(), 16));
 			if(chamber.getItem(4).getCount() > 32) chamber.setItem(4, ItemStack.EMPTY);
 			chamber.setItem(2, ItemStack.EMPTY);
+		}
+		// the FEL shines through the SILEX, separating uranium
+		if(felPos != null && server.overworld().getBlockEntity(felPos) instanceof com.hbm.tileentity.machine.TileEntityFEL fel) {
+			fel.setPower(com.hbm.tileentity.machine.TileEntityFEL.maxPower);
+			fel.setItem(1, new ItemStack(ModItems.laser_crystal_cmb.get()));
+			fel.isOn = true;
+		}
+		if(silexPos != null && server.overworld().getBlockEntity(silexPos) instanceof com.hbm.tileentity.machine.TileEntitySILEX silex) {
+			silex.tank.setTankType(com.hbm.inventory.fluid.Fluids.PEROXIDE);
+			silex.tank.setFill(16_000);
+			if(silex.getItem(0).isEmpty()) silex.setItem(0, new ItemStack(ModItems.ingot_uranium.get(), 16));
+			for(int i = 5; i < 11; i++) if(silex.getItem(i).getCount() > 32) silex.setItem(i, ItemStack.EMPTY);
+		}
+		if(serverTicks == 3695 || serverTicks == 3735) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3695) player.teleportTo(player.serverLevel(), 16.5, -57, -72.5, 118F, 15F);
+				else if(player.level().getBlockEntity(silexPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(silexPos));
+			}
 		}
 		if(serverTicks == 3620 || serverTicks == 3660) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1120,6 +1139,8 @@ public class DevScene {
 			for(int x = 2; x <= 16; x++) for(int z = -78; z <= -63; z++) for(int y = 0; y <= 10; y++) {
 				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			}
+			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
+			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
 			exposurePos = ModBlocks.machine_exposure_chamber.get().placeMultiblock(level, origin.offset(10, 0, -73), net.minecraft.core.Direction.NORTH);
 			radiolysisPos = ModBlocks.machine_radiolysis.get().placeMultiblock(level, origin.offset(15, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(radiolysisPos != null && level.getBlockEntity(radiolysisPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRadiolysis radiolysis) {
@@ -1458,7 +1479,10 @@ public class DevScene {
 			if(ticks == 3655) Screenshot.grab(mc.gameDirectory, "devscene_world_exposure.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3690) Screenshot.grab(mc.gameDirectory, "devscene_gui_exposure.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3700) {
+			if(ticks == 3730) Screenshot.grab(mc.gameDirectory, "devscene_world_silex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3765) Screenshot.grab(mc.gameDirectory, "devscene_gui_silex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3775) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

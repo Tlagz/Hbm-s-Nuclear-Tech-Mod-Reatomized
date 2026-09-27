@@ -4650,6 +4650,26 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/laser_crystal_co2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/laser_crystal_bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/laser_crystal_cmb"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/laser_crystal_dnt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/laser_crystal_digamma"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/pellet_rtg_depleted.bismuth"
     },
     {

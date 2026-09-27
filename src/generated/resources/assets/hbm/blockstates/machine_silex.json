@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_silex"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_silex"
+    }
+  }
+}

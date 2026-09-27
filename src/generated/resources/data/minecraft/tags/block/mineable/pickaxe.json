@@ -19,6 +19,8 @@
     "hbm:charger",
     "hbm:machine_radiolysis",
     "hbm:machine_exposure_chamber",
+    "hbm:machine_silex",
+    "hbm:machine_fel",
     "hbm:machine_well",
     "hbm:machine_pumpjack",
     "hbm:machine_fracking_tower",

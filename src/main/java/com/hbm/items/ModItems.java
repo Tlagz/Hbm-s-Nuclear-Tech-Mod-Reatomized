@@ -743,6 +743,13 @@ public class ModItems {
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
 
+	/// FEL LASER CRYSTALS ///
+	public static final DeferredItem<com.hbm.items.machine.ItemFELCrystal> laser_crystal_co2 = felCrystal("laser_crystal_co2", com.hbm.items.machine.ItemFELCrystal.EnumWavelengths.IR);
+	public static final DeferredItem<com.hbm.items.machine.ItemFELCrystal> laser_crystal_bismuth = felCrystal("laser_crystal_bismuth", com.hbm.items.machine.ItemFELCrystal.EnumWavelengths.VISIBLE);
+	public static final DeferredItem<com.hbm.items.machine.ItemFELCrystal> laser_crystal_cmb = felCrystal("laser_crystal_cmb", com.hbm.items.machine.ItemFELCrystal.EnumWavelengths.UV);
+	public static final DeferredItem<com.hbm.items.machine.ItemFELCrystal> laser_crystal_dnt = felCrystal("laser_crystal_dnt", com.hbm.items.machine.ItemFELCrystal.EnumWavelengths.GAMMA);
+	public static final DeferredItem<com.hbm.items.machine.ItemFELCrystal> laser_crystal_digamma = felCrystal("laser_crystal_digamma", com.hbm.items.machine.ItemFELCrystal.EnumWavelengths.DRX);
+
 	/// RTG PELLETS ///
 	public static final ItemEnumMulti.Variants<com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial> pellet_rtg_depleted = multi("pellet_rtg_depleted", "pellet_rtg_depleted",
 			com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.class, true, value -> "items/pellet_rtg_depleted." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(),
@@ -948,6 +955,13 @@ public class ModItems {
 		long life = (long) (com.hbm.util.RTGUtil.getLifespan(halfLife, type, false) * 1.5);
 		DeferredItem<com.hbm.items.machine.ItemRTGPellet> item = register(name, p -> new com.hbm.items.machine.ItemRTGPellet(p, heat, name.equals("pellet_rtg"))
 				.setDecays(() -> pellet_rtg_depleted.stack(mat), life), new Item.Properties(), NtmTab.CONTROL);
+		FLAT_MODELS.put(item, "items/" + name);
+		return item;
+	}
+
+	/** FEL laser crystal of a wavelength, in the control tab like the original */
+	private static DeferredItem<com.hbm.items.machine.ItemFELCrystal> felCrystal(String name, com.hbm.items.machine.ItemFELCrystal.EnumWavelengths wavelength) {
+		DeferredItem<com.hbm.items.machine.ItemFELCrystal> item = register(name, p -> new com.hbm.items.machine.ItemFELCrystal(p, wavelength), new Item.Properties(), NtmTab.CONTROL);
 		FLAT_MODELS.put(item, "items/" + name);
 		return item;
 	}
