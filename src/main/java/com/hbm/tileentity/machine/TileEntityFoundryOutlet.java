@@ -30,7 +30,11 @@ public class TileEntityFoundryOutlet extends TileEntityFoundryBase {
 	public boolean invertRedstone = false;
 
 	public TileEntityFoundryOutlet(BlockPos pos, BlockState state) {
-		super(ModTileEntities.FOUNDRY_OUTLET.get(), pos, state);
+		this(ModTileEntities.FOUNDRY_OUTLET.get(), pos, state);
+	}
+
+	protected TileEntityFoundryOutlet(net.minecraft.world.level.block.entity.BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
 	}
 
 	/** if TRUE, prevents all fluids from flowing through the outlet and renders a small barrier */

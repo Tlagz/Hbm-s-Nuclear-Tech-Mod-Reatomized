@@ -208,6 +208,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFoundryChannel::new, ModBlocks.foundry_channel.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFoundryOutlet>> FOUNDRY_OUTLET = TILES.register("foundry_outlet",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFoundryOutlet::new, ModBlocks.foundry_outlet.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFoundrySlagtap>> FOUNDRY_SLAGTAP = TILES.register("foundry_slagtap",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFoundrySlagtap::new, ModBlocks.foundry_slagtap.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFoundryTank>> FOUNDRY_TANK = TILES.register("foundry_tank",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFoundryTank::new, ModBlocks.foundry_tank.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntitySlag>> SLAG = TILES.register("slag",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntitySlag::new, ModBlocks.slag.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge>> ARC_FURNACE = TILES.register("machine_arc_furnace",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineArcFurnaceLarge::new, ModBlocks.machine_arc_furnace.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineArcWelder>> ARC_WELDER = TILES.register("machine_arc_welder",

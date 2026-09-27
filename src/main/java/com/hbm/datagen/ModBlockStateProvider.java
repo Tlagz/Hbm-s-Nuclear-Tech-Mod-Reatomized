@@ -51,7 +51,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		foundryVessel(ModBlocks.foundry_mold, "mold", 8);
 		foundryVessel(ModBlocks.foundry_basin, "basin", 16);
 		foundryChannel();
-		foundryOutlet();
+		foundryOutlet(ModBlocks.foundry_outlet, "foundry_outlet");
+		foundryOutlet(ModBlocks.foundry_slagtap, "foundry_slagtap");
+		foundryTank();
+		dynamicSlag();
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
 			capacitor(capacitor);
@@ -517,11 +520,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
 	 * Foundry outlet, modeled facing north (sitting in the south part of its block, towards the channel): floor, side
 	 * walls and the open front texture on both ends, the filter and the lock as planes near the channel.
 	 */
-	private void foundryOutlet() {
+	private void foundryOutlet(DeferredBlock<? extends com.hbm.blocks.machine.FoundryOutlet> block, String name) {
 		String p = "blocks/foundry_outlet_";
-		BlockModelBuilder model = models().getBuilder("foundry_outlet").parent(models().getExistingFile(mcLoc("block/block")))
-				.texture("top", texture(p + "top")).texture("side", texture(p + "side")).texture("inner", texture(p + "inner")).texture("bottom", texture(p + "bottom"))
-				.texture("front", texture(p + "front")).texture("particle", texture(p + "side")).renderType("cutout");
+		String t = "blocks/" + name + "_";
+		BlockModelBuilder model = models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture(t + "top")).texture("side", texture(t + "side")).texture("inner", texture(t + "inner")).texture("bottom", texture(t + "bottom"))
+				.texture("front", texture(t + "front")).texture("particle", texture(t + "side")).renderType("cutout");
 		model.element().from(5, 0, 10).to(11, 2, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP || dir == Direction.DOWN ? "#bottom" : "#side")).end();
 		model.element().from(5, 2, 10).to(6, 8, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.EAST ? "#inner" : "#side")).end();
 		model.element().from(10, 2, 10).to(11, 8, 16).allFaces((dir, face) -> face.texture(dir == Direction.UP ? "#top" : dir == Direction.WEST ? "#inner" : "#side")).end();
@@ -534,14 +538,85 @@ public class ModBlockStateProvider extends BlockStateProvider {
 				.texture("lock", texture(p + "lock")).texture("particle", texture(p + "lock")).renderType("cutout");
 		lock.element().from(6, 1, 15).to(10, 8, 15).face(Direction.NORTH).texture("#lock").end().face(Direction.SOUTH).texture("#lock").end().end();
 
-		var builder = getMultipartBuilder(ModBlocks.foundry_outlet.get());
+		var builder = getMultipartBuilder(block.get());
 		for(Direction dir : Direction.Plane.HORIZONTAL) {
 			int y = ((int) dir.toYRot() + 180) % 360;
 			builder.part().modelFile(model).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).end();
 			builder.part().modelFile(filter).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).condition(com.hbm.blocks.machine.FoundryOutlet.FILTER, true).end();
 			builder.part().modelFile(lock).rotationY(y).addModel().condition(com.hbm.blocks.machine.FoundryOutlet.FACING, dir).condition(com.hbm.blocks.machine.FoundryOutlet.LOCK, true).end();
 		}
-		simpleBlockItem(ModBlocks.foundry_outlet.get(), model);
+		simpleBlockItem(block.get(), model);
+	}
+
+	/**
+	 * Foundry tank (the original's RenderFoundryTank ISBRH as a multipart): a floor unless there's a tank below and a
+	 * wall towards every side without a tank. Walls are modeled on the east side and turned; their outer face shows
+	 * the outlet hole and the upper texture when stacked, the inner face turns into the floor texture under a tank
+	 * above, and wall ends facing a connected neighbor get their own faces.
+	 */
+	private void foundryTank() {
+		String p = "blocks/foundry_tank_";
+		java.util.function.Function<String, BlockModelBuilder> base = name -> models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture(p + "top")).texture("side", texture(p + "side")).texture("side_outlet", texture(p + "side_outlet"))
+				.texture("upper", texture(p + "upper")).texture("upper_outlet", texture(p + "upper_outlet")).texture("bottom", texture(p + "bottom"))
+				.texture("inner", texture(p + "inner")).texture("particle", texture(p + "side")).renderType("cutout");
+
+		var builder = getMultipartBuilder(ModBlocks.foundry_tank.get());
+		var FT = com.hbm.blocks.machine.FoundryTank.class;
+
+		BlockModelBuilder floor = base.apply("foundry_tank_floor");
+		floor.element().from(0, 0, 0).to(16, 2, 16).face(Direction.UP).texture("#bottom").end().face(Direction.DOWN).texture("#bottom").cullface(Direction.DOWN).end().end();
+		builder.part().modelFile(floor).addModel().condition(com.hbm.blocks.machine.FoundryTank.DOWN, false).end();
+
+		Direction[] dirs = { Direction.EAST, Direction.SOUTH, Direction.WEST, Direction.NORTH };
+		for(int down = 0; down < 2; down++) for(int out = 0; out < 2; out++) for(int up = 0; up < 2; up++) {
+			String outer = "#" + (down == 1 ? "upper" : "side") + (out == 1 ? "_outlet" : "");
+			String inner = up == 1 ? "#bottom" : "#inner";
+			BlockModelBuilder wall = base.apply("foundry_tank_wall_" + down + out + up);
+			wall.element().from(14, 0, 0).to(16, 16, 16).face(Direction.EAST).texture(outer).cullface(Direction.EAST).end()
+					.face(Direction.WEST).texture(inner).end().face(Direction.UP).texture("#top").end().end();
+			for(int i = 0; i < 4; i++) {
+				builder.part().modelFile(wall).rotationY(i * 90).addModel()
+						.condition(com.hbm.blocks.machine.FoundryTank.connection(dirs[i]), false)
+						.condition(com.hbm.blocks.machine.FoundryTank.DOWN, down == 1)
+						.condition(com.hbm.blocks.machine.FoundryTank.outlet(dirs[i]), out == 1)
+						.condition(com.hbm.blocks.machine.FoundryTank.UP, up == 1).end();
+			}
+		}
+
+		for(int up = 0; up < 2; up++) {
+			String inner = up == 1 ? "#bottom" : "#inner";
+			BlockModelBuilder endCw = base.apply("foundry_tank_end_cw_" + up);
+			endCw.element().from(14, 0, 0).to(16, 16, 16).face(Direction.SOUTH).texture(inner).end().end();
+			BlockModelBuilder endCcw = base.apply("foundry_tank_end_ccw_" + up);
+			endCcw.element().from(14, 0, 0).to(16, 16, 16).face(Direction.NORTH).texture(inner).end().end();
+			for(int i = 0; i < 4; i++) {
+				builder.part().modelFile(endCw).rotationY(i * 90).addModel()
+						.condition(com.hbm.blocks.machine.FoundryTank.connection(dirs[i]), false)
+						.condition(com.hbm.blocks.machine.FoundryTank.connection(dirs[i].getClockWise()), true)
+						.condition(com.hbm.blocks.machine.FoundryTank.UP, up == 1).end();
+				builder.part().modelFile(endCcw).rotationY(i * 90).addModel()
+						.condition(com.hbm.blocks.machine.FoundryTank.connection(dirs[i]), false)
+						.condition(com.hbm.blocks.machine.FoundryTank.connection(dirs[i].getCounterClockWise()), true)
+						.condition(com.hbm.blocks.machine.FoundryTank.UP, up == 1).end();
+			}
+		}
+
+		// inventory: a lone tank
+		BlockModelBuilder item = base.apply("foundry_tank_inventory");
+		item.element().from(0, 0, 0).to(16, 2, 16).face(Direction.UP).texture("#bottom").end().face(Direction.DOWN).texture("#bottom").end().end();
+		item.element().from(14, 0, 0).to(16, 16, 16).face(Direction.EAST).texture("#side").end().face(Direction.WEST).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
+		item.element().from(0, 0, 0).to(2, 16, 16).face(Direction.WEST).texture("#side").end().face(Direction.EAST).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
+		item.element().from(0, 0, 14).to(16, 16, 16).face(Direction.SOUTH).texture("#side").end().face(Direction.NORTH).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
+		item.element().from(0, 0, 0).to(16, 16, 2).face(Direction.NORTH).texture("#side").end().face(Direction.SOUTH).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
+		simpleBlockItem(ModBlocks.foundry_tank.get(), item);
+	}
+
+	/** Dynamic slag is drawn by RenderSlag, the model only provides the break particles */
+	private void dynamicSlag() {
+		BlockModelBuilder model = models().getBuilder("slag").texture("particle", texture("blocks/slag"));
+		simpleBlock(ModBlocks.slag.get(), model);
+		simpleBlockItem(ModBlocks.slag.get(), models().cubeAll("slag_item", texture("blocks/slag")));
 	}
 
 	/** Barrels: the original's barrel.obj "Barrel" part with the barrel's texture, the model is centered on x/z */

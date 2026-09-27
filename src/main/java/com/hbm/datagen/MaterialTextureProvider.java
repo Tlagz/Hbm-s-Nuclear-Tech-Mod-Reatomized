@@ -61,6 +61,21 @@ public class MaterialTextureProvider implements DataProvider {
 			}
 		}
 
+		// dynamic slag in the colors of materials with two solid colors, see RenderSlag
+		BufferedImage slag = read("/assets/hbm/textures/blocks/slag.png");
+		for(NTMMaterial mat : com.hbm.inventory.material.Mats.orderedList) {
+			if(!com.hbm.tileentity.machine.TileEntitySlag.hasOwnTexture(mat)) continue;
+			byte[] png = png(remap(slag, SOURCE_LIGHT, SOURCE_DARK, mat.solidColorLight, mat.solidColorDark));
+			Path path = root.resolve(com.hbm.tileentity.machine.TileEntitySlag.texturePath(mat) + ".png");
+			futures.add(CompletableFuture.runAsync(() -> {
+				try {
+					cache.writeIfNeeded(path, png, Hashing.sha1().hashBytes(png));
+				} catch(IOException ex) {
+					throw new UncheckedIOException(ex);
+				}
+			}, Util.backgroundExecutor()));
+		}
+
 		return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
 	}
 

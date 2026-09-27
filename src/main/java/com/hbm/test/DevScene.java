@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -404,6 +404,17 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 35.5, -55, -45.5, 180F, 25F);
+			}
+		}
+		// the foundry tanks get topped up with steel, the slag tap keeps draining them
+		if(tankPos != null && serverTicks % 20 == 0 && server.overworld().getBlockEntity(tankPos.above()) instanceof com.hbm.tileentity.machine.TileEntityFoundryTank tank && tank.amount < tank.getCapacity() / 2) {
+			tank.type = com.hbm.inventory.material.Mats.MAT_STEEL;
+			tank.amount = tank.getCapacity();
+		}
+		if(serverTicks == 4120) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
 			}
 		}
 		// the smokestacks get fed smoke
@@ -1214,6 +1225,24 @@ public class DevScene {
 			// a wheat field south of the saw, out of its reach, with the thresher facing west into it
 			for(int x = 26; x <= 42; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 6; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			thresherPos = origin.offset(41, 0, -57);
+			// foundry tanks on a brick base west of the field, a slag tap dumping onto the grass
+			for(int x = 20; x <= 29; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 4; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			tankPos = origin.offset(24, 1, -56);
+			for(int x = 24; x <= 25; x++) for(int z = -56; z <= -55; z++) {
+				level.setBlockAndUpdate(origin.offset(x, 0, z), Blocks.BRICKS.defaultBlockState());
+				level.setBlockAndUpdate(origin.offset(x, 1, z), ModBlocks.foundry_tank.get().defaultBlockState());
+			}
+			level.setBlockAndUpdate(origin.offset(24, 2, -56), ModBlocks.foundry_tank.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(26, 1, -55), ModBlocks.foundry_slagtap.get().defaultBlockState().setValue(com.hbm.blocks.machine.FoundryOutlet.FACING, net.minecraft.core.Direction.EAST));
+			// neighbor updates don't run for setBlock during the scene setup order, refresh the tank connections
+			for(int x = 24; x <= 25; x++) for(int z = -56; z <= -55; z++) for(int y = 1; y <= 2; y++) {
+				net.minecraft.core.BlockPos tp = origin.offset(x, y, z);
+				if(level.getBlockState(tp).getBlock() instanceof com.hbm.blocks.machine.FoundryTank ft) {
+					net.minecraft.world.level.block.state.BlockState st = level.getBlockState(tp);
+					for(net.minecraft.core.Direction d : net.minecraft.core.Direction.values()) st = st.updateShape(d, level.getBlockState(tp.relative(d)), level, tp, tp.relative(d));
+					level.setBlockAndUpdate(tp, st);
+				}
+			}
 			// smokestacks behind the buzz saw's clearing
 			for(int x = 20; x <= 42; x++) for(int z = -82; z <= -78; z++) for(int y = 16; y <= 25; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			chimneyBrickPos = ModBlocks.chimney_brick.get().placeMultiblock(level, origin.offset(22, 0, -81), net.minecraft.core.Direction.NORTH);
@@ -1578,7 +1607,9 @@ public class DevScene {
 			if(ticks == 4050) Screenshot.grab(mc.gameDirectory, "devscene_world_thresher.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 4110) Screenshot.grab(mc.gameDirectory, "devscene_world_thresher2.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4120) {
+			if(ticks == 4165) Screenshot.grab(mc.gameDirectory, "devscene_world_foundry_tank.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4175) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

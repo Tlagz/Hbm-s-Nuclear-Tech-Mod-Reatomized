@@ -1514,6 +1514,58 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_slagtap_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_slagtap_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_slagtap_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_slagtap_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_slagtap_front"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_side_outlet"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_upper"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_upper_outlet"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_bottom"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/foundry_tank_inner"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/slag"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/capacitor_copper_side"
     },
     {

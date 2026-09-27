@@ -1,0 +1,117 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "hbm:block/foundry_slagtap"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_filter"
+      },
+      "when": {
+        "facing": "north",
+        "filter": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_lock"
+      },
+      "when": {
+        "facing": "north",
+        "lock": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_slagtap",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_filter",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "filter": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_lock",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "lock": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_slagtap",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_filter",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "filter": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_lock",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "lock": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_slagtap",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_filter",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "filter": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/foundry_outlet_lock",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "lock": "true"
+      }
+    }
+  ]
+}

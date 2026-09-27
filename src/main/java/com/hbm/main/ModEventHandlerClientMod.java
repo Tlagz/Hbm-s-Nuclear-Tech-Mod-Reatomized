@@ -101,6 +101,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.AUTOSAW.get(), com.hbm.render.tileentity.RenderAutosaw::new);
 		event.registerBlockEntityRenderer(ModTileEntities.THRESHER.get(), com.hbm.render.tileentity.RenderThresher::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_BRICK.get(), com.hbm.render.tileentity.RenderChimney.brick());
+		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_TANK.get(), com.hbm.render.tileentity.RenderFoundry::new);
+		event.registerBlockEntityRenderer(ModTileEntities.SLAG.get(), com.hbm.render.tileentity.RenderSlag::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_INDUSTRIAL.get(), com.hbm.render.tileentity.RenderChimney.industrial());
 		event.registerBlockEntityRenderer(ModTileEntities.RADIOLYSIS.get(), com.hbm.render.tileentity.RenderRadiolysis::new);
 		event.registerBlockEntityRenderer(ModTileEntities.EXPOSURE_CHAMBER.get(), com.hbm.render.tileentity.RenderExposureChamber::new);

@@ -242,6 +242,9 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryBasin> foundry_basin = register("foundry_basin", com.hbm.blocks.machine.FoundryBasin::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryChannel> foundry_channel = register("foundry_channel", com.hbm.blocks.machine.FoundryChannel::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryOutlet> foundry_outlet = register("foundry_outlet", com.hbm.blocks.machine.FoundryOutlet::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundrySlagtap> foundry_slagtap = register("foundry_slagtap", com.hbm.blocks.machine.FoundrySlagtap::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.machine.FoundryTank> foundry_tank = register("foundry_tank", com.hbm.blocks.machine.FoundryTank::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.generic.BlockDynamicSlag> slag = register("slag", com.hbm.blocks.generic.BlockDynamicSlag::new, props(Mat.IRON, 5.0F, 10.0F), null);
 
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineShredder> machine_shredder = register("machine_shredder", com.hbm.blocks.machine.MachineShredder::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<MachineElectricFurnace> machine_electric_furnace_off = register("machine_electric_furnace_off", MachineElectricFurnace::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE);

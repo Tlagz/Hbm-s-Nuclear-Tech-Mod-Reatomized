@@ -1,6 +1,9 @@
 package com.hbm.render.tileentity;
 
 import com.hbm.blocks.machine.FoundryChannel;
+import com.hbm.blocks.machine.FoundryTank;
+import com.hbm.tileentity.machine.TileEntityFoundryTank;
+import net.minecraft.core.Direction;
 import com.hbm.lib.RefStrings;
 import com.hbm.tileentity.machine.IRenderFoundry;
 import com.hbm.tileentity.machine.TileEntityFoundryBase;
@@ -68,6 +71,47 @@ public class RenderFoundry implements BlockEntityRenderer<TileEntityFoundryBase>
 				if(state.getValue(FoundryChannel.NORTH)) top(pose, buffer, color, 0.3125, 0.6875, 0, 0.375, level);
 			}
 		}
+
+		// tanks: the surface plus the sides towards connected tanks, the floor is gone when there's a tank below
+		if(tile instanceof TileEntityFoundryTank tank && tank.amount > 0 && tank.type != null && tank.getBlockState().getBlock() instanceof FoundryTank) {
+			BlockState state = tank.getBlockState();
+			boolean conNegY = state.getValue(FoundryTank.DOWN);
+			boolean conPosY = state.getValue(FoundryTank.UP);
+			double max = 0.75D + (conNegY ? 0.125D : 0) + (conPosY ? 0.125D : 0);
+			double height = conNegY ? 0D : 0.125D;
+			double top = height + tank.amount * max / tank.getCapacity();
+
+			int c = brighter(tank.type.moltenColor);
+			int r = (int) (255D - (255D - ((c >> 16) & 0xFF)) * 0.7D);
+			int g = (int) (255D - (255D - ((c >> 8) & 0xFF)) * 0.7D);
+			int b = (int) (255D - (255D - (c & 0xFF)) * 0.7D);
+			int color = (r << 16) | (g << 8) | b;
+
+			VertexConsumer buffer = buffers.getBuffer(RenderType.entityCutoutNoCull(lava));
+			top(pose, buffer, color, 0, 1, 0, 1, top);
+			for(Direction dir : Direction.Plane.HORIZONTAL) {
+				if(state.getValue(FoundryTank.connection(dir))) side(pose, buffer, color, dir, height, top);
+			}
+		}
+	}
+
+	/** A fullbright vertical quad of the molten texture on the given side of the block */
+	private static void side(PoseStack pose, VertexConsumer buffer, int color, Direction dir, double y0, double y1) {
+		Matrix4f m = pose.last().pose();
+		int r = (color >> 16) & 0xFF, g = (color >> 8) & 0xFF, b = color & 0xFF;
+		double x0, z0, x1, z1;
+		switch(dir) {
+		case NORTH: x0 = 0; z0 = 0; x1 = 1; z1 = 0; break;
+		case SOUTH: x0 = 0; z0 = 1; x1 = 1; z1 = 1; break;
+		case WEST: x0 = 0; z0 = 0; x1 = 0; z1 = 1; break;
+		default: x0 = 1; z0 = 0; x1 = 1; z1 = 1; break;
+		}
+		float nx = dir.getStepX(), nz = dir.getStepZ();
+		float v0 = (float) (1 - y1), v1 = (float) (1 - y0);
+		buffer.addVertex(m, (float) x0, (float) y0, (float) z0).setColor(r, g, b, 255).setUv(0, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose.last(), nx, 0, nz);
+		buffer.addVertex(m, (float) x1, (float) y0, (float) z1).setColor(r, g, b, 255).setUv(1, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose.last(), nx, 0, nz);
+		buffer.addVertex(m, (float) x1, (float) y1, (float) z1).setColor(r, g, b, 255).setUv(1, v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose.last(), nx, 0, nz);
+		buffer.addVertex(m, (float) x0, (float) y1, (float) z0).setColor(r, g, b, 255).setUv(0, v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(LightTexture.FULL_BRIGHT).setNormal(pose.last(), nx, 0, nz);
 	}
 
 	/** The original's Color.brighter() */

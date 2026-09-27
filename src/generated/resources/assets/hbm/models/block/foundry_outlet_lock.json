@@ -20,6 +20,26 @@
         8,
         15
       ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#lock"
+        },
+        "south": {
+          "texture": "#lock"
+        }
+      },
+      "from": [
+        6,
+        1,
+        15
+      ],
+      "to": [
+        10,
+        8,
+        15
+      ]
     }
   ],
   "render_type": "minecraft:cutout",
