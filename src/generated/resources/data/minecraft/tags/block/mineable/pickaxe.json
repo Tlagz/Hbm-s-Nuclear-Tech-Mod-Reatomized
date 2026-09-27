@@ -15,6 +15,7 @@
     "hbm:capacitor_schrabidate",
     "hbm:machine_wood_burner",
     "hbm:machine_diesel",
+    "hbm:machine_rtg_grey",
     "hbm:machine_well",
     "hbm:machine_pumpjack",
     "hbm:machine_fracking_tower",

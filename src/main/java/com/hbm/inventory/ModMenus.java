@@ -134,6 +134,8 @@ public class ModMenus {
 			tile("machine_ashpit", com.hbm.tileentity.machine.TileEntityAshpit.class, com.hbm.inventory.container.ContainerAshpit::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineTurbine>> TURBINE =
 			tile("machine_turbine", com.hbm.tileentity.machine.TileEntityMachineTurbine.class, com.hbm.inventory.container.ContainerMachineTurbine::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineRTG>> RTG =
+			tile("machine_rtg_grey", com.hbm.tileentity.machine.TileEntityMachineRTG.class, com.hbm.inventory.container.ContainerMachineRTG::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerDiFurnace>> DI_FURNACE =
 			tile("machine_difurnace", com.hbm.tileentity.machine.TileEntityDiFurnace.class, com.hbm.inventory.container.ContainerDiFurnace::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerFurnaceCombo>> FURNACE_COMBINATION =

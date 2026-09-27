@@ -1622,6 +1622,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/rtg"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_steel_machine"
     },
     {
@@ -4627,6 +4631,70 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/nothing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.bismuth"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.mercury"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.neptunium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.lead"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.zirconium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_depleted.nickel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_radium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_weak"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_strontium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_cobalt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_actinium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_americium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_polonium"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_gold"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/pellet_rtg_lead"
     },
     {
       "type": "minecraft:single",

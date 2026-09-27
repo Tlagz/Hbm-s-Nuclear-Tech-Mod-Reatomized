@@ -25,6 +25,10 @@ public class ModDataComponents {
 	public static final Supplier<DataComponentType<net.minecraft.world.item.component.CustomData>> PERSISTENT = COMPONENTS.registerComponentType("persistent",
 			builder -> builder.persistent(net.minecraft.world.item.component.CustomData.CODEC).networkSynchronized(net.minecraft.world.item.component.CustomData.STREAM_CODEC));
 
+	/** Ticks left of an RTG pellet (the original's "PELLET_DEPLETION" NBT long), absent = full lifespan */
+	public static final Supplier<DataComponentType<Long>> PELLET_DEPLETION = COMPONENTS.registerComponentType("pellet_depletion",
+			builder -> builder.persistent(Codec.LONG).networkSynchronized(ByteBufCodecs.VAR_LONG));
+
 	/** Fluid ID of fluid containers and identifiers, the original stored it as the item damage */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE = COMPONENTS.registerComponentType("fluid_type",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));

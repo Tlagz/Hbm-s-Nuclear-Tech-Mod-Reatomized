@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -357,6 +357,13 @@ public class DevScene {
 			mill.inputTanks[0].setFill(4_000);
 			mill.outputTanks[0].setFill(0);
 			if(serverTicks % 40 == 0) for(int i = 5; i < 8; i++) mill.setItem(i, ItemStack.EMPTY);
+		}
+		if(serverTicks == 3480 || serverTicks == 3515) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3480) player.teleportTo(player.serverLevel(), 11.5, -59, -46.5, 180F, 20F);
+				else if(player.level().getBlockEntity(rtgPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(rtgPos));
+			}
 		}
 		if(serverTicks == 3445) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1081,6 +1088,13 @@ public class DevScene {
 			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
 			diFurnacePos = origin.offset(-13, 0, -50);
+			rtgPos = origin.offset(10, 0, -50);
+			level.setBlockAndUpdate(rtgPos, ModBlocks.machine_rtg_grey.get().defaultBlockState());
+			if(level.getBlockEntity(rtgPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRTG rtg) {
+				rtg.setItem(0, new ItemStack(ModItems.pellet_rtg.get()));
+				rtg.setItem(1, new ItemStack(ModItems.pellet_rtg_polonium.get()));
+				rtg.setItem(2, new ItemStack(ModItems.pellet_rtg_strontium.get()));
+			}
 			deutTowerPos = ModBlocks.machine_deuterium_tower.get().placeMultiblock(level, origin.offset(15, 0, -50), net.minecraft.core.Direction.NORTH);
 			level.setBlockAndUpdate(origin.offset(12, 0, -50), ModBlocks.machine_deuterium_extractor.get().defaultBlockState());
 			rockMillPos = ModBlocks.machine_rockmill.get().placeMultiblock(level, origin.offset(10, 0, -62), net.minecraft.core.Direction.NORTH);
@@ -1397,7 +1411,10 @@ public class DevScene {
 
 			if(ticks == 3475) Screenshot.grab(mc.gameDirectory, "devscene_world_deuterium.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3485) {
+			if(ticks == 3510) Screenshot.grab(mc.gameDirectory, "devscene_world_rtg.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3545) Screenshot.grab(mc.gameDirectory, "devscene_gui_rtg.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3555) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

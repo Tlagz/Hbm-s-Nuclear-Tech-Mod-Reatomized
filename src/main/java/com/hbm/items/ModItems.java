@@ -743,6 +743,22 @@ public class ModItems {
 	public static final DeferredItem<Item> nothing = simple("nothing", null, "items/nothing", new Item.Properties());
 	// END GENERATED
 
+	/// RTG PELLETS ///
+	public static final ItemEnumMulti.Variants<com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial> pellet_rtg_depleted = multi("pellet_rtg_depleted", "pellet_rtg_depleted",
+			com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.class, true, value -> "items/pellet_rtg_depleted." + value.name().toLowerCase(java.util.Locale.US), NtmTab.CONTROL, new Item.Properties(),
+			(p, descriptionId, value) -> new ItemEnumMulti(p.craftRemainder(plate_iron.get()), descriptionId));
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_radium = rtgPellet("pellet_rtg_radium", 3, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD, 16.0F, com.hbm.util.RTGUtil.HalfLifeType.LONG);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_weak = rtgPellet("pellet_rtg_weak", 5, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD, 1.0F, com.hbm.util.RTGUtil.HalfLifeType.LONG);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg = rtgPellet("pellet_rtg", 10, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD, 87.7F, com.hbm.util.RTGUtil.HalfLifeType.MEDIUM);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_strontium = rtgPellet("pellet_rtg_strontium", 15, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.ZIRCONIUM, 29.0F, com.hbm.util.RTGUtil.HalfLifeType.MEDIUM);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_cobalt = rtgPellet("pellet_rtg_cobalt", 15, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.NICKEL, 5.3F, com.hbm.util.RTGUtil.HalfLifeType.MEDIUM);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_actinium = rtgPellet("pellet_rtg_actinium", 20, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD, 21.8F, com.hbm.util.RTGUtil.HalfLifeType.MEDIUM);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_americium = rtgPellet("pellet_rtg_americium", 20, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.NEPTUNIUM, 4.7F, com.hbm.util.RTGUtil.HalfLifeType.LONG);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_polonium = rtgPellet("pellet_rtg_polonium", 50, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.LEAD, 138.0F, com.hbm.util.RTGUtil.HalfLifeType.SHORT);
+	// the gold and lead pellets are twice/three times as hot while RTGs decay (the default)
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_gold = rtgPellet("pellet_rtg_gold", com.hbm.util.RTGUtil.RTG_DECAY ? 200 : 100, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.MERCURY, 2.7F, com.hbm.util.RTGUtil.HalfLifeType.SHORT);
+	public static final DeferredItem<com.hbm.items.machine.ItemRTGPellet> pellet_rtg_lead = rtgPellet("pellet_rtg_lead", com.hbm.util.RTGUtil.RTG_DECAY ? 600 : 200, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial.BISMUTH, 0.3F, com.hbm.util.RTGUtil.HalfLifeType.SHORT);
+
 	/// PRESS STAMPS ///
 	public static final DeferredItem<ItemStamp> stamp_stone_flat = stamp("stamp_stone_flat", 32, StampType.FLAT, "items/stamp_stone_flat");
 	public static final DeferredItem<ItemStamp> stamp_stone_plate = stamp("stamp_stone_plate", 32, StampType.PLATE, "items/stamp_stone_plate");
@@ -925,6 +941,15 @@ public class ModItems {
 			com.hbm.items.machine.ItemMold.ITEMS.put(mold.id, item);
 			FLAT_MODELS.put(item, "items/mold_" + mold.name);
 		}
+	}
+
+	/** RTG pellet decaying into the depleted pellet of that material, lifespan 1.5 half-lives like the original */
+	private static DeferredItem<com.hbm.items.machine.ItemRTGPellet> rtgPellet(String name, int heat, com.hbm.items.machine.ItemRTGPelletDepleted.DepletedRTGMaterial mat, float halfLife, com.hbm.util.RTGUtil.HalfLifeType type) {
+		long life = (long) (com.hbm.util.RTGUtil.getLifespan(halfLife, type, false) * 1.5);
+		DeferredItem<com.hbm.items.machine.ItemRTGPellet> item = register(name, p -> new com.hbm.items.machine.ItemRTGPellet(p, heat, name.equals("pellet_rtg"))
+				.setDecays(() -> pellet_rtg_depleted.stack(mat), life), new Item.Properties(), NtmTab.CONTROL);
+		FLAT_MODELS.put(item, "items/" + name);
+		return item;
 	}
 
 	/** Press stamp with a flat model, in the control tab like the original */

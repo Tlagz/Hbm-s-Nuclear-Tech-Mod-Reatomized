@@ -83,6 +83,7 @@ public class ModBlocks {
 	public static final DeferredBlock<MachineCapacitor> capacitor_schrabidate = register("capacitor_schrabidate", p -> new MachineCapacitor(p, 50_000_000_000L, "schrabidate"), props(Mat.IRON, 5.0F, 10.0F).noOcclusion(), null);
 	public static final DeferredBlock<MachineWoodBurner> machine_wood_burner = dummyable("machine_wood_burner", MachineWoodBurner::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<MachineDiesel> machine_diesel = tileRendered("machine_diesel", MachineDiesel::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineRTG> machine_rtg_grey = tileRendered("machine_rtg_grey", com.hbm.blocks.machine.MachineRTG::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/rtg");
 	public static final DeferredBlock<MachineOilWell> machine_well = dummyable("machine_well", MachineOilWell::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachinePumpjack> machine_pumpjack = dummyable("machine_pumpjack", com.hbm.blocks.machine.MachinePumpjack::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineFrackingTower> machine_fracking_tower = dummyable("machine_fracking_tower", com.hbm.blocks.machine.MachineFrackingTower::new, props(Mat.IRON, 5.0F, 20.0F), NtmTab.MACHINE, "blocks/block_steel");

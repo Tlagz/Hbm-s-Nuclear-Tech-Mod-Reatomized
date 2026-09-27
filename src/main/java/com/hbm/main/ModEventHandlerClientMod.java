@@ -31,6 +31,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.WOOD_BURNER.get(), GUIMachineWoodBurner::new);
 		event.register(ModMenus.BARREL.get(), com.hbm.inventory.gui.GUIBarrel::new);
 		event.register(ModMenus.DIESEL.get(), com.hbm.inventory.gui.GUIMachineDiesel::new);
+		event.register(ModMenus.RTG.get(), com.hbm.inventory.gui.GUIMachineRTG::new);
 		event.register(ModMenus.OIL_WELL.get(), com.hbm.inventory.gui.GUIMachineOilWell::new);
 		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
@@ -87,6 +88,7 @@ public class ModEventHandlerClientMod {
 	public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerBlockEntityRenderer(ModTileEntities.WOOD_BURNER.get(), RenderWoodBurner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.DIESEL.get(), com.hbm.render.tileentity.RenderDieselGen::new);
+		event.registerBlockEntityRenderer(ModTileEntities.RTG.get(), com.hbm.render.tileentity.RenderRTG::new);
 		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
@@ -174,6 +176,7 @@ public class ModEventHandlerClientMod {
 	public static void registerItemRenderers(RegisterClientExtensionsEvent event) {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_wood_burner.get().asItem(), RenderWoodBurner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_diesel.get().asItem(), com.hbm.render.tileentity.RenderDieselGen.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_rtg_grey.get().asItem(), com.hbm.render.tileentity.RenderRTG.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());
