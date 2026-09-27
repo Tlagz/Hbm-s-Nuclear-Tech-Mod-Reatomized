@@ -96,6 +96,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ModBlocks.machine_turbine.get(), turbine);
 		simpleBlockItem(ModBlocks.machine_turbine.get(), turbine);
 
+		ModelFile deuterium = models().cubeBottomTop("machine_deuterium_extractor", texture("blocks/deuterium_extractor_side"), texture("blocks/deuterium_extractor_top_water"), texture("blocks/deuterium_extractor_top_water"));
+		simpleBlock(ModBlocks.machine_deuterium_extractor.get(), deuterium);
+		simpleBlockItem(ModBlocks.machine_deuterium_extractor.get(), deuterium);
+
 		// alloy furnace: LIT instead of the original's on/off blocks, EXTENDED (extension on top) uses the tall textures
 		ModelFile[][] diFurnace = new ModelFile[2][2];
 		for(int lit = 0; lit < 2; lit++) for(int ext = 0; ext < 2; ext++) {

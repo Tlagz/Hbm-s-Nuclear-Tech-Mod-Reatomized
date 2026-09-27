@@ -85,6 +85,8 @@
     "hbm:machine_tower_large",
     "hbm:machine_industrial_turbine",
     "hbm:machine_turbine",
+    "hbm:machine_deuterium_extractor",
+    "hbm:machine_deuterium_tower",
     "hbm:machine_chungus",
     "hbm:machine_crucible",
     "hbm:machine_arc_furnace",

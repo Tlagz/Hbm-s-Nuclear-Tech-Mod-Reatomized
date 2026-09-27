@@ -104,6 +104,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STIRLING.get(), com.hbm.render.tileentity.RenderStirling::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OVEN.get(), com.hbm.render.tileentity.RenderHeatingOven::new);
+		event.registerBlockEntityRenderer(ModTileEntities.DEUTERIUM_TOWER.get(), com.hbm.render.tileentity.RenderDeuteriumTower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ASHPIT.get(), com.hbm.render.tileentity.RenderAshpit::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_ELECTRIC.get(), com.hbm.render.tileentity.RenderElectricHeater::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OILBURNER.get(), com.hbm.render.tileentity.RenderOilburner::new);
@@ -189,6 +190,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crucible.get().asItem(), com.hbm.render.tileentity.RenderCrucible.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oven.get().asItem(), com.hbm.render.tileentity.RenderHeatingOven.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_deuterium_tower.get().asItem(), com.hbm.render.tileentity.RenderDeuteriumTower.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_ashpit.get().asItem(), com.hbm.render.tileentity.RenderAshpit.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_electric.get().asItem(), com.hbm.render.tileentity.RenderElectricHeater.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oilburner.get().asItem(), com.hbm.render.tileentity.RenderOilburner.itemRenderer());

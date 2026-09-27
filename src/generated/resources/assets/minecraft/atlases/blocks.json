@@ -1690,6 +1690,14 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/deuterium_extractor_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/deuterium_extractor_top_water"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/difurnace_side_alt"
     },
     {
