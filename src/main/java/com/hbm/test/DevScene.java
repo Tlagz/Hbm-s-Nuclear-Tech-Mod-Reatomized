@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -309,6 +309,25 @@ public class DevScene {
 				chemfac.inputTanks[i * 3 + 1].setFill(20_000);
 				if(chemfac.getItem(5 + i * 7).getCount() < 8) chemfac.setItem(5 + i * 7, new ItemStack(ModItems.sulfur.get(), 16));
 				if(chemfac.outputTanks[i * 3].getFill() > 16_000) chemfac.outputTanks[i * 3].setFill(6_000);
+			}
+		}
+		// the assembly factory makes hazmat cloth in all four fields
+		if(assemFactoryPos != null && server.overworld().getBlockEntity(assemFactoryPos) instanceof com.hbm.tileentity.machine.TileEntityMachineAssemblyFactory assemfac) {
+			assemfac.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+			assemfac.water.setFill(assemfac.water.getMaxFill());
+			assemfac.lps.setFill(0);
+			for(int i = 0; i < 4; i++) {
+				if(assemfac.assemblerModule[i].getRecipe() == null) assemfac.assemblerModule[i].setRecipe("ass.hazcloth", false);
+				if(assemfac.getItem(5 + i * 14).getCount() < 8) assemfac.setItem(5 + i * 14, new ItemStack(ModItems.powder_lead.get(), 16));
+				if(assemfac.getItem(6 + i * 14).getCount() < 8) assemfac.setItem(6 + i * 14, new ItemStack(net.minecraft.world.item.Items.STRING, 32));
+				if(assemfac.getItem(17 + i * 14).getCount() > 32) assemfac.setItem(17 + i * 14, ItemStack.EMPTY);
+			}
+		}
+		if(serverTicks == 3085 || serverTicks == 3120) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3085) player.teleportTo(player.serverLevel(), -8.5, -57, -47.5, 180F, 0F);
+				else if(player.level().getBlockEntity(assemFactoryPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(assemFactoryPos));
 			}
 		}
 		if(serverTicks == 3015 || serverTicks == 3050) {
@@ -992,6 +1011,7 @@ public class DevScene {
 			}
 			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
+			assemFactoryPos = ModBlocks.machine_assembly_factory.get().placeMultiblock(level, origin.offset(-8, 0, -56), net.minecraft.core.Direction.NORTH);
 			chemFactoryPos = ModBlocks.machine_chemical_factory.get().placeMultiblock(level, origin.offset(10, 0, -56), net.minecraft.core.Direction.NORTH);
 			rotaryPos = ModBlocks.machine_rotary_furnace.get().placeMultiblock(level, origin.offset(-1, 0, -48), net.minecraft.core.Direction.NORTH);
 			furnaceBrickPos = origin.offset(-4, 0, -41);
@@ -1281,7 +1301,10 @@ public class DevScene {
 			if(ticks == 3048) Screenshot.grab(mc.gameDirectory, "devscene_world_chemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3080) Screenshot.grab(mc.gameDirectory, "devscene_gui_chemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3090) {
+			if(ticks == 3118) Screenshot.grab(mc.gameDirectory, "devscene_world_assemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3150) Screenshot.grab(mc.gameDirectory, "devscene_gui_assemfac.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3160) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

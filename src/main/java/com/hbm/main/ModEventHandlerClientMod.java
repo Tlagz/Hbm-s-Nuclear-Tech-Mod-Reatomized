@@ -39,6 +39,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.ASSEMBLY_MACHINE.get(), com.hbm.inventory.gui.GUIMachineAssemblyMachine::new);
 		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
 		event.register(ModMenus.CHEMICAL_FACTORY.get(), com.hbm.inventory.gui.GUIMachineChemicalFactory::new);
+		event.register(ModMenus.ASSEMBLY_FACTORY.get(), com.hbm.inventory.gui.GUIMachineAssemblyFactory::new);
 		event.register(ModMenus.ARC_WELDER.get(), com.hbm.inventory.gui.GUIMachineArcWelder::new);
 		event.register(ModMenus.ARC_FURNACE.get(), com.hbm.inventory.gui.GUIMachineArcFurnaceLarge::new);
 		event.register(ModMenus.CRUCIBLE.get(), com.hbm.inventory.gui.GUICrucible::new);
@@ -88,6 +89,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_MACHINE.get(), com.hbm.render.tileentity.RenderAssemblyMachine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_FACTORY.get(), com.hbm.render.tileentity.RenderChemicalFactory::new);
+		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_FACTORY.get(), com.hbm.render.tileentity.RenderAssemblyFactory::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_WELDER.get(), com.hbm.render.tileentity.RenderArcWelder::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
@@ -169,6 +171,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_machine.get().asItem(), com.hbm.render.tileentity.RenderAssemblyMachine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_plant.get().asItem(), com.hbm.render.tileentity.RenderChemicalPlant.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_factory.get().asItem(), com.hbm.render.tileentity.RenderChemicalFactory.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_factory.get().asItem(), com.hbm.render.tileentity.RenderAssemblyFactory.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_welder.get().asItem(), com.hbm.render.tileentity.RenderArcWelder.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_arc_furnace.get().asItem(), com.hbm.render.tileentity.RenderArcFurnace.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_crucible.get().asItem(), com.hbm.render.tileentity.RenderCrucible.itemRenderer());
