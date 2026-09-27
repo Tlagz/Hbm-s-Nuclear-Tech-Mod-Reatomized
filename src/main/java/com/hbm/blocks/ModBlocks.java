@@ -254,6 +254,12 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryChannel> foundry_channel = register("foundry_channel", com.hbm.blocks.machine.FoundryChannel::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryOutlet> foundry_outlet = register("foundry_outlet", com.hbm.blocks.machine.FoundryOutlet::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundrySlagtap> foundry_slagtap = register("foundry_slagtap", com.hbm.blocks.machine.FoundrySlagtap::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyor> conveyor = register("conveyor", com.hbm.blocks.network.BlockConveyor::new, props(Mat.IRON, 2.0F, 2.0F), null);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyorExpress> conveyor_express = register("conveyor_express", com.hbm.blocks.network.BlockConveyorExpress::new, props(Mat.IRON, 2.0F, 2.0F), null);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyorDouble> conveyor_double = register("conveyor_double", com.hbm.blocks.network.BlockConveyorDouble::new, props(Mat.IRON, 2.0F, 2.0F), null);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyorTriple> conveyor_triple = register("conveyor_triple", com.hbm.blocks.network.BlockConveyorTriple::new, props(Mat.IRON, 2.0F, 2.0F), null);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyorChute> conveyor_chute = register("conveyor_chute", com.hbm.blocks.network.BlockConveyorChute::new, props(Mat.IRON, 2.0F, 2.0F), null);
+	public static final DeferredBlock<com.hbm.blocks.network.BlockConveyorLift> conveyor_lift = register("conveyor_lift", com.hbm.blocks.network.BlockConveyorLift::new, props(Mat.IRON, 2.0F, 2.0F), null);
 	public static final DeferredBlock<com.hbm.blocks.machine.FoundryTank> foundry_tank = register("foundry_tank", com.hbm.blocks.machine.FoundryTank::new, props(Mat.ROCK, 5.0F, 10.0F), NtmTab.MACHINE);
 	public static final DeferredBlock<com.hbm.blocks.generic.BlockDynamicSlag> slag = register("slag", com.hbm.blocks.generic.BlockDynamicSlag::new, props(Mat.IRON, 5.0F, 10.0F), null);
 

@@ -934,6 +934,9 @@ public class ModItems {
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver = tooling("screwdriver", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 100);
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver_desh = tooling("screwdriver_desh", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 0);
 	public static final DeferredItem<com.hbm.items.tool.ItemMirrorTool> mirror_tool = register("mirror_tool", com.hbm.items.tool.ItemMirrorTool::new, new Item.Properties(), NtmTab.CONSUMABLE);
+	/** Conveyor belts as items, drawn as the belt block (the original's ItemRenderBlock) */
+	public static final ItemEnumMulti.Variants<com.hbm.items.tool.ItemConveyorWand.ConveyorType> conveyor_wand = blockModeled(multi("conveyor_wand", "conveyor_wand", com.hbm.items.tool.ItemConveyorWand.ConveyorType.class, true,
+			value -> "items/wand_s", NtmTab.MACHINE, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.tool.ItemConveyorWand(p, descriptionId, value)));
 	public static final DeferredItem<com.hbm.items.tool.ItemGavel> wood_gavel = register("wood_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.WOOD), new Item.Properties(), NtmTab.WEAPON);
 	public static final DeferredItem<com.hbm.items.tool.ItemGavel> lead_gavel = register("lead_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.LEAD), new Item.Properties(), NtmTab.WEAPON);
 	public static final DeferredItem<com.hbm.items.tool.ItemGavel> diamond_gavel = register("diamond_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.DIAMOND), new Item.Properties(), NtmTab.WEAPON);
@@ -1048,6 +1051,12 @@ public class ModItems {
 	 */
 	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> multi(String name, String originalName, Class<E> theEnum, boolean multiName, boolean multiTexture, NtmTab tab, Item.Properties props) {
 		return multi(name, originalName, theEnum, multiName, value -> "items/" + name + (multiTexture ? "." + value.name().toLowerCase(java.util.Locale.US) : ""), tab, props);
+	}
+
+	/** Variants whose item models come from the blockstate provider (block-shaped items) */
+	private static <E extends Enum<E>> ItemEnumMulti.Variants<E> blockModeled(ItemEnumMulti.Variants<E> variants) {
+		for(DeferredItem<? extends Item> item : variants.values()) FLAT_MODELS.remove(item);
+		return variants;
 	}
 
 	/** Variants drawn with the same texture layers (the original's render passes), e.g. a base and a tinted overlay */

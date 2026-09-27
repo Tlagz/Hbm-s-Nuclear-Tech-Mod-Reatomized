@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos, cyclotronPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos, cyclotronPos, conveyorOrigin;
 	private static int serverTicks = 0;
 
 	/**
@@ -430,6 +430,24 @@ public class DevScene {
 			cyc.setPower(com.hbm.tileentity.machine.TileEntityMachineCyclotron.maxPower);
 			cyc.tanks[0].setFill(cyc.tanks[0].getMaxFill());
 			cyc.tanks[1].setFill(0);
+		}
+		// items onto the belts
+		if(conveyorOrigin != null && serverTicks % 15 == 0) {
+			net.minecraft.world.item.Item[] riders = {net.minecraft.world.item.Items.DIAMOND, ModItems.ingot_steel.get(), net.minecraft.world.item.Items.REDSTONE, ModBlocks.crate_iron.get().asItem()};
+			for(int lane = 0; lane < 4; lane++) {
+				com.hbm.entity.item.EntityMovingItem item = new com.hbm.entity.item.EntityMovingItem(server.overworld());
+				item.setItemStack(new ItemStack(riders[lane]));
+				net.minecraft.core.BlockPos bp = conveyorOrigin.offset(0, 0, lane * 2);
+				double off = lane >= 2 ? (serverTicks % 30 == 0 ? 0.25 : -0.25) : 0;
+				item.moveTo(bp.getX() + 0.5, bp.getY() + 0.25, bp.getZ() + 0.5 + off, 0, 0);
+				server.overworld().addFreshEntity(item);
+			}
+		}
+		if(serverTicks == 4590) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 67.5, -56, -60.5, 200F, 35F);
+			}
 		}
 		if(serverTicks == 4505 || serverTicks == 4545) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1320,6 +1338,22 @@ public class DevScene {
 				cyc.setItem(1, new ItemStack(ModItems.part_copper.get(), 8));
 				cyc.setItem(4, new ItemStack(ModItems.powder_iron.get(), 8));
 			}
+			// conveyors in front of the cyclotron: the four belt types running east, the first one bending south, and a
+			// wand-built route over a wall (lift up, chute down)
+			conveyorOrigin = origin.offset(63, 0, -71);
+			for(int x = 62; x <= 76; x++) for(int z = -71; z <= -60; z++) for(int y = 0; y <= 4; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			com.hbm.blocks.network.BlockConveyorBase[] belts = {ModBlocks.conveyor.get(), ModBlocks.conveyor_express.get(), ModBlocks.conveyor_double.get(), ModBlocks.conveyor_triple.get()};
+			for(int lane = 0; lane < 4; lane++) for(int x = 0; x < 8; x++) {
+				net.minecraft.core.BlockPos bp = conveyorOrigin.offset(x, 0, lane * 2);
+				level.setBlockAndUpdate(bp, belts[lane].getStateForMeta(net.minecraft.core.Direction.WEST.get3DDataValue()));
+			}
+			level.setBlockAndUpdate(conveyorOrigin.offset(8, 0, 0), ModBlocks.conveyor.get().getStateForMeta(net.minecraft.core.Direction.WEST.get3DDataValue()).setValue(com.hbm.blocks.network.BlockConveyorBendable.CURVE, com.hbm.blocks.network.BlockConveyorBendable.Curve.RIGHT));
+			for(int z = 1; z <= 7; z++) level.setBlockAndUpdate(conveyorOrigin.offset(8, 0, z), ModBlocks.conveyor.get().getStateForMeta(net.minecraft.core.Direction.NORTH.get3DDataValue()));
+			for(int y = 0; y <= 1; y++) level.setBlockAndUpdate(conveyorOrigin.offset(13, y, 4), Blocks.STONE_BRICKS.defaultBlockState());
+			net.minecraft.world.entity.player.Player routePlayer = player;
+			net.minecraft.core.BlockPos ra = conveyorOrigin.offset(9, 0, 4), rb = conveyorOrigin.offset(13, 1, 4);
+			com.hbm.items.tool.ItemConveyorWand.construct(level, true, com.hbm.items.tool.ItemConveyorWand.ConveyorType.REGULAR, routePlayer,
+					ra.getX(), ra.getY(), ra.getZ(), net.minecraft.core.Direction.UP.get3DDataValue(), rb.getX(), rb.getY(), rb.getZ(), net.minecraft.core.Direction.UP.get3DDataValue(), 64);
 			// a siren with a cassette, powered
 			sirenPos = origin.offset(44, 0, -57);
 			level.setBlockAndUpdate(sirenPos, ModBlocks.machine_siren.get().defaultBlockState());
@@ -1749,7 +1783,9 @@ public class DevScene {
 			if(ticks == 4540) Screenshot.grab(mc.gameDirectory, "devscene_world_cyclotron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 4580) Screenshot.grab(mc.gameDirectory, "devscene_gui_cyclotron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4590) {
+			if(ticks == 4640) Screenshot.grab(mc.gameDirectory, "devscene_world_conveyor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4650) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

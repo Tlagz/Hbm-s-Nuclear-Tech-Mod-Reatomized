@@ -18,4 +18,6 @@ public class ModEntities {
 			() -> EntityType.Builder.<EntityCog>of(EntityCog::new, MobCategory.MISC).sized(1F, 1F).clientTrackingRange(16).updateInterval(1).build("entity_stirling_cog"));
 	public static final DeferredHolder<EntityType<?>, EntityType<com.hbm.entity.projectile.EntitySawblade>> SAWBLADE = ENTITIES.register("entity_sawblade",
 			() -> EntityType.Builder.<com.hbm.entity.projectile.EntitySawblade>of(com.hbm.entity.projectile.EntitySawblade::new, MobCategory.MISC).sized(1F, 1F).clientTrackingRange(16).updateInterval(1).build("entity_sawblade"));
+	public static final DeferredHolder<EntityType<?>, EntityType<com.hbm.entity.item.EntityMovingItem>> MOVING_ITEM = ENTITIES.register("entity_c_item",
+			() -> EntityType.Builder.<com.hbm.entity.item.EntityMovingItem>of(com.hbm.entity.item.EntityMovingItem::new, MobCategory.MISC).sized(0.375F, 0.375F).clientTrackingRange(8).updateInterval(1).build("entity_c_item"));
 }

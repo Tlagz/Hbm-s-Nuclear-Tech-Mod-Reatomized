@@ -133,6 +133,17 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 		handled.add(ModBlocks.barricade.get());
 
 		// multiblocks drop through BlockDummyable.playerWillDestroy, the drill pipe drops nothing (BlockNoDrop)
+		// belts drop their conveyor item, chutes and lifts the regular one
+		for(var type : com.hbm.items.tool.ItemConveyorWand.ConveyorType.values()) {
+			var block = com.hbm.items.tool.ItemConveyorWand.getConveyorBlock(type);
+			add(block, createSingleItemTable(ModItems.conveyor_wand.get(type).get()));
+			handled.add(block);
+		}
+		for(var block : java.util.List.of(ModBlocks.conveyor_chute.get(), ModBlocks.conveyor_lift.get())) {
+			add(block, createSingleItemTable(ModItems.conveyor_wand.get(com.hbm.items.tool.ItemConveyorWand.ConveyorType.REGULAR).get()));
+			handled.add(block);
+		}
+
 		for(var dummyable : ModBlocks.DUMMYABLES) {
 			add(dummyable.get(), LootTable.lootTable());
 			handled.add(dummyable.get());

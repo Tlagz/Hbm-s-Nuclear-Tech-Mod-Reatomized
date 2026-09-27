@@ -54,6 +54,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		foundryOutlet(ModBlocks.foundry_outlet, "foundry_outlet");
 		foundryOutlet(ModBlocks.foundry_slagtap, "foundry_slagtap");
 		foundryTank();
+		conveyors();
 		dynamicSlag();
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
@@ -611,6 +612,175 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		item.element().from(0, 0, 14).to(16, 16, 16).face(Direction.SOUTH).texture("#side").end().face(Direction.NORTH).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
 		item.element().from(0, 0, 0).to(16, 16, 2).face(Direction.NORTH).texture("#side").end().face(Direction.SOUTH).texture("#inner").end().face(Direction.UP).texture("#top").end().end();
 		simpleBlockItem(ModBlocks.foundry_tank.get(), item);
+	}
+
+	/** Belt facing rotations: the models are built for SOUTH (the original's metadata 3), turned clockwise from there */
+	private static int conveyorRotation(Direction facing) {
+		return switch(facing) {
+		case WEST -> 90;
+		case NORTH -> 180;
+		case EAST -> 270;
+		default -> 0;
+		};
+	}
+
+	/**
+	 * Conveyors, the original's RenderConveyor/RenderConveyorChute/RenderConveyorLift ISBRHs. Belts are a 4 pixel
+	 * slab with the (animated) belt texture on top and the ends, the side texture on the long sides; bent belts use
+	 * the curve textures and the side texture all around. Chutes and lifts are multiparts over their neighbor state.
+	 */
+	private void conveyors() {
+		for(var entry : List.of(
+				java.util.Map.entry(ModBlocks.conveyor, "conveyor"), java.util.Map.entry(ModBlocks.conveyor_express, "conveyor_express"),
+				java.util.Map.entry(ModBlocks.conveyor_double, "conveyor_double"), java.util.Map.entry(ModBlocks.conveyor_triple, "conveyor_triple"))) {
+			String name = entry.getValue();
+			ResourceLocation side = texture("blocks/conveyor_side");
+
+			BlockModelBuilder straight = models().getBuilder(name + "_straight").parent(models().getExistingFile(mcLoc("block/block")))
+					.texture("top", texture("blocks/" + name)).texture("side", side).texture("particle", texture("blocks/" + name));
+			straight.element().from(0, 0, 0).to(16, 4, 16)
+					.face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#top").rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN).cullface(Direction.DOWN).end()
+					.face(Direction.NORTH).texture("#top").cullface(Direction.NORTH).end().face(Direction.SOUTH).texture("#top").cullface(Direction.SOUTH).end()
+					.face(Direction.WEST).texture("#side").cullface(Direction.WEST).end().face(Direction.EAST).texture("#side").rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN).cullface(Direction.EAST).end().end();
+
+			java.util.Map<com.hbm.blocks.network.BlockConveyorBendable.Curve, BlockModelBuilder> models = new java.util.EnumMap<>(com.hbm.blocks.network.BlockConveyorBendable.Curve.class);
+			models.put(com.hbm.blocks.network.BlockConveyorBendable.Curve.STRAIGHT, straight);
+			for(String curve : new String[] {"left", "right"}) {
+				BlockModelBuilder bent = models().getBuilder(name + "_curve_" + curve).parent(models().getExistingFile(mcLoc("block/block")))
+						.texture("top", texture("blocks/" + name + "_curve_" + curve)).texture("side", side).texture("particle", texture("blocks/" + name));
+				bent.element().from(0, 0, 0).to(16, 4, 16)
+						.face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#top").rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN).cullface(Direction.DOWN).end()
+						.face(Direction.NORTH).texture("#side").cullface(Direction.NORTH).end().face(Direction.SOUTH).texture("#side").cullface(Direction.SOUTH).end()
+						.face(Direction.WEST).texture("#side").cullface(Direction.WEST).end().face(Direction.EAST).texture("#side").cullface(Direction.EAST).end().end();
+				models.put(curve.equals("left") ? com.hbm.blocks.network.BlockConveyorBendable.Curve.LEFT : com.hbm.blocks.network.BlockConveyorBendable.Curve.RIGHT, bent);
+			}
+
+			getVariantBuilder(entry.getKey().get()).forAllStates(state -> ConfiguredModel.builder()
+					.modelFile(models.get(state.getValue(com.hbm.blocks.network.BlockConveyorBendable.CURVE)))
+					.rotationY(conveyorRotation(state.getValue(com.hbm.blocks.network.BlockConveyorBase.FACING))).build());
+			simpleBlockItem(entry.getKey().get(), straight);
+		}
+
+		// the wands look like their belts
+		for(var type : com.hbm.items.tool.ItemConveyorWand.ConveyorType.values()) {
+			String belt = switch(type) { case EXPRESS -> "conveyor_express"; case DOUBLE -> "conveyor_double"; case TRIPLE -> "conveyor_triple"; default -> "conveyor"; };
+			itemModels().withExistingParent(com.hbm.items.ModItems.conveyor_wand.get(type).getId().getPath(), modLoc("block/" + belt + "_straight"));
+		}
+
+		conveyorChute();
+		conveyorLift();
+	}
+
+	private BlockModelBuilder conveyorPart(String name) {
+		return models().getBuilder(name).parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture("blocks/conveyor")).texture("side", texture("blocks/conveyor_side")).texture("concrete", texture("blocks/concrete"))
+				.texture("glass", texture("blocks/grate_top")).texture("iron", mcLoc("block/iron_block")).texture("particle", texture("blocks/concrete")).renderType("cutout");
+	}
+
+	/** A piece of belt in the SOUTH frame: belt texture on top and the ends, side texture on the long sides */
+	private static void beltBox(BlockModelBuilder model, float x0, float y0, float z0, float x1, float y1, float z1) {
+		model.element().from(x0, y0, z0).to(x1, y1, z1)
+				.face(Direction.UP).texture("#top").end().face(Direction.DOWN).texture("#top").rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+				.face(Direction.NORTH).texture("#top").end().face(Direction.SOUTH).texture("#top").end()
+				.face(Direction.WEST).texture("#side").end().face(Direction.EAST).texture("#side").rotation(net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN).end().end();
+	}
+
+	private static void box(BlockModelBuilder model, String texture, float x0, float y0, float z0, float x1, float y1, float z1) {
+		model.element().from(x0, y0, z0).to(x1, y1, z1).allFaces((dir, face) -> face.texture(texture)).end();
+	}
+
+	private void conveyorChute() {
+		var builder = getMultipartBuilder(ModBlocks.conveyor_chute.get());
+
+		// corner posts
+		BlockModelBuilder posts = conveyorPart("conveyor_chute_posts");
+		box(posts, "#concrete", 0, 0, 0, 4, 16, 4);
+		box(posts, "#concrete", 12, 0, 0, 16, 16, 4);
+		box(posts, "#concrete", 0, 0, 12, 4, 16, 16);
+		box(posts, "#concrete", 12, 0, 12, 16, 16, 16);
+		builder.part().modelFile(posts).addModel().end();
+
+		// the bottom-most chute has a belt cross running towards FACING's opposite
+		BlockModelBuilder belt = conveyorPart("conveyor_chute_belt");
+		beltBox(belt, 4, 0, 0, 12, 4, 16);
+		beltBox(belt, 0, 0, 4, 4, 4, 12);
+		beltBox(belt, 12, 0, 4, 16, 4, 12);
+		for(Direction dir : Direction.Plane.HORIZONTAL) {
+			builder.part().modelFile(belt).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorChute.BELT, true).condition(com.hbm.blocks.network.BlockConveyorBase.FACING, dir).end();
+		}
+
+		// otherwise short belt stubs towards neighboring belts, modeled on the south side
+		BlockModelBuilder stub = conveyorPart("conveyor_chute_stub");
+		beltBox(stub, 4, 0, 14, 12, 4, 16);
+
+		// glass panes where there's no belt next to it, not towards the output of a belt chute
+		BlockModelBuilder paneTall = conveyorPart("conveyor_chute_pane");
+		paneTall.element().from(4, 0, 14).to(12, 16, 14).face(Direction.NORTH).texture("#glass").end().face(Direction.SOUTH).texture("#glass").end().end();
+		BlockModelBuilder paneShort = conveyorPart("conveyor_chute_pane_short");
+		paneShort.element().from(4, 4, 14).to(12, 16, 14).face(Direction.NORTH).texture("#glass").end().face(Direction.SOUTH).texture("#glass").end().end();
+
+		for(Direction dir : Direction.Plane.HORIZONTAL) {
+			var conn = com.hbm.blocks.network.BlockConveyorChute.connection(dir);
+			builder.part().modelFile(stub).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorChute.BELT, false).condition(conn, true).end();
+			builder.part().modelFile(paneTall).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorChute.BELT, false).condition(conn, false).end();
+			Direction[] others = Direction.Plane.HORIZONTAL.stream().filter(d -> d != dir.getOpposite()).toArray(Direction[]::new);
+			builder.part().modelFile(paneShort).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorChute.BELT, true).condition(conn, false).condition(com.hbm.blocks.network.BlockConveyorBase.FACING, others).end();
+		}
+
+		BlockModelBuilder item = conveyorPart("conveyor_chute_inventory");
+		box(item, "#concrete", 0, 0, 0, 4, 16, 4);
+		box(item, "#concrete", 12, 0, 0, 16, 16, 4);
+		box(item, "#concrete", 0, 0, 12, 4, 16, 16);
+		box(item, "#concrete", 12, 0, 12, 16, 16, 16);
+		beltBox(item, 4, 0, 0, 12, 4, 16);
+		simpleBlockItem(ModBlocks.conveyor_chute.get(), item);
+	}
+
+	private void conveyorLift() {
+		var builder = getMultipartBuilder(ModBlocks.conveyor_lift.get());
+
+		// bottom: belt stubs leading in from every side but the output, an iron plate in the middle
+		BlockModelBuilder stub = conveyorPart("conveyor_lift_stub");
+		beltBox(stub, 4, 0, 12, 12, 4, 16);
+		BlockModelBuilder plate = conveyorPart("conveyor_lift_plate");
+		box(plate, "#iron", 4, 0, 6, 12, 4, 12);
+
+		// the shaft: walls around a vertical belt against the back wall
+		BlockModelBuilder shaft = conveyorPart("conveyor_lift_shaft");
+		box(shaft, "#concrete", 0, 0, 0, 16, 16, 4);
+		box(shaft, "#concrete", 0, 0, 12, 4, 16, 16);
+		box(shaft, "#concrete", 12, 0, 12, 16, 16, 16);
+		shaft.element().from(4, 0, 4).to(12, 16, 6).allFaces((dir, face) -> face.texture(dir.getAxis().isVertical() ? "#top" : "#top")).end();
+
+		// the top: low walls and a belt pushing the items out
+		BlockModelBuilder top = conveyorPart("conveyor_lift_top");
+		box(top, "#concrete", 0, 0, 0, 4, 8, 16);
+		box(top, "#concrete", 12, 0, 0, 16, 8, 16);
+		beltBox(top, 4, 0, 0, 12, 4, 6);
+
+		for(Direction dir : Direction.Plane.HORIZONTAL) {
+			var FACING = com.hbm.blocks.network.BlockConveyorBase.FACING;
+			Direction[] others = Direction.Plane.HORIZONTAL.stream().filter(d -> d != dir.getOpposite()).toArray(Direction[]::new);
+			builder.part().modelFile(stub).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorLift.BOTTOM, true).condition(FACING, others).end();
+			builder.part().modelFile(plate).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorLift.BOTTOM, true).condition(FACING, dir).end();
+			builder.part().modelFile(shaft).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorLift.TOP, false).condition(FACING, dir).end();
+			builder.part().modelFile(top).rotationY(conveyorRotation(dir)).addModel()
+					.condition(com.hbm.blocks.network.BlockConveyorLift.TOP, true).condition(FACING, dir).end();
+		}
+
+		BlockModelBuilder item = conveyorPart("conveyor_lift_inventory");
+		box(item, "#concrete", 0, 0, 0, 16, 16, 4);
+		box(item, "#concrete", 0, 0, 12, 4, 16, 16);
+		box(item, "#concrete", 12, 0, 12, 16, 16, 16);
+		item.element().from(4, 0, 4).to(12, 16, 6).allFaces((dir, face) -> face.texture("#top")).end();
+		simpleBlockItem(ModBlocks.conveyor_lift.get(), item);
 	}
 
 	/** Dynamic slag is drawn by RenderSlag, the model only provides the break particles */

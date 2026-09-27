@@ -1578,6 +1578,58 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_curve_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_curve_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_express"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_express_curve_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_express_curve_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_double"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_double_curve_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_double_curve_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_triple"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_triple_curve_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/conveyor_triple_curve_right"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/slag"
     },
     {

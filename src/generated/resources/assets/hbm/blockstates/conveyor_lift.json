@@ -1,0 +1,160 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_stub",
+        "y": 180
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "north|east|west"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_plate",
+        "y": 180
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_shaft",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "top": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_top",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_stub",
+        "y": 270
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "north|east|south"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_plate",
+        "y": 270
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_shaft",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "top": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_top",
+        "y": 270
+      },
+      "when": {
+        "facing": "east",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_stub"
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "east|south|west"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_plate"
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_shaft"
+      },
+      "when": {
+        "facing": "south",
+        "top": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_top"
+      },
+      "when": {
+        "facing": "south",
+        "top": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_stub",
+        "y": 90
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "north|south|west"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_plate",
+        "y": 90
+      },
+      "when": {
+        "bottom": "true",
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_shaft",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "top": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "hbm:block/conveyor_lift_top",
+        "y": 90
+      },
+      "when": {
+        "facing": "west",
+        "top": "true"
+      }
+    }
+  ]
+}

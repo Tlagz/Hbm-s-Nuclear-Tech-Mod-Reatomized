@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "rotation": 180,
+          "texture": "#top"
+        },
+        "east": {
+          "rotation": 180,
+          "texture": "#side"
+        },
+        "north": {
+          "texture": "#top"
+        },
+        "south": {
+          "texture": "#top"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "west": {
+          "texture": "#side"
+        }
+      },
+      "from": [
+        4,
+        0,
+        14
+      ],
+      "to": [
+        12,
+        4,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "concrete": "hbm:blocks/concrete",
+    "glass": "hbm:blocks/grate_top",
+    "iron": "minecraft:block/iron_block",
+    "particle": "hbm:blocks/concrete",
+    "side": "hbm:blocks/conveyor_side",
+    "top": "hbm:blocks/conveyor"
+  }
+}

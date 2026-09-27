@@ -189,6 +189,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.CHUNGUS.get(), com.hbm.render.tileentity.RenderChungus::new);
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.SAWBLADE.get(), com.hbm.render.entity.RenderSawblade::new);
+		event.registerEntityRenderer(com.hbm.entity.ModEntities.MOVING_ITEM.get(), com.hbm.render.entity.RenderMovingItem::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
