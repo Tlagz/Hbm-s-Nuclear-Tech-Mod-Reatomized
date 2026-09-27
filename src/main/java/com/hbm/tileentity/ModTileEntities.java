@@ -128,6 +128,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceIron::new, ModBlocks.furnace_iron.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceBrick>> FURNACE_BRICK = TILES.register("furnace_brick",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceBrick::new, ModBlocks.machine_furnace_brick_off.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDiFurnace>> DI_FURNACE = TILES.register("machine_difurnace",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityDiFurnace::new, ModBlocks.machine_difurnace_off.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceCombination>> FURNACE_COMBINATION = TILES.register("furnace_combination",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceCombination::new, ModBlocks.furnace_combination.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRotaryFurnace>> ROTARY_FURNACE = TILES.register("machine_rotary_furnace",
@@ -189,7 +191,7 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(TileEntityPipeBaseNT::new, ModBlocks.fluid_duct_neo.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityProxyCombo>> PROXY_COMBO = TILES.register("proxy_combo",
-			() -> BlockEntityType.Builder.of(TileEntityProxyCombo::new, ModBlocks.DUMMYABLES.stream().map(b -> (net.minecraft.world.level.block.Block) b.get()).toArray(net.minecraft.world.level.block.Block[]::new)).build(null));
+			() -> BlockEntityType.Builder.of(TileEntityProxyCombo::new, java.util.stream.Stream.concat(ModBlocks.DUMMYABLES.stream().map(b -> (net.minecraft.world.level.block.Block) b.get()), java.util.stream.Stream.of(ModBlocks.machine_difurnace_extension.get())).toArray(net.minecraft.world.level.block.Block[]::new)).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachineWoodBurner>> WOOD_BURNER = TILES.register("machine_wood_burner",
 			() -> BlockEntityType.Builder.of(TileEntityMachineWoodBurner::new, ModBlocks.machine_wood_burner.get()).build(null));

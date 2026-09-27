@@ -81,7 +81,9 @@ public class TileEntityProxyCombo extends TileEntityLoadedBase implements IEnerg
 	}
 
 	private BlockEntity findCoreTile() {
-		if(level == null || !(getBlockState().getBlock() instanceof BlockDummyable dummy)) return null;
+		if(level == null) return null;
+		if(getBlockState().getBlock() instanceof com.hbm.blocks.IProxyController controller) return controller.getCore(level, worldPosition);
+		if(!(getBlockState().getBlock() instanceof BlockDummyable dummy)) return null;
 		BlockPos core = dummy.findCore(level, worldPosition);
 		return core == null ? null : level.getBlockEntity(core);
 	}

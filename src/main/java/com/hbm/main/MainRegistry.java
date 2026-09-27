@@ -84,6 +84,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.GasCentrifugeRecipes.register();
 			com.hbm.tileentity.machine.TileEntityMachineTurbineGas.registerFuels();
 			com.hbm.inventory.recipes.PressRecipes.registerDefaults();
+			com.hbm.inventory.recipes.BlastFurnaceRecipes.registerDefaults();
 			com.hbm.inventory.recipes.anvil.AnvilRecipes.register();
 			com.hbm.inventory.recipes.loader.GenericRecipes.clearPools();
 			com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.initialize();

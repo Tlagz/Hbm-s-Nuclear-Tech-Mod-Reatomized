@@ -92,6 +92,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		horizontalBlock(ModBlocks.machine_furnace_brick_off.get(), state -> state.getValue(com.hbm.blocks.machine.MachineBrickFurnace.LIT) ? brickOn : brickOff);
 		simpleBlockItem(ModBlocks.machine_furnace_brick_off.get(), brickOff);
 
+		// alloy furnace: LIT instead of the original's on/off blocks, EXTENDED (extension on top) uses the tall textures
+		ModelFile[][] diFurnace = new ModelFile[2][2];
+		for(int lit = 0; lit < 2; lit++) for(int ext = 0; ext < 2; ext++) {
+			String on = lit == 1 ? "on" : "off";
+			diFurnace[lit][ext] = models().orientableWithBottom("machine_difurnace_" + on + (ext == 1 ? "_extended" : ""),
+					texture(ext == 1 ? "blocks/difurnace_side_tall" : "blocks/difurnace_side_alt"),
+					texture("blocks/difurnace_front_" + on + (ext == 1 ? "_tall" : "_alt")),
+					texture("blocks/brick_fire"),
+					texture(ext == 1 ? "blocks/brick_fire" : "blocks/difurnace_top_" + on + "_alt"));
+		}
+		horizontalBlock(ModBlocks.machine_difurnace_off.get(), state -> diFurnace[state.getValue(com.hbm.blocks.machine.MachineDiFurnace.LIT) ? 1 : 0][state.getValue(com.hbm.blocks.machine.MachineDiFurnace.EXTENDED) ? 1 : 0]);
+		simpleBlockItem(ModBlocks.machine_difurnace_off.get(), diFurnace[0][0]);
+
+		// the extension is the original's difurnace_extension.obj, split into one material per part, centered on the block
+		BlockModelBuilder extension = models().getBuilder("machine_difurnace_extension").parent(models().getExistingFile(mcLoc("block/block")))
+				.texture("top", texture("blocks/difurnace_top_off_alt")).texture("bottom", texture("blocks/brick_fire")).texture("side", texture("blocks/difurnace_extension"))
+				.texture("particle", texture("blocks/difurnace_extension")).renderType("cutout")
+				.customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/blocks/difurnace_extension_block.obj")).flipV(true).automaticCulling(false).end();
+		extension.rootTransforms().translation(0.5F, 0F, 0.5F);
+		simpleBlock(ModBlocks.machine_difurnace_extension.get(), extension);
+		simpleBlockItem(ModBlocks.machine_difurnace_extension.get(), extension);
+
 		// the shredder has its front texture on north and south, the side texture on east and west
 		ModelFile shredder = models().cube("machine_shredder", texture("blocks/machine_shredder_bottom_alt"), texture("blocks/machine_shredder_top_alt"),
 				texture("blocks/machine_shredder_front_alt"), texture("blocks/machine_shredder_front_alt"), texture("blocks/machine_shredder_side_alt"), texture("blocks/machine_shredder_side_alt"))

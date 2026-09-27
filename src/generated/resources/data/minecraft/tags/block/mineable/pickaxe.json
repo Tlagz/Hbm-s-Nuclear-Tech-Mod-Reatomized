@@ -37,6 +37,8 @@
     "hbm:machine_mixer",
     "hbm:furnace_iron",
     "hbm:machine_furnace_brick_off",
+    "hbm:machine_difurnace_off",
+    "hbm:machine_difurnace_extension",
     "hbm:furnace_combination",
     "hbm:machine_rotary_furnace",
     "hbm:machine_strand_caster",

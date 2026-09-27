@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2;
 	private static int serverTicks = 0;
 
 	/**
@@ -331,6 +331,22 @@ public class DevScene {
 			purex.inputTanks[0].setTankType(com.hbm.inventory.fluid.Fluids.SULFURIC_ACID);
 			purex.inputTanks[0].setFill(16_000);
 			for(int i = 7; i < 13; i++) if(purex.getItem(i).getCount() > 32) purex.setItem(i, ItemStack.EMPTY);
+		}
+		// two alloy furnaces making steel, one with the extension
+		for(BlockPos furnacePos : new BlockPos[] {diFurnacePos, diFurnacePos2}) {
+			if(furnacePos != null && server.overworld().getBlockEntity(furnacePos) instanceof com.hbm.tileentity.machine.TileEntityDiFurnace furnace) {
+				if(furnace.getItem(0).getCount() < 4) furnace.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 16));
+				if(furnace.getItem(1).getCount() < 4) furnace.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 16));
+				if(furnace.getItem(2).getCount() < 4) furnace.setItem(2, new ItemStack(net.minecraft.world.item.Items.COAL, 16));
+				if(furnace.getItem(3).getCount() > 32) furnace.setItem(3, ItemStack.EMPTY);
+			}
+		}
+		if(serverTicks == 3225 || serverTicks == 3260) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3225) player.teleportTo(player.serverLevel(), -11.5, -59, -46.0, 150F, 20F);
+				else if(player.level().getBlockEntity(diFurnacePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(diFurnacePos));
+			}
 		}
 		if(serverTicks == 3155 || serverTicks == 3190) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1027,6 +1043,11 @@ public class DevScene {
 			}
 			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
+			diFurnacePos = origin.offset(-13, 0, -50);
+			diFurnacePos2 = origin.offset(-11, 0, -50);
+			level.setBlockAndUpdate(diFurnacePos, ModBlocks.machine_difurnace_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineDiFurnace.FACING, net.minecraft.core.Direction.SOUTH));
+			level.setBlockAndUpdate(diFurnacePos.above(), ModBlocks.machine_difurnace_extension.get().defaultBlockState());
+			level.setBlockAndUpdate(diFurnacePos2, ModBlocks.machine_difurnace_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineDiFurnace.FACING, net.minecraft.core.Direction.SOUTH));
 			purexPos = ModBlocks.machine_purex.get().placeMultiblock(level, origin.offset(5, 0, -56), net.minecraft.core.Direction.NORTH);
 			assemFactoryPos = ModBlocks.machine_assembly_factory.get().placeMultiblock(level, origin.offset(-8, 0, -56), net.minecraft.core.Direction.NORTH);
 			chemFactoryPos = ModBlocks.machine_chemical_factory.get().placeMultiblock(level, origin.offset(10, 0, -56), net.minecraft.core.Direction.NORTH);
@@ -1324,7 +1345,10 @@ public class DevScene {
 			if(ticks == 3188) Screenshot.grab(mc.gameDirectory, "devscene_world_purex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3220) Screenshot.grab(mc.gameDirectory, "devscene_gui_purex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3230) {
+			if(ticks == 3258) Screenshot.grab(mc.gameDirectory, "devscene_world_difurnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3290) Screenshot.grab(mc.gameDirectory, "devscene_gui_difurnace.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3300) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

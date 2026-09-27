@@ -1678,6 +1678,42 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_side_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_front_off_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_top_off_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_side_tall"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_front_off_tall"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_front_on_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_top_on_alt"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_front_on_tall"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/difurnace_extension"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_shredder_bottom_alt"
     },
     {

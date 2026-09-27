@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:block/block",
+  "automatic_culling": false,
+  "flip_v": true,
+  "loader": "neoforge:obj",
+  "model": "hbm:models/blocks/difurnace_extension_block.obj",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "hbm:blocks/brick_fire",
+    "particle": "hbm:blocks/difurnace_extension",
+    "side": "hbm:blocks/difurnace_extension",
+    "top": "hbm:blocks/difurnace_top_off_alt"
+  },
+  "transform": {
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  }
+}
