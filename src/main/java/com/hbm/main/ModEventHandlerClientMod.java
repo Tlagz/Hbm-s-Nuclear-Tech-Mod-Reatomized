@@ -100,6 +100,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.MICROWAVE.get(), com.hbm.render.tileentity.RenderMicrowave::new);
 		event.registerBlockEntityRenderer(ModTileEntities.AUTOSAW.get(), com.hbm.render.tileentity.RenderAutosaw::new);
 		event.registerBlockEntityRenderer(ModTileEntities.THRESHER.get(), com.hbm.render.tileentity.RenderThresher::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_BRICK.get(), com.hbm.render.tileentity.RenderChimney.brick());
+		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_INDUSTRIAL.get(), com.hbm.render.tileentity.RenderChimney.industrial());
 		event.registerBlockEntityRenderer(ModTileEntities.RADIOLYSIS.get(), com.hbm.render.tileentity.RenderRadiolysis::new);
 		event.registerBlockEntityRenderer(ModTileEntities.EXPOSURE_CHAMBER.get(), com.hbm.render.tileentity.RenderExposureChamber::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SILEX.get(), com.hbm.render.tileentity.RenderSILEX::new);
@@ -200,6 +202,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_microwave.get().asItem(), com.hbm.render.tileentity.RenderMicrowave.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_autosaw.get().asItem(), com.hbm.render.tileentity.RenderAutosaw.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_thresher.get().asItem(), com.hbm.render.tileentity.RenderThresher.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_brick.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererBrick());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_industrial.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererIndustrial());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_radiolysis.get().asItem(), com.hbm.render.tileentity.RenderRadiolysis.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_exposure_chamber.get().asItem(), com.hbm.render.tileentity.RenderExposureChamber.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_silex.get().asItem(), com.hbm.render.tileentity.RenderSILEX.itemRenderer());

@@ -74,6 +74,8 @@
     "hbm:machine_rockmill",
     "hbm:heater_oven",
     "hbm:machine_ashpit",
+    "hbm:chimney_brick",
+    "hbm:chimney_industrial",
     "hbm:machine_stirling",
     "hbm:machine_sawmill",
     "hbm:machine_stirling_steel",

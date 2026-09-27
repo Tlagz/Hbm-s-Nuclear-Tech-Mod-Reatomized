@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -406,6 +406,9 @@ public class DevScene {
 				player.teleportTo(player.serverLevel(), 35.5, -55, -45.5, 180F, 25F);
 			}
 		}
+		// the smokestacks get fed smoke
+		if(chimneyBrickPos != null && server.overworld().getBlockEntity(chimneyBrickPos) instanceof com.hbm.tileentity.machine.TileEntityChimneyBase chimney) chimney.transferFluid(com.hbm.inventory.fluid.Fluids.SMOKE, 0, 10);
+		if(chimneyIndustrialPos != null && server.overworld().getBlockEntity(chimneyIndustrialPos) instanceof com.hbm.tileentity.machine.TileEntityChimneyBase chimney) chimney.transferFluid(com.hbm.inventory.fluid.Fluids.SMOKE, 0, 10);
 		// the buzz saw gets fuel
 		if(autosawPos != null && server.overworld().getBlockEntity(autosawPos) instanceof com.hbm.tileentity.machine.TileEntityMachineAutosaw saw) saw.tank.setFill(100);
 		if(serverTicks == 3890) {
@@ -1211,6 +1214,10 @@ public class DevScene {
 			// a wheat field south of the saw, out of its reach, with the thresher facing west into it
 			for(int x = 26; x <= 42; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 6; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			thresherPos = origin.offset(41, 0, -57);
+			// smokestacks behind the buzz saw's clearing
+			for(int x = 20; x <= 42; x++) for(int z = -82; z <= -78; z++) for(int y = 16; y <= 25; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			chimneyBrickPos = ModBlocks.chimney_brick.get().placeMultiblock(level, origin.offset(22, 0, -81), net.minecraft.core.Direction.NORTH);
+			chimneyIndustrialPos = ModBlocks.chimney_industrial.get().placeMultiblock(level, origin.offset(40, 0, -81), net.minecraft.core.Direction.NORTH);
 			level.setBlockAndUpdate(thresherPos, ModBlocks.machine_thresher.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineThresher.FACING, net.minecraft.core.Direction.WEST));
 			for(int x = 30; x <= 37; x++) for(int z = -60; z <= -54; z++) {
 				level.setBlockAndUpdate(origin.offset(x, -1, z), Blocks.FARMLAND.defaultBlockState());

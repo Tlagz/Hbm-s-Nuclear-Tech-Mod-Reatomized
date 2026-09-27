@@ -152,6 +152,10 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineAutosaw::new, ModBlocks.machine_autosaw.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineThresher>> THRESHER = TILES.register("machine_thresher",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineThresher::new, ModBlocks.machine_thresher.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityChimneyBrick>> CHIMNEY_BRICK = TILES.register("chimney_brick",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityChimneyBrick::new, ModBlocks.chimney_brick.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityChimneyIndustrial>> CHIMNEY_INDUSTRIAL = TILES.register("chimney_industrial",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityChimneyIndustrial::new, ModBlocks.chimney_industrial.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRadiolysis>> RADIOLYSIS = TILES.register("machine_radiolysis",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineRadiolysis::new, ModBlocks.machine_radiolysis.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineExposureChamber>> EXPOSURE_CHAMBER = TILES.register("machine_exposure_chamber",
