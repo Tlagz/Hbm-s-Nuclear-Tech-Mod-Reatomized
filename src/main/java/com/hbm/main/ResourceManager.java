@@ -144,5 +144,7 @@ public class ResourceManager {
 	public static final ResourceLocation combination_oven_tex = RefStrings.loc("textures/models/machines/combination_oven.png");
 	public static final HFRWavefrontObject rotary_furnace = new HFRWavefrontObject(RefStrings.loc("models/machines/rotary_furnace.obj"));
 	public static final ResourceLocation rotary_furnace_tex = RefStrings.loc("textures/models/machines/rotary_furnace.png");
+	public static final HFRWavefrontObject strand_caster = new HFRWavefrontObject(RefStrings.loc("models/machines/strand_caster.obj"));
+	public static final ResourceLocation strand_caster_tex = RefStrings.loc("textures/models/machines/strand_caster.png");
 	public static final ResourceLocation chemical_plant_fluid_tex = RefStrings.loc("textures/models/machines/chemical_plant_fluid.png");
 }

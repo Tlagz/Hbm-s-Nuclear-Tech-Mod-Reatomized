@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -288,6 +288,20 @@ public class DevScene {
 			if(rotary.getItem(0).isEmpty()) rotary.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 64));
 			if(rotary.getItem(1).isEmpty()) rotary.setItem(1, new ItemStack(net.minecraft.world.item.Items.COAL, 64));
 			if(rotary.getItem(4).isEmpty()) rotary.setItem(4, new ItemStack(ModItems.solid_fuel.get(), 64));
+		}
+		// the strand caster gets molten steel and casts plates
+		if(strandPos != null && server.overworld().getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) {
+			strand.water.setFill(strand.water.getMaxFill());
+			strand.steam.setFill(0);
+			if(strand.amount < com.hbm.inventory.material.MaterialShapes.INGOT.q(4)) strand.standardAdd(server.overworld(), new com.hbm.inventory.material.Mats.MaterialStack(com.hbm.inventory.material.Mats.MAT_STEEL, com.hbm.inventory.material.MaterialShapes.INGOT.q(2)));
+			for(int i = 1; i < 7; i++) if(strand.getItem(i).getCount() > 48) strand.setItem(i, ItemStack.EMPTY);
+		}
+		if(serverTicks == 2945 || serverTicks == 2980) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 2945) player.teleportTo(player.serverLevel(), 3.5, -58, -51.5, 150F, 25F);
+				else if(player.level().getBlockEntity(strandPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(strandPos));
+			}
 		}
 		if(serverTicks == 2870 || serverTicks == 2905) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -950,6 +964,12 @@ public class DevScene {
 					comboPos = ModBlocks.furnace_combination.get().placeMultiblock(level, fireboxCore.above().north(), net.minecraft.core.Direction.NORTH);
 				}
 			}
+			// a new area even further north
+			for(int x = -14; x <= 16; x++) for(int z = -62; z <= -49; z++) for(int y = 0; y <= 25; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
+			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
 			rotaryPos = ModBlocks.machine_rotary_furnace.get().placeMultiblock(level, origin.offset(-1, 0, -48), net.minecraft.core.Direction.NORTH);
 			furnaceBrickPos = origin.offset(-4, 0, -41);
 			level.setBlockAndUpdate(furnaceBrickPos, ModBlocks.machine_furnace_brick_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineBrickFurnace.FACING, net.minecraft.core.Direction.SOUTH));
@@ -1232,7 +1252,10 @@ public class DevScene {
 			if(ticks == 2903) Screenshot.grab(mc.gameDirectory, "devscene_world_rotary.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 2935) Screenshot.grab(mc.gameDirectory, "devscene_gui_rotary.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 2945) {
+			if(ticks == 2978) Screenshot.grab(mc.gameDirectory, "devscene_world_strand.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3010) Screenshot.grab(mc.gameDirectory, "devscene_gui_strand.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3020) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
