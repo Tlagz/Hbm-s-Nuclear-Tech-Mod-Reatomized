@@ -83,6 +83,7 @@
     "hbm:machine_tower_small",
     "hbm:machine_tower_large",
     "hbm:machine_industrial_turbine",
+    "hbm:machine_turbine",
     "hbm:machine_chungus",
     "hbm:machine_crucible",
     "hbm:machine_arc_furnace",

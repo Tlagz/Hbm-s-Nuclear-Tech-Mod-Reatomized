@@ -132,6 +132,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceIron::new, ModBlocks.furnace_iron.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceBrick>> FURNACE_BRICK = TILES.register("furnace_brick",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceBrick::new, ModBlocks.machine_furnace_brick_off.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineTurbine>> TURBINE = TILES.register("machine_turbine",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineTurbine::new, ModBlocks.machine_turbine.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDiFurnace>> DI_FURNACE = TILES.register("machine_difurnace",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityDiFurnace::new, ModBlocks.machine_difurnace_off.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceCombination>> FURNACE_COMBINATION = TILES.register("furnace_combination",

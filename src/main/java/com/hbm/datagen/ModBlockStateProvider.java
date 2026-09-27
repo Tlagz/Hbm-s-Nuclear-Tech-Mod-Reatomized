@@ -92,6 +92,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		horizontalBlock(ModBlocks.machine_furnace_brick_off.get(), state -> state.getValue(com.hbm.blocks.machine.MachineBrickFurnace.LIT) ? brickOn : brickOff);
 		simpleBlockItem(ModBlocks.machine_furnace_brick_off.get(), brickOff);
 
+		ModelFile turbine = models().cubeBottomTop("machine_turbine", texture("blocks/machine_turbine_base"), texture("blocks/machine_turbine_top"), texture("blocks/machine_turbine_top"));
+		simpleBlock(ModBlocks.machine_turbine.get(), turbine);
+		simpleBlockItem(ModBlocks.machine_turbine.get(), turbine);
+
 		// alloy furnace: LIT instead of the original's on/off blocks, EXTENDED (extension on top) uses the tall textures
 		ModelFile[][] diFurnace = new ModelFile[2][2];
 		for(int lit = 0; lit < 2; lit++) for(int ext = 0; ext < 2; ext++) {

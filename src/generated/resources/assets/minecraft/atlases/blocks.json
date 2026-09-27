@@ -1682,6 +1682,14 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_turbine_base"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_turbine_top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/difurnace_side_alt"
     },
     {
