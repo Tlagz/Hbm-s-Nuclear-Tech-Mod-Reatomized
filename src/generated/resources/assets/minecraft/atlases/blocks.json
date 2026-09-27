@@ -2,6 +2,14 @@
   "sources": [
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/decon_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/decon_top"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_siren"
     },
     {

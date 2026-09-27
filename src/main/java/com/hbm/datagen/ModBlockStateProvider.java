@@ -162,6 +162,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		switch(model.type()) {
 		case "cube" -> simpleBlockWithItem(block, models().cubeAll(name, texture(model.texture())));
 		case "column" -> simpleBlockWithItem(block, models().cubeColumn(name, texture(model.texture()), texture(model.end())));
+		case "top" -> simpleBlockWithItem(block, models().cubeBottomTop(name, texture(model.texture()), texture(model.texture()), texture(model.end())));
 		case "axis" -> {
 			axisBlock((RotatedPillarBlock) block, texture(model.texture()), texture(model.end()));
 			simpleBlockItem(block, models().getExistingFile(modLoc("block/" + name)));

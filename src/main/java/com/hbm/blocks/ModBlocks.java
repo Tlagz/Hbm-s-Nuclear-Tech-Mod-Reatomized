@@ -93,6 +93,7 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineSolarBoiler> machine_solar_boiler = dummyable("machine_solar_boiler", com.hbm.blocks.machine.MachineSolarBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_solar_boiler");
 	public static final DeferredBlock<com.hbm.blocks.machine.SolarMirror> solar_mirror = tileRendered("solar_mirror", com.hbm.blocks.machine.SolarMirror::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/solar_mirror");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineTesla> tesla = tileRendered("tesla", com.hbm.blocks.machine.MachineTesla::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, "blocks/tesla");
+	public static final DeferredBlock<com.hbm.blocks.machine.BlockDecon> decon = generated("decon", com.hbm.blocks.machine.BlockDecon::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, BlockModel.top("blocks/decon_side", "blocks/decon_top"));
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineSiren> machine_siren = generated("machine_siren", com.hbm.blocks.machine.MachineSiren::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, BlockModel.column("blocks/machine_siren", "blocks/block_steel"));
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineMiningLaser> machine_mining_laser = dummyable("machine_mining_laser", com.hbm.blocks.machine.MachineMiningLaser::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.MACHINE, "blocks/block_steel");
 	/** Sand bags the mining laser walls liquids off with, drop nothing (the original's BlockNoDrop) */
@@ -544,6 +545,8 @@ public class ModBlocks {
 	public record BlockModel(String type, String texture, String end) {
 		public static BlockModel cube(String texture) { return new BlockModel("cube", texture, null); }
 		public static BlockModel column(String side, String end) { return new BlockModel("column", side, end); }
+		/** Side texture everywhere but the top */
+		public static BlockModel top(String side, String top) { return new BlockModel("top", side, top); }
 		public static BlockModel axis(String side, String end) { return new BlockModel("axis", side, end); }
 		public static BlockModel stairs(String texture) { return new BlockModel("stairs", texture, null); }
 		public static BlockModel glass(String texture, boolean translucent) { return new BlockModel(translucent ? "glass_translucent" : "glass", texture, null); }
