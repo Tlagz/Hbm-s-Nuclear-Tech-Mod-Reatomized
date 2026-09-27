@@ -93,6 +93,7 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineSolarBoiler> machine_solar_boiler = dummyable("machine_solar_boiler", com.hbm.blocks.machine.MachineSolarBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_solar_boiler");
 	public static final DeferredBlock<com.hbm.blocks.machine.SolarMirror> solar_mirror = tileRendered("solar_mirror", com.hbm.blocks.machine.SolarMirror::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/solar_mirror");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineTesla> tesla = tileRendered("tesla", com.hbm.blocks.machine.MachineTesla::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.BLOCKS, "blocks/tesla");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineSiren> machine_siren = generated("machine_siren", com.hbm.blocks.machine.MachineSiren::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, BlockModel.column("blocks/machine_siren", "blocks/block_steel"));
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineMiningLaser> machine_mining_laser = dummyable("machine_mining_laser", com.hbm.blocks.machine.MachineMiningLaser::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.MACHINE, "blocks/block_steel");
 	/** Sand bags the mining laser walls liquids off with, drop nothing (the original's BlockNoDrop) */
 	public static final DeferredBlock<Block> barricade = generated("barricade", Block::new, props(Mat.SAND, 1.0F, 2.5F).sound(SoundType.SAND), null, BlockModel.cube("blocks/barricade"));

@@ -36,6 +36,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.RADGEN.get(), com.hbm.inventory.gui.GUIMachineRadGen::new);
 		event.register(ModMenus.TURBOFAN.get(), com.hbm.inventory.gui.GUIMachineTurbofan::new);
 		event.register(ModMenus.MINING_LASER.get(), com.hbm.inventory.gui.GUIMiningLaser::new);
+		event.register(ModMenus.SIREN.get(), com.hbm.inventory.gui.GUIMachineSiren::new);
 		event.register(ModMenus.RADIOLYSIS.get(), com.hbm.inventory.gui.GUIRadiolysis::new);
 		event.register(ModMenus.EXPOSURE_CHAMBER.get(), com.hbm.inventory.gui.GUIMachineExposureChamber::new);
 		event.register(ModMenus.SILEX.get(), com.hbm.inventory.gui.GUISILEX::new);
@@ -317,6 +318,9 @@ public class ModEventHandlerClientMod {
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidTank.getColor(stack, tint),
 				com.hbm.items.ModItems.fluid_tank_full.get(), com.hbm.items.ModItems.fluid_tank_lead_full.get(), com.hbm.items.ModItems.fluid_barrel_full.get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIDMulti.getColor(stack, tint), com.hbm.items.ModItems.fluid_identifier_multi.get());
+		// siren cassettes: the overlay in the track's color
+		for(com.hbm.items.machine.ItemCassette.TrackType track : com.hbm.items.machine.ItemCassette.TrackType.values())
+			event.register((stack, tint) -> 0xFF000000 | (tint == 1 ? track.getColor() : 0xFFFFFF), com.hbm.items.ModItems.siren_track.get(track).get());
 		event.register((stack, tint) -> 0xFF000000 | com.hbm.items.machine.ItemFluidIcon.getColor(stack), com.hbm.items.ModItems.fluid_icon.get());
 		// autogen items without their own or a recolored texture are tinted with the molten color
 		for(var set : com.hbm.items.ModItems.AUTOGEN) for(var mat : set.materials()) {

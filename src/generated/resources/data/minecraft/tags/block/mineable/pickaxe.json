@@ -25,6 +25,7 @@
     "hbm:machine_solar_boiler",
     "hbm:solar_mirror",
     "hbm:tesla",
+    "hbm:machine_siren",
     "hbm:machine_mining_laser",
     "hbm:machine_radiolysis",
     "hbm:machine_exposure_chamber",

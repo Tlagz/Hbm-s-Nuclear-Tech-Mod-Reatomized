@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hbm:blocks/block_steel",
+    "side": "hbm:blocks/machine_siren"
+  }
+}

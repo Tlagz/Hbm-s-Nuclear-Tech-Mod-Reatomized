@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -422,6 +422,12 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
+			}
+		}
+		if(serverTicks == 4460) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(sirenPos != null && player.level().getBlockEntity(sirenPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(sirenPos));
 			}
 		}
 		if(serverTicks == 4410) {
@@ -1290,6 +1296,11 @@ public class DevScene {
 					level.addFreshEntity(pig);
 				}
 			}
+			// a siren with a cassette, powered
+			sirenPos = origin.offset(44, 0, -57);
+			level.setBlockAndUpdate(sirenPos, ModBlocks.machine_siren.get().defaultBlockState());
+			level.setBlockAndUpdate(sirenPos.below(), Blocks.REDSTONE_BLOCK.defaultBlockState());
+			if(level.getBlockEntity(sirenPos) instanceof com.hbm.tileentity.machine.TileEntityMachineSiren siren) siren.setItem(0, ModItems.siren_track.stack(com.hbm.items.machine.ItemCassette.TrackType.CLASSIC));
 			// a solar tower on a pillar in the corner, a field of heliostats around its foot
 			for(int y = 0; y <= 5; y++) level.setBlockAndUpdate(origin.offset(47, y, -75), Blocks.STONE_BRICKS.defaultBlockState());
 			solarBoilerPos = ModBlocks.machine_solar_boiler.get().placeMultiblock(level, origin.offset(47, 6, -74), net.minecraft.core.Direction.NORTH);
@@ -1700,7 +1711,9 @@ public class DevScene {
 
 			if(ticks == 4450) Screenshot.grab(mc.gameDirectory, "devscene_world_tesla.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4460) {
+			if(ticks == 4495) Screenshot.grab(mc.gameDirectory, "devscene_gui_siren.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4505) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

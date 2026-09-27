@@ -2,6 +2,14 @@
   "sources": [
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_siren"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/block_steel"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/barricade"
     },
     {
@@ -411,10 +419,6 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:blocks/block_cobalt"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "hbm:blocks/block_steel"
     },
     {
       "type": "minecraft:single",
@@ -6659,6 +6663,14 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/crayon_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cassette"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/cassette_overlay"
     },
     {
       "type": "minecraft:single",

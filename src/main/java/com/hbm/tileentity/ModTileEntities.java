@@ -162,6 +162,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntitySolarMirror::new, ModBlocks.solar_mirror.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityTesla>> TESLA = TILES.register("tesla",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityTesla::new, ModBlocks.tesla.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineSiren>> SIREN = TILES.register("machine_siren",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineSiren::new, ModBlocks.machine_siren.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineMiningLaser>> MINING_LASER = TILES.register("machine_mining_laser",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineMiningLaser::new, ModBlocks.machine_mining_laser.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityChimneyBrick>> CHIMNEY_BRICK = TILES.register("chimney_brick",
