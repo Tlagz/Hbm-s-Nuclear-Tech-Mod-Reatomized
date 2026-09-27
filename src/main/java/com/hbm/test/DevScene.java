@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -388,6 +388,20 @@ public class DevScene {
 		if(drainPos != null && server.overworld().getBlockEntity(drainPos) instanceof com.hbm.tileentity.machine.TileEntityMachineDrain drain) {
 			drain.tank.setTankType(com.hbm.inventory.fluid.Fluids.WATER);
 			drain.tank.setFill(2_000);
+		}
+		// the microwave cooks beef at speed 2
+		if(microwavePos != null && server.overworld().getBlockEntity(microwavePos) instanceof com.hbm.tileentity.machine.TileEntityMicrowave mic) {
+			mic.setPower(com.hbm.tileentity.machine.TileEntityMicrowave.maxPower);
+			if(mic.getItem(0).isEmpty()) mic.setItem(0, new ItemStack(net.minecraft.world.item.Items.BEEF, 16));
+			mic.setItem(1, ItemStack.EMPTY);
+			mic.speed = 2;
+		}
+		if(serverTicks == 3810 || serverTicks == 3850) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3810) player.teleportTo(player.serverLevel(), 13.5, -59, -63.6, 180F, 35F);
+				else if(player.level().getBlockEntity(microwavePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(microwavePos));
+			}
 		}
 		if(serverTicks == 3770) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1155,6 +1169,8 @@ public class DevScene {
 			intakePos = ModBlocks.machine_intake.get().placeMultiblock(level, origin.offset(4, 0, -64), net.minecraft.core.Direction.NORTH);
 			drainPos = ModBlocks.machine_drain.get().placeMultiblock(level, origin.offset(6, 0, -64), net.minecraft.core.Direction.SOUTH);
 			level.setBlockAndUpdate(origin.offset(3, 0, -63), ModBlocks.machine_funnel.get().defaultBlockState());
+			microwavePos = origin.offset(13, 0, -66);
+			level.setBlockAndUpdate(microwavePos, ModBlocks.machine_microwave.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineMicrowave.FACING, net.minecraft.core.Direction.SOUTH));
 			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
 			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
 			exposurePos = ModBlocks.machine_exposure_chamber.get().placeMultiblock(level, origin.offset(10, 0, -73), net.minecraft.core.Direction.NORTH);
@@ -1500,7 +1516,10 @@ public class DevScene {
 
 			if(ticks == 3800) Screenshot.grab(mc.gameDirectory, "devscene_world_intake.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3810) {
+			if(ticks == 3845) Screenshot.grab(mc.gameDirectory, "devscene_world_microwave.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3880) Screenshot.grab(mc.gameDirectory, "devscene_gui_microwave.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3890) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

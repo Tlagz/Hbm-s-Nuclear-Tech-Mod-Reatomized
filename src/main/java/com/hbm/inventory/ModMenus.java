@@ -140,6 +140,8 @@ public class ModMenus {
 			tile("machine_funnel", com.hbm.tileentity.machine.TileEntityMachineFunnel.class, com.hbm.inventory.container.ContainerFunnel::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineRTG>> RTG =
 			tile("machine_rtg_grey", com.hbm.tileentity.machine.TileEntityMachineRTG.class, com.hbm.inventory.container.ContainerMachineRTG::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMicrowave>> MICROWAVE =
+			tile("machine_microwave", com.hbm.tileentity.machine.TileEntityMicrowave.class, com.hbm.inventory.container.ContainerMicrowave::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerRadiolysis>> RADIOLYSIS =
 			tile("machine_radiolysis", com.hbm.tileentity.machine.TileEntityMachineRadiolysis.class, com.hbm.inventory.container.ContainerRadiolysis::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineExposureChamber>> EXPOSURE_CHAMBER =
