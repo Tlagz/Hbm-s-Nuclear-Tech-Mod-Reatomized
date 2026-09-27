@@ -33,6 +33,8 @@ public class ModTileEntities {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityMachinePress>> PRESS = TILES.register("machine_press",
 			() -> BlockEntityType.Builder.of(TileEntityMachinePress::new, ModBlocks.machine_press.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineEPress>> EPRESS = TILES.register("machine_epress",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineEPress::new, ModBlocks.machine_epress.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TileEntityHeaterFirebox>> FIREBOX = TILES.register("heater_firebox",
 			() -> BlockEntityType.Builder.of(TileEntityHeaterFirebox::new, ModBlocks.heater_firebox.get()).build(null));

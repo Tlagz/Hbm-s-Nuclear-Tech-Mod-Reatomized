@@ -24,6 +24,10 @@ public class ResourceManager {
 	public static final HFRWavefrontObject press_head = new HFRWavefrontObject(RefStrings.loc("models/press_head.obj"));
 	public static final ResourceLocation press_body_tex = RefStrings.loc("textures/models/press_body.png");
 	public static final ResourceLocation press_head_tex = RefStrings.loc("textures/models/press_head.png");
+	public static final HFRWavefrontObject epress_body = new HFRWavefrontObject(RefStrings.loc("models/epress_body.obj"));
+	public static final HFRWavefrontObject epress_head = new HFRWavefrontObject(RefStrings.loc("models/epress_head.obj"));
+	public static final ResourceLocation epress_body_tex = RefStrings.loc("textures/models/epress_body.png");
+	public static final ResourceLocation epress_head_tex = RefStrings.loc("textures/models/epress_head.png");
 	public static final HFRWavefrontObject refinery = new HFRWavefrontObject(RefStrings.loc("models/refinery.obj"));
 	public static final HFRWavefrontObject refinery_exploded = new HFRWavefrontObject(RefStrings.loc("models/refinery_exploded.obj"));
 	public static final ResourceLocation refinery_tex = RefStrings.loc("textures/models/refinery.png");

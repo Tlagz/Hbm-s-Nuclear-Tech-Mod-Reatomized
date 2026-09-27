@@ -1638,6 +1638,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_epress"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/machine_electric_furnace_side"
     },
     {

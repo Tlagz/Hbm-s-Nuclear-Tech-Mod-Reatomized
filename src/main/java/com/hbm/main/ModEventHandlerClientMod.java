@@ -35,6 +35,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
 		event.register(ModMenus.PRESS.get(), com.hbm.inventory.gui.GUIMachinePress::new);
+		event.register(ModMenus.EPRESS.get(), com.hbm.inventory.gui.GUIMachineEPress::new);
 		event.register(ModMenus.ANVIL.get(), com.hbm.inventory.gui.GUIAnvil::new);
 		event.register(ModMenus.ASSEMBLY_MACHINE.get(), com.hbm.inventory.gui.GUIMachineAssemblyMachine::new);
 		event.register(ModMenus.CHEMICAL_PLANT.get(), com.hbm.inventory.gui.GUIMachineChemicalPlant::new);
@@ -88,6 +89,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
 		event.registerBlockEntityRenderer(ModTileEntities.REFINERY.get(), com.hbm.render.tileentity.RenderRefinery::new);
 		event.registerBlockEntityRenderer(ModTileEntities.PRESS.get(), com.hbm.render.tileentity.RenderPress::new);
+		event.registerBlockEntityRenderer(ModTileEntities.EPRESS.get(), com.hbm.render.tileentity.RenderEPress::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ASSEMBLY_MACHINE.get(), com.hbm.render.tileentity.RenderAssemblyMachine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_PLANT.get(), com.hbm.render.tileentity.RenderChemicalPlant::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHEMICAL_FACTORY.get(), com.hbm.render.tileentity.RenderChemicalFactory::new);
@@ -171,6 +173,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_refinery.get().asItem(), com.hbm.render.tileentity.RenderRefinery.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_press.get().asItem(), com.hbm.render.tileentity.RenderPress.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_epress.get().asItem(), com.hbm.render.tileentity.RenderEPress.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_assembly_machine.get().asItem(), com.hbm.render.tileentity.RenderAssemblyMachine.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_plant.get().asItem(), com.hbm.render.tileentity.RenderChemicalPlant.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_chemical_factory.get().asItem(), com.hbm.render.tileentity.RenderChemicalFactory.itemRenderer());

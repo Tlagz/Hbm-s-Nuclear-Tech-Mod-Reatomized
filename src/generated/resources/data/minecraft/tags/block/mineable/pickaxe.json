@@ -88,6 +88,7 @@
     "hbm:machine_arc_welder",
     "hbm:machine_blast_furnace",
     "hbm:machine_press",
+    "hbm:machine_epress",
     "hbm:anvil_iron",
     "hbm:anvil_lead",
     "hbm:anvil_steel",

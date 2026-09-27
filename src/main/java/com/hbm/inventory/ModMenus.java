@@ -57,6 +57,8 @@ public class ModMenus {
 
 	public static final DeferredHolder<MenuType<?>, MenuType<ContainerMachinePress>> PRESS =
 			tile("machine_press", com.hbm.tileentity.machine.TileEntityMachinePress.class, ContainerMachinePress::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineEPress>> EPRESS =
+			tile("machine_epress", com.hbm.tileentity.machine.TileEntityMachineEPress.class, com.hbm.inventory.container.ContainerMachineEPress::new);
 
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineAssemblyMachine>> ASSEMBLY_MACHINE =
 			tile("machine_assembly_machine", com.hbm.tileentity.machine.TileEntityMachineAssemblyMachine.class, com.hbm.inventory.container.ContainerMachineAssemblyMachine::new);
