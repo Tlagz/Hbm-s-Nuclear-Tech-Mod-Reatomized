@@ -18,7 +18,9 @@ import gen_anvil as a
 from gen_recipes import Skip, split_top, match_close
 
 # recipe set class in the original (inventory/recipes) -> its recipe class, generated into Gen<set>
-TARGETS = {'AssemblyMachineRecipes': 'GenericRecipe', 'ChemicalPlantRecipes': 'GenericRecipe', 'BlastFurnaceRecipesNT': 'GenericRecipeNoPower'}
+TARGETS = {'AssemblyMachineRecipes': 'GenericRecipe', 'ChemicalPlantRecipes': 'GenericRecipe', 'BlastFurnaceRecipesNT': 'GenericRecipeNoPower', 'PUREXRecipes': 'GenericRecipe'}
+# recipe subclasses that only differ in NEI display, they become plain GenericRecipes
+CLASS_ALIAS = {'PUREXRecipe': 'GenericRecipe'}
 OUT_DIR = os.path.join(g.PORT, 'inventory', 'recipes', 'gen')
 FLUIDS = os.path.join(g.PORT, 'inventory', 'fluid', 'Fluids.java')
 
@@ -102,9 +104,9 @@ def translate_register(stmt, sym, fluids, local):
 	m = re.fullmatch(r'this\.register\s*\((?:\(\s*\w+\s*\)\s*)?(.*)\)', stmt.strip(), re.S)
 	if not m: raise Skip('statement')
 	e = m.group(1).strip()
-	nm = re.match(r'new\s+(GenericRecipe\w*)\s*\(\s*("(?:[^"\\]|\\.)*")\s*\)', e)
+	nm = re.match(r'new\s+(GenericRecipe\w*|PUREXRecipe)\s*\(\s*("(?:[^"\\]|\\.)*")\s*\)', e)
 	if not nm: raise Skip('recipe name')
-	cls = nm.group(1)
+	cls = CLASS_ALIAS.get(nm.group(1), nm.group(1))
 	# the chain returns GenericRecipe, subclasses need the cast back like in the original
 	out = 'set.register(%snew %s(%s)' % ('' if cls == 'GenericRecipe' else '(%s) ' % cls, cls, nm.group(2))
 	i = nm.end()
@@ -120,9 +122,11 @@ def translate_register(stmt, sym, fluids, local):
 		i = q + 1
 		if name in DROPPED: continue
 		if name in ('setup', 'setupNamed', 'setDuration', 'setPower'):
+			# local number variables (e.g. the PUREX's power levels) are inlined
+			args = [local.get(x.strip(), x.strip()) for x in args]
 			for x in args:
-				if not re.fullmatch(r'[\d_]+L?', x.strip()): raise Skip('number:' + x.strip())
-			out += '.%s(%s)' % (name, ', '.join(x.strip() for x in args))
+				if not re.fullmatch(r'[\d_]+L?', x): raise Skip('number:' + x)
+			out += '.%s(%s)' % (name, ', '.join(args))
 		elif name in ('setNamed', 'setIconToFirstIngredient') and not args:
 			out += '.%s()' % name
 		elif name == 'setNameWrapper':
@@ -191,6 +195,8 @@ def generate_set(name, sym, fluids):
 		s = stmt.strip()
 		lm = re.fullmatch(r'String\s+(\w+)\s*=\s*("(?:[^"\\]|\\.)*")', s)
 		if lm: local[lm.group(1)] = lm.group(2); return
+		nl = re.fullmatch(r'(?:long|int)\s+(\w+)\s*=\s*([\d_]+L?)', s)
+		if nl: local[nl.group(1)] = nl.group(2); return
 		if not s.startswith('this.register'): return
 		try:
 			lines.append('\t\t' + translate_register(s, sym, fluids, local))

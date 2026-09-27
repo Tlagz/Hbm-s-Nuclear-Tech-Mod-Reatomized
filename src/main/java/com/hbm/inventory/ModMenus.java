@@ -67,6 +67,8 @@ public class ModMenus {
 			tile("machine_chemical_factory", com.hbm.tileentity.machine.TileEntityMachineChemicalFactory.class, com.hbm.inventory.container.ContainerMachineChemicalFactory::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineAssemblyFactory>> ASSEMBLY_FACTORY =
 			tile("machine_assembly_factory", com.hbm.tileentity.machine.TileEntityMachineAssemblyFactory.class, com.hbm.inventory.container.ContainerMachineAssemblyFactory::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachinePUREX>> PUREX =
+			tile("machine_purex", com.hbm.tileentity.machine.TileEntityMachinePUREX.class, com.hbm.inventory.container.ContainerMachinePUREX::new);
 
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerFurnaceSteel>> FURNACE_STEEL =
 			tile("furnace_steel", com.hbm.tileentity.machine.TileEntityFurnaceSteel.class, com.hbm.inventory.container.ContainerFurnaceSteel::new);
