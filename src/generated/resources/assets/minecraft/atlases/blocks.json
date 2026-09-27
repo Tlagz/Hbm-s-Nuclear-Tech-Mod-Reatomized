@@ -6470,6 +6470,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/book_of_"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/hand_drill"
     },
     {
@@ -6487,6 +6491,18 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/mirror_tool"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/wood_gavel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/lead_gavel"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/diamond_gavel"
     },
     {
       "type": "minecraft:single",

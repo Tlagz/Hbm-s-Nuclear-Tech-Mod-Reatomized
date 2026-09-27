@@ -934,6 +934,11 @@ public class ModItems {
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver = tooling("screwdriver", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 100);
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver_desh = tooling("screwdriver_desh", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 0);
 	public static final DeferredItem<com.hbm.items.tool.ItemMirrorTool> mirror_tool = register("mirror_tool", com.hbm.items.tool.ItemMirrorTool::new, new Item.Properties(), NtmTab.CONSUMABLE);
+	public static final DeferredItem<com.hbm.items.tool.ItemGavel> wood_gavel = register("wood_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.WOOD), new Item.Properties(), NtmTab.WEAPON);
+	public static final DeferredItem<com.hbm.items.tool.ItemGavel> lead_gavel = register("lead_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.LEAD), new Item.Properties(), NtmTab.WEAPON);
+	public static final DeferredItem<com.hbm.items.tool.ItemGavel> diamond_gavel = register("diamond_gavel", p -> new com.hbm.items.tool.ItemGavel(p, com.hbm.items.tool.ItemGavel.GavelType.DIAMOND), new Item.Properties(), NtmTab.WEAPON);
+	/** The Book of Boxcars, a cyclotron plug; TODO its GUI (the original's ItemBook) */
+	public static final DeferredItem<Item> book_of_ = simple("book_of_", null, "items/book_of_", new Item.Properties().stacksTo(1));
 	public static final ItemEnumMulti.Variants<com.hbm.items.machine.ItemCassette.TrackType> siren_track = layered(multi("siren_track", "siren_track", com.hbm.items.machine.ItemCassette.TrackType.class, false,
 			value -> "items/cassette", NtmTab.TEMPLATE, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.machine.ItemCassette(p, descriptionId, value)), "items/cassette", "items/cassette_overlay");
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> hand_drill = tooling("hand_drill", com.hbm.blocks.IToolable.ToolType.HAND_DRILL, 100);
@@ -954,6 +959,10 @@ public class ModItems {
 		FLAT_MODELS.put(dosimeter, "items/dosimeter");
 		FLAT_MODELS.put(geiger_counter, "items/geiger_counter");
 		FLAT_MODELS.put(mirror_tool, "items/mirror_tool");
+		for(var gavel : List.of(wood_gavel, lead_gavel, diamond_gavel)) {
+			FLAT_MODELS.put(gavel, "items/" + gavel.getId().getPath());
+			HANDHELD.add(gavel);
+		}
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");

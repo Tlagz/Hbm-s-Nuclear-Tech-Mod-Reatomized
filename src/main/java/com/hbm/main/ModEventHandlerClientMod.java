@@ -37,6 +37,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.TURBOFAN.get(), com.hbm.inventory.gui.GUIMachineTurbofan::new);
 		event.register(ModMenus.MINING_LASER.get(), com.hbm.inventory.gui.GUIMiningLaser::new);
 		event.register(ModMenus.SIREN.get(), com.hbm.inventory.gui.GUIMachineSiren::new);
+		event.register(ModMenus.CYCLOTRON.get(), com.hbm.inventory.gui.GUIMachineCyclotron::new);
 		event.register(ModMenus.RADIOLYSIS.get(), com.hbm.inventory.gui.GUIRadiolysis::new);
 		event.register(ModMenus.EXPOSURE_CHAMBER.get(), com.hbm.inventory.gui.GUIMachineExposureChamber::new);
 		event.register(ModMenus.SILEX.get(), com.hbm.inventory.gui.GUISILEX::new);
@@ -109,6 +110,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.SOLAR_BOILER.get(), com.hbm.render.tileentity.RenderSolarBoiler::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SOLAR_MIRROR.get(), com.hbm.render.tileentity.RenderSolarMirror::new);
 		event.registerBlockEntityRenderer(ModTileEntities.TESLA.get(), com.hbm.render.tileentity.RenderTesla::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CYCLOTRON.get(), com.hbm.render.tileentity.RenderCyclotron::new);
 		event.registerBlockEntityRenderer(ModTileEntities.MINING_LASER.get(), com.hbm.render.tileentity.RenderLaserMiner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_BRICK.get(), com.hbm.render.tileentity.RenderChimney.brick());
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_TANK.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -219,6 +221,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_solar_boiler.get().asItem(), com.hbm.render.tileentity.RenderSolarBoiler.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.solar_mirror.get().asItem(), com.hbm.render.tileentity.RenderSolarMirror.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.tesla.get().asItem(), com.hbm.render.tileentity.RenderTesla.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_cyclotron.get().asItem(), com.hbm.render.tileentity.RenderCyclotron.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_mining_laser.get().asItem(), com.hbm.render.tileentity.RenderLaserMiner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_brick.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererBrick());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_industrial.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererIndustrial());

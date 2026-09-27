@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos, cyclotronPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -422,6 +422,18 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
+			}
+		}
+		if(cyclotronPos != null && server.overworld().getBlockEntity(cyclotronPos) instanceof com.hbm.tileentity.machine.TileEntityMachineCyclotron cyc) {
+			cyc.setPower(com.hbm.tileentity.machine.TileEntityMachineCyclotron.maxPower);
+			cyc.tanks[0].setFill(cyc.tanks[0].getMaxFill());
+			cyc.tanks[1].setFill(0);
+		}
+		if(serverTicks == 4505 || serverTicks == 4545) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 4505) player.teleportTo(player.serverLevel(), 69.5, -57, -67.5, 180F, 25F);
+				else if(cyclotronPos != null && player.level().getBlockEntity(cyclotronPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(cyclotronPos));
 			}
 		}
 		if(serverTicks == 4460) {
@@ -1296,6 +1308,16 @@ public class DevScene {
 					level.addFreshEntity(pig);
 				}
 			}
+			// a cyclotron with all four plugs in, east of the turbofan clearing
+			for(int x = 64; x <= 75; x++) for(int z = -81; z <= -66; z++) for(int y = 0; y <= 6; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			cyclotronPos = ModBlocks.machine_cyclotron.get().placeMultiblock(level, origin.offset(69, 0, -77), net.minecraft.core.Direction.NORTH);
+			if(cyclotronPos != null && level.getBlockEntity(cyclotronPos) instanceof com.hbm.tileentity.machine.TileEntityMachineCyclotron cyc) {
+				for(int plug = 0; plug < 4; plug++) cyc.setPlug(plug);
+				cyc.setItem(0, new ItemStack(ModItems.part_lithium.get(), 8));
+				cyc.setItem(3, new ItemStack(ModItems.powder_iron.get(), 8));
+				cyc.setItem(1, new ItemStack(ModItems.part_copper.get(), 8));
+				cyc.setItem(4, new ItemStack(ModItems.powder_iron.get(), 8));
+			}
 			// a siren with a cassette, powered
 			sirenPos = origin.offset(44, 0, -57);
 			level.setBlockAndUpdate(sirenPos, ModBlocks.machine_siren.get().defaultBlockState());
@@ -1713,7 +1735,10 @@ public class DevScene {
 
 			if(ticks == 4495) Screenshot.grab(mc.gameDirectory, "devscene_gui_siren.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4505) {
+			if(ticks == 4540) Screenshot.grab(mc.gameDirectory, "devscene_world_cyclotron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 4580) Screenshot.grab(mc.gameDirectory, "devscene_gui_cyclotron.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4590) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

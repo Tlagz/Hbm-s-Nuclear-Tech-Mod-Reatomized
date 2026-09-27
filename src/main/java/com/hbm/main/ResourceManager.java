@@ -80,6 +80,16 @@ public class ResourceManager {
 	public static final ResourceLocation solar_tex = RefStrings.loc("textures/models/machines/solar_boiler.png");
 	public static final HFRWavefrontObject tesla = new HFRWavefrontObject(RefStrings.loc("models/tesla.obj"));
 	public static final ResourceLocation tesla_tex = RefStrings.loc("textures/models/tesla.png");
+	public static final HFRWavefrontObject cyclotron = new HFRWavefrontObject(RefStrings.loc("models/machines/cyclotron.obj"));
+	public static final ResourceLocation cyclotron_tex = RefStrings.loc("textures/models/machines/cyclotron.png");
+	public static final ResourceLocation cyclotron_ashes = RefStrings.loc("textures/models/machines/cyclotron_ashes.png");
+	public static final ResourceLocation cyclotron_ashes_filled = RefStrings.loc("textures/models/machines/cyclotron_ashes_filled.png");
+	public static final ResourceLocation cyclotron_book = RefStrings.loc("textures/models/machines/cyclotron_book.png");
+	public static final ResourceLocation cyclotron_book_filled = RefStrings.loc("textures/models/machines/cyclotron_book_filled.png");
+	public static final ResourceLocation cyclotron_gavel = RefStrings.loc("textures/models/machines/cyclotron_gavel.png");
+	public static final ResourceLocation cyclotron_gavel_filled = RefStrings.loc("textures/models/machines/cyclotron_gavel_filled.png");
+	public static final ResourceLocation cyclotron_coin = RefStrings.loc("textures/models/machines/cyclotron_coin.png");
+	public static final ResourceLocation cyclotron_coin_filled = RefStrings.loc("textures/models/machines/cyclotron_coin_filled.png");
 	public static final HFRWavefrontObject mining_laser = new HFRWavefrontObject(RefStrings.loc("models/machines/mining_laser.obj"));
 	public static final ResourceLocation mining_laser_base_tex = RefStrings.loc("textures/models/machines/mining_laser_base.png");
 	public static final ResourceLocation mining_laser_pivot_tex = RefStrings.loc("textures/models/machines/mining_laser_pivot.png");
