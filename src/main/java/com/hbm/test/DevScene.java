@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -388,6 +388,23 @@ public class DevScene {
 		if(drainPos != null && server.overworld().getBlockEntity(drainPos) instanceof com.hbm.tileentity.machine.TileEntityMachineDrain drain) {
 			drain.tank.setTankType(com.hbm.inventory.fluid.Fluids.WATER);
 			drain.tank.setFill(2_000);
+		}
+		// the thresher gets fuel, the field regrows and the arm swings out right as the camera arrives
+		if(thresherPos != null && server.overworld().getBlockEntity(thresherPos) instanceof com.hbm.tileentity.machine.TileEntityMachineThresher thresher) {
+			thresher.tank.setFill(100);
+			if(serverTicks == 4000) {
+				thresher.delay = 0;
+				net.minecraft.core.BlockPos o = new net.minecraft.core.BlockPos(0, -60, 0);
+				for(int x = 30; x <= 37; x++) for(int z = -60; z <= -54; z++) {
+					if(server.overworld().getBlockState(o.offset(x, 0, z)).is(Blocks.WHEAT)) server.overworld().setBlockAndUpdate(o.offset(x, 0, z), Blocks.WHEAT.defaultBlockState().setValue(net.minecraft.world.level.block.CropBlock.AGE, 7));
+				}
+			}
+		}
+		if(serverTicks == 4000) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 35.5, -55, -45.5, 180F, 25F);
+			}
 		}
 		// the buzz saw gets fuel
 		if(autosawPos != null && server.overworld().getBlockEntity(autosawPos) instanceof com.hbm.tileentity.machine.TileEntityMachineAutosaw saw) saw.tank.setFill(100);
@@ -1191,6 +1208,14 @@ public class DevScene {
 				}
 			}
 			for(int f = 0; f < 6; f++) level.setBlockAndUpdate(origin.offset(28 + f, 0, -73), Blocks.POPPY.defaultBlockState());
+			// a wheat field south of the saw, out of its reach, with the thresher facing west into it
+			for(int x = 26; x <= 42; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 6; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			thresherPos = origin.offset(41, 0, -57);
+			level.setBlockAndUpdate(thresherPos, ModBlocks.machine_thresher.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineThresher.FACING, net.minecraft.core.Direction.WEST));
+			for(int x = 30; x <= 37; x++) for(int z = -60; z <= -54; z++) {
+				level.setBlockAndUpdate(origin.offset(x, -1, z), Blocks.FARMLAND.defaultBlockState());
+				level.setBlockAndUpdate(origin.offset(x, 0, z), Blocks.WHEAT.defaultBlockState().setValue(net.minecraft.world.level.block.CropBlock.AGE, 7));
+			}
 			level.setBlockAndUpdate(microwavePos, ModBlocks.machine_microwave.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineMicrowave.FACING, net.minecraft.core.Direction.SOUTH));
 			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
 			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
@@ -1543,7 +1568,10 @@ public class DevScene {
 			if(ticks == 3935) Screenshot.grab(mc.gameDirectory, "devscene_world_autosaw.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3990) Screenshot.grab(mc.gameDirectory, "devscene_world_autosaw2.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4000) {
+			if(ticks == 4050) Screenshot.grab(mc.gameDirectory, "devscene_world_thresher.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 4110) Screenshot.grab(mc.gameDirectory, "devscene_world_thresher2.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4120) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

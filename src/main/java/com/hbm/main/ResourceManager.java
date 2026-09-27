@@ -67,6 +67,8 @@ public class ResourceManager {
 	public static final ResourceLocation microwave_tex = RefStrings.loc("textures/models/machines/microwave.png");
 	public static final HFRWavefrontObject autosaw = new HFRWavefrontObject(RefStrings.loc("models/machines/autosaw.obj")).noSmooth();
 	public static final ResourceLocation autosaw_tex = RefStrings.loc("textures/models/machines/autosaw.png");
+	public static final HFRWavefrontObject thresher = new HFRWavefrontObject(RefStrings.loc("models/machines/thresher.obj"));
+	public static final ResourceLocation thresher_tex = RefStrings.loc("textures/models/machines/thresher.png");
 	public static final HFRWavefrontObject radiolysis = new HFRWavefrontObject(RefStrings.loc("models/radiolysis.obj"));
 	public static final ResourceLocation radiolysis_tex = RefStrings.loc("textures/models/radiolysis.png");
 	public static final HFRWavefrontObject exposure_chamber = new HFRWavefrontObject(RefStrings.loc("models/machines/exposure_chamber.obj"));

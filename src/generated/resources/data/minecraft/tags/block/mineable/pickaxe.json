@@ -19,6 +19,7 @@
     "hbm:charger",
     "hbm:machine_microwave",
     "hbm:machine_autosaw",
+    "hbm:machine_thresher",
     "hbm:machine_radiolysis",
     "hbm:machine_exposure_chamber",
     "hbm:machine_silex",

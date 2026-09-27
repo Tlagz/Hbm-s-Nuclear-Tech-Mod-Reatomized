@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hbm:block/machine_thresher"
+    },
+    "facing=north": {
+      "model": "hbm:block/machine_thresher"
+    },
+    "facing=south": {
+      "model": "hbm:block/machine_thresher"
+    },
+    "facing=west": {
+      "model": "hbm:block/machine_thresher"
+    }
+  }
+}
