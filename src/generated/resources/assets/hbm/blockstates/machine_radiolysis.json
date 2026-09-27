@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_radiolysis"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_radiolysis"
+    }
+  }
+}

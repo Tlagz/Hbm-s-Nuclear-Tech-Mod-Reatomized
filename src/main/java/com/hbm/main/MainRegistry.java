@@ -68,6 +68,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.RefineryRecipes.registerDefaults();
 			com.hbm.inventory.recipes.FractionRecipes.registerDefaults();
 			com.hbm.inventory.recipes.CrackingRecipes.registerDefaults();
+			com.hbm.inventory.recipes.RadiolysisRecipes.registerRadiolysis();
 			com.hbm.inventory.recipes.OilProcessingRecipes.registerDefaults();
 			com.hbm.inventory.recipes.LiquefactionRecipes.registerDefaults();
 			com.hbm.inventory.recipes.SolidificationRecipes.registerDefaults();

@@ -138,6 +138,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineTurbine::new, ModBlocks.machine_turbine.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRTG>> RTG = TILES.register("machine_rtg_grey",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineRTG::new, ModBlocks.machine_rtg_grey.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRadiolysis>> RADIOLYSIS = TILES.register("machine_radiolysis",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineRadiolysis::new, ModBlocks.machine_radiolysis.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDeuteriumExtractor>> DEUTERIUM_EXTRACTOR = TILES.register("machine_deuterium_extractor",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityDeuteriumExtractor::new, ModBlocks.machine_deuterium_extractor.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDeuteriumTower>> DEUTERIUM_TOWER = TILES.register("machine_deuterium_tower",

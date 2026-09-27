@@ -59,6 +59,8 @@ public class ResourceManager {
 	public static final ResourceLocation heater_oven_tex = RefStrings.loc("textures/models/machines/heating_oven.png");
 	public static final HFRWavefrontObject rtg = new HFRWavefrontObject(RefStrings.loc("models/machines/rtg.obj")).noSmooth();
 	public static final ResourceLocation rtg_tex = RefStrings.loc("textures/models/machines/rtg.png");
+	public static final HFRWavefrontObject radiolysis = new HFRWavefrontObject(RefStrings.loc("models/radiolysis.obj"));
+	public static final ResourceLocation radiolysis_tex = RefStrings.loc("textures/models/radiolysis.png");
 	public static final HFRWavefrontObject deuterium_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/machine_deuterium_tower.obj"));
 	public static final ResourceLocation deuterium_tower_tex = RefStrings.loc("textures/models/machines/machine_deuterium_tower.png");
 	public static final ResourceLocation ashpit_tex = RefStrings.loc("textures/models/machines/ashpit.png");
