@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -422,6 +422,17 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
+			}
+		}
+		// the turbofan gets kerosene
+		if(turbofanPos != null && server.overworld().getBlockEntity(turbofanPos) instanceof com.hbm.tileentity.machine.TileEntityMachineTurbofan fan) {
+			fan.tank.setTankType(com.hbm.inventory.fluid.Fluids.KEROSENE);
+			fan.tank.setFill(20_000);
+		}
+		if(serverTicks == 4260) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 53.5, -58, -61.5, 180F, 15F);
 			}
 		}
 		// the smokestacks get fed smoke
@@ -1235,6 +1246,10 @@ public class DevScene {
 			// foundry tanks on a brick base west of the field, a slag tap dumping onto the grass
 			for(int x = 20; x <= 29; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 4; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			tankPos = origin.offset(24, 1, -56);
+			// a turbofan with the afterburner on, in its own clearing east of the buzz saw
+			for(int x = 44; x <= 62; x++) for(int z = -78; z <= -60; z++) for(int y = 0; y <= 8; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			turbofanPos = ModBlocks.machine_turbofan.get().placeMultiblock(level, origin.offset(53, 0, -70), net.minecraft.core.Direction.NORTH);
+			if(turbofanPos != null && level.getBlockEntity(turbofanPos) instanceof com.hbm.tileentity.machine.TileEntityMachineTurbofan fan) fan.setItem(2, new ItemStack(ModItems.upgrade_afterburn_3.get()));
 			radgenPos = ModBlocks.machine_radgen.get().placeMultiblock(level, origin.offset(22, 0, -63), net.minecraft.core.Direction.EAST);
 			if(radgenPos != null && level.getBlockEntity(radgenPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRadGen radgen) {
 				radgen.setItem(0, new ItemStack(ModItems.scrap_nuclear.get(), 16));
@@ -1624,7 +1639,9 @@ public class DevScene {
 			if(ticks == 4210) Screenshot.grab(mc.gameDirectory, "devscene_world_radgen.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 4250) Screenshot.grab(mc.gameDirectory, "devscene_gui_radgen.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4260) {
+			if(ticks == 4300) Screenshot.grab(mc.gameDirectory, "devscene_world_turbofan.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4310) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}
