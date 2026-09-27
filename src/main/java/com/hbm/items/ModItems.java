@@ -567,26 +567,26 @@ public class ModItems {
 	public static final DeferredItem<ItemCustomLore> magnetron = lore("magnetron", "magnetron", NtmTab.PARTS, "items/magnetron_alt", new Item.Properties());
 	public static final DeferredItem<Item> piston_selenium = simple("piston_selenium", NtmTab.CONTROL, "items/piston_selenium", new Item.Properties());
 	public static final DeferredItem<Item> cell_empty = simple("cell_empty", NtmTab.CONTROL, "items/cell_empty", new Item.Properties());
-	public static final DeferredItem<Item> cell_uf6 = simple("cell_uf6", NtmTab.CONTROL, "items/cell_uf6", new Item.Properties());
-	public static final DeferredItem<Item> cell_puf6 = simple("cell_puf6", NtmTab.CONTROL, "items/cell_puf6", new Item.Properties());
-	public static final DeferredItem<Item> cell_deuterium = simple("cell_deuterium", NtmTab.CONTROL, "items/cell_deuterium", new Item.Properties());
-	public static final DeferredItem<Item> cell_tritium = simple("cell_tritium", NtmTab.CONTROL, "items/cell_tritium", new Item.Properties());
+	public static final DeferredItem<Item> cell_uf6 = simple("cell_uf6", NtmTab.CONTROL, "items/cell_uf6", new Item.Properties(), () -> ModItems.cell_empty.get());
+	public static final DeferredItem<Item> cell_puf6 = simple("cell_puf6", NtmTab.CONTROL, "items/cell_puf6", new Item.Properties(), () -> ModItems.cell_empty.get());
+	public static final DeferredItem<Item> cell_deuterium = simple("cell_deuterium", NtmTab.CONTROL, "items/cell_deuterium", new Item.Properties(), () -> ModItems.cell_empty.get());
+	public static final DeferredItem<Item> cell_tritium = simple("cell_tritium", NtmTab.CONTROL, "items/cell_tritium", new Item.Properties(), () -> ModItems.cell_empty.get());
 	public static final DeferredItem<ItemCustomLore> cell_sas3 = lore("cell_sas3", "cell_sas3", NtmTab.CONTROL, "items/cell_sas3", new Item.Properties().rarity(Rarity.RARE));
-	public static final DeferredItem<Item> cell_balefire = simple("cell_balefire", NtmTab.CONTROL, "items/cell_balefire", new Item.Properties());
+	public static final DeferredItem<Item> cell_balefire = simple("cell_balefire", NtmTab.CONTROL, "items/cell_balefire", new Item.Properties(), () -> ModItems.cell_empty.get());
 	public static final DeferredItem<Item> demon_core_closed = simple("demon_core_closed", NtmTab.NUKE, "items/demon_core_closed", new Item.Properties());
 	public static final DeferredItem<Item> particle_empty = simple("particle_empty", NtmTab.CONTROL, "items/particle_empty", new Item.Properties());
-	public static final DeferredItem<Item> particle_hydrogen = simple("particle_hydrogen", NtmTab.CONTROL, "items/particle_hydrogen", new Item.Properties());
-	public static final DeferredItem<Item> particle_copper = simple("particle_copper", NtmTab.CONTROL, "items/particle_copper", new Item.Properties());
-	public static final DeferredItem<Item> particle_lead = simple("particle_lead", NtmTab.CONTROL, "items/particle_lead", new Item.Properties());
-	public static final DeferredItem<Item> particle_amat = simple("particle_amat", NtmTab.CONTROL, "items/particle_amat", new Item.Properties());
-	public static final DeferredItem<Item> particle_aschrab = simple("particle_aschrab", NtmTab.CONTROL, "items/particle_aschrab", new Item.Properties());
-	public static final DeferredItem<Item> particle_higgs = simple("particle_higgs", NtmTab.CONTROL, "items/particle_higgs", new Item.Properties());
-	public static final DeferredItem<Item> particle_muon = simple("particle_muon", NtmTab.CONTROL, "items/particle_muon", new Item.Properties());
-	public static final DeferredItem<Item> particle_tachyon = simple("particle_tachyon", NtmTab.CONTROL, "items/particle_tachyon", new Item.Properties());
-	public static final DeferredItem<Item> particle_strange = simple("particle_strange", NtmTab.CONTROL, "items/particle_strange", new Item.Properties());
-	public static final DeferredItem<Item> particle_dark = simple("particle_dark", NtmTab.CONTROL, "items/particle_dark", new Item.Properties());
-	public static final DeferredItem<Item> particle_sparkticle = simple("particle_sparkticle", NtmTab.CONTROL, "items/particle_sparkticle", new Item.Properties());
-	public static final DeferredItem<Item> particle_lutece = simple("particle_lutece", NtmTab.CONTROL, "items/particle_lutece", new Item.Properties());
+	public static final DeferredItem<Item> particle_hydrogen = simple("particle_hydrogen", NtmTab.CONTROL, "items/particle_hydrogen", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_copper = simple("particle_copper", NtmTab.CONTROL, "items/particle_copper", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_lead = simple("particle_lead", NtmTab.CONTROL, "items/particle_lead", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_amat = simple("particle_amat", NtmTab.CONTROL, "items/particle_amat", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_aschrab = simple("particle_aschrab", NtmTab.CONTROL, "items/particle_aschrab", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_higgs = simple("particle_higgs", NtmTab.CONTROL, "items/particle_higgs", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_muon = simple("particle_muon", NtmTab.CONTROL, "items/particle_muon", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_tachyon = simple("particle_tachyon", NtmTab.CONTROL, "items/particle_tachyon", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_strange = simple("particle_strange", NtmTab.CONTROL, "items/particle_strange", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_dark = simple("particle_dark", NtmTab.CONTROL, "items/particle_dark", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_sparkticle = simple("particle_sparkticle", NtmTab.CONTROL, "items/particle_sparkticle", new Item.Properties(), () -> ModItems.particle_empty.get());
+	public static final DeferredItem<Item> particle_lutece = simple("particle_lutece", NtmTab.CONTROL, "items/particle_lutece", new Item.Properties(), () -> ModItems.particle_empty.get());
 	public static final ItemEnumMulti.Variants<EnumFuelAdditive> fuel_additive = multi("fuel_additive", "fuel_additive", EnumFuelAdditive.class, true, true, NtmTab.CONTROL, new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> canister_empty = lore("canister_empty", "canister_empty", NtmTab.CONTROL, "items/canister_empty", new Item.Properties());
 	public static final DeferredItem<ItemCustomLore> canister_napalm = lore("canister_napalm", "canister_napalm", NtmTab.CONTROL, "items/canister_napalm", new Item.Properties());
@@ -618,16 +618,16 @@ public class ModItems {
 	public static final DeferredItem<Item> rod_dual_empty = simple("rod_dual_empty", NtmTab.CONTROL, "items/rod_dual_empty", new Item.Properties());
 	public static final DeferredItem<Item> rod_quad_empty = simple("rod_quad_empty", NtmTab.CONTROL, "items/rod_quad_empty", new Item.Properties());
 	public static final DeferredItem<Item> rod_zirnox_empty = simple("rod_zirnox_empty", NtmTab.CONTROL, "items/rod_zirnox_empty", new Item.Properties().stacksTo(64));
-	public static final DeferredItem<Item> rod_zirnox_tritium = simple("rod_zirnox_tritium", NtmTab.CONTROL, "items/rod_zirnox_tritium", new Item.Properties().stacksTo(1));
-	public static final DeferredItem<Item> rod_zirnox_natural_uranium_fuel_depleted = simple("rod_zirnox_natural_uranium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_uranium_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_uranium_fuel_depleted = simple("rod_zirnox_uranium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_uranium_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_thorium_fuel_depleted = simple("rod_zirnox_thorium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_thorium_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_mox_fuel_depleted = simple("rod_zirnox_mox_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_mox_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_plutonium_fuel_depleted = simple("rod_zirnox_plutonium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_plutonium_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_u233_fuel_depleted = simple("rod_zirnox_u233_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_u233_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_u235_fuel_depleted = simple("rod_zirnox_u235_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_u235_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_les_fuel_depleted = simple("rod_zirnox_les_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_les_fuel_depleted", new Item.Properties());
-	public static final DeferredItem<Item> rod_zirnox_zfb_mox_depleted = simple("rod_zirnox_zfb_mox_depleted", NtmTab.CONTROL, "items/rod_zirnox_zfb_mox_depleted", new Item.Properties());
+	public static final DeferredItem<Item> rod_zirnox_tritium = simple("rod_zirnox_tritium", NtmTab.CONTROL, "items/rod_zirnox_tritium", new Item.Properties().stacksTo(1), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_natural_uranium_fuel_depleted = simple("rod_zirnox_natural_uranium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_uranium_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_uranium_fuel_depleted = simple("rod_zirnox_uranium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_uranium_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_thorium_fuel_depleted = simple("rod_zirnox_thorium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_thorium_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_mox_fuel_depleted = simple("rod_zirnox_mox_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_mox_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_plutonium_fuel_depleted = simple("rod_zirnox_plutonium_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_plutonium_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_u233_fuel_depleted = simple("rod_zirnox_u233_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_u233_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_u235_fuel_depleted = simple("rod_zirnox_u235_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_u235_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_les_fuel_depleted = simple("rod_zirnox_les_fuel_depleted", NtmTab.CONTROL, "items/rod_zirnox_les_fuel_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
+	public static final DeferredItem<Item> rod_zirnox_zfb_mox_depleted = simple("rod_zirnox_zfb_mox_depleted", NtmTab.CONTROL, "items/rod_zirnox_zfb_mox_depleted", new Item.Properties(), () -> ModItems.rod_zirnox_empty.get());
 	public static final DeferredItem<Item> rbmk_fuel_empty = simple("rbmk_fuel_empty", NtmTab.CONTROL, "items/rbmk_fuel_empty", new Item.Properties());
 	public static final DeferredItem<Item> icf_pellet_empty = simple("icf_pellet_empty", NtmTab.CONTROL, "items/icf_pellet_empty", new Item.Properties());
 	public static final DeferredItem<Item> icf_pellet_depleted = simple("icf_pellet_depleted", NtmTab.CONTROL, "items/icf_pellet_depleted", new Item.Properties().stacksTo(1));
@@ -685,7 +685,7 @@ public class ModItems {
 	public static final DeferredItem<Item> man_igniter = simple("man_igniter", NtmTab.NUKE, "items/man_igniter", new Item.Properties().stacksTo(1));
 	public static final DeferredItem<ItemCustomLore> man_core = lore("man_core", "man_core", NtmTab.NUKE, "items/man_core", new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
 	public static final DeferredItem<Item> mike_core = simple("mike_core", NtmTab.NUKE, "items/mike_core", new Item.Properties().stacksTo(1));
-	public static final DeferredItem<Item> mike_deut = simple("mike_deut", NtmTab.NUKE, "items/mike_deut", new Item.Properties().stacksTo(1));
+	public static final DeferredItem<Item> mike_deut = simple("mike_deut", NtmTab.NUKE, "items/mike_deut", new Item.Properties().stacksTo(1), () -> ModItems.tank_steel.get());
 	public static final DeferredItem<Item> mike_cooling_unit = simple("mike_cooling_unit", NtmTab.NUKE, "items/mike_cooling_unit", new Item.Properties().stacksTo(1));
 	public static final DeferredItem<Item> tsar_core = simple("tsar_core", NtmTab.NUKE, "items/tsar_core", new Item.Properties().stacksTo(1));
 	public static final DeferredItem<Item> egg_balefire_shard = simple("egg_balefire_shard", NtmTab.NUKE, "items/egg_balefire_shard", new Item.Properties().stacksTo(16));
@@ -988,6 +988,13 @@ public class ModItems {
 	/** Plain item with a flat model (new Item() in the original) */
 	private static DeferredItem<Item> simple(String name, NtmTab tab, String texture, Item.Properties props) {
 		DeferredItem<Item> item = register(name, Item::new, props, tab);
+		FLAT_MODELS.put(item, texture);
+		return item;
+	}
+
+	/** Plain item that leaves a container item behind when crafted (setContainerItem in the original) */
+	private static DeferredItem<Item> simple(String name, NtmTab tab, String texture, Item.Properties props, java.util.function.Supplier<? extends Item> container) {
+		DeferredItem<Item> item = register(name, p -> new Item(p.craftRemainder(container.get())), props, tab);
 		FLAT_MODELS.put(item, texture);
 		return item;
 	}

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "meta=0": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=1": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=10": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=11": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=12": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=13": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=14": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=15": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=2": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=3": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=4": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=5": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=6": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=7": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=8": {
+      "model": "hbm:block/machine_exposure_chamber"
+    },
+    "meta=9": {
+      "model": "hbm:block/machine_exposure_chamber"
+    }
+  }
+}

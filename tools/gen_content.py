@@ -141,6 +141,7 @@ def gen_items():
         stack = None
         rarity = None
         glint = False
+        container = None
         ok = True
         for method, arg in calls:
             if method == "setUnlocalizedName": name = arg.strip('"')
@@ -153,7 +154,11 @@ def gen_items():
             elif method == "setMaxStackSize": stack = arg
             elif method == "setRarity": rarity = RARITY.get(arg.split(".")[-1])
             elif method == "setEffect": glint = True
-            elif method in ("setFull3D", "setContainerItem"): pass  # TODO crafting remainders come with recipes
+            elif method == "setContainerItem":
+                # mod items become a lazily resolved crafting remainder, vanilla containers are left out for now
+                cm = re.fullmatch(r"(?:ModItems\.)?(\w+)", arg.strip())
+                if cm and not arg.strip().startswith("Items."): container = cm.group(1)
+            elif method == "setFull3D": pass
             else:
                 ok = False
                 skipped.append((var, "setter " + method))
@@ -184,6 +189,8 @@ def gen_items():
 
         if multi:
             out.append(f'	public static final ItemEnumMulti.Variants<{multi[0]}> {var} = multi({java_str(name.lower())}, {java_str(name)}, {multi[0]}.class, {multi[1]}, {multi[2]}, {tab}, {props});')
+        elif cls == "Item" and container:
+            out.append(f'\tpublic static final DeferredItem<Item> {var} = simple({java_str(name.lower())}, {tab}, {java_str(tex)}, {props}, () -> ModItems.{container}.get());')
         elif cls == "Item":
             out.append(f'\tpublic static final DeferredItem<Item> {var} = simple({java_str(name.lower())}, {tab}, {java_str(tex)}, {props});')
         else:

@@ -33,6 +33,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.DIESEL.get(), com.hbm.inventory.gui.GUIMachineDiesel::new);
 		event.register(ModMenus.RTG.get(), com.hbm.inventory.gui.GUIMachineRTG::new);
 		event.register(ModMenus.RADIOLYSIS.get(), com.hbm.inventory.gui.GUIRadiolysis::new);
+		event.register(ModMenus.EXPOSURE_CHAMBER.get(), com.hbm.inventory.gui.GUIMachineExposureChamber::new);
 		event.register(ModMenus.OIL_WELL.get(), com.hbm.inventory.gui.GUIMachineOilWell::new);
 		event.register(ModMenus.FIREBOX.get(), com.hbm.inventory.gui.GUIFirebox::new);
 		event.register(ModMenus.REFINERY.get(), com.hbm.inventory.gui.GUIMachineRefinery::new);
@@ -93,6 +94,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.RTG.get(), com.hbm.render.tileentity.RenderRTG::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHARGER.get(), com.hbm.render.tileentity.RenderCharger::new);
 		event.registerBlockEntityRenderer(ModTileEntities.RADIOLYSIS.get(), com.hbm.render.tileentity.RenderRadiolysis::new);
+		event.registerBlockEntityRenderer(ModTileEntities.EXPOSURE_CHAMBER.get(), com.hbm.render.tileentity.RenderExposureChamber::new);
 		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
@@ -183,6 +185,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_rtg_grey.get().asItem(), com.hbm.render.tileentity.RenderRTG.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.charger.get().asItem(), com.hbm.render.tileentity.RenderCharger.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_radiolysis.get().asItem(), com.hbm.render.tileentity.RenderRadiolysis.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_exposure_chamber.get().asItem(), com.hbm.render.tileentity.RenderExposureChamber.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());

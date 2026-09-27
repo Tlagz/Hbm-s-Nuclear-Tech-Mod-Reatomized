@@ -63,6 +63,8 @@ public class ResourceManager {
 	public static final ResourceLocation charger_tex = RefStrings.loc("textures/models/machines/charger.png");
 	public static final HFRWavefrontObject radiolysis = new HFRWavefrontObject(RefStrings.loc("models/radiolysis.obj"));
 	public static final ResourceLocation radiolysis_tex = RefStrings.loc("textures/models/radiolysis.png");
+	public static final HFRWavefrontObject exposure_chamber = new HFRWavefrontObject(RefStrings.loc("models/machines/exposure_chamber.obj"));
+	public static final ResourceLocation exposure_chamber_tex = RefStrings.loc("textures/models/machines/exposure_chamber.png");
 	public static final HFRWavefrontObject deuterium_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/machine_deuterium_tower.obj"));
 	public static final ResourceLocation deuterium_tower_tex = RefStrings.loc("textures/models/machines/machine_deuterium_tower.png");
 	public static final ResourceLocation ashpit_tex = RefStrings.loc("textures/models/machines/ashpit.png");

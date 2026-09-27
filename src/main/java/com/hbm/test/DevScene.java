@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos;
 	private static int serverTicks = 0;
 
 	/**
@@ -362,6 +362,21 @@ public class DevScene {
 			radiolysis.tanks[0].setTankType(com.hbm.inventory.fluid.Fluids.WATER);
 			radiolysis.tanks[0].setFill(2_000);
 			if(radiolysis.tanks[1].getFill() > 1_500) { radiolysis.tanks[1].setFill(0); radiolysis.tanks[2].setFill(0); }
+		}
+		// the exposure chamber keeps making schrabidium
+		if(exposurePos != null && server.overworld().getBlockEntity(exposurePos) instanceof com.hbm.tileentity.machine.TileEntityMachineExposureChamber chamber) {
+			chamber.setItem(5, new ItemStack(ModItems.battery_creative.get()));
+			if(chamber.getItem(0).isEmpty()) chamber.setItem(0, new ItemStack(ModItems.particle_higgs.get(), 4));
+			if(chamber.getItem(3).getCount() < 2) chamber.setItem(3, new ItemStack(ModItems.ingot_u238.get(), 16));
+			if(chamber.getItem(4).getCount() > 32) chamber.setItem(4, ItemStack.EMPTY);
+			chamber.setItem(2, ItemStack.EMPTY);
+		}
+		if(serverTicks == 3620 || serverTicks == 3660) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3620) player.teleportTo(player.serverLevel(), 15.5, -57, -63.5, 148F, 15F);
+				else if(player.level().getBlockEntity(exposurePos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(exposurePos));
+			}
 		}
 		if(serverTicks == 3550 || serverTicks == 3585) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1101,6 +1116,11 @@ public class DevScene {
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
 			diFurnacePos = origin.offset(-13, 0, -50);
 			rtgPos = origin.offset(10, 0, -50);
+			// another strip further north, clear of the strand caster's tail
+			for(int x = 2; x <= 16; x++) for(int z = -78; z <= -63; z++) for(int y = 0; y <= 10; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			exposurePos = ModBlocks.machine_exposure_chamber.get().placeMultiblock(level, origin.offset(10, 0, -73), net.minecraft.core.Direction.NORTH);
 			radiolysisPos = ModBlocks.machine_radiolysis.get().placeMultiblock(level, origin.offset(15, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(radiolysisPos != null && level.getBlockEntity(radiolysisPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRadiolysis radiolysis) {
 				radiolysis.setItem(0, new ItemStack(ModItems.pellet_rtg_lead.get()));
@@ -1435,7 +1455,10 @@ public class DevScene {
 			if(ticks == 3580) Screenshot.grab(mc.gameDirectory, "devscene_world_radiolysis.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3615) Screenshot.grab(mc.gameDirectory, "devscene_gui_radiolysis.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3625) {
+			if(ticks == 3655) Screenshot.grab(mc.gameDirectory, "devscene_world_exposure.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3690) Screenshot.grab(mc.gameDirectory, "devscene_gui_exposure.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3700) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

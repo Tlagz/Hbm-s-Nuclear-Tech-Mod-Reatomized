@@ -140,6 +140,8 @@ public class ModMenus {
 			tile("machine_rtg_grey", com.hbm.tileentity.machine.TileEntityMachineRTG.class, com.hbm.inventory.container.ContainerMachineRTG::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerRadiolysis>> RADIOLYSIS =
 			tile("machine_radiolysis", com.hbm.tileentity.machine.TileEntityMachineRadiolysis.class, com.hbm.inventory.container.ContainerRadiolysis::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineExposureChamber>> EXPOSURE_CHAMBER =
+			tile("machine_exposure_chamber", com.hbm.tileentity.machine.TileEntityMachineExposureChamber.class, com.hbm.inventory.container.ContainerMachineExposureChamber::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerDiFurnace>> DI_FURNACE =
 			tile("machine_difurnace", com.hbm.tileentity.machine.TileEntityDiFurnace.class, com.hbm.inventory.container.ContainerDiFurnace::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerFurnaceCombo>> FURNACE_COMBINATION =
