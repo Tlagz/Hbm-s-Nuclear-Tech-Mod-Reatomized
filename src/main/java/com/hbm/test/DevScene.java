@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -410,6 +410,13 @@ public class DevScene {
 		if(tankPos != null && serverTicks % 20 == 0 && server.overworld().getBlockEntity(tankPos.above()) instanceof com.hbm.tileentity.machine.TileEntityFoundryTank tank && tank.amount < tank.getCapacity() / 2) {
 			tank.type = com.hbm.inventory.material.Mats.MAT_STEEL;
 			tank.amount = tank.getCapacity();
+		}
+		if(serverTicks == 4175 || serverTicks == 4215) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 4175) player.teleportTo(player.serverLevel(), 23.5, -58, -56.5, 200F, 20F);
+				else if(radgenPos != null && player.level().getBlockEntity(radgenPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(radgenPos));
+			}
 		}
 		if(serverTicks == 4120) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1228,6 +1235,11 @@ public class DevScene {
 			// foundry tanks on a brick base west of the field, a slag tap dumping onto the grass
 			for(int x = 20; x <= 29; x++) for(int z = -57; z <= -53; z++) for(int y = 0; y <= 4; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			tankPos = origin.offset(24, 1, -56);
+			radgenPos = ModBlocks.machine_radgen.get().placeMultiblock(level, origin.offset(22, 0, -63), net.minecraft.core.Direction.EAST);
+			if(radgenPos != null && level.getBlockEntity(radgenPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRadGen radgen) {
+				radgen.setItem(0, new ItemStack(ModItems.scrap_nuclear.get(), 16));
+				radgen.setItem(1, ModItems.nuclear_waste_short.stack(com.hbm.items.special.ItemWasteShort.WasteClass.URANIUM235, 4));
+			}
 			for(int x = 24; x <= 25; x++) for(int z = -56; z <= -55; z++) {
 				level.setBlockAndUpdate(origin.offset(x, 0, z), Blocks.BRICKS.defaultBlockState());
 				level.setBlockAndUpdate(origin.offset(x, 1, z), ModBlocks.foundry_tank.get().defaultBlockState());
@@ -1609,7 +1621,10 @@ public class DevScene {
 
 			if(ticks == 4165) Screenshot.grab(mc.gameDirectory, "devscene_world_foundry_tank.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4175) {
+			if(ticks == 4210) Screenshot.grab(mc.gameDirectory, "devscene_world_radgen.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 4250) Screenshot.grab(mc.gameDirectory, "devscene_gui_radgen.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4260) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

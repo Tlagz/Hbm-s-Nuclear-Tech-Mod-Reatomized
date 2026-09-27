@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:plates/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "hbm:steel_grate"
+    },
+    "M": {
+      "item": "hbm:motor"
+    },
+    "P": {
+      "tag": "c:plates/steel"
+    },
+    "T": {
+      "item": "hbm:tank_steel"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "PMP",
+    "PTP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:machine_intake"
+  }
+}

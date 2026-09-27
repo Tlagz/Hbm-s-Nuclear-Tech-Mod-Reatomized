@@ -13,6 +13,7 @@ import com.hbm.items.ItemEnums.*;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemFELCrystal.EnumWavelengths;
 import com.hbm.items.machine.ItemFluidContainerBase;
+import com.hbm.items.machine.ItemFELCrystal.EnumWavelengths;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

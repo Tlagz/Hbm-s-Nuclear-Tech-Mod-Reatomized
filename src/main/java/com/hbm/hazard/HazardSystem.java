@@ -57,6 +57,8 @@ public class HazardSystem {
 			itemMap.put(item.asItem(), data);
 		else if(o instanceof Supplier<?> supplier)
 			register(supplier.get(), data);
+		else if(o instanceof com.hbm.items.ItemEnumMulti.Variants<?> variants) // the original registered all metas of the item
+			for(Object variant : variants.values()) register(variant, data);
 		else
 			throw new IllegalArgumentException("Can't register hazards for " + o);
 	}

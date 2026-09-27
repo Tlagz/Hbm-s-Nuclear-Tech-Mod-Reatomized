@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "hbm:cast_plates/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "hbm:cast_plates/steel"
+    },
+    "T": {
+      "item": "hbm:tank_steel"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "T  ",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:machine_drain"
+  }
+}

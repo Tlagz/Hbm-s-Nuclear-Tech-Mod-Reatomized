@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:storage_blocks/steel"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "hbm:coil_copper_torus"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "S": {
+      "tag": "c:storage_blocks/steel"
+    }
+  },
+  "pattern": [
+    "G",
+    "S",
+    "C"
+  ],
+  "result": {
+    "count": 16,
+    "id": "hbm:charger"
+  }
+}

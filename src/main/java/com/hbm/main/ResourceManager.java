@@ -69,6 +69,8 @@ public class ResourceManager {
 	public static final ResourceLocation autosaw_tex = RefStrings.loc("textures/models/machines/autosaw.png");
 	public static final HFRWavefrontObject thresher = new HFRWavefrontObject(RefStrings.loc("models/machines/thresher.obj"));
 	public static final ResourceLocation thresher_tex = RefStrings.loc("textures/models/machines/thresher.png");
+	public static final HFRWavefrontObject radgen = new HFRWavefrontObject(RefStrings.loc("models/machines/radgen.obj"));
+	public static final ResourceLocation radgen_tex = RefStrings.loc("textures/models/machines/radgen.png");
 	public static final HFRWavefrontObject chimney_brick = new HFRWavefrontObject(RefStrings.loc("models/machines/chimney_brick.obj"));
 	public static final HFRWavefrontObject chimney_industrial = new HFRWavefrontObject(RefStrings.loc("models/machines/chimney_industrial.obj"));
 	public static final ResourceLocation chimney_brick_tex = RefStrings.loc("textures/models/machines/chimney_brick.png");

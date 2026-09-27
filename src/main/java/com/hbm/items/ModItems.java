@@ -640,6 +640,22 @@ public class ModItems {
 	public static final DeferredItem<Item> scrap = simple("scrap", NtmTab.PARTS, "items/scrap", new Item.Properties());
 	public static final DeferredItem<Item> scrap_oil = simple("scrap_oil", NtmTab.PARTS, "items/scrap_oil", new Item.Properties());
 	public static final DeferredItem<Item> scrap_nuclear = simple("scrap_nuclear", NtmTab.PARTS, "items/scrap_nuclear", new Item.Properties());
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteShort.WasteClass> nuclear_waste_short = multi("nuclear_waste_short", "nuclear_waste_short", com.hbm.items.special.ItemWasteShort.WasteClass.class, false,
+			value -> "items/nuclear_waste_short", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteShort(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteShort.WasteClass> nuclear_waste_short_tiny = multi("nuclear_waste_short_tiny", "nuclear_waste_short_tiny", com.hbm.items.special.ItemWasteShort.WasteClass.class, false,
+			value -> "items/nuclear_waste_short_tiny", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteShort(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteShort.WasteClass> nuclear_waste_short_depleted = multi("nuclear_waste_short_depleted", "nuclear_waste_short_depleted", com.hbm.items.special.ItemWasteShort.WasteClass.class, false,
+			value -> "items/nuclear_waste_short_depleted", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteShort(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteShort.WasteClass> nuclear_waste_short_depleted_tiny = multi("nuclear_waste_short_depleted_tiny", "nuclear_waste_short_depleted_tiny", com.hbm.items.special.ItemWasteShort.WasteClass.class, false,
+			value -> "items/nuclear_waste_short_depleted_tiny", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteShort(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteLong.WasteClass> nuclear_waste_long = multi("nuclear_waste_long", "nuclear_waste_long", com.hbm.items.special.ItemWasteLong.WasteClass.class, false,
+			value -> "items/nuclear_waste_long", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteLong(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteLong.WasteClass> nuclear_waste_long_tiny = multi("nuclear_waste_long_tiny", "nuclear_waste_long_tiny", com.hbm.items.special.ItemWasteLong.WasteClass.class, false,
+			value -> "items/nuclear_waste_long_tiny", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteLong(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteLong.WasteClass> nuclear_waste_long_depleted = multi("nuclear_waste_long_depleted", "nuclear_waste_long_depleted", com.hbm.items.special.ItemWasteLong.WasteClass.class, false,
+			value -> "items/nuclear_waste_long_depleted", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteLong(p, descriptionId, value));
+	public static final ItemEnumMulti.Variants<com.hbm.items.special.ItemWasteLong.WasteClass> nuclear_waste_long_depleted_tiny = multi("nuclear_waste_long_depleted_tiny", "nuclear_waste_long_depleted_tiny", com.hbm.items.special.ItemWasteLong.WasteClass.class, false,
+			value -> "items/nuclear_waste_long_depleted_tiny", NtmTab.PARTS, new Item.Properties(), (p, descriptionId, value) -> new com.hbm.items.special.ItemWasteLong(p, descriptionId, value));
 	public static final DeferredItem<ItemCustomLore> key_red = lore("key_red", "key_red", null, "items/key_red", new Item.Properties().stacksTo(1));
 	public static final DeferredItem<ItemCustomLore> key_red_cracked = lore("key_red_cracked", "key_red_cracked", null, "items/key_red_cracked", new Item.Properties().stacksTo(1));
 	public static final DeferredItem<ItemCustomLore> mech_key = lore("mech_key", "mech_key", null, "items/mech_key", new Item.Properties().stacksTo(1));

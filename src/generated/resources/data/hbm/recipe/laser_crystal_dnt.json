@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/dineutronium"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:egg_balefire"
+    },
+    "D": {
+      "tag": "c:ingots/dineutronium"
+    },
+    "Q": {
+      "item": "hbm:glass_quartz"
+    },
+    "S": {
+      "item": "hbm:powder_spark_mix"
+    }
+  },
+  "pattern": [
+    "QDQ",
+    "SBS",
+    "QDQ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:laser_crystal_dnt"
+  }
+}

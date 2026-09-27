@@ -1,0 +1,46 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/uranium"
+      }
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/thorium232"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbm:nugget_bismuth"
+    },
+    "C": {
+      "item": "hbm:crystal_rare"
+    },
+    "Q": {
+      "item": "hbm:glass_quartz"
+    },
+    "T": {
+      "tag": "c:ingots/thorium232"
+    },
+    "U": {
+      "tag": "c:ingots/uranium"
+    }
+  },
+  "pattern": [
+    "QUQ",
+    "BCB",
+    "QTQ"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:laser_crystal_bismuth"
+  }
+}

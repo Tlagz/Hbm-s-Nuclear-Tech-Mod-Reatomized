@@ -4274,6 +4274,38 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_short"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_short_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_short_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_short_depleted_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_long"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_long_tiny"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_long_depleted"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/nuclear_waste_long_depleted_tiny"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:items/key_red"
     },
     {
