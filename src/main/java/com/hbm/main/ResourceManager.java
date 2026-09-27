@@ -53,6 +53,8 @@ public class ResourceManager {
 	public static final ResourceLocation arc_welder_tex = RefStrings.loc("textures/models/machines/arc_welder.png");
 	public static final HFRWavefrontObject stirling = new HFRWavefrontObject(RefStrings.loc("models/machines/stirling.obj"));
 	public static final ResourceLocation stirling_tex = RefStrings.loc("textures/models/machines/stirling.png");
+	public static final HFRWavefrontObject sawmill = new HFRWavefrontObject(RefStrings.loc("models/machines/sawmill.obj"));
+	public static final ResourceLocation sawmill_tex = RefStrings.loc("textures/models/machines/sawmill.png");
 	public static final ResourceLocation stirling_steel_tex = RefStrings.loc("textures/models/machines/stirling_steel.png");
 	public static final ResourceLocation stirling_creative_tex = RefStrings.loc("textures/models/machines/stirling_creative.png");
 	public static final HFRWavefrontObject heater_oven = new HFRWavefrontObject(RefStrings.loc("models/machines/heating_oven.obj")).noSmooth();

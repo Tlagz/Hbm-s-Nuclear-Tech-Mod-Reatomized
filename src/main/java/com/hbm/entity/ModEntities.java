@@ -16,4 +16,6 @@ public class ModEntities {
 
 	public static final DeferredHolder<EntityType<?>, EntityType<EntityCog>> COG = ENTITIES.register("entity_stirling_cog",
 			() -> EntityType.Builder.<EntityCog>of(EntityCog::new, MobCategory.MISC).sized(1F, 1F).clientTrackingRange(16).updateInterval(1).build("entity_stirling_cog"));
+	public static final DeferredHolder<EntityType<?>, EntityType<com.hbm.entity.projectile.EntitySawblade>> SAWBLADE = ENTITIES.register("entity_sawblade",
+			() -> EntityType.Builder.<com.hbm.entity.projectile.EntitySawblade>of(com.hbm.entity.projectile.EntitySawblade::new, MobCategory.MISC).sized(1F, 1F).clientTrackingRange(16).updateInterval(1).build("entity_sawblade"));
 }

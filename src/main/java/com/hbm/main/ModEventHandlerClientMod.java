@@ -111,6 +111,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.ARC_FURNACE.get(), com.hbm.render.tileentity.RenderArcFurnace::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CRUCIBLE.get(), com.hbm.render.tileentity.RenderCrucible::new);
 		event.registerBlockEntityRenderer(ModTileEntities.STIRLING.get(), com.hbm.render.tileentity.RenderStirling::new);
+		event.registerBlockEntityRenderer(ModTileEntities.SAWMILL.get(), com.hbm.render.tileentity.RenderSawmill::new);
 		event.registerBlockEntityRenderer(ModTileEntities.HEATER_OVEN.get(), com.hbm.render.tileentity.RenderHeatingOven::new);
 		event.registerBlockEntityRenderer(ModTileEntities.DEUTERIUM_TOWER.get(), com.hbm.render.tileentity.RenderDeuteriumTower::new);
 		event.registerBlockEntityRenderer(ModTileEntities.ASHPIT.get(), com.hbm.render.tileentity.RenderAshpit::new);
@@ -160,6 +161,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.INDUSTRIAL_TURBINE.get(), com.hbm.render.tileentity.RenderIndustrialTurbine::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHUNGUS.get(), com.hbm.render.tileentity.RenderChungus::new);
 		event.registerEntityRenderer(com.hbm.entity.ModEntities.COG.get(), com.hbm.render.entity.RenderCog::new);
+		event.registerEntityRenderer(com.hbm.entity.ModEntities.SAWBLADE.get(), com.hbm.render.entity.RenderSawblade::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_MOLD.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_BASIN.get(), com.hbm.render.tileentity.RenderFoundry::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_CHANNEL.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -204,6 +206,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oven.get().asItem(), com.hbm.render.tileentity.RenderHeatingOven.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_deuterium_tower.get().asItem(), com.hbm.render.tileentity.RenderDeuteriumTower.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_ashpit.get().asItem(), com.hbm.render.tileentity.RenderAshpit.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_sawmill.get().asItem(), com.hbm.render.tileentity.RenderSawmill.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_electric.get().asItem(), com.hbm.render.tileentity.RenderElectricHeater.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_oilburner.get().asItem(), com.hbm.render.tileentity.RenderOilburner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_heatex.get().asItem(), com.hbm.render.tileentity.RenderHeaterHeatex.itemRenderer());

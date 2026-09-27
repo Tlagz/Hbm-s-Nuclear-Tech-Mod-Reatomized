@@ -42,6 +42,16 @@ public class EntityCog extends ThrowableProjectile {
 		super(ModEntities.COG.get(), x, y, z, world);
 	}
 
+	/** For the sawmill's sawblade, which flies and lands the same way */
+	protected EntityCog(EntityType<? extends EntityCog> type, Level world, double x, double y, double z) {
+		super(type, x, y, z, world);
+	}
+
+	/** What the player gets back when picking it up */
+	protected ItemStack getDropItem() {
+		return new ItemStack(getMeta() == 1 ? ModItems.gear_large_steel.get() : ModItems.gear_large.get());
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 		builder.define(ORIENTATION, 0);
@@ -70,8 +80,7 @@ public class EntityCog extends ThrowableProjectile {
 	@Override
 	public InteractionResult interact(Player player, InteractionHand hand) {
 		if(!level().isClientSide) {
-			ItemStack gear = new ItemStack(getMeta() == 1 ? ModItems.gear_large_steel.get() : ModItems.gear_large.get());
-			if(player.getInventory().add(gear)) this.discard();
+			if(player.getInventory().add(getDropItem())) this.discard();
 		}
 		return InteractionResult.sidedSuccess(level().isClientSide);
 	}

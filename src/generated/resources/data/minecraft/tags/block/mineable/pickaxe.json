@@ -68,6 +68,7 @@
     "hbm:heater_oven",
     "hbm:machine_ashpit",
     "hbm:machine_stirling",
+    "hbm:machine_sawmill",
     "hbm:machine_stirling_steel",
     "hbm:machine_stirling_creative",
     "hbm:heater_electric",
