@@ -152,6 +152,12 @@ public class ModMenus {
 			tile("machine_siren", com.hbm.tileentity.machine.TileEntityMachineSiren.class, com.hbm.inventory.container.ContainerMachineSiren::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineCyclotron>> CYCLOTRON =
 			tile("machine_cyclotron", com.hbm.tileentity.machine.TileEntityMachineCyclotron.class, com.hbm.inventory.container.ContainerMachineCyclotron::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerCraneInserter>> CRANE_INSERTER =
+			tile("crane_inserter", com.hbm.tileentity.network.TileEntityCraneInserter.class, com.hbm.inventory.container.ContainerCraneInserter::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerCraneExtractor>> CRANE_EXTRACTOR =
+			tile("crane_extractor", com.hbm.tileentity.network.TileEntityCraneExtractor.class, com.hbm.inventory.container.ContainerCraneExtractor::new);
+	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerCraneGrabber>> CRANE_GRABBER =
+			tile("crane_grabber", com.hbm.tileentity.network.TileEntityCraneGrabber.class, com.hbm.inventory.container.ContainerCraneGrabber::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerRadiolysis>> RADIOLYSIS =
 			tile("machine_radiolysis", com.hbm.tileentity.machine.TileEntityMachineRadiolysis.class, com.hbm.inventory.container.ContainerRadiolysis::new);
 	public static final DeferredHolder<MenuType<?>, MenuType<com.hbm.inventory.container.ContainerMachineExposureChamber>> EXPOSURE_CHAMBER =

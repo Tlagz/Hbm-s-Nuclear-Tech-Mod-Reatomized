@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos, cyclotronPos, conveyorOrigin;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos, sirenPos, cyclotronPos, conveyorOrigin, craneSource, craneExtractor;
 	private static int serverTicks = 0;
 
 	/**
@@ -430,6 +430,18 @@ public class DevScene {
 			cyc.setPower(com.hbm.tileentity.machine.TileEntityMachineCyclotron.maxPower);
 			cyc.tanks[0].setFill(cyc.tanks[0].getMaxFill());
 			cyc.tanks[1].setFill(0);
+		}
+		// the crane source chest never runs dry
+		if(craneSource != null && serverTicks % 10 == 0 && server.overworld().getBlockEntity(craneSource) instanceof net.minecraft.world.level.block.entity.ChestBlockEntity chest) {
+			chest.setItem(0, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 64));
+			chest.setItem(1, new ItemStack(net.minecraft.world.item.Items.DIAMOND, 64));
+		}
+		if(serverTicks == 4650 || serverTicks == 4690) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 4650) player.teleportTo(player.serverLevel(), 67.5, -56.5, -58.5, 180F, 75F);
+				else if(craneExtractor != null && player.level().getBlockEntity(craneExtractor) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(craneExtractor));
+			}
 		}
 		// items onto the belts
 		if(conveyorOrigin != null && serverTicks % 15 == 0) {
@@ -1354,6 +1366,22 @@ public class DevScene {
 			net.minecraft.core.BlockPos ra = conveyorOrigin.offset(9, 0, 4), rb = conveyorOrigin.offset(13, 1, 4);
 			com.hbm.items.tool.ItemConveyorWand.construct(level, true, com.hbm.items.tool.ItemConveyorWand.ConveyorType.REGULAR, routePlayer,
 					ra.getX(), ra.getY(), ra.getZ(), net.minecraft.core.Direction.UP.get3DDataValue(), rb.getX(), rb.getY(), rb.getZ(), net.minecraft.core.Direction.UP.get3DDataValue(), 64);
+			// cranes: chest -> extractor -> belts -> inserter -> chest, a grabber taking items off the belt into another chest
+			for(int x = 62; x <= 72; x++) for(int z = -62; z <= -57; z++) for(int y = 0; y <= 3; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			craneSource = origin.offset(63, 0, -61);
+			level.setBlockAndUpdate(craneSource, Blocks.CHEST.defaultBlockState());
+			craneExtractor = origin.offset(64, 0, -61);
+			level.setBlockAndUpdate(craneExtractor, ModBlocks.crane_extractor.get().defaultBlockState().setValue(com.hbm.blocks.network.BlockCraneBase.INPUT, net.minecraft.core.Direction.EAST).setValue(com.hbm.blocks.network.BlockCraneBase.OUTPUT, net.minecraft.core.Direction.WEST));
+			for(int x = 65; x <= 69; x++) level.setBlockAndUpdate(origin.offset(x, 0, -61), ModBlocks.conveyor.get().getStateForMeta(net.minecraft.core.Direction.WEST.get3DDataValue()));
+			level.setBlockAndUpdate(origin.offset(70, 0, -61), ModBlocks.crane_inserter.get().defaultBlockState().setValue(com.hbm.blocks.network.BlockCraneBase.INPUT, net.minecraft.core.Direction.WEST).setValue(com.hbm.blocks.network.BlockCraneBase.OUTPUT, net.minecraft.core.Direction.EAST));
+			level.setBlockAndUpdate(origin.offset(71, 0, -61), Blocks.CHEST.defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(67, 0, -60), ModBlocks.crane_grabber.get().defaultBlockState().setValue(com.hbm.blocks.network.BlockCraneBase.INPUT, net.minecraft.core.Direction.NORTH).setValue(com.hbm.blocks.network.BlockCraneBase.OUTPUT, net.minecraft.core.Direction.SOUTH));
+			level.setBlockAndUpdate(origin.offset(67, 0, -59), Blocks.CHEST.defaultBlockState());
+			if(level.getBlockEntity(craneExtractor) instanceof com.hbm.tileentity.network.TileEntityCraneExtractor extractor) {
+				extractor.setItem(19, new ItemStack(ModItems.upgrade_ejector_3.get()));
+				extractor.setItem(0, new ItemStack(net.minecraft.world.item.Items.DIRT));
+				extractor.matcher.initPatternStandard(level, extractor.getItem(0), 0);
+			}
 			// a siren with a cassette, powered
 			sirenPos = origin.offset(44, 0, -57);
 			level.setBlockAndUpdate(sirenPos, ModBlocks.machine_siren.get().defaultBlockState());
@@ -1785,7 +1813,10 @@ public class DevScene {
 
 			if(ticks == 4640) Screenshot.grab(mc.gameDirectory, "devscene_world_conveyor.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4650) {
+			if(ticks == 4685) Screenshot.grab(mc.gameDirectory, "devscene_world_crane.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 4715) Screenshot.grab(mc.gameDirectory, "devscene_gui_crane.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4725) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

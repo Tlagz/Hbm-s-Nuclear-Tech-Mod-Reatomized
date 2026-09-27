@@ -162,6 +162,12 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntitySolarMirror::new, ModBlocks.solar_mirror.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityTesla>> TESLA = TILES.register("tesla",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityTesla::new, ModBlocks.tesla.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.network.TileEntityCraneInserter>> CRANE_INSERTER = TILES.register("crane_inserter",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.network.TileEntityCraneInserter::new, ModBlocks.crane_inserter.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.network.TileEntityCraneExtractor>> CRANE_EXTRACTOR = TILES.register("crane_extractor",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.network.TileEntityCraneExtractor::new, ModBlocks.crane_extractor.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.network.TileEntityCraneGrabber>> CRANE_GRABBER = TILES.register("crane_grabber",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.network.TileEntityCraneGrabber::new, ModBlocks.crane_grabber.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineCyclotron>> CYCLOTRON = TILES.register("machine_cyclotron",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineCyclotron::new, ModBlocks.machine_cyclotron.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDecon>> DECON = TILES.register("decon",

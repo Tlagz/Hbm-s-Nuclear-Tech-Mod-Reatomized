@@ -18,4 +18,14 @@ public class BufferUtil {
 	public static ItemStack readItemStack(ByteBuf buf, RegistryAccess registries) {
 		return ItemStack.OPTIONAL_STREAM_CODEC.decode(new RegistryFriendlyByteBuf(buf, registries));
 	}
+
+	/** A nullable string, the original's BufferUtil.writeString */
+	public static void writeString(ByteBuf buf, String value) {
+		buf.writeBoolean(value != null);
+		if(value != null) new net.minecraft.network.FriendlyByteBuf(buf).writeUtf(value);
+	}
+
+	public static String readString(ByteBuf buf) {
+		return buf.readBoolean() ? new net.minecraft.network.FriendlyByteBuf(buf).readUtf() : null;
+	}
 }

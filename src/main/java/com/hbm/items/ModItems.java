@@ -847,6 +847,12 @@ public class ModItems {
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_crystallizer = upgrade("upgrade_crystallizer", UpgradeType.SPECIAL, 0, 1);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_nullifier = upgrade("upgrade_nullifier", UpgradeType.SPECIAL, 0, 1);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_screm = upgrade("upgrade_screm", UpgradeType.SPECIAL, 0, 1);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_stack_1 = upgrade("upgrade_stack_1", UpgradeType.SPECIAL, 1, 64);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_stack_2 = upgrade("upgrade_stack_2", UpgradeType.SPECIAL, 2, 64);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_stack_3 = upgrade("upgrade_stack_3", UpgradeType.SPECIAL, 3, 64);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_ejector_1 = upgrade("upgrade_ejector_1", UpgradeType.SPECIAL, 1, 64);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_ejector_2 = upgrade("upgrade_ejector_2", UpgradeType.SPECIAL, 2, 64);
+	public static final DeferredItem<ItemMachineUpgrade> upgrade_ejector_3 = upgrade("upgrade_ejector_3", UpgradeType.SPECIAL, 3, 64);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_gc_speed = upgrade("upgrade_gc_speed", UpgradeType.SPECIAL, 0, 1);
 	public static final DeferredItem<ItemMachineUpgrade> upgrade_5g = upgrade("upgrade_5g", UpgradeType.SPECIAL, 0, 1);
 

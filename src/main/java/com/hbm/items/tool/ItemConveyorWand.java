@@ -302,8 +302,7 @@ public class ItemConveyorWand extends ItemEnumMulti {
 
 		Block targetBlock = world.getBlockState(new BlockPos(x2, y2, z2)).getBlock();
 		boolean isTargetHorizontal = targetDir != Direction.UP && targetDir != Direction.DOWN;
-		// TODO the original also turned towards cranes (BlockCraneBase)
-		boolean shouldTurnToTarget = isTargetHorizontal || targetBlock == ModBlocks.conveyor_lift.get() || targetBlock == ModBlocks.conveyor_chute.get();
+		boolean shouldTurnToTarget = isTargetHorizontal || targetBlock instanceof com.hbm.blocks.network.BlockCraneBase || targetBlock == ModBlocks.conveyor_lift.get() || targetBlock == ModBlocks.conveyor_chute.get();
 
 		Direction horDir = dir == Direction.UP || dir == Direction.DOWN ? Direction.from3DDataValue(BlockConveyorBase.getFacingMeta(player.getYRot())).getOpposite() : dir;
 

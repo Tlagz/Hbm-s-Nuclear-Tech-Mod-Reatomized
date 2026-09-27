@@ -55,6 +55,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		foundryOutlet(ModBlocks.foundry_slagtap, "foundry_slagtap");
 		foundryTank();
 		conveyors();
+		crane(ModBlocks.crane_inserter, CraneTextures.standard("crane_in", false));
+		crane(ModBlocks.crane_extractor, CraneTextures.standard("crane_out", true));
+		crane(ModBlocks.crane_grabber, CraneTextures.standard("crane_grabber", false).in("crane_pull", "crane_side_pull"));
 		dynamicSlag();
 
 		for(var capacitor : List.of(ModBlocks.capacitor_copper, ModBlocks.capacitor_gold, ModBlocks.capacitor_niobium, ModBlocks.capacitor_tantalium, ModBlocks.capacitor_schrabidate)) {
@@ -781,6 +784,135 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		box(item, "#concrete", 12, 0, 12, 16, 16, 16);
 		item.element().from(4, 0, 4).to(12, 16, 6).allFaces((dir, face) -> face.texture("#top")).end();
 		simpleBlockItem(ModBlocks.conveyor_lift.get(), item);
+	}
+
+	/**
+	 * The textures of a crane, the original's BlockCraneBase icons. The extractor's directional textures are
+	 * mirrored (its items move the other way), which the original solved by registering them swapped.
+	 */
+	public record CraneTextures(String top, String side, String in, String sideIn, String out, String sideOut,
+			String directional, String directionalUp, String directionalDown, String turnLeft, String turnRight,
+			String sideLeftTurnUp, String sideRightTurnUp, String sideLeftTurnDown, String sideRightTurnDown,
+			String sideUpTurnLeft, String sideUpTurnRight, String sideDownTurnLeft, String sideDownTurnRight) {
+
+		public static CraneTextures standard(String p, boolean mirrored) {
+			if(mirrored) return new CraneTextures("crane_top", "crane_side", "crane_in", "crane_side_in", "crane_out", "crane_side_out",
+					p + "_top", p + "_side_down", p + "_side_up", p + "_top_right", p + "_top_left",
+					p + "_side_up_turn_left", p + "_side_up_turn_right", p + "_side_down_turn_left", p + "_side_down_turn_right",
+					p + "_side_left_turn_up", p + "_side_right_turn_up", p + "_side_left_turn_down", p + "_side_right_turn_down");
+			return new CraneTextures("crane_top", "crane_side", "crane_in", "crane_side_in", "crane_out", "crane_side_out",
+					p + "_top", p + "_side_up", p + "_side_down", p + "_top_left", p + "_top_right",
+					p + "_side_left_turn_up", p + "_side_right_turn_up", p + "_side_left_turn_down", p + "_side_right_turn_down",
+					p + "_side_up_turn_left", p + "_side_up_turn_right", p + "_side_down_turn_left", p + "_side_down_turn_right");
+		}
+
+		public CraneTextures in(String in, String sideIn) {
+			return new CraneTextures(top, side, in, sideIn, out, sideOut, directional, directionalUp, directionalDown, turnLeft, turnRight,
+					sideLeftTurnUp, sideRightTurnUp, sideLeftTurnDown, sideRightTurnDown, sideUpTurnLeft, sideUpTurnRight, sideDownTurnLeft, sideDownTurnRight);
+		}
+
+		public CraneTextures out(String out, String sideOut) {
+			return new CraneTextures(top, side, in, sideIn, out, sideOut, directional, directionalUp, directionalDown, turnLeft, turnRight,
+					sideLeftTurnUp, sideRightTurnUp, sideLeftTurnDown, sideRightTurnDown, sideUpTurnLeft, sideUpTurnRight, sideDownTurnLeft, sideDownTurnRight);
+		}
+
+		/** The original's BlockCraneBase.getIcon(world, x, y, z, side) */
+		public String icon(Direction side, Direction inputSide, Direction output) {
+			boolean outputSideOverridden = output.getOpposite() != inputSide;
+			Direction outputSide = outputSideOverridden ? output : inputSide.getOpposite();
+			Direction leftHandRotation = com.hbm.blocks.network.BlockCraneBase.rotate(outputSide, inputSide);
+
+			if(side.getAxis().isVertical()) {
+				if(side == outputSide) return out;
+				if(side == inputSide) return in;
+
+				if(side == Direction.UP) {
+					if(outputSideOverridden) {
+						if(leftHandRotation == Direction.UP) return turnLeft;
+						if(leftHandRotation == Direction.DOWN) return turnRight;
+					} else return directional;
+				}
+
+				return top;
+			}
+
+			if(side == outputSide) return sideOut;
+			if(side == inputSide) return sideIn;
+
+			if(outputSideOverridden) {
+				if(leftHandRotation == side) {
+					if(outputSide == Direction.UP) return sideLeftTurnUp;
+					if(outputSide == Direction.DOWN) return sideRightTurnDown;
+					if(inputSide == Direction.UP) return sideUpTurnRight;
+					if(inputSide == Direction.DOWN) return sideDownTurnLeft;
+				}
+				if(leftHandRotation.getOpposite() == side) {
+					if(outputSide == Direction.UP) return sideRightTurnUp;
+					if(outputSide == Direction.DOWN) return sideLeftTurnDown;
+					if(inputSide == Direction.UP) return sideUpTurnLeft;
+					if(inputSide == Direction.DOWN) return sideDownTurnRight;
+				}
+			} else {
+				if(outputSide == Direction.UP) return directionalUp;
+				if(outputSide == Direction.DOWN) return directionalDown;
+			}
+
+			return this.side;
+		}
+	}
+
+	/** The original's getRotationFromSide: the top texture turns with a horizontal input */
+	private static int craneTopRotation(Direction input) {
+		return switch(input) {
+		case NORTH -> 180;
+		case WEST -> 90;
+		case EAST -> 270;
+		default -> 0;
+		};
+	}
+
+	private static net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation faceRotation(int degrees) {
+		return switch(degrees) {
+		case 90 -> net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.CLOCKWISE_90;
+		case 180 -> net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.UPSIDE_DOWN;
+		case 270 -> net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90;
+		default -> net.neoforged.neoforge.client.model.generators.ModelBuilder.FaceRotation.ZERO;
+		};
+	}
+
+	/** A model per input/output pair, every face textured like the original's getIcon */
+	private void crane(DeferredBlock<? extends Block> block, CraneTextures textures) {
+		String name = block.getId().getPath();
+		var INPUT = com.hbm.blocks.network.BlockCraneBase.INPUT;
+		var OUTPUT = com.hbm.blocks.network.BlockCraneBase.OUTPUT;
+		java.util.Map<String, BlockModelBuilder> models = new java.util.HashMap<>();
+
+		for(Direction input : Direction.values()) for(Direction output : Direction.values()) {
+			Direction realOutput = output == input ? input.getOpposite() : output;
+			String key = input.getSerializedName() + "_" + realOutput.getSerializedName();
+			if(models.containsKey(key)) continue;
+
+			BlockModelBuilder model = models().getBuilder(name + "_" + key).parent(models().getExistingFile(mcLoc("block/block")))
+					.texture("particle", texture("blocks/" + textures.side()));
+			var element = model.element().from(0, 0, 0).to(16, 16, 16);
+			for(Direction side : Direction.values()) {
+				String tex = textures.icon(side, input, realOutput);
+				model.texture(side.getSerializedName(), texture("blocks/" + tex));
+				var face = element.face(side).texture("#" + side.getSerializedName()).cullface(side);
+				if(side == Direction.UP && input.getAxis().isHorizontal()) face.rotation(faceRotation(craneTopRotation(input)));
+				face.end();
+			}
+			element.end();
+			models.put(key, model);
+		}
+
+		getVariantBuilder(block.get()).forAllStates(state -> {
+			Direction input = state.getValue(INPUT);
+			Direction output = state.getValue(OUTPUT);
+			Direction realOutput = output == input ? input.getOpposite() : output;
+			return ConfiguredModel.builder().modelFile(models.get(input.getSerializedName() + "_" + realOutput.getSerializedName())).build();
+		});
+		simpleBlockItem(block.get(), models.get("up_down"));
 	}
 
 	/** Dynamic slag is drawn by RenderSlag, the model only provides the break particles */

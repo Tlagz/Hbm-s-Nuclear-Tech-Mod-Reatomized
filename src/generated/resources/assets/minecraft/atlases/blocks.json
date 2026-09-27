@@ -1630,6 +1630,194 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_side"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_side_out"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_down_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_down_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_up_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_up_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_side_in"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_left_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_right_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_left_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_side_right_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_top_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_in_top_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_left_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_right_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_left_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_right_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_down_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_down_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_up_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_side_up_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_top_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_out_top_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_pull"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_down_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_down_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_up_turn_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_up_turn_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_side_pull"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_left_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_right_turn_down"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_left_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_side_right_turn_up"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_top"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_top_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/crane_grabber_top_left"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/slag"
     },
     {
@@ -5147,6 +5335,30 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/upgrade_screm"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_stack_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_stack_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_stack_3"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_ejector_1"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_ejector_2"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/upgrade_ejector_3"
     },
     {
       "type": "minecraft:single",

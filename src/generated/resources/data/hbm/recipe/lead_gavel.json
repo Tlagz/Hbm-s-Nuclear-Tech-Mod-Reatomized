@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/lead"
+      }
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "hbm:wood_gavel"
+    },
+    "I": {
+      "tag": "c:ingots/lead"
+    },
+    "P": {
+      "item": "hbm:pellet_buckshot"
+    }
+  },
+  "pattern": [
+    "PIP",
+    "IGI",
+    "PIP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:lead_gavel"
+  }
+}

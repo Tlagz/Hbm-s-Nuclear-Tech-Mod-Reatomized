@@ -38,6 +38,9 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.MINING_LASER.get(), com.hbm.inventory.gui.GUIMiningLaser::new);
 		event.register(ModMenus.SIREN.get(), com.hbm.inventory.gui.GUIMachineSiren::new);
 		event.register(ModMenus.CYCLOTRON.get(), com.hbm.inventory.gui.GUIMachineCyclotron::new);
+		event.register(ModMenus.CRANE_INSERTER.get(), com.hbm.inventory.gui.GUICraneInserter::new);
+		event.register(ModMenus.CRANE_EXTRACTOR.get(), com.hbm.inventory.gui.GUICraneExtractor::new);
+		event.register(ModMenus.CRANE_GRABBER.get(), com.hbm.inventory.gui.GUICraneGrabber::new);
 		event.register(ModMenus.RADIOLYSIS.get(), com.hbm.inventory.gui.GUIRadiolysis::new);
 		event.register(ModMenus.EXPOSURE_CHAMBER.get(), com.hbm.inventory.gui.GUIMachineExposureChamber::new);
 		event.register(ModMenus.SILEX.get(), com.hbm.inventory.gui.GUISILEX::new);

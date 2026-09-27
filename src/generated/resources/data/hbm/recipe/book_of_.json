@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbm:page_of__page1"
+    },
+    {
+      "item": "hbm:page_of__page2"
+    },
+    {
+      "item": "hbm:page_of__page3"
+    },
+    {
+      "item": "hbm:page_of__page4"
+    },
+    {
+      "item": "hbm:page_of__page5"
+    },
+    {
+      "item": "hbm:page_of__page6"
+    },
+    {
+      "item": "hbm:page_of__page7"
+    },
+    {
+      "item": "hbm:page_of__page8"
+    },
+    {
+      "item": "hbm:egg_balefire"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hbm:book_of_"
+  }
+}
