@@ -64,6 +64,8 @@ neoForge {
             client()
             programArguments.addAll '--quickPlaySingleplayer', 'devworld'
             systemProperty 'hbm.devScene', 'true'
+            // ./gradlew runDevScene -PdevSceneFrom=4500 skips the older scenes
+            systemProperty 'hbm.devScene.from', (project.findProperty('devSceneFrom') ?: '0').toString()
         }
 
         server {

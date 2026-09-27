@@ -58,6 +58,8 @@ public class DevScene {
 	@SubscribeEvent
 	public static void onServerTick(net.neoforged.neoforge.event.tick.ServerTickEvent.Post event) {
 		if(!ENABLED || furnacePos == null) return;
+		// skipped part of the timeline (-PdevSceneFrom), its server actions don't run
+		if(Client.jumped && serverTicks < Client.FROM - 1) serverTicks = Client.FROM - 1;
 		while(serverTicks < Client.ticks) {
 			serverTicks++;
 			act(event.getServer(), serverTicks);
@@ -1498,6 +1500,9 @@ public class DevScene {
 		}
 
 		static volatile int ticks = 0;
+		/** Start of the timeline for a run, e.g. -PdevSceneFrom=4500 to only look at the newest scenes */
+		static final int FROM = Integer.getInteger("hbm.devScene.from", 0);
+		static volatile boolean jumped = false;
 
 		@SubscribeEvent
 		public static void onClientTick(ClientTickEvent.Post event) {
@@ -1506,6 +1511,12 @@ public class DevScene {
 			if(mc.level == null || mc.player == null) return;
 
 			ticks++;
+			// give the world 100 ticks to load and build, then skip ahead
+			if(!jumped && ticks == 100 && FROM > 100) {
+				ticks = FROM;
+				jumped = true;
+				MainRegistry.logger.info("DevScene: skipping to tick " + FROM);
+			}
 			// screenshots must not catch the pause menu when the window is in the background
 			mc.options.pauseOnLostFocus = false;
 
