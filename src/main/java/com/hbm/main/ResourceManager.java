@@ -57,6 +57,7 @@ public class ResourceManager {
 	public static final ResourceLocation stirling_creative_tex = RefStrings.loc("textures/models/machines/stirling_creative.png");
 	public static final HFRWavefrontObject heater_oven = new HFRWavefrontObject(RefStrings.loc("models/machines/heating_oven.obj")).noSmooth();
 	public static final ResourceLocation heater_oven_tex = RefStrings.loc("textures/models/machines/heating_oven.png");
+	public static final ResourceLocation ashpit_tex = RefStrings.loc("textures/models/machines/ashpit.png");
 	public static final HFRWavefrontObject heater_electric = new HFRWavefrontObject(RefStrings.loc("models/machines/electric_heater.obj")).noSmooth();
 	public static final ResourceLocation heater_electric_tex = RefStrings.loc("textures/models/machines/electric_heater.png");
 	public static final HFRWavefrontObject heater_oilburner = new HFRWavefrontObject(RefStrings.loc("models/machines/oilburner.obj"));

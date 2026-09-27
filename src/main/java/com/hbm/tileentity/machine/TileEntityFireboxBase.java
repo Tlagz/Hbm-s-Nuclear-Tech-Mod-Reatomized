@@ -27,9 +27,7 @@ import net.minecraft.world.phys.AABB;
 
 /**
  * Solid fuel heaters: burn fuel into heat (TU) for the machine above. The door opens while a player has the
- * GUI open. Slots 0 and 1 are fuel.
- *
- * TODO ash pit below (TileEntityAshpit)
+ * GUI open. Slots 0 and 1 are fuel. An ashpit below collects the ash of the burnt fuel.
  */
 public abstract class TileEntityFireboxBase extends TileEntityMachinePolluting implements IHeatSource {
 
@@ -83,6 +81,10 @@ public abstract class TileEntityFireboxBase extends TileEntityMachinePolluting i
 
 						if(baseTime > 0) {
 							int fuel = (int) (baseTime * getTimeMult());
+
+							if(level.getBlockEntity(worldPosition.below()) instanceof TileEntityAshpit ashpit) {
+								ashpit.addAsh(getAshFromFuel(stack), baseTime);
+							}
 
 							this.maxBurnTime = this.burnTime = fuel;
 							this.burnHeat = getModule().getBurnHeat(getBaseHeat(), stack);

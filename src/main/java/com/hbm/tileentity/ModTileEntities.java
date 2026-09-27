@@ -58,6 +58,8 @@ public class ModTileEntities {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterOven>> HEATER_OVEN = TILES.register("heater_oven",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterOven::new, ModBlocks.heater_oven.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityAshpit>> ASHPIT = TILES.register("machine_ashpit",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityAshpit::new, ModBlocks.machine_ashpit.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityStirling>> STIRLING = TILES.register("machine_stirling",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityStirling::new, ModBlocks.machine_stirling.get(), ModBlocks.machine_stirling_steel.get(), ModBlocks.machine_stirling_creative.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterElectric>> HEATER_ELECTRIC = TILES.register("heater_electric",
