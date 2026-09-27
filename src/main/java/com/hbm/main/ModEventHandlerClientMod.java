@@ -99,6 +99,8 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.EXPOSURE_CHAMBER.get(), com.hbm.render.tileentity.RenderExposureChamber::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SILEX.get(), com.hbm.render.tileentity.RenderSILEX::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FEL.get(), com.hbm.render.tileentity.RenderFEL::new);
+		event.registerBlockEntityRenderer(ModTileEntities.INTAKE.get(), com.hbm.render.tileentity.RenderIntake::new);
+		event.registerBlockEntityRenderer(ModTileEntities.DRAIN.get(), com.hbm.render.tileentity.RenderDrain::new);
 		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
 		event.registerBlockEntityRenderer(ModTileEntities.BOILER.get(), com.hbm.render.tileentity.RenderBoiler::new);
@@ -194,6 +196,8 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_exposure_chamber.get().asItem(), com.hbm.render.tileentity.RenderExposureChamber.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_silex.get().asItem(), com.hbm.render.tileentity.RenderSILEX.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_fel.get().asItem(), com.hbm.render.tileentity.RenderFEL.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_intake.get().asItem(), com.hbm.render.tileentity.RenderIntake.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_drain.get().asItem(), com.hbm.render.tileentity.RenderDrain.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_boiler.get().asItem(), com.hbm.render.tileentity.RenderBoiler.itemRenderer());

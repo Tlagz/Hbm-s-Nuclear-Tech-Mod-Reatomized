@@ -152,6 +152,10 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntitySILEX::new, ModBlocks.machine_silex.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFEL>> FEL = TILES.register("machine_fel",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFEL::new, ModBlocks.machine_fel.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineIntake>> INTAKE = TILES.register("machine_intake",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineIntake::new, ModBlocks.machine_intake.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineDrain>> DRAIN = TILES.register("machine_drain",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineDrain::new, ModBlocks.machine_drain.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDeuteriumExtractor>> DEUTERIUM_EXTRACTOR = TILES.register("machine_deuterium_extractor",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityDeuteriumExtractor::new, ModBlocks.machine_deuterium_extractor.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityDeuteriumTower>> DEUTERIUM_TOWER = TILES.register("machine_deuterium_tower",

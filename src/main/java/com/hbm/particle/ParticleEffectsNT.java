@@ -63,6 +63,15 @@ public class ParticleEffectsNT {
 			mc.particleEngine.add(new ParticleGasFlame(world, x, y, z, data.getDouble("mX"), data.getDouble("mY"), data.getDouble("mZ"), scale > 0 ? scale : 6.5F, gasFlameSprites));
 		}
 
+		// liquid pouring out (the drainage pipe), the original's ParticleLiquidSplash approximated with colored dust
+		if("splash".equals(type) && (particleSetting == 0 || (particleSetting == 1 && rand.nextBoolean()))) {
+			int color = data.getInt("color");
+			org.joml.Vector3f rgb = new org.joml.Vector3f(((color >> 16) & 0xFF) / 255F, ((color >> 8) & 0xFF) / 255F, (color & 0xFF) / 255F);
+			for(int i = 0; i < 3; i++) {
+				world.addParticle(new net.minecraft.core.particles.DustParticleOptions(rgb, 1.5F), x + rand.nextGaussian() * 0.15, y - rand.nextFloat() * 0.5, z + rand.nextGaussian() * 0.15, 0, -0.5, 0);
+			}
+		}
+
 		// TODO the other vanillaExt modes
 		if("vanillaExt".equals(type) && "smoke".equals(data.getString("mode"))) {
 			world.addParticle(net.minecraft.core.particles.ParticleTypes.SMOKE, x, y, z, data.getDouble("mX"), data.getDouble("mY"), data.getDouble("mZ"));

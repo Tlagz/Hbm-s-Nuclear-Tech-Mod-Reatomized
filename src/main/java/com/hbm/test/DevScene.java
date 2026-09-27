@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -382,6 +382,18 @@ public class DevScene {
 			silex.tank.setFill(16_000);
 			if(silex.getItem(0).isEmpty()) silex.setItem(0, new ItemStack(ModItems.ingot_uranium.get(), 16));
 			for(int i = 5; i < 11; i++) if(silex.getItem(i).getCount() > 32) silex.setItem(i, ItemStack.EMPTY);
+		}
+		// the intake runs, the drain spills water
+		if(intakePos != null && server.overworld().getBlockEntity(intakePos) instanceof com.hbm.tileentity.machine.TileEntityMachineIntake intake) intake.setPower(2_000);
+		if(drainPos != null && server.overworld().getBlockEntity(drainPos) instanceof com.hbm.tileentity.machine.TileEntityMachineDrain drain) {
+			drain.tank.setTankType(com.hbm.inventory.fluid.Fluids.WATER);
+			drain.tank.setFill(2_000);
+		}
+		if(serverTicks == 3770) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 5.0, -58, -60.0, 180F, 35F);
+			}
 		}
 		if(serverTicks == 3695 || serverTicks == 3735) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1139,6 +1151,9 @@ public class DevScene {
 			for(int x = 2; x <= 16; x++) for(int z = -78; z <= -63; z++) for(int y = 0; y <= 10; y++) {
 				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
 			}
+			for(int x = 3; x <= 7; x++) for(int z = -66; z <= -63; z++) for(int y = 0; y <= 3; y++) level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			intakePos = ModBlocks.machine_intake.get().placeMultiblock(level, origin.offset(4, 0, -64), net.minecraft.core.Direction.NORTH);
+			drainPos = ModBlocks.machine_drain.get().placeMultiblock(level, origin.offset(6, 0, -64), net.minecraft.core.Direction.SOUTH);
 			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
 			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
 			exposurePos = ModBlocks.machine_exposure_chamber.get().placeMultiblock(level, origin.offset(10, 0, -73), net.minecraft.core.Direction.NORTH);
@@ -1482,7 +1497,9 @@ public class DevScene {
 			if(ticks == 3730) Screenshot.grab(mc.gameDirectory, "devscene_world_silex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3765) Screenshot.grab(mc.gameDirectory, "devscene_gui_silex.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3775) {
+			if(ticks == 3800) Screenshot.grab(mc.gameDirectory, "devscene_world_intake.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3810) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

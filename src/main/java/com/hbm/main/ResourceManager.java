@@ -71,6 +71,10 @@ public class ResourceManager {
 	public static final ResourceLocation silex_tex = RefStrings.loc("textures/models/machines/silex.png");
 	public static final HFRWavefrontObject fel = new HFRWavefrontObject(RefStrings.loc("models/machines/fel.obj"));
 	public static final ResourceLocation fel_tex = RefStrings.loc("textures/models/machines/fel.png");
+	public static final HFRWavefrontObject intake = new HFRWavefrontObject(RefStrings.loc("models/machines/intake.obj"));
+	public static final ResourceLocation intake_tex = RefStrings.loc("textures/models/machines/intake.png");
+	public static final HFRWavefrontObject drain = new HFRWavefrontObject(RefStrings.loc("models/machines/drain.obj"));
+	public static final ResourceLocation drain_tex = RefStrings.loc("textures/models/machines/drain.png");
 	public static final HFRWavefrontObject deuterium_tower = new HFRWavefrontObject(RefStrings.loc("models/machines/machine_deuterium_tower.obj"));
 	public static final ResourceLocation deuterium_tower_tex = RefStrings.loc("textures/models/machines/machine_deuterium_tower.png");
 	public static final ResourceLocation ashpit_tex = RefStrings.loc("textures/models/machines/ashpit.png");
