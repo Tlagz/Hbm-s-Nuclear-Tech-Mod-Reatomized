@@ -114,4 +114,11 @@ public class Library {
 
 		return false;
 	}
+
+	/** Whether a block with a collision box is in the way between the two points */
+	public static boolean isObstructed(net.minecraft.world.level.Level world, double x, double y, double z, double a, double b, double c) {
+		net.minecraft.world.phys.BlockHitResult hit = world.clip(new net.minecraft.world.level.ClipContext(new net.minecraft.world.phys.Vec3(x, y, z), new net.minecraft.world.phys.Vec3(a, b, c),
+				net.minecraft.world.level.ClipContext.Block.COLLIDER, net.minecraft.world.level.ClipContext.Fluid.NONE, net.minecraft.world.phys.shapes.CollisionContext.empty()));
+		return hit.getType() == net.minecraft.world.phys.HitResult.Type.BLOCK;
+	}
 }

@@ -78,6 +78,8 @@ public class ResourceManager {
 	public static final HFRWavefrontObject solar_boiler = new HFRWavefrontObject(RefStrings.loc("models/machines/solar_boiler.obj"));
 	public static final HFRWavefrontObject solar_mirror = new HFRWavefrontObject(RefStrings.loc("models/machines/solar_mirror.obj")).noSmooth();
 	public static final ResourceLocation solar_tex = RefStrings.loc("textures/models/machines/solar_boiler.png");
+	public static final HFRWavefrontObject tesla = new HFRWavefrontObject(RefStrings.loc("models/tesla.obj"));
+	public static final ResourceLocation tesla_tex = RefStrings.loc("textures/models/tesla.png");
 	public static final HFRWavefrontObject mining_laser = new HFRWavefrontObject(RefStrings.loc("models/machines/mining_laser.obj"));
 	public static final ResourceLocation mining_laser_base_tex = RefStrings.loc("textures/models/machines/mining_laser_base.png");
 	public static final ResourceLocation mining_laser_pivot_tex = RefStrings.loc("textures/models/machines/mining_laser_pivot.png");

@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos, thresherPos, chimneyBrickPos, chimneyIndustrialPos, tankPos, radgenPos, turbofanPos, miningLaserPos, solarBoilerPos, teslaPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -422,6 +422,12 @@ public class DevScene {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
 				player.closeContainer();
 				player.teleportTo(player.serverLevel(), 27.5, -58, -49.5, 150F, 30F);
+			}
+		}
+		if(serverTicks == 4410) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 46.5, -58, -54.5, 180F, 10F);
 			}
 		}
 		if(serverTicks == 4360) {
@@ -1271,6 +1277,19 @@ public class DevScene {
 			for(int x = 56; x <= 60; x++) for(int z = -66; z <= -62; z++) level.setBlockAndUpdate(origin.offset(x, 6, z), Blocks.SMOOTH_STONE.defaultBlockState());
 			for(int[] pillar : new int[][] {{56, -66}, {60, -66}, {56, -62}, {60, -62}}) for(int y = 0; y <= 5; y++) level.setBlockAndUpdate(origin.offset(pillar[0], y, pillar[1]), Blocks.STONE_BRICKS.defaultBlockState());
 			miningLaserPos = ModBlocks.machine_mining_laser.get().placeMultiblock(level, origin.offset(58, 5, -64), net.minecraft.core.Direction.NORTH);
+			// a tesla coil on a meteorite battery zapping two pigs that can't die
+			level.setBlockAndUpdate(origin.offset(46, 0, -62), ModBlocks.meteor_battery.get().defaultBlockState());
+			teslaPos = origin.offset(46, 1, -62);
+			level.setBlockAndUpdate(teslaPos, ModBlocks.tesla.get().defaultBlockState());
+			for(int[] pp : new int[][] {{50, -60}, {42, -64}}) {
+				net.minecraft.world.entity.animal.Pig pig = net.minecraft.world.entity.EntityType.PIG.create(level);
+				if(pig != null) {
+					pig.moveTo(origin.getX() + pp[0] + 0.5, origin.getY(), origin.getZ() + pp[1] + 0.5, 0, 0);
+					pig.setNoAi(true);
+					pig.setInvulnerable(true);
+					level.addFreshEntity(pig);
+				}
+			}
 			// a solar tower on a pillar in the corner, a field of heliostats around its foot
 			for(int y = 0; y <= 5; y++) level.setBlockAndUpdate(origin.offset(47, y, -75), Blocks.STONE_BRICKS.defaultBlockState());
 			solarBoilerPos = ModBlocks.machine_solar_boiler.get().placeMultiblock(level, origin.offset(47, 6, -74), net.minecraft.core.Direction.NORTH);
@@ -1679,7 +1698,9 @@ public class DevScene {
 
 			if(ticks == 4400) Screenshot.grab(mc.gameDirectory, "devscene_world_solar.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 4410) {
+			if(ticks == 4450) Screenshot.grab(mc.gameDirectory, "devscene_world_tesla.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4460) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

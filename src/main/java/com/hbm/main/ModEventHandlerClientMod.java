@@ -107,6 +107,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.TURBOFAN.get(), com.hbm.render.tileentity.RenderTurbofan::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SOLAR_BOILER.get(), com.hbm.render.tileentity.RenderSolarBoiler::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SOLAR_MIRROR.get(), com.hbm.render.tileentity.RenderSolarMirror::new);
+		event.registerBlockEntityRenderer(ModTileEntities.TESLA.get(), com.hbm.render.tileentity.RenderTesla::new);
 		event.registerBlockEntityRenderer(ModTileEntities.MINING_LASER.get(), com.hbm.render.tileentity.RenderLaserMiner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHIMNEY_BRICK.get(), com.hbm.render.tileentity.RenderChimney.brick());
 		event.registerBlockEntityRenderer(ModTileEntities.FOUNDRY_TANK.get(), com.hbm.render.tileentity.RenderFoundry::new);
@@ -216,6 +217,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_turbofan.get().asItem(), com.hbm.render.tileentity.RenderTurbofan.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_solar_boiler.get().asItem(), com.hbm.render.tileentity.RenderSolarBoiler.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.solar_mirror.get().asItem(), com.hbm.render.tileentity.RenderSolarMirror.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.tesla.get().asItem(), com.hbm.render.tileentity.RenderTesla.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_mining_laser.get().asItem(), com.hbm.render.tileentity.RenderLaserMiner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_brick.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererBrick());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.chimney_industrial.get().asItem(), com.hbm.render.tileentity.RenderChimney.itemRendererIndustrial());

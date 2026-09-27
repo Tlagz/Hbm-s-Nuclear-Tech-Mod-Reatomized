@@ -1690,6 +1690,10 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/tesla"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_steel_machine"
     },
     {
