@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos, deutTowerPos, rtgPos, radiolysisPos, exposurePos, felPos, silexPos, intakePos, drainPos, microwavePos, autosawPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -388,6 +388,14 @@ public class DevScene {
 		if(drainPos != null && server.overworld().getBlockEntity(drainPos) instanceof com.hbm.tileentity.machine.TileEntityMachineDrain drain) {
 			drain.tank.setTankType(com.hbm.inventory.fluid.Fluids.WATER);
 			drain.tank.setFill(2_000);
+		}
+		// the buzz saw gets fuel
+		if(autosawPos != null && server.overworld().getBlockEntity(autosawPos) instanceof com.hbm.tileentity.machine.TileEntityMachineAutosaw saw) saw.tank.setFill(100);
+		if(serverTicks == 3890) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				player.teleportTo(player.serverLevel(), 31.5, -55, -57.5, 180F, 25F);
+			}
 		}
 		// the microwave cooks beef at speed 2
 		if(microwavePos != null && server.overworld().getBlockEntity(microwavePos) instanceof com.hbm.tileentity.machine.TileEntityMicrowave mic) {
@@ -1170,6 +1178,19 @@ public class DevScene {
 			drainPos = ModBlocks.machine_drain.get().placeMultiblock(level, origin.offset(6, 0, -64), net.minecraft.core.Direction.SOUTH);
 			level.setBlockAndUpdate(origin.offset(3, 0, -63), ModBlocks.machine_funnel.get().defaultBlockState());
 			microwavePos = origin.offset(13, 0, -66);
+			// the buzz saw gets its own clearing east of everything, with some birches around it
+			for(int x = 20; x <= 42; x++) for(int z = -82; z <= -58; z++) for(int y = 0; y <= 15; y++) {
+				level.setBlockAndUpdate(origin.offset(x, y, z), Blocks.AIR.defaultBlockState());
+			}
+			autosawPos = origin.offset(31, 0, -70);
+			level.setBlockAndUpdate(autosawPos, ModBlocks.machine_autosaw.get().defaultBlockState());
+			for(int[] tree : new int[][] {{31, -76}, {37, -72}, {26, -66}, {35, -64}}) {
+				for(int y = 0; y <= 4; y++) level.setBlockAndUpdate(origin.offset(tree[0], y, tree[1]), Blocks.BIRCH_LOG.defaultBlockState());
+				for(int dx = -2; dx <= 2; dx++) for(int dz = -2; dz <= 2; dz++) for(int y = 3; y <= 5; y++) {
+					if((dx != 0 || dz != 0 || y == 5) && Math.abs(dx) + Math.abs(dz) < (y == 5 ? 2 : 4)) level.setBlockAndUpdate(origin.offset(tree[0] + dx, y, tree[1] + dz), Blocks.BIRCH_LEAVES.defaultBlockState().setValue(net.minecraft.world.level.block.LeavesBlock.PERSISTENT, true));
+				}
+			}
+			for(int f = 0; f < 6; f++) level.setBlockAndUpdate(origin.offset(28 + f, 0, -73), Blocks.POPPY.defaultBlockState());
 			level.setBlockAndUpdate(microwavePos, ModBlocks.machine_microwave.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineMicrowave.FACING, net.minecraft.core.Direction.SOUTH));
 			felPos = ModBlocks.machine_fel.get().placeMultiblock(level, origin.offset(8, 0, -77), net.minecraft.core.Direction.EAST);
 			silexPos = ModBlocks.machine_silex.get().placeMultiblock(level, origin.offset(13, 0, -77), net.minecraft.core.Direction.EAST);
@@ -1519,7 +1540,10 @@ public class DevScene {
 			if(ticks == 3845) Screenshot.grab(mc.gameDirectory, "devscene_world_microwave.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3880) Screenshot.grab(mc.gameDirectory, "devscene_gui_microwave.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3890) {
+			if(ticks == 3935) Screenshot.grab(mc.gameDirectory, "devscene_world_autosaw.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3990) Screenshot.grab(mc.gameDirectory, "devscene_world_autosaw2.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 4000) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

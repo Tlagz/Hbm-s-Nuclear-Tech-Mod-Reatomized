@@ -98,6 +98,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.RTG.get(), com.hbm.render.tileentity.RenderRTG::new);
 		event.registerBlockEntityRenderer(ModTileEntities.CHARGER.get(), com.hbm.render.tileentity.RenderCharger::new);
 		event.registerBlockEntityRenderer(ModTileEntities.MICROWAVE.get(), com.hbm.render.tileentity.RenderMicrowave::new);
+		event.registerBlockEntityRenderer(ModTileEntities.AUTOSAW.get(), com.hbm.render.tileentity.RenderAutosaw::new);
 		event.registerBlockEntityRenderer(ModTileEntities.RADIOLYSIS.get(), com.hbm.render.tileentity.RenderRadiolysis::new);
 		event.registerBlockEntityRenderer(ModTileEntities.EXPOSURE_CHAMBER.get(), com.hbm.render.tileentity.RenderExposureChamber::new);
 		event.registerBlockEntityRenderer(ModTileEntities.SILEX.get(), com.hbm.render.tileentity.RenderSILEX::new);
@@ -196,6 +197,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_rtg_grey.get().asItem(), com.hbm.render.tileentity.RenderRTG.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.charger.get().asItem(), com.hbm.render.tileentity.RenderCharger.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_microwave.get().asItem(), com.hbm.render.tileentity.RenderMicrowave.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_autosaw.get().asItem(), com.hbm.render.tileentity.RenderAutosaw.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_radiolysis.get().asItem(), com.hbm.render.tileentity.RenderRadiolysis.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_exposure_chamber.get().asItem(), com.hbm.render.tileentity.RenderExposureChamber.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_silex.get().asItem(), com.hbm.render.tileentity.RenderSILEX.itemRenderer());
