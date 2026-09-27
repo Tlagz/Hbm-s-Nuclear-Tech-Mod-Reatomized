@@ -90,6 +90,7 @@ public class MainRegistry {
 			com.hbm.inventory.recipes.AssemblyMachineRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ChemicalPlantRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.PUREXRecipes.INSTANCE.initialize();
+			com.hbm.inventory.recipes.RockMillRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.ArcWelderRecipes.registerDefaults();
 			com.hbm.inventory.recipes.CrucibleRecipes.INSTANCE.initialize();
 			com.hbm.inventory.recipes.BlastFurnaceRecipesNT.INSTANCE.initialize();

@@ -59,6 +59,7 @@
     "hbm:machine_chemical_factory",
     "hbm:machine_assembly_factory",
     "hbm:machine_purex",
+    "hbm:machine_rockmill",
     "hbm:heater_oven",
     "hbm:machine_stirling",
     "hbm:machine_stirling_steel",

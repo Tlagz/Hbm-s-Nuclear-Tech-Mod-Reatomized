@@ -48,7 +48,7 @@ public class DevScene {
 	static BlockPos oilburnerPos, heatexPos, boilerOnBurnerPos, industrialBoilerPos, fireboxPos;
 	static BlockPos pumpSteamPos, pumpElectricPos;
 	static BlockPos combustionPos, centrifugePos, crystallizerPos;
-	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos;
+	static BlockPos fluidTankPos, pumpjackPos, frackingPos, flarePos, vacuumPos, liquefactorPos, solidifierPos, cokerPos, pyroPos, electrolyserPos, gasCentPos, gasCentPos2, turbineGasPos, deshCratePos, socketPos, reddPos, solderPos, compressorPos, compressorCompactPos, mixerPos, furnaceIronPos, furnaceBrickPos, comboPos, rotaryPos, strandPos, chemFactoryPos, assemFactoryPos, purexPos, diFurnacePos, diFurnacePos2, epressPos, rockMillPos;
 	private static int serverTicks = 0;
 
 	/**
@@ -347,6 +347,23 @@ public class DevScene {
 			if(epress.getItem(1).isEmpty()) epress.setItem(1, new ItemStack(ModItems.stamp_iron_plate.get()));
 			if(epress.getItem(2).getCount() < 4) epress.setItem(2, new ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 16));
 			if(epress.getItem(3).getCount() > 32) epress.setItem(3, ItemStack.EMPTY);
+		}
+		// the rock mill crushing cobblestone
+		if(rockMillPos != null && server.overworld().getBlockEntity(rockMillPos) instanceof com.hbm.tileentity.machine.TileEntityMachineRockMill mill) {
+			mill.setItem(0, new ItemStack(ModItems.battery_creative.get()));
+			if(mill.rockMillModule.getRecipe() == null) mill.rockMillModule.setRecipe("rock.cobble", false);
+			if(mill.getItem(2).getCount() < 4) mill.setItem(2, new ItemStack(net.minecraft.world.item.Items.COBBLESTONE, 32));
+			mill.inputTanks[0].setTankType(com.hbm.inventory.fluid.Fluids.WATER);
+			mill.inputTanks[0].setFill(4_000);
+			mill.outputTanks[0].setFill(0);
+			if(serverTicks % 40 == 0) for(int i = 5; i < 8; i++) mill.setItem(i, ItemStack.EMPTY);
+		}
+		if(serverTicks == 3370 || serverTicks == 3410) {
+			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
+				player.closeContainer();
+				if(serverTicks == 3370) player.teleportTo(player.serverLevel(), 15.5, -57, -55.5, 130F, 25F);
+				else if(player.level().getBlockEntity(rockMillPos) instanceof net.minecraft.world.MenuProvider provider) player.openMenu(provider, buf -> buf.writeBlockPos(rockMillPos));
+			}
 		}
 		if(serverTicks == 3295 || serverTicks == 3335) {
 			for(ServerPlayer player : server.getPlayerList().getPlayers()) {
@@ -1058,6 +1075,7 @@ public class DevScene {
 			strandPos = ModBlocks.machine_strand_caster.get().placeMultiblock(level, origin.offset(0, 0, -60), net.minecraft.core.Direction.NORTH);
 			if(strandPos != null && level.getBlockEntity(strandPos) instanceof com.hbm.tileentity.machine.TileEntityMachineStrandCaster strand) strand.setItem(0, new ItemStack(com.hbm.items.machine.ItemMold.get(3).get()));
 			diFurnacePos = origin.offset(-13, 0, -50);
+			rockMillPos = ModBlocks.machine_rockmill.get().placeMultiblock(level, origin.offset(10, 0, -62), net.minecraft.core.Direction.NORTH);
 			epressPos = ModBlocks.machine_epress.get().placeMultiblock(level, origin.offset(-14, 0, -52), net.minecraft.core.Direction.SOUTH);
 			diFurnacePos2 = origin.offset(-11, 0, -50);
 			level.setBlockAndUpdate(diFurnacePos, ModBlocks.machine_difurnace_off.get().defaultBlockState().setValue(com.hbm.blocks.machine.MachineDiFurnace.FACING, net.minecraft.core.Direction.SOUTH));
@@ -1366,7 +1384,10 @@ public class DevScene {
 			if(ticks == 3330) Screenshot.grab(mc.gameDirectory, "devscene_world_epress.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 			if(ticks == 3365) Screenshot.grab(mc.gameDirectory, "devscene_gui_epress.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
 
-			if(ticks == 3375) {
+			if(ticks == 3405) Screenshot.grab(mc.gameDirectory, "devscene_world_rockmill.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+			if(ticks == 3440) Screenshot.grab(mc.gameDirectory, "devscene_gui_rockmill.png", mc.getMainRenderTarget(), msg -> MainRegistry.logger.info("DevScene: " + msg.getString()));
+
+			if(ticks == 3450) {
 				MainRegistry.logger.info("DevScene: done, screenshots in " + new File(mc.gameDirectory, "screenshots").getAbsolutePath());
 				mc.stop();
 			}

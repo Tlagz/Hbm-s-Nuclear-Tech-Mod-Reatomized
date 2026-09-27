@@ -47,6 +47,8 @@ public class ResourceManager {
 	public static final ResourceLocation assembly_factory_sparks_tex = RefStrings.loc("textures/models/machines/assembly_factory_sparks.png");
 	public static final HFRWavefrontObject purex = new HFRWavefrontObject(RefStrings.loc("models/machines/purex.obj"));
 	public static final ResourceLocation purex_tex = RefStrings.loc("textures/models/machines/purex.png");
+	public static final HFRWavefrontObject rock_mill = new HFRWavefrontObject(RefStrings.loc("models/machines/rockmill.obj"));
+	public static final ResourceLocation rock_mill_tex = RefStrings.loc("textures/models/machines/rockmill.png");
 	public static final HFRWavefrontObject arc_welder = new HFRWavefrontObject(RefStrings.loc("models/machines/arc_welder.obj")).noSmooth();
 	public static final ResourceLocation arc_welder_tex = RefStrings.loc("textures/models/machines/arc_welder.png");
 	public static final HFRWavefrontObject stirling = new HFRWavefrontObject(RefStrings.loc("models/machines/stirling.obj"));

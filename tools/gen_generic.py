@@ -18,7 +18,7 @@ import gen_anvil as a
 from gen_recipes import Skip, split_top, match_close
 
 # recipe set class in the original (inventory/recipes) -> its recipe class, generated into Gen<set>
-TARGETS = {'AssemblyMachineRecipes': 'GenericRecipe', 'ChemicalPlantRecipes': 'GenericRecipe', 'BlastFurnaceRecipesNT': 'GenericRecipeNoPower', 'PUREXRecipes': 'GenericRecipe'}
+TARGETS = {'AssemblyMachineRecipes': 'GenericRecipe', 'ChemicalPlantRecipes': 'GenericRecipe', 'BlastFurnaceRecipesNT': 'GenericRecipeNoPower', 'PUREXRecipes': 'GenericRecipe', 'RockMillRecipes': 'GenericRecipe'}
 # recipe subclasses that only differ in NEI display, they become plain GenericRecipes
 CLASS_ALIAS = {'PUREXRecipe': 'GenericRecipe'}
 OUT_DIR = os.path.join(g.PORT, 'inventory', 'recipes', 'gen')

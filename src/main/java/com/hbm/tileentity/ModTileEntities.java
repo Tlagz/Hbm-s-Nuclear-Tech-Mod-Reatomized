@@ -53,6 +53,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineAssemblyFactory::new, ModBlocks.machine_assembly_factory.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachinePUREX>> PUREX = TILES.register("machine_purex",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachinePUREX::new, ModBlocks.machine_purex.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRockMill>> ROCK_MILL = TILES.register("machine_rockmill",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineRockMill::new, ModBlocks.machine_rockmill.get()).build(null));
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityHeaterOven>> HEATER_OVEN = TILES.register("heater_oven",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityHeaterOven::new, ModBlocks.heater_oven.get()).build(null));
