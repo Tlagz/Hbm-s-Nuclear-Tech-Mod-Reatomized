@@ -22,6 +22,8 @@
     "hbm:machine_thresher",
     "hbm:machine_radgen",
     "hbm:machine_turbofan",
+    "hbm:machine_solar_boiler",
+    "hbm:solar_mirror",
     "hbm:machine_mining_laser",
     "hbm:machine_radiolysis",
     "hbm:machine_exposure_chamber",

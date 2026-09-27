@@ -64,4 +64,8 @@ public class ModDataComponents {
 	/** Secondary fluid of the multi fluid identifier (the original's "fluid2" NBT) */
 	public static final Supplier<DataComponentType<Integer>> FLUID_TYPE_SECONDARY = COMPONENTS.registerComponentType("fluid_type_secondary",
 			builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT));
+
+	/** A position a tool is linked to, e.g. the mirror tool's boiler (the original's posX/posY/posZ NBT) */
+	public static final Supplier<DataComponentType<net.minecraft.core.BlockPos>> LINKED_POS = COMPONENTS.registerComponentType("linked_pos",
+			builder -> builder.persistent(net.minecraft.core.BlockPos.CODEC).networkSynchronized(net.minecraft.core.BlockPos.STREAM_CODEC));
 }

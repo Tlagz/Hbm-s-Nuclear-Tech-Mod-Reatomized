@@ -1682,6 +1682,14 @@
     },
     {
       "type": "minecraft:single",
+      "resource": "hbm:blocks/machine_solar_boiler"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:blocks/solar_mirror"
+    },
+    {
+      "type": "minecraft:single",
       "resource": "hbm:blocks/block_steel_machine"
     },
     {
@@ -6459,6 +6467,10 @@
     {
       "type": "minecraft:single",
       "resource": "hbm:items/geiger_counter"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "hbm:items/mirror_tool"
     },
     {
       "type": "minecraft:single",

@@ -933,6 +933,7 @@ public class ModItems {
 	/** Screwdrivers and hand drills for IToolable blocks, also crafting tools */
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver = tooling("screwdriver", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 100);
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> screwdriver_desh = tooling("screwdriver_desh", com.hbm.blocks.IToolable.ToolType.SCREWDRIVER, 0);
+	public static final DeferredItem<com.hbm.items.tool.ItemMirrorTool> mirror_tool = register("mirror_tool", com.hbm.items.tool.ItemMirrorTool::new, new Item.Properties(), NtmTab.CONSUMABLE);
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> hand_drill = tooling("hand_drill", com.hbm.blocks.IToolable.ToolType.HAND_DRILL, 100);
 	public static final DeferredItem<com.hbm.items.tool.ItemTooling> hand_drill_desh = tooling("hand_drill_desh", com.hbm.blocks.IToolable.ToolType.HAND_DRILL, 0);
 
@@ -950,6 +951,7 @@ public class ModItems {
 	static {
 		FLAT_MODELS.put(dosimeter, "items/dosimeter");
 		FLAT_MODELS.put(geiger_counter, "items/geiger_counter");
+		FLAT_MODELS.put(mirror_tool, "items/mirror_tool");
 		FLAT_MODELS.put(battery_creative, "items/battery_creative_new");
 		FLAT_MODELS.put(battery_potato, "items/battery_potato");
 		FLAT_MODELS.put(cube_power, "items/cube_power");

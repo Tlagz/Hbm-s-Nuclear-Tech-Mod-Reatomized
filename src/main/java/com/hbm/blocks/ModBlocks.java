@@ -90,6 +90,8 @@ public class ModBlocks {
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineThresher> machine_thresher = tileRendered("machine_thresher", com.hbm.blocks.machine.MachineThresher::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineRadGen> machine_radgen = dummyable("machine_radgen", com.hbm.blocks.machine.MachineRadGen::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineTurbofan> machine_turbofan = dummyable("machine_turbofan", com.hbm.blocks.machine.MachineTurbofan::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/block_steel");
+	public static final DeferredBlock<com.hbm.blocks.machine.MachineSolarBoiler> machine_solar_boiler = dummyable("machine_solar_boiler", com.hbm.blocks.machine.MachineSolarBoiler::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/machine_solar_boiler");
+	public static final DeferredBlock<com.hbm.blocks.machine.SolarMirror> solar_mirror = tileRendered("solar_mirror", com.hbm.blocks.machine.SolarMirror::new, props(Mat.IRON, 5.0F, 10.0F), NtmTab.MACHINE, "blocks/solar_mirror");
 	public static final DeferredBlock<com.hbm.blocks.machine.MachineMiningLaser> machine_mining_laser = dummyable("machine_mining_laser", com.hbm.blocks.machine.MachineMiningLaser::new, props(Mat.IRON, 5.0F, 100.0F), NtmTab.MACHINE, "blocks/block_steel");
 	/** Sand bags the mining laser walls liquids off with, drop nothing (the original's BlockNoDrop) */
 	public static final DeferredBlock<Block> barricade = generated("barricade", Block::new, props(Mat.SAND, 1.0F, 2.5F).sound(SoundType.SAND), null, BlockModel.cube("blocks/barricade"));
