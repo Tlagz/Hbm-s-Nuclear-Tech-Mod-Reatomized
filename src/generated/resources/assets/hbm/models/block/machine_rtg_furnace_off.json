@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "hbm:blocks/machine_rtg_furnace_base_alt",
+    "front": "hbm:blocks/machine_rtg_furnace_off_alt",
+    "side": "hbm:blocks/machine_rtg_furnace_side_alt",
+    "top": "hbm:blocks/machine_rtg_furnace_base_alt"
+  }
+}

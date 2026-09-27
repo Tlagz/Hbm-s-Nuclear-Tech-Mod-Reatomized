@@ -75,6 +75,7 @@ public class ModEventHandlerClientMod {
 		event.register(ModMenus.MIXER.get(), com.hbm.inventory.gui.GUIMixer::new);
 		event.register(ModMenus.FURNACE_IRON.get(), com.hbm.inventory.gui.GUIFurnaceIron::new);
 		event.register(ModMenus.FURNACE_BRICK.get(), com.hbm.inventory.gui.GUIFurnaceBrick::new);
+		event.register(ModMenus.RTG_FURNACE.get(), com.hbm.inventory.gui.GUIRtgFurnace::new);
 		event.register(ModMenus.ASHPIT.get(), com.hbm.inventory.gui.GUIAshpit::new);
 		event.register(ModMenus.TURBINE.get(), com.hbm.inventory.gui.GUIMachineTurbine::new);
 		event.register(ModMenus.DI_FURNACE.get(), com.hbm.inventory.gui.GUIDiFurnace::new);

@@ -53,4 +53,24 @@ public class RTGGameTests {
 			helper.succeed();
 		});
 	}
+
+	@GameTest(template = "empty_8x4x8", timeoutTicks = 40)
+	public static void rtgFurnaceSmeltsWithPelletHeat(GameTestHelper helper) {
+		BlockPos pos = helper.absolutePos(new BlockPos(3, 1, 3));
+		helper.getLevel().setBlockAndUpdate(pos, ModBlocks.machine_rtg_furnace_off.get().defaultBlockState());
+		com.hbm.tileentity.machine.TileEntityRtgFurnace furnace = (com.hbm.tileentity.machine.TileEntityRtgFurnace) helper.getLevel().getBlockEntity(pos);
+
+		furnace.setItem(0, new ItemStack(net.minecraft.world.item.Items.RAW_IRON, 3));
+
+		helper.runAfterDelay(5, () -> {
+			helper.assertTrue(furnace.getItem(4).isEmpty() && furnace.dualCookTime == 0, "without pellets nothing smelts");
+			// a lead pellet gives 600 heat, 1000 progress per item
+			furnace.setItem(1, new ItemStack(ModItems.pellet_rtg_lead.get()));
+		});
+
+		helper.runAfterDelay(12, () -> {
+			helper.assertTrue(furnace.getItem(4).is(net.minecraft.world.item.Items.IRON_INGOT) && furnace.getItem(4).getCount() == 3, "three iron ingots after 6 ticks of lead pellet heat, got " + furnace.getItem(4));
+			helper.succeed();
+		});
+	}
 }

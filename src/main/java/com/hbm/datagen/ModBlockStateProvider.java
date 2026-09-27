@@ -100,6 +100,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 		simpleBlock(ModBlocks.machine_deuterium_extractor.get(), deuterium);
 		simpleBlockItem(ModBlocks.machine_deuterium_extractor.get(), deuterium);
 
+		ModelFile rtgFurnaceOff = models().orientableWithBottom("machine_rtg_furnace_off", texture("blocks/machine_rtg_furnace_side_alt"),
+				texture("blocks/machine_rtg_furnace_off_alt"), texture("blocks/machine_rtg_furnace_base_alt"), texture("blocks/machine_rtg_furnace_base_alt"));
+		ModelFile rtgFurnaceOn = models().orientableWithBottom("machine_rtg_furnace_on", texture("blocks/machine_rtg_furnace_side_alt"),
+				texture("blocks/machine_rtg_furnace_on_alt"), texture("blocks/machine_rtg_furnace_base_alt"), texture("blocks/machine_rtg_furnace_base_alt"));
+		horizontalBlock(ModBlocks.machine_rtg_furnace_off.get(), state -> state.getValue(com.hbm.blocks.machine.MachineRtgFurnace.LIT) ? rtgFurnaceOn : rtgFurnaceOff);
+		simpleBlockItem(ModBlocks.machine_rtg_furnace_off.get(), rtgFurnaceOff);
+
 		// alloy furnace: LIT instead of the original's on/off blocks, EXTENDED (extension on top) uses the tall textures
 		ModelFile[][] diFurnace = new ModelFile[2][2];
 		for(int lit = 0; lit < 2; lit++) for(int ext = 0; ext < 2; ext++) {

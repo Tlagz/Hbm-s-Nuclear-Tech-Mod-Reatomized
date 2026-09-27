@@ -134,6 +134,8 @@ public class ModTileEntities {
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceIron::new, ModBlocks.furnace_iron.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityFurnaceBrick>> FURNACE_BRICK = TILES.register("furnace_brick",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityFurnaceBrick::new, ModBlocks.machine_furnace_brick_off.get()).build(null));
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityRtgFurnace>> RTG_FURNACE = TILES.register("machine_rtg_furnace",
+			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityRtgFurnace::new, ModBlocks.machine_rtg_furnace_off.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineTurbine>> TURBINE = TILES.register("machine_turbine",
 			() -> BlockEntityType.Builder.of(com.hbm.tileentity.machine.TileEntityMachineTurbine::new, ModBlocks.machine_turbine.get()).build(null));
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.hbm.tileentity.machine.TileEntityMachineRTG>> RTG = TILES.register("machine_rtg_grey",
