@@ -91,6 +91,7 @@ public class ModEventHandlerClientMod {
 		event.registerBlockEntityRenderer(ModTileEntities.WOOD_BURNER.get(), RenderWoodBurner::new);
 		event.registerBlockEntityRenderer(ModTileEntities.DIESEL.get(), com.hbm.render.tileentity.RenderDieselGen::new);
 		event.registerBlockEntityRenderer(ModTileEntities.RTG.get(), com.hbm.render.tileentity.RenderRTG::new);
+		event.registerBlockEntityRenderer(ModTileEntities.CHARGER.get(), com.hbm.render.tileentity.RenderCharger::new);
 		event.registerBlockEntityRenderer(ModTileEntities.RADIOLYSIS.get(), com.hbm.render.tileentity.RenderRadiolysis::new);
 		event.registerBlockEntityRenderer(ModTileEntities.OIL_WELL.get(), com.hbm.render.tileentity.RenderDerrick::new);
 		event.registerBlockEntityRenderer(ModTileEntities.FIREBOX.get(), com.hbm.render.tileentity.RenderFirebox::new);
@@ -180,6 +181,7 @@ public class ModEventHandlerClientMod {
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_wood_burner.get().asItem(), RenderWoodBurner.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_diesel.get().asItem(), com.hbm.render.tileentity.RenderDieselGen.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_rtg_grey.get().asItem(), com.hbm.render.tileentity.RenderRTG.itemRenderer());
+		NTMItemRenderer.RENDERERS.put(ModBlocks.charger.get().asItem(), com.hbm.render.tileentity.RenderCharger.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_radiolysis.get().asItem(), com.hbm.render.tileentity.RenderRadiolysis.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.machine_well.get().asItem(), com.hbm.render.tileentity.RenderDerrick.itemRenderer());
 		NTMItemRenderer.RENDERERS.put(ModBlocks.heater_firebox.get().asItem(), com.hbm.render.tileentity.RenderFirebox.itemRenderer());

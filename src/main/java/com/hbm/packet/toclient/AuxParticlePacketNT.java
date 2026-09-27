@@ -30,7 +30,7 @@ public record AuxParticlePacketNT(CompoundTag data, double x, double y, double z
 
 	/** The original's sendToAllAround(new AuxParticlePacketNT(data, x, y, z), new TargetPoint(dim, x, y, z, range)) */
 	public static void sendToAllAround(ServerLevel world, CompoundTag data, double x, double y, double z, double range) {
-		PacketDistributor.sendToPlayersNear(world, null, x, y, z, range, new AuxParticlePacketNT(data, x, y, z));
+		com.hbm.packet.PacketDispatcher.sendToPlayersNear(world, x, y, z, range, new AuxParticlePacketNT(data, x, y, z));
 	}
 
 	public static void handle(AuxParticlePacketNT packet, IPayloadContext context) {

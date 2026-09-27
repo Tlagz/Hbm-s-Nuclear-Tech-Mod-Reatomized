@@ -51,8 +51,10 @@ public class EntityEffectHandler {
 			HbmLivingProps.setRadEnv(entity, 0);
 		}
 
+		// fake players (e.g. other mods' machines, GameTest mock players) have no channel to send to
 		if(entity instanceof ServerPlayer player) {
-			PacketDistributor.sendToPlayer(player, ExtPropPacket.of(HbmLivingProps.getData(player)));
+			ExtPropPacket packet = ExtPropPacket.of(HbmLivingProps.getData(player));
+			if(com.hbm.packet.PacketDispatcher.canReceive(player, packet)) PacketDistributor.sendToPlayer(player, packet);
 		}
 
 		handleContamination(entity);

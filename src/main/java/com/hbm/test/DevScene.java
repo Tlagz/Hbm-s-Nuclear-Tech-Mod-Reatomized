@@ -1114,6 +1114,7 @@ public class DevScene {
 			}
 			deutTowerPos = ModBlocks.machine_deuterium_tower.get().placeMultiblock(level, origin.offset(15, 0, -50), net.minecraft.core.Direction.NORTH);
 			level.setBlockAndUpdate(origin.offset(12, 0, -50), ModBlocks.machine_deuterium_extractor.get().defaultBlockState());
+			level.setBlockAndUpdate(origin.offset(11, 0, -50), ModBlocks.charger.get().defaultBlockState().setValue(com.hbm.blocks.machine.Charger.FACING, net.minecraft.core.Direction.WEST));
 			rockMillPos = ModBlocks.machine_rockmill.get().placeMultiblock(level, origin.offset(10, 0, -62), net.minecraft.core.Direction.NORTH);
 			epressPos = ModBlocks.machine_epress.get().placeMultiblock(level, origin.offset(-14, 0, -52), net.minecraft.core.Direction.SOUTH);
 			diFurnacePos2 = origin.offset(-11, 0, -50);

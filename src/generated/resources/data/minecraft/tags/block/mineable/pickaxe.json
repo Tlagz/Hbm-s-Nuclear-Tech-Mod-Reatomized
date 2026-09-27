@@ -16,6 +16,7 @@
     "hbm:machine_wood_burner",
     "hbm:machine_diesel",
     "hbm:machine_rtg_grey",
+    "hbm:charger",
     "hbm:machine_radiolysis",
     "hbm:machine_well",
     "hbm:machine_pumpjack",

@@ -179,6 +179,6 @@ public abstract class TileEntityLoadedBase extends BlockEntity implements ILoade
 		if(java.util.Arrays.equals(packet.data(), lastPackedBuf) && level.getGameTime() % 20 != 0) return;
 		this.lastPackedBuf = packet.data();
 
-		PacketDistributor.sendToPlayersNear(server, null, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, range, packet);
+		com.hbm.packet.PacketDispatcher.sendToPlayersNear(server, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, range, packet);
 	}
 }
